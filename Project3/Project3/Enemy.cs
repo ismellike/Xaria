@@ -14,10 +14,24 @@ using Microsoft.Xna.Framework;
 
 namespace Project3
 {
-    class Enemy
+    /// <summary>
+    /// Generic enemy class inherited by specific enemies
+    /// </summary>
+    class Enemy 
     {
-        public Texture2D Texture { get; private set; }
-        public Vector2 Position { get; private set; }
-        public int Health { get; private set; }
+        public Texture2D Texture { get; internal set; }
+        public Vector2 Position { get; internal set; }
+        public int Health { get; internal set; }
+
+        /// <summary>
+        /// Draws character texture to position with no tint
+        /// </summary>
+        /// <param name="spriteBatch"></param>
+        public void Draw(ref SpriteBatch spriteBatch)
+        {
+            spriteBatch.Draw(Texture, Position, Color.White);
+        }
+
+        public virtual void Shoot() { } //can be inherited by enemies to shoot projectiles down
     }
 }

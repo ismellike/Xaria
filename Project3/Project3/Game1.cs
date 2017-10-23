@@ -1,6 +1,7 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using System.Collections.Generic;
 
 namespace Project3
 {
@@ -11,7 +12,9 @@ namespace Project3
     {
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
-
+        internal static Dictionary<string, Texture2D> textureDictionary = new Dictionary<string, Texture2D>();
+        //we need a start screen
+        //also need a rendertarget
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
@@ -21,6 +24,7 @@ namespace Project3
             graphics.PreferredBackBufferWidth = 800;
             graphics.PreferredBackBufferHeight = 480;
             graphics.SupportedOrientations = DisplayOrientation.LandscapeLeft | DisplayOrientation.LandscapeRight;
+           //graphics.GraphicsDevice.Viewport.Bounds used for bounds
         }
 
         /// <summary>
@@ -45,6 +49,8 @@ namespace Project3
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
             // TODO: use this.Content to load your game content here
+
+            //textureDictionary.Add("Player", Content.Load<Texture2D>("ship")); Load textures to key
         }
 
         /// <summary>
@@ -79,6 +85,10 @@ namespace Project3
             GraphicsDevice.Clear(Color.Black);
             spriteBatch.Begin();
             // TODO: Add your drawing code here
+            /*enemies.ForEach((Enemy enemy)=>{
+                enemy.Draw(ref spriteBatch);
+            });*/
+
             spriteBatch.End();
             base.Draw(gameTime);
         }
