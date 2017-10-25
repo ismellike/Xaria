@@ -5,6 +5,13 @@ using System.Collections.Generic;
 
 namespace Project3
 {
+    public enum GameState
+    {
+        Start,
+        Playing,
+        Paused,
+        End,
+    }
     /// <summary>
     /// This is the main type for your game.
     /// </summary>
@@ -13,6 +20,7 @@ namespace Project3
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
         internal static Dictionary<string, Texture2D> textureDictionary = new Dictionary<string, Texture2D>();
+        public static GameState state = GameState.Start;
         //we need a start screen
         //also need a rendertarget
         public Game1()
@@ -72,7 +80,10 @@ namespace Project3
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed)
                 Exit();
             // TODO: Add your update logic here
+            if(state == GameState.Playing)
+            {
 
+            }
             base.Update(gameTime);
         }
 
@@ -88,6 +99,17 @@ namespace Project3
             /*enemies.ForEach((Enemy enemy)=>{
                 enemy.Draw(ref spriteBatch);
             });*/
+            switch(state)
+            {
+                case GameState.Start:
+                    break;
+                case GameState.Playing:
+                    break;
+                case GameState.End:
+                    break;
+                case GameState.Paused:
+                    break;
+            }
 
             spriteBatch.End();
             base.Draw(gameTime);
