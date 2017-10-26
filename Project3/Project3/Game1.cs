@@ -1,6 +1,8 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using Microsoft.Xna.Framework.Input.Touch;
+using Project3.Screens;
 using System.Collections.Generic;
 
 namespace Project3
@@ -19,6 +21,11 @@ namespace Project3
     {
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
+        //screens
+        Start startScreen;
+        End endScreen;
+        Pause pauseScreen;
+        //variables
         internal static Dictionary<string, Texture2D> textureDictionary = new Dictionary<string, Texture2D>();
         public static GameState state = GameState.Start;
         //we need a start screen
@@ -56,6 +63,7 @@ namespace Project3
         {
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
+            startScreen = new Start(Content);
             // TODO: use this.Content to load your game content here
 
             //textureDictionary.Add("Player", Content.Load<Texture2D>("ship")); Load textures to key
@@ -77,12 +85,26 @@ namespace Project3
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Update(GameTime gameTime)
         {
+            //default code
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed)
                 Exit();
-            // TODO: Add your update logic here
-            if(state == GameState.Playing)
-            {
+            //check for input, handle only the first touch given
+            TouchLocation touch = TouchPanel.GetState()[0]; 
 
+            // TODO: Add your update logic here
+            switch (state)
+            {
+                case GameState.Start:
+                    startScreen.Update(touch);
+                    break;
+                case GameState.Playing:
+                    break;
+                case GameState.End:
+                    endScreen.Update(touch);
+                    break;
+                case GameState.Paused:
+                    pauseScreen.Update(touch);
+                    break;
             }
             base.Update(gameTime);
         }
@@ -94,7 +116,7 @@ namespace Project3
         protected override void Draw(GameTime gameTime)
         {
             GraphicsDevice.Clear(Color.Black);
-            spriteBatch.Begin();
+            spriteBatch.Begin(); //do something with this to rescale
             // TODO: Add your drawing code here
             /*enemies.ForEach((Enemy enemy)=>{
                 enemy.Draw(ref spriteBatch);
@@ -102,12 +124,15 @@ namespace Project3
             switch(state)
             {
                 case GameState.Start:
+                    startScreen.Draw(spriteBatch);
                     break;
                 case GameState.Playing:
                     break;
                 case GameState.End:
+                    endScreen.Draw(spriteBatch);
                     break;
                 case GameState.Paused:
+                    pauseScreen.Draw(spriteBatch);
                     break;
             }
 
