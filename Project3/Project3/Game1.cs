@@ -21,13 +21,17 @@ namespace Project3
     {
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
+        internal static Vector2 scale;
         //screens
         Start startScreen;
         End endScreen;
         Pause pauseScreen;
         //variables
+        public static Vector2 screenSize;
         internal static Dictionary<string, Texture2D> textureDictionary = new Dictionary<string, Texture2D>();
-        public static GameState state = GameState.Start;
+        internal static GameState state = GameState.Start;
+        //game variables
+        internal Player player;
         //we need a start screen
         //also need a rendertarget
         public Game1()
@@ -38,8 +42,7 @@ namespace Project3
             graphics.IsFullScreen = true;
             graphics.PreferredBackBufferWidth = 800;
             graphics.PreferredBackBufferHeight = 480;
-            graphics.SupportedOrientations = DisplayOrientation.LandscapeLeft | DisplayOrientation.LandscapeRight;
-           //graphics.GraphicsDevice.Viewport.Bounds used for bounds
+            graphics.SupportedOrientations = DisplayOrientation.Portrait;
         }
 
         /// <summary>
@@ -51,7 +54,10 @@ namespace Project3
         protected override void Initialize()
         {
             // TODO: Add your initialization logic here
-
+            screenSize = new Vector2() { X = GraphicsDevice.Viewport.Width, Y = GraphicsDevice.Viewport.Height };
+            scale = new Vector2() { X = GraphicsDevice.Viewport.Width / 1080f, Y = GraphicsDevice.Viewport.Height / 1799f }; //draw textures relative to a 1280 by 720 screen
+            TouchPanel.DisplayHeight = GraphicsDevice.Viewport.Height;
+            TouchPanel.DisplayWidth = GraphicsDevice.Viewport.Width;
             base.Initialize();
         }
 
@@ -66,7 +72,8 @@ namespace Project3
             startScreen = new Start(Content);
             // TODO: use this.Content to load your game content here
 
-            //textureDictionary.Add("Player", Content.Load<Texture2D>("ship")); Load textures to key
+            textureDictionary.Add("ship", Content.Load<Texture2D>("ship"));
+            player = new Player(100);
         }
 
         /// <summary>
@@ -88,23 +95,27 @@ namespace Project3
             //default code
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed)
                 Exit();
-            //check for input, handle only the first touch given
-            TouchLocation touch = TouchPanel.GetState()[0]; 
-
-            // TODO: Add your update logic here
-            switch (state)
+            //check for input
+            TouchCollection touchCollection = TouchPanel.GetState();
+            if (touchCollection.Count > 0)
             {
-                case GameState.Start:
-                    startScreen.Update(touch);
-                    break;
-                case GameState.Playing:
-                    break;
-                case GameState.End:
-                    endScreen.Update(touch);
-                    break;
-                case GameState.Paused:
-                    pauseScreen.Update(touch);
-                    break;
+                //handle first touch
+                TouchLocation touch = touchCollection[0];
+                switch (state)
+                {
+                    case GameState.Start:
+                        startScreen.Update(touch);
+                        break;
+                    case GameState.Playing:
+                        player.Update(touch.Position.X < player.Position.X);
+                        break;
+                    case GameState.End:
+                        endScreen.Update(touch);
+                        break;
+                    case GameState.Paused:
+                        pauseScreen.Update(touch);
+                        break;
+                }
             }
             base.Update(gameTime);
         }
@@ -127,6 +138,7 @@ namespace Project3
                     startScreen.Draw(spriteBatch);
                     break;
                 case GameState.Playing:
+                    player.Draw(ref spriteBatch);
                     break;
                 case GameState.End:
                     endScreen.Draw(spriteBatch);

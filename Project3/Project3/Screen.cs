@@ -1,23 +1,30 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-using Android.App;
-using Android.Content;
-using Android.OS;
-using Android.Runtime;
-using Android.Views;
-using Android.Widget;
+﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input.Touch;
+using System.Collections.Generic;
 
 namespace Project3
 {
     class Screen
     {
         public List<Button> Buttons = new List<Button>();
-        public virtual void Update(TouchLocation touch) { }
-        public virtual void Draw(SpriteBatch spriteBatch) { }
+        internal void Draw(SpriteBatch spriteBatch)
+        {
+            Buttons.ForEach((Button button) =>
+            {
+                spriteBatch.Draw(button.Texture, button.Position, null, Color.White, 0f, Vector2.Zero, Game1.scale, SpriteEffects.None, 0f);
+            });
+        }
+
+        internal void Update(TouchLocation touch)
+        {
+            Buttons.ForEach((Button button) =>
+            {
+                if (button.isClicked(touch.Position))
+                {
+                    button.Click();
+                }
+            });
+        }
     }
 }

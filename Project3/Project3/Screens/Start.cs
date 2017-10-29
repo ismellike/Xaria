@@ -1,18 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-using Android.App;
-using Android.Content;
-using Android.OS;
-using Android.Runtime;
-using Android.Views;
-using Android.Widget;
+﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
-using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Input.Touch;
 
 namespace Project3.Screens
 {
@@ -20,17 +8,13 @@ namespace Project3.Screens
     {
         public Start(ContentManager Content)
         {
-            Buttons.Add(new Button(Content.Load<Texture2D>("button1"), new Vector2() {X = 500, Y = 500 }));
+            Texture2D startTexture = Content.Load<Texture2D>("start");
+            Buttons.Add(new Button(startTexture, new Vector2((Game1.screenSize.X-startTexture.Width)/2f, (Game1.screenSize.Y-startTexture.Height)/2f), StartGame));
         }
 
-        public override void Update(TouchLocation touch)
+        void StartGame()
         {
-
-        }
-
-        public override void Draw(SpriteBatch spriteBatch)
-        {
-            
+            Game1.state = GameState.Playing;
         }
     }
 }
