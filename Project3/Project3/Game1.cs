@@ -4,6 +4,7 @@ using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Input.Touch;
 using Project3.Screens;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Project3
 {
@@ -32,6 +33,7 @@ namespace Project3
         internal static GameState state = GameState.Start;
         //game variables
         internal Player player;
+        int gameStart;
         //we need a start screen
         //also need a rendertarget
         public Game1()
@@ -73,6 +75,7 @@ namespace Project3
             // TODO: use this.Content to load your game content here
 
             textureDictionary.Add("ship", Content.Load<Texture2D>("ship"));
+            textureDictionary.Add("projectile", Content.Load<Texture2D>("projectile"));
             player = new Player(100);
         }
 
@@ -97,27 +100,26 @@ namespace Project3
                 Exit();
             //check for input
             TouchCollection touchCollection = TouchPanel.GetState();
-            if (touchCollection.Count > 0)
-            {
-                //handle first touch
-                TouchLocation touch = touchCollection[0];
                 switch (state)
                 {
                     case GameState.Start:
-                        startScreen.Update(touch);
+                        startScreen.Update(touchCollection);
                         break;
                     case GameState.Playing:
-                        player.Update(touch.Position.X < player.Position.X);
+                        player.Update(touchCollection);
                         break;
                     case GameState.End:
-                        endScreen.Update(touch);
+                        endScreen.Update(touchCollection);
                         break;
                     case GameState.Paused:
-                        pauseScreen.Update(touch);
+                        pauseScreen.Update(touchCollection);
                         break;
                 }
+
+            if(state == GameState.Playing)
+            {
+                  player.Shoot(gameTime);
             }
-            base.Update(gameTime);
         }
 
         /// <summary>
@@ -139,6 +141,10 @@ namespace Project3
                     break;
                 case GameState.Playing:
                     player.Draw(ref spriteBatch);
+                    player.Projectiles.ForEach((Projectile projectile) =>
+                    {
+                        projectile.Draw(ref spriteBatch);
+                    });
                     break;
                 case GameState.End:
                     endScreen.Draw(spriteBatch);

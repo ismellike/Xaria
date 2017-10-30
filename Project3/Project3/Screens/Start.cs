@@ -15,6 +15,7 @@ namespace Project3.Screens
         void StartGame()
         {
             Game1.state = GameState.Playing;
+            
         }
     }
 }

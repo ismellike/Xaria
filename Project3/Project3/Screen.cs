@@ -16,11 +16,12 @@ namespace Project3
             });
         }
 
-        internal void Update(TouchLocation touch)
+        internal void Update(TouchCollection touch)
         {
+            if(touch.Count > 0)
             Buttons.ForEach((Button button) =>
             {
-                if (button.isClicked(touch.Position))
+                if (button.isClicked(touch[0].Position))
                 {
                     button.Click();
                 }
