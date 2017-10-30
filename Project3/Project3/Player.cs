@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input.Touch;
+using Project3.Projectiles;
 using System;
 using System.Collections.Generic;
 
@@ -59,7 +60,7 @@ namespace Project3
             if (nextShoot <= 0)
             {
                 nextShoot = ShootCooldown;
-                Projectiles.Add(new Projectile(Position+ new Vector2(Texture.Width/2f, Texture.Height), new Vector2(0, -30))); //moving up
+                Projectiles.Add(new Laser(Position+ new Vector2(Texture.Width/2f, Texture.Height), new Vector2(0, -30))); //moving up
             }
         }
     }

@@ -10,12 +10,5 @@ namespace Project3
     {
         public int Damage { get; internal set; }
         public Vector2 Velocity { get; internal set; }
-
-        public Projectile(Vector2 position, Vector2 velocity)
-        {
-            Position = position;
-            Velocity = velocity;
-            Texture = Game1.textureDictionary["projectile"];
-        }
     }
 }
