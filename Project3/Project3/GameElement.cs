@@ -3,7 +3,7 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace Project3
 {
-    class GameElement
+    public class GameElement
     {
         public Texture2D Texture { get; internal set; }
         internal Vector2 Position;

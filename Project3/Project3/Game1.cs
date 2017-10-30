@@ -33,6 +33,7 @@ namespace Project3
         internal static GameState state = GameState.Start;
         //game variables
         internal Player player;
+        public Level level;
         //we need a start screen
         //also need a rendertarget
         public Game1()
@@ -75,7 +76,9 @@ namespace Project3
 
             textureDictionary.Add("ship", Content.Load<Texture2D>("ship"));
             textureDictionary.Add("laser", Content.Load<Texture2D>("laser"));
+            textureDictionary.Add("basic", Content.Load<Texture2D>("basic"));
             player = new Player(100);
+            level = new Level(1);
         }
 
         /// <summary>
@@ -107,6 +110,7 @@ namespace Project3
                     case GameState.Playing:
                         player.Update(touchCollection);
                         player.Shoot(gameTime);
+                        level.Update();
                         break;
                     case GameState.End:
                         endScreen.Update(touchCollection);
@@ -140,6 +144,7 @@ namespace Project3
                     {
                         projectile.Draw(ref spriteBatch);
                     });
+                    level.Draw(spriteBatch);
                     break;
                 case GameState.End:
                     endScreen.Draw(spriteBatch);

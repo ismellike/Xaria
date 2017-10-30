@@ -3,7 +3,7 @@
     /// <summary>
     /// Generic enemy class inherited by specific enemies
     /// </summary>
-    class Enemy : GameElement
+    public class Enemy : GameElement
     {
         public int Health { get; internal set; }
 
