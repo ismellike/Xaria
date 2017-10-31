@@ -26,16 +26,20 @@ namespace Project3
             }
             else
             {
-                for(int i = 0; i < difficulty; i++) //use rows for difficulty
+                for (int i = 0; i < difficulty; i++) //use rows for difficulty
                 {
-                    for(int x = 1; x <= 10; x++) //10 enemies per row
-                        Enemies.Add(new Basic(100, new Vector2((Game1.textureDictionary["basic"].Width+40)*x - 40, (Game1.textureDictionary["basic"].Height+30)*i + 30)));
+                    for (int x = 1; x <= 7; x++) //10 enemies per row
+                        Enemies.Add(new Basic(100, new Vector2((Game1.textureDictionary["basic"].Width + 50) * x - 50 + Game1.textureDictionary["basic"].Width * (i%2), (Game1.textureDictionary["basic"].Height+30)*i + 30)));
                 }
             }
         }
 
         internal void Update()
         {
+            for(int i = Enemies.Count - 1; i >=0; i--) //move right to left then move down
+            {
+
+            }
             //move enemies
         }
 

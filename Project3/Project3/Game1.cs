@@ -80,7 +80,7 @@ namespace Project3
             textureDictionary.Add("basic", Content.Load<Texture2D>("basic"));
             textureDictionary.Add("star", Content.Load<Texture2D>("star"));
             player = new Player(100);
-            level = new Level(1);
+            level = new Level(4);
             background = new Background(2017);
         }
 
