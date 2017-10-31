@@ -27,6 +27,7 @@ namespace Project3
         Start startScreen;
         End endScreen;
         Pause pauseScreen;
+        Background background;
         //variables
         public static Vector2 screenSize;
         internal static Dictionary<string, Texture2D> textureDictionary = new Dictionary<string, Texture2D>();
@@ -77,8 +78,10 @@ namespace Project3
             textureDictionary.Add("ship", Content.Load<Texture2D>("ship"));
             textureDictionary.Add("laser", Content.Load<Texture2D>("laser"));
             textureDictionary.Add("basic", Content.Load<Texture2D>("basic"));
+            textureDictionary.Add("star", Content.Load<Texture2D>("star"));
             player = new Player(100);
             level = new Level(1);
+            background = new Background(2017);
         }
 
         /// <summary>
@@ -101,6 +104,7 @@ namespace Project3
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed)
                 Exit();
             //check for input
+            background.Update(gameTime);
             TouchCollection touchCollection = TouchPanel.GetState();
                 switch (state)
                 {
@@ -130,9 +134,7 @@ namespace Project3
             GraphicsDevice.Clear(Color.Black);
             spriteBatch.Begin(); //do something with this to rescale
             // TODO: Add your drawing code here
-            /*enemies.ForEach((Enemy enemy)=>{
-                enemy.Draw(ref spriteBatch);
-            });*/
+            background.Draw(spriteBatch);
             switch(state)
             {
                 case GameState.Start:
