@@ -20,6 +20,8 @@ namespace Project3.Projectiles
             Position = position;
             Velocity = velocity;
             Texture = Game1.textureDictionary["laser"];
+            Damage = 1000;
+            Rectangle hitBox = new Rectangle((int)Position.X, (int)Position.Y, Texture.Width, Texture.Height);
         }
     }
 }

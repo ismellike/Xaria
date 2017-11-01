@@ -45,5 +45,22 @@ namespace Project3
         }
 
         public virtual void Shoot(GameTime gameTime) { } //can be inherited by enemies to shoot projectiles down
+
+        //returns true if hit so the projectile can be deleted
+        public bool isHit(Projectile shot)
+        {
+            /*hitBox = new Rectangle()
+            if(this.Bounds.IntersectsWith(shot.Bounds))
+            {
+                lowerHealth(shot.Damage);
+                return true;
+            }
+            return false;*/
+        }
+
+        private void lowerHealth(int damage)
+        {
+            Health -= damage;
+        }
     }
 }

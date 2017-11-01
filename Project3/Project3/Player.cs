@@ -63,5 +63,21 @@ namespace Project3
                 Projectiles.Add(new Laser(Position+ new Vector2(Texture.Width/2f, Texture.Height), new Vector2(0, -30))); //moving up
             }
         }
+
+        public bool isPlayerHit(Projectile shot)
+        {
+            Rectangle hitBox = new Rectangle((int)Position.X, (int)Position.Y, Texture.Width, Texture.Height);
+            /*if (hitBox.Intersects(shot.hitBox.Bounds))
+            { 
+                lowerHealth(shot.Damage);
+                return true;
+            }*/
+            return false;
+        }
+
+        private void lowerHealth(int damage)
+        {
+            Health -= damage;
+        }
     }
 }

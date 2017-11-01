@@ -10,5 +10,6 @@ namespace Project3
     {
         public int Damage { get; internal set; }
         public Vector2 Velocity { get; internal set; }
+        //Rectangle hitBox = new Rectangle((int)Position.X, (int)Position.Y, Texture.Width, Texture.Height);
     }
 }
