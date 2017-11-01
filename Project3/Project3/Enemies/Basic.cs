@@ -9,8 +9,19 @@ namespace Project3.Enemies
         {
             Health = (int)(100 + 50*tier);
             Position = position;
+            ShootCooldown = NextShoot = getCooldown(tier);
             Texture = Game1.textureDictionary["basic"];
             Tier = getTier(tier);
+        }
+
+        public override void Shoot(GameTime gameTime)
+        {
+            NextShoot -= gameTime.ElapsedGameTime.Milliseconds;
+            if(NextShoot<= 0)
+            {
+                //add projectile
+                NextShoot = ShootCooldown;
+            }
         }
     }
 }

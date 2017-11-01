@@ -112,7 +112,7 @@ namespace Project3
                     case GameState.Playing:
                         player.Update(touchCollection);
                         player.Shoot(gameTime);
-                        level.Update();
+                        level.Update(gameTime);
                         break;
                     case GameState.End:
                         endScreen.Update(touchCollection);

@@ -1,4 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
+using System;
+using System.Collections.Generic;
 
 namespace Project3
 {
@@ -7,9 +9,21 @@ namespace Project3
     /// </summary>
     public class Enemy : GameElement
     {
+        private Random random = new Random();
         public int Health { get; internal set; }
+        public List<Projectile> Projectiles { get; internal set; }
         public int Damage { get; internal set; }
         public Color Tier { get; internal set; }
+        public double ShootCooldown { get; internal set; } //in milliseconds
+        public double NextShoot { get; internal set; }
+
+        internal double getCooldown(uint tier)
+        {
+            double cooldown = 10000 - tier * 500;
+            if (cooldown <= 1000)
+                return 1000d;
+            return random.Next(1000, (int)cooldown);
+        }
 
         public Color getTier(uint tier)
         {
@@ -30,6 +44,6 @@ namespace Project3
              return Color.Pink;
         }
 
-        public virtual void Shoot() { } //can be inherited by enemies to shoot projectiles down
+        public virtual void Shoot(GameTime gameTime) { } //can be inherited by enemies to shoot projectiles down
     }
 }

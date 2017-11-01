@@ -6,7 +6,7 @@ namespace Project3
     /// <summary>
     /// The Projectile class
     /// </summary>
-    class Projectile : GameElement//can be an inherited class for different types of projectiles
+    public class Projectile : GameElement//can be an inherited class for different types of projectiles
     {
         public int Damage { get; internal set; }
         public Vector2 Velocity { get; internal set; }

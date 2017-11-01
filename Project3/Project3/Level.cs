@@ -38,10 +38,14 @@ namespace Project3
             }
         }
 
-        internal void Update()
+        internal void Update(GameTime gameTime)
         {
+            if (Enemies.Count == 0)
+                NextLevel();
             for(int y = Enemies.Count - 1; y >=0; y--) //move right to left then move down
             {
+                if (Enemies[y].Count == 0)
+                    Enemies.RemoveAt(y);
                 for (int x = Enemies[y].Count - 1; x >= 0; x--)
                 {
                     Enemy enemy = Enemies[y][x];
@@ -50,6 +54,8 @@ namespace Project3
                         Enemies[y].RemoveAt(x);
                         continue;
                     }
+
+                    enemy.Shoot(gameTime);
                     if (movingRight)
                     {
                         enemy.Position.X += 1;
@@ -73,6 +79,12 @@ namespace Project3
             //move enemies
         }
 
+        private void NextLevel()
+        {
+            Difficulty++;
+            GenerateLevel(Difficulty);
+        }
+
         internal void Draw(SpriteBatch spriteBatch)
         {
             Enemies.ForEach((List<Enemy> row) =>
@@ -88,7 +100,18 @@ namespace Project3
         {
             foreach (List<Enemy> row in Enemies)
                 foreach (Enemy enemy in row)
+                {
                     enemy.Position.Y += (enemy.Texture.Height + spacing.Y);
+                    if(enemy.Position.Y <= Game1.screenSize.Y - Game1.textureDictionary["ship"].Height - 10)
+                    {
+                        GameOver();
+                    }
+                }
+        }
+
+        private void GameOver()
+        {
+            throw new NotImplementedException();
         }
     }
 }
