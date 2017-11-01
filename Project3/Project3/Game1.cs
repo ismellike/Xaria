@@ -58,9 +58,7 @@ namespace Project3
         {
             // TODO: Add your initialization logic here
             screenSize = new Vector2() { X = GraphicsDevice.Viewport.Width, Y = GraphicsDevice.Viewport.Height };
-            scale = new Vector2() { X = GraphicsDevice.Viewport.Width / 1080f, Y = GraphicsDevice.Viewport.Height / 1799f }; //draw textures relative to a 1280 by 720 screen
-            TouchPanel.DisplayHeight = GraphicsDevice.Viewport.Height;
-            TouchPanel.DisplayWidth = GraphicsDevice.Viewport.Width;
+            scale = new Vector2() { X = GraphicsDevice.Viewport.Width / 1080f, Y = GraphicsDevice.Viewport.Height / 1799f }; 
             base.Initialize();
         }
 

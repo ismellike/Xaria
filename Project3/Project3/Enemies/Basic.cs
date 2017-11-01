@@ -12,10 +12,5 @@ namespace Project3.Enemies
             Texture = Game1.textureDictionary["basic"];
             Tier = getTier(tier);
         }
-
-        public override void Draw(ref SpriteBatch spriteBatch)
-        {
-            spriteBatch.Draw(Texture, Position, null, Tier, 0f, Vector2.Zero, Game1.scale, SpriteEffects.None, 0f);
-        }
     }
 }

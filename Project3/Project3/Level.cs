@@ -33,7 +33,7 @@ namespace Project3
                 {
                     Enemies.Add(new List<Enemy>());
                     for (int x = 1; x <= ENEMIES_PER_ROW; x++) //10 enemies per row
-                        Enemies[i-1].Add(new Basic(new Vector2((Game1.textureDictionary["basic"].Width + spacing.X) * x - spacing.X+ Game1.textureDictionary["basic"].Width * (i%2), (Game1.textureDictionary["basic"].Height+spacing.Y)*i + spacing.Y), (uint)difficulty % 10));
+                        Enemies[i-1].Add(new Basic(new Vector2((Game1.textureDictionary["basic"].Width + spacing.X) * x - spacing.X+ Game1.textureDictionary["basic"].Width * (i%2), (Game1.textureDictionary["basic"].Height+spacing.Y)*i + spacing.Y), (uint)difficulty));
                 }
             }
         }
@@ -56,7 +56,7 @@ namespace Project3
                         if (enemy.Position.X + enemy.Texture.Width >= Game1.screenSize.X)
                         {
                             movingRight = !movingRight;
-                           // enemy.Position.Y += (enemy.Texture.Height + spacing.Y); move all enemies down
+                            MoveDown();
                         }
                     }
                     else
@@ -65,7 +65,7 @@ namespace Project3
                         if (enemy.Position.X <= 0)
                         {
                             movingRight = !movingRight;
-                            //enemy.Position.Y += (enemy.Texture.Height + spacing.Y); move all enemies down
+                            MoveDown();
                         }
                     }
                 }
@@ -79,9 +79,16 @@ namespace Project3
             {
                 row.ForEach((Enemy enemy) =>
                 {
-                    spriteBatch.Draw(enemy.Texture, enemy.Position, null, Color.White, 0f, Vector2.Zero, Game1.scale, SpriteEffects.None, 0f);
+                    spriteBatch.Draw(enemy.Texture, enemy.Position, null, enemy.Tier, 0f, Vector2.Zero, Game1.scale, SpriteEffects.None, 0f);
                 });
             });
+        }
+
+        private void MoveDown()
+        {
+            foreach (List<Enemy> row in Enemies)
+                foreach (Enemy enemy in row)
+                    enemy.Position.Y += (enemy.Texture.Height + spacing.Y);
         }
     }
 }
