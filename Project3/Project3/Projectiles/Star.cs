@@ -21,6 +21,7 @@ namespace Project3.Projectiles
             Position = position;
             Velocity = velocity;
             Damage = 100;
+            hitBox = new Rectangle((int)Position.X, (int)Position.Y, Texture.Width, Texture.Height);
         }
     }
 }

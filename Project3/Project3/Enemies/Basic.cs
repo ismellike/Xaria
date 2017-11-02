@@ -12,6 +12,7 @@ namespace Project3.Enemies
             ShootCooldown = NextShoot = getCooldown(tier);
             Texture = Game1.textureDictionary["basic"];
             Tier = getTier(tier);
+            hitBox = new Rectangle((int)position.X, (int)position.Y, Texture.Width, Texture.Height);
         }
 
         public override void Shoot(GameTime gameTime)

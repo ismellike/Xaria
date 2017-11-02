@@ -140,7 +140,7 @@ namespace Project3
                     break;
                 case GameState.Playing:
                     player.Draw(ref spriteBatch);
-                    player.Projectiles.ForEach((Projectile projectile) =>
+                    player.playerProjectiles.ForEach((Projectile projectile) =>
                     {
                         projectile.Draw(ref spriteBatch);
                     });

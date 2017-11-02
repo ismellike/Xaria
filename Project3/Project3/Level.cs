@@ -40,6 +40,7 @@ namespace Project3
 
         internal void Update(GameTime gameTime)
         {
+            isHit();
             if (Enemies.Count == 0)
                 NextLevel();
             for(int y = Enemies.Count - 1; y >=0; y--) //move right to left then move down
@@ -94,6 +95,18 @@ namespace Project3
                     spriteBatch.Draw(enemy.Texture, enemy.Position, null, enemy.Tier, 0f, Vector2.Zero, Game1.scale, SpriteEffects.None, 0f);
                 });
             });
+        }
+
+        private void isHit()
+        {
+            foreach (List<Enemy> row in Enemies)
+                foreach (Enemy enemy in row)
+                {
+                    /*foreach(Projectile projectile in playerProjectiles)
+                    {
+                        if(projectile.hitBox.Bounds.Intersects())
+                    }*/
+                }
         }
 
         private void MoveDown()

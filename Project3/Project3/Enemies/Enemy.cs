@@ -16,6 +16,7 @@ namespace Project3
         public Color Tier { get; internal set; }
         public double ShootCooldown { get; internal set; } //in milliseconds
         public double NextShoot { get; internal set; }
+        public Rectangle hitBox { get; internal set; }
 
         internal double getCooldown(uint tier)
         {
@@ -47,16 +48,6 @@ namespace Project3
         public virtual void Shoot(GameTime gameTime) { } //can be inherited by enemies to shoot projectiles down
 
         //returns true if hit so the projectile can be deleted
-        public bool isHit(Projectile shot)
-        {
-            /*hitBox = new Rectangle()
-            if(this.Bounds.IntersectsWith(shot.Bounds))
-            {
-                lowerHealth(shot.Damage);
-                return true;
-            }
-            return false;*/
-        }
 
         private void lowerHealth(int damage)
         {

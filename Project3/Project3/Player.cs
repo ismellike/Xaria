@@ -12,7 +12,7 @@ namespace Project3
     class Player : GameElement
     {
         public int Health { get; internal set; }
-        public List<Projectile> Projectiles = new List<Projectile>();
+        public List<Projectile> playerProjectiles = new List<Projectile>();
         public double ShootCooldown { get; internal set; }
         internal double nextShoot; //start at ShootCooldown go to 0 then reset
         public float Velocity = 10;
@@ -42,12 +42,12 @@ namespace Project3
                 }
             }
             //move their projectiles
-            for (int i = Projectiles.Count - 1; i >= 0; i--)
+            for (int i = playerProjectiles.Count - 1; i >= 0; i--)
             {
-                Projectile projectile = Projectiles[i];
+                Projectile projectile = playerProjectiles[i];
                 if (projectile.Position.X <= 0)
                 {
-                    Projectiles.Remove(projectile);
+                    playerProjectiles.Remove(projectile);
                     continue;
                 }
                 projectile.Position += projectile.Velocity;
@@ -60,7 +60,7 @@ namespace Project3
             if (nextShoot <= 0)
             {
                 nextShoot = ShootCooldown;
-                Projectiles.Add(new Laser(Position+ new Vector2(Texture.Width/2f, Texture.Height), new Vector2(0, -30))); //moving up
+                playerProjectiles.Add(new Laser(Position+ new Vector2(Texture.Width/2f, Texture.Height), new Vector2(0, -30))); //moving up
             }
         }
 
