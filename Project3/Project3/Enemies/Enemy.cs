@@ -15,6 +15,7 @@ namespace Project3
         public Color TierColor { get; internal set; }
         public uint Tier { get; internal set; }
         public double NextShoot { get; internal set; }
+        public Rectangle hitBox { get; internal set; }
 
         internal double getCooldown(uint tier)
         {

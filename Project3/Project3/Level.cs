@@ -122,6 +122,18 @@ namespace Project3
             }
         }
 
+        private void isHit()
+        {
+            foreach (List<Enemy> row in Enemies)
+                foreach (Enemy enemy in row)
+                {
+                    /*foreach(Projectile projectile in playerProjectiles)
+                    {
+                        if(projectile.hitBox.Bounds.Intersects())
+                    }*/
+                }
+        }
+
         private void MoveDown()
         {
             foreach (List<Enemy> row in Enemies)
