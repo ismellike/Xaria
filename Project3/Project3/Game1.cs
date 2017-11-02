@@ -29,9 +29,10 @@ namespace Project3
         Pause pauseScreen;
         Background background;
         //variables
-        public static Vector2 screenSize;
+        internal static Vector2 screenSize;
         internal static Dictionary<string, Texture2D> textureDictionary = new Dictionary<string, Texture2D>();
         internal static GameState state = GameState.Start;
+        internal static SpriteFont font;
         //game variables
         internal Player player;
         public Level level;
@@ -71,14 +72,16 @@ namespace Project3
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
             startScreen = new Start(Content);
+            endScreen = new End(Content);
             // TODO: use this.Content to load your game content here
 
             textureDictionary.Add("ship", Content.Load<Texture2D>("ship"));
             textureDictionary.Add("laser", Content.Load<Texture2D>("laser"));
             textureDictionary.Add("basic", Content.Load<Texture2D>("basic"));
             textureDictionary.Add("star", Content.Load<Texture2D>("star"));
+            font = Content.Load<SpriteFont>("font");
             player = new Player(100);
-            level = new Level(4);
+            level = new Level(1);
             background = new Background(2017);
         }
 
@@ -110,9 +113,7 @@ namespace Project3
                         startScreen.Update(touchCollection);
                         break;
                     case GameState.Playing:
-                        player.Update(touchCollection);
-                        player.Shoot(gameTime);
-                        level.Update(gameTime);
+                        level.Update(gameTime, touchCollection, ref player);
                         break;
                     case GameState.End:
                         endScreen.Update(touchCollection);
@@ -132,25 +133,21 @@ namespace Project3
             GraphicsDevice.Clear(Color.Black);
             spriteBatch.Begin(); //do something with this to rescale
             // TODO: Add your drawing code here
-            background.Draw(spriteBatch);
+            background.Draw(ref spriteBatch);
             switch(state)
             {
                 case GameState.Start:
-                    startScreen.Draw(spriteBatch);
+                    startScreen.Draw(ref spriteBatch);
                     break;
                 case GameState.Playing:
                     player.Draw(ref spriteBatch);
-                    player.Projectiles.ForEach((Projectile projectile) =>
-                    {
-                        projectile.Draw(ref spriteBatch);
-                    });
-                    level.Draw(spriteBatch);
+                    level.Draw(ref spriteBatch);
                     break;
                 case GameState.End:
-                    endScreen.Draw(spriteBatch);
+                    endScreen.Draw(ref spriteBatch);
                     break;
                 case GameState.Paused:
-                    pauseScreen.Draw(spriteBatch);
+                    pauseScreen.Draw(ref spriteBatch);
                     break;
             }
 

@@ -15,12 +15,12 @@ namespace Project3.Projectiles
 {
     class Laser : Projectile
     {
-        public Laser(Vector2 position, Vector2 velocity)
+        public Laser(Vector2 position, Vector2 velocity, int damage)
         {
             Position = position;
             Velocity = velocity;
             Texture = Game1.textureDictionary["laser"];
-            Damage = 1000;
+            Damage = damage;
             Rectangle hitBox = new Rectangle((int)Position.X, (int)Position.Y, Texture.Width, Texture.Height);
         }
     }

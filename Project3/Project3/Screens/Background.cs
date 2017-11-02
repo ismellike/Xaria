@@ -18,12 +18,10 @@ namespace Project3.Screens
             nextStar=  random.Next(200, 1500);
         }
 
-        public void Draw(SpriteBatch spriteBatch)
+        public void Draw(ref SpriteBatch spriteBatch)
         {
-            stars.ForEach((Star star) =>
-            {
-                spriteBatch.Draw(star.Texture, star.Position, null, Color.White, 0f, Vector2.Zero, Game1.scale, SpriteEffects.None, 0f);
-            });
+            foreach (Star star in stars)
+                star.Draw(ref spriteBatch);
         }
 
         public void Update(GameTime gameTime)

@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
 
@@ -9,20 +10,18 @@ namespace Project3
     /// </summary>
     public class Enemy : GameElement
     {
-        private Random random = new Random();
         public int Health { get; internal set; }
-        public List<Projectile> Projectiles { get; internal set; }
         public int Damage { get; internal set; }
-        public Color Tier { get; internal set; }
-        public double ShootCooldown { get; internal set; } //in milliseconds
+        public Color TierColor { get; internal set; }
+        public uint Tier { get; internal set; }
         public double NextShoot { get; internal set; }
 
         internal double getCooldown(uint tier)
         {
-            double cooldown = 10000 - tier * 500;
+            double cooldown = 10000 - Tier * 500;
             if (cooldown <= 1000)
                 return 1000d;
-            return random.Next(1000, (int)cooldown);
+            return Level.random.Next(1000, (int)cooldown);
         }
 
         public Color getTier(uint tier)
@@ -44,23 +43,20 @@ namespace Project3
              return Color.Pink;
         }
 
-        public virtual void Shoot(GameTime gameTime) { } //can be inherited by enemies to shoot projectiles down
+        public override void Draw(ref SpriteBatch spriteBatch)
+        {
+            spriteBatch.DrawString(Game1.font, Health.ToString(), Position + new Vector2(10, -25), Color.White, 0f, Vector2.Zero, Game1.scale, SpriteEffects.None, 0f);
+            spriteBatch.Draw(Texture, Position, null, TierColor, 0f, Vector2.Zero, Game1.scale, SpriteEffects.None, 0f);
+        }
+
+        public virtual void Shoot(GameTime gameTime, ref List<Projectile> Projectiles) {  } //can be inherited by enemies to shoot projectiles down
 
         //returns true if hit so the projectile can be deleted
         public bool isHit(Projectile shot)
         {
-            /*hitBox = new Rectangle()
-            if(this.Bounds.IntersectsWith(shot.Bounds))
-            {
-                lowerHealth(shot.Damage);
+            if(Bounds().Intersects(shot.Bounds()))
                 return true;
-            }
-            return false;*/
-        }
-
-        private void lowerHealth(int damage)
-        {
-            Health -= damage;
+            return false;
         }
     }
 }

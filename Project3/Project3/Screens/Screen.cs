@@ -8,12 +8,10 @@ namespace Project3
     class Screen
     {
         public List<Button> Buttons = new List<Button>();
-        internal void Draw(SpriteBatch spriteBatch)
+        internal void Draw(ref SpriteBatch spriteBatch)
         {
-            Buttons.ForEach((Button button) =>
-            {
-                spriteBatch.Draw(button.Texture, button.Position, null, Color.White, 0f, Vector2.Zero, Game1.scale, SpriteEffects.None, 0f);
-            });
+            foreach (Button button in Buttons)
+                button.Draw(ref spriteBatch);
         }
 
         internal void Update(TouchCollection touch)

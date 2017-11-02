@@ -1,5 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Project3.Projectiles;
+using System.Collections.Generic;
 
 namespace Project3.Enemies
 {
@@ -7,20 +9,21 @@ namespace Project3.Enemies
     {
         public Basic(Vector2 position, uint tier)
         {
-            Health = (int)(100 + 50*tier);
+            Health = (int)(100 + 50*System.Math.Floor(tier/10d));
             Position = position;
-            ShootCooldown = NextShoot = getCooldown(tier);
+            Tier = tier;
+            NextShoot = getCooldown(tier);
             Texture = Game1.textureDictionary["basic"];
-            Tier = getTier(tier);
+            TierColor = getTier(tier);
         }
 
-        public override void Shoot(GameTime gameTime)
+        public override void Shoot(GameTime gameTime, ref List<Projectile> Projectiles)
         {
             NextShoot -= gameTime.ElapsedGameTime.Milliseconds;
             if(NextShoot<= 0)
             {
-                //add projectile
-                NextShoot = ShootCooldown;
+                NextShoot = getCooldown(Tier);
+                Projectiles.Add(new Laser(Position + new Vector2(Texture.Width / 2f - 1f, Texture.Height+ 5f), new Vector2(0, 20), 20)); //moving up
             }
         }
     }

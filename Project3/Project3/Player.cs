@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input.Touch;
 using Project3.Projectiles;
 using System;
@@ -26,31 +27,53 @@ namespace Project3
             nextShoot = ShootCooldown;
         }
 
-        internal void Update(TouchCollection touch)
+        internal void Update(TouchCollection touch, ref List<List<Enemy>> Enemies)
         {
             //move the player
-            if(touch.Count > 0)
-            if (Math.Abs(touch[0].Position.X - Position.X - Texture.Width / 2f) > Velocity*1.25f) //stops oscillation
-            {
-                if (touch[0].Position.X < Position.X + Texture.Width/2f)
+            if (touch.Count > 0)
+                if (Math.Abs(touch[0].Position.X - Position.X - Texture.Width / 2f) > Velocity * 1.25f) //stops oscillation
                 {
-                    Position.X -= Velocity;
+                    if (touch[0].Position.X < Position.X + Texture.Width / 2f)
+                    {
+                        Position.X -= Velocity;
+                    }
+                    else
+                    {
+                        Position.X += Velocity;
+                    }
                 }
-                else
-                {
-                    Position.X += Velocity;
-                }
-            }
             //move their projectiles
-            for (int i = Projectiles.Count - 1; i >= 0; i--)
+            for (int projectileIndex = Projectiles.Count - 1; projectileIndex >= 0; projectileIndex--)
             {
-                Projectile projectile = Projectiles[i];
+                Projectile projectile = Projectiles[projectileIndex];
                 if (projectile.Position.X <= 0)
                 {
-                    Projectiles.Remove(projectile);
+                    Projectiles.RemoveAt(projectileIndex);
                     continue;
                 }
                 projectile.Position += projectile.Velocity;
+
+                for (int y = Enemies.Count - 1; y >= 0; y--)
+                    for (int x = Enemies[y].Count - 1; x >= 0; x--) //lower rows are more likely to be hit by a projecitle
+                    {
+                        if (Enemies[y][x].isHit(projectile))
+                        {
+                            Enemies[y][x].Health -= projectile.Damage;
+                            Projectiles.RemoveAt(projectileIndex);
+                            goto exit;
+                        }
+                    }
+                exit:;
+            }
+        }
+
+        public override void Draw(ref SpriteBatch spriteBatch)
+        {
+            spriteBatch.DrawString(Game1.font, Health.ToString(), Position + new Vector2(10, -25), Color.White, 0f, Vector2.Zero, Game1.scale, SpriteEffects.None, 0f);
+            spriteBatch.Draw(Texture, Position, null, Color.White, 0f, Vector2.Zero, Game1.scale, SpriteEffects.None, 0f);
+            foreach(Projectile projectile in Projectiles)
+            { 
+                projectile.Draw(ref spriteBatch);
             }
         }
 
@@ -60,24 +83,15 @@ namespace Project3
             if (nextShoot <= 0)
             {
                 nextShoot = ShootCooldown;
-                Projectiles.Add(new Laser(Position+ new Vector2(Texture.Width/2f, Texture.Height), new Vector2(0, -30))); //moving up
+                Projectiles.Add(new Laser(Position+ new Vector2(Texture.Width/2f - 1f, -5f), new Vector2(0, -30), 50)); //moving up
             }
         }
 
         public bool isPlayerHit(Projectile shot)
         {
-            Rectangle hitBox = new Rectangle((int)Position.X, (int)Position.Y, Texture.Width, Texture.Height);
-            /*if (hitBox.Intersects(shot.hitBox.Bounds))
-            { 
-                lowerHealth(shot.Damage);
+            if (Bounds().Intersects(shot.Bounds()))
                 return true;
-            }*/
             return false;
-        }
-
-        private void lowerHealth(int damage)
-        {
-            Health -= damage;
         }
     }
 }

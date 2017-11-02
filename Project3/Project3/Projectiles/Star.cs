@@ -20,7 +20,6 @@ namespace Project3.Projectiles
             Texture = Game1.textureDictionary["star"];
             Position = position;
             Velocity = velocity;
-            Damage = 100;
         }
     }
 }

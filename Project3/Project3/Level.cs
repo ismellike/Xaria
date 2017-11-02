@@ -3,6 +3,7 @@ using Project3.Enemies;
 using System.Collections.Generic;
 using System;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Input.Touch;
 
 namespace Project3
 {
@@ -11,8 +12,10 @@ namespace Project3
         public int Difficulty { get; private set; }
         public List<List<Enemy>> Enemies = new List<List<Enemy>>();
         private readonly Vector2 spacing = new Vector2(50, 30);
+        public List<Projectile> Projectiles = new List<Projectile>();
         private bool movingRight = true;
         private const int ENEMIES_PER_ROW = 7;
+        public static Random random = new Random();
 
         public Level(int difficulty)
         {
@@ -38,24 +41,32 @@ namespace Project3
             }
         }
 
-        internal void Update(GameTime gameTime)
+        internal void Update(GameTime gameTime, TouchCollection touchCollection, ref Player player)
         {
+            #region Update Player
+            player.Update(touchCollection, ref Enemies);
+            player.Shoot(gameTime);
+            #endregion
+            #region Update Enemies
             if (Enemies.Count == 0)
                 NextLevel();
-            for(int y = Enemies.Count - 1; y >=0; y--) //move right to left then move down
+            for(int rowIndex = Enemies.Count - 1; rowIndex >=0; rowIndex--) //move right to left then move down
             {
-                if (Enemies[y].Count == 0)
-                    Enemies.RemoveAt(y);
-                for (int x = Enemies[y].Count - 1; x >= 0; x--)
+                if (Enemies[rowIndex].Count == 0)
                 {
-                    Enemy enemy = Enemies[y][x];
+                    Enemies.RemoveAt(rowIndex);
+                    continue;
+                }
+                for (int enemyIndex = Enemies[rowIndex].Count - 1; enemyIndex >= 0; enemyIndex--)
+                {
+                    Enemy enemy = Enemies[rowIndex][enemyIndex];
                     if (enemy.Health <= 0)
                     {
-                        Enemies[y].RemoveAt(x);
+                        Enemies[rowIndex].RemoveAt(enemyIndex);
                         continue;
                     }
 
-                    enemy.Shoot(gameTime);
+                    enemy.Shoot(gameTime, ref Projectiles);
                     if (movingRight)
                     {
                         enemy.Position.X += 1;
@@ -76,7 +87,20 @@ namespace Project3
                     }
                 }
             }
-            //move enemies
+            #endregion
+            #region Update Projectiles
+            for(int projectileIndex = Projectiles.Count- 1; projectileIndex>= 0; projectileIndex--)
+            {
+                Projectiles[projectileIndex].Position += Projectiles[projectileIndex].Velocity;
+                if (player.isPlayerHit(Projectiles[projectileIndex]))
+                {
+                    player.Health -= Projectiles[projectileIndex].Damage;
+                    if (player.Health <= 0)
+                        GameOver();
+                    Projectiles.RemoveAt(projectileIndex);
+                }
+            }
+            #endregion
         }
 
         private void NextLevel()
@@ -85,15 +109,17 @@ namespace Project3
             GenerateLevel(Difficulty);
         }
 
-        internal void Draw(SpriteBatch spriteBatch)
+        internal void Draw(ref SpriteBatch spriteBatch)
         {
-            Enemies.ForEach((List<Enemy> row) =>
-            {
-                row.ForEach((Enemy enemy) =>
+            foreach (List<Enemy> row in Enemies)
+                foreach (Enemy enemy in row)
                 {
-                    spriteBatch.Draw(enemy.Texture, enemy.Position, null, enemy.Tier, 0f, Vector2.Zero, Game1.scale, SpriteEffects.None, 0f);
-                });
-            });
+                    enemy.Draw(ref spriteBatch);
+                }
+            foreach(Projectile projectile in Projectiles)
+            {
+                projectile.Draw(ref spriteBatch, Color.Red);
+            }
         }
 
         private void MoveDown()
@@ -102,7 +128,7 @@ namespace Project3
                 foreach (Enemy enemy in row)
                 {
                     enemy.Position.Y += (enemy.Texture.Height + spacing.Y);
-                    if(enemy.Position.Y <= Game1.screenSize.Y - Game1.textureDictionary["ship"].Height - 10)
+                    if(enemy.Position.Y >= Game1.screenSize.Y - Game1.textureDictionary["ship"].Height - 10)
                     {
                         GameOver();
                     }
@@ -111,7 +137,7 @@ namespace Project3
 
         private void GameOver()
         {
-            throw new NotImplementedException();
+            Game1.state = GameState.End;
         }
     }
 }
