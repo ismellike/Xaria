@@ -1,56 +1,89 @@
 ﻿using Microsoft.Xna.Framework;
-using Project3.Enemies;
-using System.Collections.Generic;
-using System;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input.Touch;
+using System;
+using System.Collections.Generic;
+using Xaria.Enemies;
 
-namespace Project3
+namespace Xaria
 {
+    /// <summary>
+    /// The Level class
+    /// </summary>
     public class Level
     {
+        /// <summary>
+        /// Gets the difficulty.
+        /// </summary>
+        /// <value>
+        /// The difficulty.
+        /// </value>
         public int Difficulty { get; private set; }
+        /// <summary>
+        /// The enemies
+        /// </summary>
         public List<List<Enemy>> Enemies = new List<List<Enemy>>();
+        /// <summary>
+        /// The spacing between enemies
+        /// </summary>
         private readonly Vector2 spacing = new Vector2(50, 30);
+        /// <summary>
+        /// The projectiles of enemies
+        /// </summary>
         public List<Projectile> Projectiles = new List<Projectile>();
+        /// <summary>
+        /// Bool for enemy movements to right or left
+        /// </summary>
         private bool movingRight = true;
+        /// <summary>
+        /// The enemies per row
+        /// </summary>
         private const int ENEMIES_PER_ROW = 7;
+        /// <summary>
+        /// A random class for determining enemy shooting
+        /// </summary>
         public static Random random = new Random();
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Level" /> class.
+        /// </summary>
+        /// <param name="difficulty">The difficulty.</param>
         public Level(int difficulty)
         {
             Difficulty = difficulty;
             GenerateLevel(Difficulty);
         }
 
+        /// <summary>
+        /// Generates the level.
+        /// </summary>
+        /// <param name="difficulty">The difficulty.</param>
         private void GenerateLevel(int difficulty)
         {
             Enemies.Clear();
-            if(difficulty % 5 == 0) //max 4 rows then do something else
+            for (int i = 1; i <= difficulty; i++) //use rows for difficulty
             {
-
-            }
-            else
-            {
-                for (int i =1; i <= difficulty; i++) //use rows for difficulty
-                {
-                    Enemies.Add(new List<Enemy>());
-                    for (int x = 1; x <= ENEMIES_PER_ROW; x++) //10 enemies per row
-                        Enemies[i-1].Add(new Basic(new Vector2((Game1.textureDictionary["basic"].Width + spacing.X) * x - spacing.X+ Game1.textureDictionary["basic"].Width * (i%2), (Game1.textureDictionary["basic"].Height+spacing.Y)*i + spacing.Y), (uint)difficulty));
-                }
+                Enemies.Add(new List<Enemy>());
+                for (int x = 1; x <= ENEMIES_PER_ROW; x++) //10 enemies per row
+                    Enemies[i - 1].Add(new Basic(new Vector2((Game1.textureDictionary["basic"].Width + spacing.X) * x - spacing.X + Game1.textureDictionary["basic"].Width * (i % 2), (Game1.textureDictionary["basic"].Height + spacing.Y) * i + spacing.Y)));
             }
         }
 
-        internal void Update(GameTime gameTime, TouchCollection touchCollection, ref Player player)
+        /// <summary>
+        /// Updates the Level's player, enemy projectiles, and enemies.
+        /// </summary>
+        /// <param name="gameTime">The game time.</param>
+        /// <param name="touchCollection">The touch collection.</param>
+        internal void Update(GameTime gameTime, TouchCollection touchCollection)
         {
             #region Update Player
-            player.Update(touchCollection, ref Enemies);
-            player.Shoot(gameTime);
+            Game1.player.Update(touchCollection, ref Enemies);
+            Game1.player.Shoot(gameTime);
             #endregion
             #region Update Enemies
             if (Enemies.Count == 0)
                 NextLevel();
-            for(int rowIndex = Enemies.Count - 1; rowIndex >=0; rowIndex--) //move right to left then move down
+            for (int rowIndex = Enemies.Count - 1; rowIndex >= 0; rowIndex--) //move right to left then move down
             {
                 if (Enemies[rowIndex].Count == 0)
                 {
@@ -89,13 +122,13 @@ namespace Project3
             }
             #endregion
             #region Update Projectiles
-            for(int projectileIndex = Projectiles.Count- 1; projectileIndex>= 0; projectileIndex--)
+            for (int projectileIndex = Projectiles.Count - 1; projectileIndex >= 0; projectileIndex--)
             {
                 Projectiles[projectileIndex].Position += Projectiles[projectileIndex].Velocity;
-                if (player.isPlayerHit(Projectiles[projectileIndex]))
+                if (Game1.player.IsHit(Projectiles[projectileIndex]))
                 {
-                    player.Health -= Projectiles[projectileIndex].Damage;
-                    if (player.Health <= 0)
+                    Game1.player.Health -= Projectiles[projectileIndex].Damage;
+                    if (Game1.player.Health <= 0)
                         GameOver();
                     Projectiles.RemoveAt(projectileIndex);
                 }
@@ -103,12 +136,19 @@ namespace Project3
             #endregion
         }
 
+        /// <summary>
+        /// Goes to the next level.
+        /// </summary>
         private void NextLevel()
         {
             Difficulty++;
             GenerateLevel(Difficulty);
         }
 
+        /// <summary>
+        /// Draws the Level's enemies and enemy projectiles.
+        /// </summary>
+        /// <param name="spriteBatch">The sprite batch.</param>
         internal void Draw(ref SpriteBatch spriteBatch)
         {
             foreach (List<Enemy> row in Enemies)
@@ -116,37 +156,31 @@ namespace Project3
                 {
                     enemy.Draw(ref spriteBatch);
                 }
-            foreach(Projectile projectile in Projectiles)
+            foreach (Projectile projectile in Projectiles)
             {
                 projectile.Draw(ref spriteBatch, Color.Red);
             }
         }
 
-        private void isHit()
-        {
-            foreach (List<Enemy> row in Enemies)
-                foreach (Enemy enemy in row)
-                {
-                    /*foreach(Projectile projectile in playerProjectiles)
-                    {
-                        if(projectile.hitBox.Bounds.Intersects())
-                    }*/
-                }
-        }
-
+        /// <summary>
+        /// Moves the enemies down.
+        /// </summary>
         private void MoveDown()
         {
             foreach (List<Enemy> row in Enemies)
                 foreach (Enemy enemy in row)
                 {
                     enemy.Position.Y += (enemy.Texture.Height + spacing.Y);
-                    if(enemy.Position.Y >= Game1.screenSize.Y - Game1.textureDictionary["ship"].Height - 10)
+                    if (enemy.Position.Y >= Game1.screenSize.Y - Game1.textureDictionary["ship"].Height - 10)
                     {
                         GameOver();
                     }
                 }
         }
 
+        /// <summary>
+        /// Ends the game
+        /// </summary>
         private void GameOver()
         {
             Game1.state = GameState.End;

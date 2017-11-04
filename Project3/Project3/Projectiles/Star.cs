@@ -1,20 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using Microsoft.Xna.Framework;
 
-using Android.App;
-using Android.Content;
-using Android.OS;
-using Android.Runtime;
-using Android.Views;
-using Android.Widget;
-using Microsoft.Xna.Framework;
-
-namespace Project3.Projectiles
+namespace Xaria.Projectiles
 {
+    /// <summary>
+    /// The star class
+    /// </summary>
+    /// <seealso cref="Xaria.Projectile" />
     class Star : Projectile
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Star" /> class.
+        /// </summary>
+        /// <param name="position">The position.</param>
+        /// <param name="velocity">The velocity.</param>
         public Star(Vector2 position, Vector2 velocity)
         {
             Texture = Game1.textureDictionary["star"];

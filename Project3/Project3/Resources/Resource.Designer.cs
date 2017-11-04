@@ -9,9 +9,9 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-[assembly: global::Android.Runtime.ResourceDesignerAttribute("Project3.Resource", IsApplication=true)]
+[assembly: global::Android.Runtime.ResourceDesignerAttribute("Xaria.Resource", IsApplication=true)]
 
-namespace Project3
+namespace Xaria
 {
 	
 	
@@ -26,7 +26,7 @@ namespace Project3
 		
 		public static void UpdateIdValues()
 		{
-			global::Xamarin.Forms.Platform.Android.Resource.Attribute.actionBarSize = global::Project3.Resource.Attribute.actionBarSize;
+			global::Xamarin.Forms.Platform.Android.Resource.Attribute.actionBarSize = global::Xaria.Resource.Attribute.actionBarSize;
 		}
 		
 		public partial class Animation

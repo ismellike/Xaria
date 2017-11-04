@@ -11,7 +11,7 @@
     <ProjectTypeGuids>{EFBA0AD7-5A72-4C68-AF49-83D382785DCF};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Project3</RootNamespace>
+    <RootNamespace>Xaria</RootNamespace>
     <AssemblyName>Project3</AssemblyName>
     <FileAlignment>512</FileAlignment>
     <AndroidApplication>true</AndroidApplication>
@@ -116,7 +116,6 @@
     <Compile Include="Screens\Background.cs" />
     <Compile Include="Screens\Screen.cs" />
     <Compile Include="Screens\End.cs" />
-    <Compile Include="Screens\Pause.cs" />
     <Compile Include="Screens\Start.cs" />
   </ItemGroup>
   <ItemGroup>
