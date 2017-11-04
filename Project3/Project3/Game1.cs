@@ -2,17 +2,27 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Input.Touch;
-using Project3.Screens;
 using System.Collections.Generic;
-using System.Linq;
+using Xaria.Screens;
 
-namespace Project3
+namespace Xaria
 {
+    /// <summary>
+    /// GameState controls the game's state
+    /// </summary>
     public enum GameState
     {
+        /// <summary>
+        /// The start state
+        /// </summary>
         Start,
+        /// <summary>
+        /// The playing state
+        /// </summary>
         Playing,
-        Paused,
+        /// <summary>
+        /// The end game state
+        /// </summary>
         End,
     }
     /// <summary>
@@ -20,24 +30,65 @@ namespace Project3
     /// </summary>
     public class Game1 : Game
     {
+        #region drawing
+        /// <summary>
+        /// The graphics device manager
+        /// </summary>
         GraphicsDeviceManager graphics;
+        /// <summary>
+        /// The sprite batch for drawings
+        /// </summary>
         SpriteBatch spriteBatch;
+        /// <summary>
+        /// The scale for game drawing
+        /// </summary>
         internal static Vector2 scale;
-        //screens
+        #endregion
+        #region screens
+        /// <summary>
+        /// The start screen
+        /// </summary>
         Start startScreen;
+        /// <summary>
+        /// The end screen
+        /// </summary>
         End endScreen;
-        Pause pauseScreen;
+        /// <summary>
+        /// The background
+        /// </summary>
         Background background;
-        //variables
+        #endregion
+        #region variables
+        /// <summary>
+        /// The screen size
+        /// </summary>
         internal static Vector2 screenSize;
+        /// <summary>
+        /// The texture dictionary
+        /// </summary>
         internal static Dictionary<string, Texture2D> textureDictionary = new Dictionary<string, Texture2D>();
+        /// <summary>
+        /// The state
+        /// </summary>
         internal static GameState state = GameState.Start;
+        /// <summary>
+        /// The font
+        /// </summary>
         internal static SpriteFont font;
         //game variables
-        internal Player player;
-        public Level level;
-        //we need a start screen
-        //also need a rendertarget
+        /// <summary>
+        /// The player
+        /// </summary>
+        internal static Player player;
+        /// <summary>
+        /// The level
+        /// </summary>
+        internal static Level level;
+        #endregion
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Game1"/> class.
+        /// </summary>
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
@@ -73,25 +124,16 @@ namespace Project3
             spriteBatch = new SpriteBatch(GraphicsDevice);
             startScreen = new Start(Content);
             endScreen = new End(Content);
-            // TODO: use this.Content to load your game content here
 
             textureDictionary.Add("ship", Content.Load<Texture2D>("ship"));
             textureDictionary.Add("laser", Content.Load<Texture2D>("laser"));
             textureDictionary.Add("basic", Content.Load<Texture2D>("basic"));
             textureDictionary.Add("star", Content.Load<Texture2D>("star"));
             font = Content.Load<SpriteFont>("font");
-            player = new Player(100);
+
+            player = new Player();
             level = new Level(1);
             background = new Background(2017);
-        }
-
-        /// <summary>
-        /// UnloadContent will be called once per game and is the place to unload
-        /// game-specific content.
-        /// </summary>
-        protected override void UnloadContent()
-        {
-            // TODO: Unload any non ContentManager content here
         }
 
         /// <summary>
@@ -101,9 +143,6 @@ namespace Project3
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Update(GameTime gameTime)
         {
-            //default code
-            if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed)
-                Exit();
             //check for input
             background.Update(gameTime);
             TouchCollection touchCollection = TouchPanel.GetState();
@@ -113,14 +152,11 @@ namespace Project3
                         startScreen.Update(touchCollection);
                         break;
                     case GameState.Playing:
-                        level.Update(gameTime, touchCollection, ref player);
+                        level.Update(gameTime, touchCollection);
                         break;
                     case GameState.End:
                         endScreen.Update(touchCollection);
-                        break;
-                    case GameState.Paused:
-                        pauseScreen.Update(touchCollection);
-                        break;
+                    break;
                 }
         }
 
@@ -145,9 +181,6 @@ namespace Project3
                     break;
                 case GameState.End:
                     endScreen.Draw(ref spriteBatch);
-                    break;
-                case GameState.Paused:
-                    pauseScreen.Draw(ref spriteBatch);
                     break;
             }
 

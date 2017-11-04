@@ -1,20 +1,19 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using Microsoft.Xna.Framework;
 
-using Android.App;
-using Android.Content;
-using Android.OS;
-using Android.Runtime;
-using Android.Views;
-using Android.Widget;
-using Microsoft.Xna.Framework;
-
-namespace Project3.Projectiles
+namespace Xaria.Projectiles
 {
+    /// <summary>
+    /// The Laser class.
+    /// </summary>
+    /// <seealso cref="Xaria.Projectile" />
     class Laser : Projectile
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Laser" /> class.
+        /// </summary>
+        /// <param name="position">The position.</param>
+        /// <param name="velocity">The velocity.</param>
+        /// <param name="damage">The damage.</param>
         public Laser(Vector2 position, Vector2 velocity, int damage)
         {
             Position = position;
