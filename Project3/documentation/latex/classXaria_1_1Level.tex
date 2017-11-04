@@ -1,0 +1,240 @@
+\hypertarget{classXaria_1_1Level}{}\section{Xaria.\+Level Class Reference}
+\label{classXaria_1_1Level}\index{Xaria.\+Level@{Xaria.\+Level}}
+
+
+The \hyperlink{classXaria_1_1Level}{Level} class  
+
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classXaria_1_1Level_abbe8f5dc4eb2b1ea9bb259a4e1440838}{Level} (int difficulty)
+\begin{DoxyCompactList}\small\item\em Initializes a new instance of the \hyperlink{classXaria_1_1Level}{Level} class. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+List$<$ List$<$ Enemy $>$ $>$ \hyperlink{classXaria_1_1Level_a4eff7a4620cc9fc399d3eccd477f65ab}{Enemies} = new List$<$List$<$Enemy$>$$>$()
+\begin{DoxyCompactList}\small\item\em The enemies \end{DoxyCompactList}\item 
+List$<$ Projectile $>$ \hyperlink{classXaria_1_1Level_a104ab7863b71829e667c3e02dc128ecd}{Projectiles} = new List$<$Projectile$>$()
+\begin{DoxyCompactList}\small\item\em The projectiles of enemies \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+static Random \hyperlink{classXaria_1_1Level_a9782c177ac48834cf40de7ab5a17469f}{random} = new Random()
+\begin{DoxyCompactList}\small\item\em A random class for determining enemy shooting \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Package Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{classXaria_1_1Level_a0591034ea9fd9f955a4bf7ceb698c2a4}{Update} (Game\+Time game\+Time, Touch\+Collection touch\+Collection)
+\begin{DoxyCompactList}\small\item\em Updates the \hyperlink{classXaria_1_1Level}{Level}\textquotesingle{}s player, enemy projectiles, and enemies. \end{DoxyCompactList}\item 
+void \hyperlink{classXaria_1_1Level_a09298652a8048fff78f5497b08c51a16}{Draw} (ref Sprite\+Batch sprite\+Batch)
+\begin{DoxyCompactList}\small\item\em Draws the \hyperlink{classXaria_1_1Level}{Level}\textquotesingle{}s enemies and enemy projectiles. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Properties}
+\begin{DoxyCompactItemize}
+\item 
+int \hyperlink{classXaria_1_1Level_a088431ceff97978eb6b0c9aae95ccfd2}{Difficulty}\hspace{0.3cm}{\ttfamily  \mbox{[}get, private set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Gets the difficulty. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{classXaria_1_1Level_a22bccc0212af3ebce89ad36a735cf2f1}{Generate\+Level} (int difficulty)
+\begin{DoxyCompactList}\small\item\em Generates the level. \end{DoxyCompactList}\item 
+void \hyperlink{classXaria_1_1Level_ab1b45e8eacae455500518158aceadeba}{Next\+Level} ()
+\begin{DoxyCompactList}\small\item\em Goes to the next level. \end{DoxyCompactList}\item 
+void \hyperlink{classXaria_1_1Level_a501e6c0c3196d7cff51e14f57775a15e}{Move\+Down} ()
+\begin{DoxyCompactList}\small\item\em Moves the enemies down. \end{DoxyCompactList}\item 
+void \hyperlink{classXaria_1_1Level_aca4ebca18f725704744d9c51073a44a5}{Game\+Over} ()
+\begin{DoxyCompactList}\small\item\em Ends the game \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+readonly Vector2 \hyperlink{classXaria_1_1Level_a11828cb0f191abce748eccf9921cf83a}{spacing} = new Vector2(50, 30)
+\begin{DoxyCompactList}\small\item\em The spacing between enemies \end{DoxyCompactList}\item 
+bool \hyperlink{classXaria_1_1Level_accc50b8872895d856609c939069d86df}{moving\+Right} = true
+\begin{DoxyCompactList}\small\item\em Bool for enemy movements to right or left \end{DoxyCompactList}\item 
+const int \hyperlink{classXaria_1_1Level_afd8806018ddf8b47dbec8a495ed8e3b4}{E\+N\+E\+M\+I\+E\+S\+\_\+\+P\+E\+R\+\_\+\+R\+OW} = 7
+\begin{DoxyCompactList}\small\item\em The enemies per row \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+The \hyperlink{classXaria_1_1Level}{Level} class 
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classXaria_1_1Level_abbe8f5dc4eb2b1ea9bb259a4e1440838}\label{classXaria_1_1Level_abbe8f5dc4eb2b1ea9bb259a4e1440838}} 
+\index{Xaria\+::\+Level@{Xaria\+::\+Level}!Level@{Level}}
+\index{Level@{Level}!Xaria\+::\+Level@{Xaria\+::\+Level}}
+\subsubsection{\texorpdfstring{Level()}{Level()}}
+{\footnotesize\ttfamily Xaria.\+Level.\+Level (\begin{DoxyParamCaption}\item[{int}]{difficulty }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Initializes a new instance of the \hyperlink{classXaria_1_1Level}{Level} class. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em difficulty} & The difficulty.\\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classXaria_1_1Level_a09298652a8048fff78f5497b08c51a16}\label{classXaria_1_1Level_a09298652a8048fff78f5497b08c51a16}} 
+\index{Xaria\+::\+Level@{Xaria\+::\+Level}!Draw@{Draw}}
+\index{Draw@{Draw}!Xaria\+::\+Level@{Xaria\+::\+Level}}
+\subsubsection{\texorpdfstring{Draw()}{Draw()}}
+{\footnotesize\ttfamily void Xaria.\+Level.\+Draw (\begin{DoxyParamCaption}\item[{ref Sprite\+Batch}]{sprite\+Batch }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [package]}}
+
+
+
+Draws the \hyperlink{classXaria_1_1Level}{Level}\textquotesingle{}s enemies and enemy projectiles. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em sprite\+Batch} & The sprite batch.\\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classXaria_1_1Level_aca4ebca18f725704744d9c51073a44a5}\label{classXaria_1_1Level_aca4ebca18f725704744d9c51073a44a5}} 
+\index{Xaria\+::\+Level@{Xaria\+::\+Level}!Game\+Over@{Game\+Over}}
+\index{Game\+Over@{Game\+Over}!Xaria\+::\+Level@{Xaria\+::\+Level}}
+\subsubsection{\texorpdfstring{Game\+Over()}{GameOver()}}
+{\footnotesize\ttfamily void Xaria.\+Level.\+Game\+Over (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}
+
+
+
+Ends the game 
+
+\mbox{\Hypertarget{classXaria_1_1Level_a22bccc0212af3ebce89ad36a735cf2f1}\label{classXaria_1_1Level_a22bccc0212af3ebce89ad36a735cf2f1}} 
+\index{Xaria\+::\+Level@{Xaria\+::\+Level}!Generate\+Level@{Generate\+Level}}
+\index{Generate\+Level@{Generate\+Level}!Xaria\+::\+Level@{Xaria\+::\+Level}}
+\subsubsection{\texorpdfstring{Generate\+Level()}{GenerateLevel()}}
+{\footnotesize\ttfamily void Xaria.\+Level.\+Generate\+Level (\begin{DoxyParamCaption}\item[{int}]{difficulty }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}
+
+
+
+Generates the level. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em difficulty} & The difficulty.\\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classXaria_1_1Level_a501e6c0c3196d7cff51e14f57775a15e}\label{classXaria_1_1Level_a501e6c0c3196d7cff51e14f57775a15e}} 
+\index{Xaria\+::\+Level@{Xaria\+::\+Level}!Move\+Down@{Move\+Down}}
+\index{Move\+Down@{Move\+Down}!Xaria\+::\+Level@{Xaria\+::\+Level}}
+\subsubsection{\texorpdfstring{Move\+Down()}{MoveDown()}}
+{\footnotesize\ttfamily void Xaria.\+Level.\+Move\+Down (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}
+
+
+
+Moves the enemies down. 
+
+\mbox{\Hypertarget{classXaria_1_1Level_ab1b45e8eacae455500518158aceadeba}\label{classXaria_1_1Level_ab1b45e8eacae455500518158aceadeba}} 
+\index{Xaria\+::\+Level@{Xaria\+::\+Level}!Next\+Level@{Next\+Level}}
+\index{Next\+Level@{Next\+Level}!Xaria\+::\+Level@{Xaria\+::\+Level}}
+\subsubsection{\texorpdfstring{Next\+Level()}{NextLevel()}}
+{\footnotesize\ttfamily void Xaria.\+Level.\+Next\+Level (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}
+
+
+
+Goes to the next level. 
+
+\mbox{\Hypertarget{classXaria_1_1Level_a0591034ea9fd9f955a4bf7ceb698c2a4}\label{classXaria_1_1Level_a0591034ea9fd9f955a4bf7ceb698c2a4}} 
+\index{Xaria\+::\+Level@{Xaria\+::\+Level}!Update@{Update}}
+\index{Update@{Update}!Xaria\+::\+Level@{Xaria\+::\+Level}}
+\subsubsection{\texorpdfstring{Update()}{Update()}}
+{\footnotesize\ttfamily void Xaria.\+Level.\+Update (\begin{DoxyParamCaption}\item[{Game\+Time}]{game\+Time,  }\item[{Touch\+Collection}]{touch\+Collection }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [package]}}
+
+
+
+Updates the \hyperlink{classXaria_1_1Level}{Level}\textquotesingle{}s player, enemy projectiles, and enemies. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em game\+Time} & The game time.\\
+\hline
+{\em touch\+Collection} & The touch collection.\\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Member Data Documentation}
+\mbox{\Hypertarget{classXaria_1_1Level_a4eff7a4620cc9fc399d3eccd477f65ab}\label{classXaria_1_1Level_a4eff7a4620cc9fc399d3eccd477f65ab}} 
+\index{Xaria\+::\+Level@{Xaria\+::\+Level}!Enemies@{Enemies}}
+\index{Enemies@{Enemies}!Xaria\+::\+Level@{Xaria\+::\+Level}}
+\subsubsection{\texorpdfstring{Enemies}{Enemies}}
+{\footnotesize\ttfamily List$<$List$<$Enemy$>$ $>$ Xaria.\+Level.\+Enemies = new List$<$List$<$Enemy$>$$>$()}
+
+
+
+The enemies 
+
+\mbox{\Hypertarget{classXaria_1_1Level_afd8806018ddf8b47dbec8a495ed8e3b4}\label{classXaria_1_1Level_afd8806018ddf8b47dbec8a495ed8e3b4}} 
+\index{Xaria\+::\+Level@{Xaria\+::\+Level}!E\+N\+E\+M\+I\+E\+S\+\_\+\+P\+E\+R\+\_\+\+R\+OW@{E\+N\+E\+M\+I\+E\+S\+\_\+\+P\+E\+R\+\_\+\+R\+OW}}
+\index{E\+N\+E\+M\+I\+E\+S\+\_\+\+P\+E\+R\+\_\+\+R\+OW@{E\+N\+E\+M\+I\+E\+S\+\_\+\+P\+E\+R\+\_\+\+R\+OW}!Xaria\+::\+Level@{Xaria\+::\+Level}}
+\subsubsection{\texorpdfstring{E\+N\+E\+M\+I\+E\+S\+\_\+\+P\+E\+R\+\_\+\+R\+OW}{ENEMIES\_PER\_ROW}}
+{\footnotesize\ttfamily const int Xaria.\+Level.\+E\+N\+E\+M\+I\+E\+S\+\_\+\+P\+E\+R\+\_\+\+R\+OW = 7\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The enemies per row 
+
+\mbox{\Hypertarget{classXaria_1_1Level_accc50b8872895d856609c939069d86df}\label{classXaria_1_1Level_accc50b8872895d856609c939069d86df}} 
+\index{Xaria\+::\+Level@{Xaria\+::\+Level}!moving\+Right@{moving\+Right}}
+\index{moving\+Right@{moving\+Right}!Xaria\+::\+Level@{Xaria\+::\+Level}}
+\subsubsection{\texorpdfstring{moving\+Right}{movingRight}}
+{\footnotesize\ttfamily bool Xaria.\+Level.\+moving\+Right = true\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Bool for enemy movements to right or left 
+
+\mbox{\Hypertarget{classXaria_1_1Level_a104ab7863b71829e667c3e02dc128ecd}\label{classXaria_1_1Level_a104ab7863b71829e667c3e02dc128ecd}} 
+\index{Xaria\+::\+Level@{Xaria\+::\+Level}!Projectiles@{Projectiles}}
+\index{Projectiles@{Projectiles}!Xaria\+::\+Level@{Xaria\+::\+Level}}
+\subsubsection{\texorpdfstring{Projectiles}{Projectiles}}
+{\footnotesize\ttfamily List$<$Projectile$>$ Xaria.\+Level.\+Projectiles = new List$<$Projectile$>$()}
+
+
+
+The projectiles of enemies 
+
+\mbox{\Hypertarget{classXaria_1_1Level_a9782c177ac48834cf40de7ab5a17469f}\label{classXaria_1_1Level_a9782c177ac48834cf40de7ab5a17469f}} 
+\index{Xaria\+::\+Level@{Xaria\+::\+Level}!random@{random}}
+\index{random@{random}!Xaria\+::\+Level@{Xaria\+::\+Level}}
+\subsubsection{\texorpdfstring{random}{random}}
+{\footnotesize\ttfamily Random Xaria.\+Level.\+random = new Random()\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+A random class for determining enemy shooting 
+
+\mbox{\Hypertarget{classXaria_1_1Level_a11828cb0f191abce748eccf9921cf83a}\label{classXaria_1_1Level_a11828cb0f191abce748eccf9921cf83a}} 
+\index{Xaria\+::\+Level@{Xaria\+::\+Level}!spacing@{spacing}}
+\index{spacing@{spacing}!Xaria\+::\+Level@{Xaria\+::\+Level}}
+\subsubsection{\texorpdfstring{spacing}{spacing}}
+{\footnotesize\ttfamily readonly Vector2 Xaria.\+Level.\+spacing = new Vector2(50, 30)\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The spacing between enemies 
+
+
+
+\subsection{Property Documentation}
+\mbox{\Hypertarget{classXaria_1_1Level_a088431ceff97978eb6b0c9aae95ccfd2}\label{classXaria_1_1Level_a088431ceff97978eb6b0c9aae95ccfd2}} 
+\index{Xaria\+::\+Level@{Xaria\+::\+Level}!Difficulty@{Difficulty}}
+\index{Difficulty@{Difficulty}!Xaria\+::\+Level@{Xaria\+::\+Level}}
+\subsubsection{\texorpdfstring{Difficulty}{Difficulty}}
+{\footnotesize\ttfamily int Xaria.\+Level.\+Difficulty\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [private set]}}
+
+
+
+Gets the difficulty. 
+
+The difficulty. 
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+Project3/\+Project3/\hyperlink{Level_8cs}{Level.\+cs}\end{DoxyCompactItemize}

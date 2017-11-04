@@ -1,0 +1,192 @@
+\hypertarget{classXaria_1_1Player}{}\section{Xaria.\+Player Class Reference}
+\label{classXaria_1_1Player}\index{Xaria.\+Player@{Xaria.\+Player}}
+
+
+Our player class  
+
+
+Inheritance diagram for Xaria.\+Player\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classXaria_1_1Player}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classXaria_1_1Player_a86d80bfee5af015e8612cd992bf53ad0}{Player} ()
+\begin{DoxyCompactList}\small\item\em Initializes a new instance of the \hyperlink{classXaria_1_1Player}{Player} class. \end{DoxyCompactList}\item 
+override void \hyperlink{classXaria_1_1Player_a25ddea2b9d8679ab6aa649fda6ce1f22}{Draw} (ref Sprite\+Batch sprite\+Batch)
+\begin{DoxyCompactList}\small\item\em Draws the player, projectiles, and health. 
+\begin{DoxyParams}{Parameters}
+{\em sprite\+Batch} & The sprite batch.\\
+\hline
+\end{DoxyParams}
+\end{DoxyCompactList}\item 
+bool \hyperlink{classXaria_1_1Player_a75f034f442c2afb88d445ea6968c9a1d}{Is\+Hit} (Projectile shot)
+\begin{DoxyCompactList}\small\item\em Determines whether the player is hit by a projectile. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+List$<$ Projectile $>$ \hyperlink{classXaria_1_1Player_a643c5dbda599d86c01bde3cfd1749ae6}{Projectiles} = new List$<$Projectile$>$()
+\item 
+float \hyperlink{classXaria_1_1Player_ae6a69729c15af135388ead356e025b97}{Velocity} = 10
+\end{DoxyCompactItemize}
+\subsection*{Package Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{classXaria_1_1Player_adc33765b2f4761f7722299cc880f376f}{Update} (Touch\+Collection touch, ref List$<$ List$<$ Enemy $>$$>$ Enemies)
+\begin{DoxyCompactList}\small\item\em Updates the specified touch and checks for player projectile collision with enemies. \end{DoxyCompactList}\item 
+void \hyperlink{classXaria_1_1Player_a9449bb24ef3a669d4d8081c652811b7c}{Shoot} (Game\+Time game\+Time)
+\begin{DoxyCompactList}\small\item\em Shoots a projectile after a given time. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Package Attributes}
+\begin{DoxyCompactItemize}
+\item 
+double \hyperlink{classXaria_1_1Player_afdb434cf55e3817ee1f6949c0fb71ee3}{next\+Shoot}
+\item 
+const int \hyperlink{classXaria_1_1Player_a454099110fca2d19ae08bc7174802018}{S\+T\+A\+R\+T\+I\+N\+G\+\_\+\+H\+E\+A\+L\+TH} = 100
+\end{DoxyCompactItemize}
+\subsection*{Properties}
+\begin{DoxyCompactItemize}
+\item 
+int \hyperlink{classXaria_1_1Player_a48a4972a17acb525adca1a30454eaf30}{Health}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\item 
+double \hyperlink{classXaria_1_1Player_a0139bb987403bdbe4b795a03be8d2108}{Shoot\+Cooldown}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Our player class 
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classXaria_1_1Player_a86d80bfee5af015e8612cd992bf53ad0}\label{classXaria_1_1Player_a86d80bfee5af015e8612cd992bf53ad0}} 
+\index{Xaria\+::\+Player@{Xaria\+::\+Player}!Player@{Player}}
+\index{Player@{Player}!Xaria\+::\+Player@{Xaria\+::\+Player}}
+\subsubsection{\texorpdfstring{Player()}{Player()}}
+{\footnotesize\ttfamily Xaria.\+Player.\+Player (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Initializes a new instance of the \hyperlink{classXaria_1_1Player}{Player} class. 
+
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classXaria_1_1Player_a25ddea2b9d8679ab6aa649fda6ce1f22}\label{classXaria_1_1Player_a25ddea2b9d8679ab6aa649fda6ce1f22}} 
+\index{Xaria\+::\+Player@{Xaria\+::\+Player}!Draw@{Draw}}
+\index{Draw@{Draw}!Xaria\+::\+Player@{Xaria\+::\+Player}}
+\subsubsection{\texorpdfstring{Draw()}{Draw()}}
+{\footnotesize\ttfamily override void Xaria.\+Player.\+Draw (\begin{DoxyParamCaption}\item[{ref Sprite\+Batch}]{sprite\+Batch }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Draws the player, projectiles, and health. 
+\begin{DoxyParams}{Parameters}
+{\em sprite\+Batch} & The sprite batch.\\
+\hline
+\end{DoxyParams}
+
+
+
+
+Reimplemented from \hyperlink{classXaria_1_1GameElement_a812e0ffbe54519a3fb14a49115bf43d9}{Xaria.\+Game\+Element}.
+
+\mbox{\Hypertarget{classXaria_1_1Player_a75f034f442c2afb88d445ea6968c9a1d}\label{classXaria_1_1Player_a75f034f442c2afb88d445ea6968c9a1d}} 
+\index{Xaria\+::\+Player@{Xaria\+::\+Player}!Is\+Hit@{Is\+Hit}}
+\index{Is\+Hit@{Is\+Hit}!Xaria\+::\+Player@{Xaria\+::\+Player}}
+\subsubsection{\texorpdfstring{Is\+Hit()}{IsHit()}}
+{\footnotesize\ttfamily bool Xaria.\+Player.\+Is\+Hit (\begin{DoxyParamCaption}\item[{Projectile}]{shot }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Determines whether the player is hit by a projectile. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em shot} & The projectile.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+{\ttfamily true} if the specified player is hit; otherwise, {\ttfamily false}. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classXaria_1_1Player_a9449bb24ef3a669d4d8081c652811b7c}\label{classXaria_1_1Player_a9449bb24ef3a669d4d8081c652811b7c}} 
+\index{Xaria\+::\+Player@{Xaria\+::\+Player}!Shoot@{Shoot}}
+\index{Shoot@{Shoot}!Xaria\+::\+Player@{Xaria\+::\+Player}}
+\subsubsection{\texorpdfstring{Shoot()}{Shoot()}}
+{\footnotesize\ttfamily void Xaria.\+Player.\+Shoot (\begin{DoxyParamCaption}\item[{Game\+Time}]{game\+Time }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [package]}}
+
+
+
+Shoots a projectile after a given time. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em game\+Time} & The game time.\\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classXaria_1_1Player_adc33765b2f4761f7722299cc880f376f}\label{classXaria_1_1Player_adc33765b2f4761f7722299cc880f376f}} 
+\index{Xaria\+::\+Player@{Xaria\+::\+Player}!Update@{Update}}
+\index{Update@{Update}!Xaria\+::\+Player@{Xaria\+::\+Player}}
+\subsubsection{\texorpdfstring{Update()}{Update()}}
+{\footnotesize\ttfamily void Xaria.\+Player.\+Update (\begin{DoxyParamCaption}\item[{Touch\+Collection}]{touch,  }\item[{ref List$<$ List$<$ Enemy $>$$>$}]{Enemies }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [package]}}
+
+
+
+Updates the specified touch and checks for player projectile collision with enemies. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em touch} & The touch.\\
+\hline
+{\em Enemies} & The enemies.\\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Member Data Documentation}
+\mbox{\Hypertarget{classXaria_1_1Player_afdb434cf55e3817ee1f6949c0fb71ee3}\label{classXaria_1_1Player_afdb434cf55e3817ee1f6949c0fb71ee3}} 
+\index{Xaria\+::\+Player@{Xaria\+::\+Player}!next\+Shoot@{next\+Shoot}}
+\index{next\+Shoot@{next\+Shoot}!Xaria\+::\+Player@{Xaria\+::\+Player}}
+\subsubsection{\texorpdfstring{next\+Shoot}{nextShoot}}
+{\footnotesize\ttfamily double Xaria.\+Player.\+next\+Shoot\hspace{0.3cm}{\ttfamily [package]}}
+
+\mbox{\Hypertarget{classXaria_1_1Player_a643c5dbda599d86c01bde3cfd1749ae6}\label{classXaria_1_1Player_a643c5dbda599d86c01bde3cfd1749ae6}} 
+\index{Xaria\+::\+Player@{Xaria\+::\+Player}!Projectiles@{Projectiles}}
+\index{Projectiles@{Projectiles}!Xaria\+::\+Player@{Xaria\+::\+Player}}
+\subsubsection{\texorpdfstring{Projectiles}{Projectiles}}
+{\footnotesize\ttfamily List$<$Projectile$>$ Xaria.\+Player.\+Projectiles = new List$<$Projectile$>$()}
+
+\mbox{\Hypertarget{classXaria_1_1Player_a454099110fca2d19ae08bc7174802018}\label{classXaria_1_1Player_a454099110fca2d19ae08bc7174802018}} 
+\index{Xaria\+::\+Player@{Xaria\+::\+Player}!S\+T\+A\+R\+T\+I\+N\+G\+\_\+\+H\+E\+A\+L\+TH@{S\+T\+A\+R\+T\+I\+N\+G\+\_\+\+H\+E\+A\+L\+TH}}
+\index{S\+T\+A\+R\+T\+I\+N\+G\+\_\+\+H\+E\+A\+L\+TH@{S\+T\+A\+R\+T\+I\+N\+G\+\_\+\+H\+E\+A\+L\+TH}!Xaria\+::\+Player@{Xaria\+::\+Player}}
+\subsubsection{\texorpdfstring{S\+T\+A\+R\+T\+I\+N\+G\+\_\+\+H\+E\+A\+L\+TH}{STARTING\_HEALTH}}
+{\footnotesize\ttfamily const int Xaria.\+Player.\+S\+T\+A\+R\+T\+I\+N\+G\+\_\+\+H\+E\+A\+L\+TH = 100\hspace{0.3cm}{\ttfamily [package]}}
+
+\mbox{\Hypertarget{classXaria_1_1Player_ae6a69729c15af135388ead356e025b97}\label{classXaria_1_1Player_ae6a69729c15af135388ead356e025b97}} 
+\index{Xaria\+::\+Player@{Xaria\+::\+Player}!Velocity@{Velocity}}
+\index{Velocity@{Velocity}!Xaria\+::\+Player@{Xaria\+::\+Player}}
+\subsubsection{\texorpdfstring{Velocity}{Velocity}}
+{\footnotesize\ttfamily float Xaria.\+Player.\+Velocity = 10}
+
+
+
+\subsection{Property Documentation}
+\mbox{\Hypertarget{classXaria_1_1Player_a48a4972a17acb525adca1a30454eaf30}\label{classXaria_1_1Player_a48a4972a17acb525adca1a30454eaf30}} 
+\index{Xaria\+::\+Player@{Xaria\+::\+Player}!Health@{Health}}
+\index{Health@{Health}!Xaria\+::\+Player@{Xaria\+::\+Player}}
+\subsubsection{\texorpdfstring{Health}{Health}}
+{\footnotesize\ttfamily int Xaria.\+Player.\+Health\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+\mbox{\Hypertarget{classXaria_1_1Player_a0139bb987403bdbe4b795a03be8d2108}\label{classXaria_1_1Player_a0139bb987403bdbe4b795a03be8d2108}} 
+\index{Xaria\+::\+Player@{Xaria\+::\+Player}!Shoot\+Cooldown@{Shoot\+Cooldown}}
+\index{Shoot\+Cooldown@{Shoot\+Cooldown}!Xaria\+::\+Player@{Xaria\+::\+Player}}
+\subsubsection{\texorpdfstring{Shoot\+Cooldown}{ShootCooldown}}
+{\footnotesize\ttfamily double Xaria.\+Player.\+Shoot\+Cooldown\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+Project3/\+Project3/\hyperlink{Player_8cs}{Player.\+cs}\end{DoxyCompactItemize}
