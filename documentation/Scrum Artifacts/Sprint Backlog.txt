@@ -1,0 +1,4 @@
+Our plan for this project is to make a game similar to Galaga with a ship that moves from left to right 
+at the bottom of the screen and shoots in a periodic interval towards rows of enemies at the top that shoot back down in random intervals 
+while maintaining health for all sprites.
+We also want a start screen and end screen.

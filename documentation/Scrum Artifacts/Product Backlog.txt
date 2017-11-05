@@ -1,0 +1,7 @@
+Start screen - 1 day - the user's start screen
+End screen - 1 day - the user's end screen
+Player and Enemy classes - 3 weeks - classes for  all sprites through final product with drawables
+Background - 1 day - stars that populate screen to simulate moving through space
+Enemy drops - 3 days - power ups and health drops after enemy dies 
+Buttons - 1 day - user interface with drawables
+Projectiles - 3 weeks - different projectiles for all sprites with drawables
