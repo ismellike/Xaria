@@ -4,6 +4,7 @@ using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Input.Touch;
 using System.Collections.Generic;
 using Xaria.Screens;
+using Microsoft.Xna.Framework.Content;
 
 namespace Xaria
 {
@@ -123,6 +124,7 @@ namespace Xaria
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
             startScreen = new Start(Content);
+            startScreen = new Endless(Content);
             endScreen = new End(Content);
 
             textureDictionary.Add("ship", Content.Load<Texture2D>("ship"));
@@ -186,6 +188,13 @@ namespace Xaria
 
             spriteBatch.End();
             base.Draw(gameTime);
+        }
+    }
+
+    internal class Endless : Start
+    {
+        public Endless(ContentManager Content) : base(Content)
+        {
         }
     }
 }

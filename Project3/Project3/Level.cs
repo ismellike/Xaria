@@ -171,7 +171,7 @@ namespace Xaria
                 foreach (Enemy enemy in row)
                 {
                     enemy.Position.Y += (enemy.Texture.Height + spacing.Y);
-                    if (enemy.Position.Y >= Game1.screenSize.Y - Game1.textureDictionary["ship"].Height - 10)
+                    if (enemy.Position.Y >= Game1.screenSize.Y - Game1.textureDictionary["ship"].Height - 5)
                     {
                         GameOver();
                     }
