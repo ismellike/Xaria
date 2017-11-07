@@ -82,8 +82,8 @@ namespace Xaria
         /// <param name="spriteBatch">The sprite batch.</param>
         public override void Draw(ref SpriteBatch spriteBatch)
         {
-            spriteBatch.DrawString(Game1.font, Health.ToString(), Position + new Vector2(10, -25), Color.White, 0f, Vector2.Zero, Game1.scale, SpriteEffects.None, 0f);
-            spriteBatch.Draw(Texture, Position, null, Color.White, 0f, Vector2.Zero, Game1.scale, SpriteEffects.None, 0f);
+            spriteBatch.DrawString(Game1.font, Health.ToString(), Position + new Vector2(10, -25), Color.White);
+            spriteBatch.Draw(Texture, Position, Color.White);
             foreach (Projectile projectile in Projectiles)
             {
                 projectile.Draw(ref spriteBatch);

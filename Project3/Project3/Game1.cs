@@ -40,10 +40,7 @@ namespace Xaria
         /// The sprite batch for drawings
         /// </summary>
         SpriteBatch spriteBatch;
-        /// <summary>
-        /// The scale for game drawing
-        /// </summary>
-        internal static Vector2 scale;
+        RenderTarget2D renderTarget;
         #endregion
         #region screens
         /// <summary>
@@ -110,8 +107,8 @@ namespace Xaria
         protected override void Initialize()
         {
             // TODO: Add your initialization logic here
-            screenSize = new Vector2() { X = GraphicsDevice.Viewport.Width, Y = GraphicsDevice.Viewport.Height };
-            scale = new Vector2() { X = GraphicsDevice.Viewport.Width / 1080f, Y = GraphicsDevice.Viewport.Height / 1799f }; 
+            screenSize = new Vector2() { X = 1024, Y = 2048 };
+            renderTarget = new RenderTarget2D(GraphicsDevice, 1024, 2048);
             base.Initialize();
         }
 
@@ -169,6 +166,7 @@ namespace Xaria
         protected override void Draw(GameTime gameTime)
         {
             GraphicsDevice.Clear(Color.Black);
+            GraphicsDevice.SetRenderTarget(renderTarget);
             spriteBatch.Begin(); //do something with this to rescale
             // TODO: Add your drawing code here
             background.Draw(ref spriteBatch);
@@ -186,6 +184,11 @@ namespace Xaria
                     break;
             }
 
+            spriteBatch.End();
+            GraphicsDevice.SetRenderTarget(null);
+
+            spriteBatch.Begin(samplerState: SamplerState.PointClamp);
+            spriteBatch.Draw(renderTarget, new Rectangle(0, 0, Window.ClientBounds.Width, Window.ClientBounds.Height), Color.White);
             spriteBatch.End();
             base.Draw(gameTime);
         }
