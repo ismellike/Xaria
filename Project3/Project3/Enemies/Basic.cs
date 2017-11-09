@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using System.Collections.Generic;
+using Xaria.Drops;
 using Xaria.Projectiles;
 
 namespace Xaria.Enemies
@@ -25,6 +26,7 @@ namespace Xaria.Enemies
             Position = position;
             NextShoot = Level.random.Next(1000, 10000);
             Texture = Game1.textureDictionary["basic"];
+            drops = new List<Drop>() { new Shield() };
         }
 
         /// <summary>
@@ -32,7 +34,7 @@ namespace Xaria.Enemies
         /// </summary>
         /// <param name="gameTime">The game time.</param>
         /// <param name="Projectiles">The projectiles.</param>
-        public override void Shoot(GameTime gameTime, ref List<Projectile> Projectiles)
+        internal override void Shoot(GameTime gameTime, ref List<Projectile> Projectiles)
         {
             NextShoot -= gameTime.ElapsedGameTime.Milliseconds;
             if(NextShoot<= 0)
@@ -40,6 +42,11 @@ namespace Xaria.Enemies
                 NextShoot = Level.random.Next(1000, 10000);
                 Projectiles.Add(new Laser(Position + new Vector2(Texture.Width / 2f - 1f, Texture.Height+ 5f), new Vector2(0, 20), 20)); //moving up
             }
+        }
+
+        internal override void OnDeath()
+        {
+            base.OnDeath(); //drop a random drop
         }
     }
 }

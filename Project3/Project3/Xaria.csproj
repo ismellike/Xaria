@@ -104,6 +104,7 @@
   <ItemGroup>
     <Compile Include="Activity1.cs" />
     <Compile Include="Button.cs" />
+    <Compile Include="Drops\Drop.cs" />
     <Compile Include="Enemies\Basic.cs" />
     <Compile Include="Enemies\Enemy.cs" />
     <Compile Include="Game1.cs" />

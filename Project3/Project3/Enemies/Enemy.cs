@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System.Collections.Generic;
+using Xaria.Drops;
 
 namespace Xaria
 {
@@ -9,6 +10,10 @@ namespace Xaria
     /// </summary>
     public class Enemy : GameElement
     {
+        /// <summary>
+        /// The drops
+        /// </summary>
+        internal List<Drop> drops = new List<Drop>(); 
         /// <summary>
         /// Gets the health.
         /// </summary>
@@ -37,7 +42,7 @@ namespace Xaria
             spriteBatch.Draw(Texture, Position, Color.White);
         }
 
-        public virtual void Shoot(GameTime gameTime, ref List<Projectile> Projectiles) {  } //can be inherited by enemies to shoot projectiles down
+        internal virtual void Shoot(GameTime gameTime, ref List<Projectile> Projectiles) {  } //can be inherited by enemies to shoot projectiles down
 
         //returns true if hit so the projectile can be deleted
         public bool IsHit(Projectile shot)
@@ -46,5 +51,7 @@ namespace Xaria
                 return true;
             return false;
         }
+
+        internal virtual void OnDeath() { }
     }
 }
