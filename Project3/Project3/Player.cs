@@ -37,13 +37,13 @@ namespace Xaria
         /// </summary>
         /// <param name="touch">The touch.</param>
         /// <param name="Enemies">The enemies.</param>
-        internal void Update(TouchCollection touch, ref List<List<Enemy>> Enemies)
+        internal void Update(TouchLocation[] touches, ref List<List<Enemy>> Enemies)
         {
             //move the player
-            if (touch.Count > 0)
-                if (Math.Abs(touch[0].Position.X - Position.X - Texture.Width / 2f) > Velocity * 1.25f) //stops oscillation
+            if (touches.Length > 0)
+                if (Math.Abs(touches[0].Position.X - Position.X - Texture.Width / 2f) > Velocity * 1.25f) //stops oscillation
                 {
-                    if (touch[0].Position.X < Position.X + Texture.Width / 2f)
+                    if (touches[0].Position.X < Position.X + Texture.Width / 2f)
                     {
                         Position.X -= Velocity;
                     }

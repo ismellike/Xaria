@@ -108,7 +108,7 @@ namespace Xaria
         {
             // TODO: Add your initialization logic here
             screenSize = new Vector2() { X = 1024, Y = 2048 };
-            renderTarget = new RenderTarget2D(GraphicsDevice, 1024, 2048);
+            renderTarget = new RenderTarget2D(GraphicsDevice, (int)screenSize.X, (int)screenSize.Y);
             base.Initialize();
         }
 
@@ -144,17 +144,22 @@ namespace Xaria
         {
             //check for input
             background.Update(gameTime);
+            //get input
             TouchCollection touchCollection = TouchPanel.GetState();
+            //scale input
+            TouchLocation[] touchLocations = new TouchLocation[touchCollection.Count];
+            for (int i = 0; i < touchCollection.Count; i++)
+                touchLocations[i] = new TouchLocation(touchCollection[i].Id, touchCollection[i].State, touchCollection[i].Position *screenSize / new Vector2(Window.ClientBounds.Width, Window.ClientBounds.Height));
                 switch (state)
                 {
                     case GameState.Start:
-                        startScreen.Update(touchCollection);
+                        startScreen.Update(touchLocations);
                         break;
                     case GameState.Playing:
-                        level.Update(gameTime, touchCollection);
+                        level.Update(gameTime, touchLocations);
                         break;
                     case GameState.End:
-                        endScreen.Update(touchCollection);
+                        endScreen.Update(touchLocations);
                     break;
                 }
         }

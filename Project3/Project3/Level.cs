@@ -74,10 +74,10 @@ namespace Xaria
         /// </summary>
         /// <param name="gameTime">The game time.</param>
         /// <param name="touchCollection">The touch collection.</param>
-        internal void Update(GameTime gameTime, TouchCollection touchCollection)
+        internal void Update(GameTime gameTime,TouchLocation[] touches)
         {
             #region Update Player
-            Game1.player.Update(touchCollection, ref Enemies);
+            Game1.player.Update(touches, ref Enemies);
             Game1.player.Shoot(gameTime);
             #endregion
             #region Update Enemies
