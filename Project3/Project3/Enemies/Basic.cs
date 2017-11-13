@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
+using System;
 using System.Collections.Generic;
 using Xaria.Drops;
 using Xaria.Projectiles;
@@ -26,7 +27,6 @@ namespace Xaria.Enemies
             Position = position;
             NextShoot = Level.random.Next(1000, 10000);
             Texture = Game1.textureDictionary["basic"];
-            drops = new List<Drop>() { new Shield() };
         }
 
         /// <summary>
@@ -46,7 +46,13 @@ namespace Xaria.Enemies
 
         internal override void OnDeath()
         {
-            base.OnDeath(); //drop a random drop
+            if(Level.random.Next(10) == 1) // 1/10 chance of giving drop
+            {
+                if(Level.random.Next(100) < 20) // x% chance of dropping a shield
+                {
+                    Game1.level.AddDrop(new Shield());
+                }
+            }
         }
     }
 }

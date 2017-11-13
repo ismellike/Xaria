@@ -12,12 +12,11 @@ namespace Xaria
     /// </summary>
     class Player : GameElement
     {
-
         public int Health { get; internal set; }
-        public List<Projectile> Projectiles = new List<Projectile>();
+        internal List<Projectile> Projectiles = new List<Projectile>();
         public double ShootCooldown { get; internal set; }
         internal double nextShoot; //start at ShootCooldown go to 0 then reset
-        public float Velocity = 10;
+        internal float Velocity = 10;
         internal const int STARTING_HEALTH = 100;
 
         /// <summary>

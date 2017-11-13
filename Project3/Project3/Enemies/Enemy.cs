@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using System;
 using System.Collections.Generic;
 using Xaria.Drops;
 
@@ -10,10 +11,6 @@ namespace Xaria
     /// </summary>
     public class Enemy : GameElement
     {
-        /// <summary>
-        /// The drops
-        /// </summary>
-        internal List<Drop> drops = new List<Drop>(); 
         /// <summary>
         /// Gets the health.
         /// </summary>
@@ -52,6 +49,8 @@ namespace Xaria
             return false;
         }
 
-        internal virtual void OnDeath() { }
+        internal virtual void OnDeath()
+        {
+        }
     }
 }

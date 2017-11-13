@@ -3,6 +3,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input.Touch;
 using System;
 using System.Collections.Generic;
+using Xaria.Drops;
 using Xaria.Enemies;
 
 namespace Xaria
@@ -22,7 +23,7 @@ namespace Xaria
         /// <summary>
         /// The enemies
         /// </summary>
-        public List<List<Enemy>> Enemies = new List<List<Enemy>>();
+        internal List<List<Enemy>> Enemies = new List<List<Enemy>>();
         /// <summary>
         /// The spacing between enemies
         /// </summary>
@@ -30,7 +31,9 @@ namespace Xaria
         /// <summary>
         /// The projectiles of enemies
         /// </summary>
-        public List<Projectile> Projectiles = new List<Projectile>();
+        internal List<Projectile> Projectiles = new List<Projectile>();
+
+        internal List<Drop> Drops = new List<Drop>();
         /// <summary>
         /// Bool for enemy movements to right or left
         /// </summary>
@@ -96,6 +99,7 @@ namespace Xaria
                     if (enemy.Health <= 0)
                     {
                         Enemies[rowIndex].RemoveAt(enemyIndex);
+                        Enemies[rowIndex][enemyIndex].OnDeath();
                         continue;
                     }
 
@@ -184,6 +188,11 @@ namespace Xaria
         private void GameOver()
         {
             Game1.state = GameState.End;
+        }
+
+        internal void AddDrop(Drop drop)
+        {
+            Drops.Add(drop);
         }
     }
 }

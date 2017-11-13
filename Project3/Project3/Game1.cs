@@ -46,7 +46,7 @@ namespace Xaria
         /// <summary>
         /// The start screen
         /// </summary>
-        Start startScreen;
+        Screen startScreen;
         /// <summary>
         /// The end screen
         /// </summary>
@@ -196,13 +196,6 @@ namespace Xaria
             spriteBatch.Draw(renderTarget, new Rectangle(0, 0, Window.ClientBounds.Width, Window.ClientBounds.Height), Color.White);
             spriteBatch.End();
             base.Draw(gameTime);
-        }
-    }
-
-    internal class Endless : Start
-    {
-        public Endless(ContentManager Content) : base(Content)
-        {
         }
     }
 }
