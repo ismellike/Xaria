@@ -50,7 +50,7 @@ namespace Xaria.Enemies
             {
                 if(Level.random.Next(100) < 20) // x% chance of dropping a shield
                 {
-                    Game1.level.AddDrop(new Shield());
+                    Game1.level.AddDrop(new Shield(Position + new Vector2(Texture.Width/2f, Texture.Height), 20));
                 }
             }
         }

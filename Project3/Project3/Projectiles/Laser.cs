@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using System.Collections.Generic;
+using Microsoft.Xna.Framework;
 
 namespace Xaria.Projectiles
 {
@@ -21,6 +22,16 @@ namespace Xaria.Projectiles
             Texture = Game1.textureDictionary["laser"];
             Damage = damage;
             Rectangle hitBox = new Rectangle((int)Position.X, (int)Position.Y, Texture.Width, Texture.Height);
+        }
+
+        internal override void OnCollision(ref List<List<Enemy>> Enemies, int y, int x)
+        {
+            Enemies[y][x].Health -= Damage;
+        }
+
+        internal override void OnCollision(ref Player player)
+        {
+            player.Damage(Damage);
         }
     }
 }

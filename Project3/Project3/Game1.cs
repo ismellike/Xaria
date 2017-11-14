@@ -46,7 +46,7 @@ namespace Xaria
         /// <summary>
         /// The start screen
         /// </summary>
-        Screen startScreen;
+        Start startScreen;
         /// <summary>
         /// The end screen
         /// </summary>
@@ -121,13 +121,14 @@ namespace Xaria
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
             startScreen = new Start(Content);
-            startScreen = new Endless(Content);
+           // startScreen = new Endless(Content);
             endScreen = new End(Content);
 
             textureDictionary.Add("ship", Content.Load<Texture2D>("ship"));
             textureDictionary.Add("laser", Content.Load<Texture2D>("laser"));
             textureDictionary.Add("basic", Content.Load<Texture2D>("basic"));
             textureDictionary.Add("star", Content.Load<Texture2D>("star"));
+            textureDictionary.Add("shield", Content.Load<Texture2D>("shield"));
             font = Content.Load<SpriteFont>("font");
 
             player = new Player();

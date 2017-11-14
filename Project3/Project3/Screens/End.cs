@@ -28,7 +28,7 @@ namespace Xaria.Screens
         {
             foreach (Button button in Buttons)
                 button.Draw(ref spriteBatch);
-            spriteBatch.DrawString(Game1.font, "You made it to level " + Game1.level.Difficulty + ".", new Vector2(Game1.screenSize.X/2f - 200, Game1.screenSize.Y - 500), Color.Yellow);
+            spriteBatch.DrawString(Game1.font, "You made it to level " + Game1.level.Difficulty + ".", new Vector2(Game1.screenSize.X/2f - 200, Game1.screenSize.Y - 500), Color.Yellow, 0f, Vector2.Zero, 3f, SpriteEffects.None, 0f);
         }
 
         /// <summary>

@@ -47,6 +47,7 @@ namespace Xaria
         /// </summary>
         public static Random random = new Random();
 
+
         /// <summary>
         /// Initializes a new instance of the <see cref="Level" /> class.
         /// </summary>
@@ -79,11 +80,30 @@ namespace Xaria
         /// <param name="touchCollection">The touch collection.</param>
         internal void Update(GameTime gameTime,TouchLocation[] touches)
         {
-            #region Update Player
             Game1.player.Update(touches, ref Enemies);
             Game1.player.Shoot(gameTime);
-            #endregion
-            #region Update Enemies
+            UpdateEnemies(gameTime);
+            UpdateEnemyProjectiles();
+            UpdateDrops();
+            if (Game1.player.Health <= 0)
+                GameOver();
+        }
+
+        private void UpdateDrops()
+        {
+            for (int dropIndex = Drops.Count - 1; dropIndex >= 0; dropIndex--)
+            {
+                Drops[dropIndex].Position += Drops[dropIndex].Velocity;
+                if (Game1.player.Intersects(Drops[dropIndex]))
+                {
+                    Drops[dropIndex].OnReceive(ref Game1.player);
+                    Drops.RemoveAt(dropIndex);
+                }
+            }
+        }
+
+        private void UpdateEnemies(GameTime gameTime)
+        {
             if (Enemies.Count == 0)
                 NextLevel();
             for (int rowIndex = Enemies.Count - 1; rowIndex >= 0; rowIndex--) //move right to left then move down
@@ -98,8 +118,8 @@ namespace Xaria
                     Enemy enemy = Enemies[rowIndex][enemyIndex];
                     if (enemy.Health <= 0)
                     {
-                        Enemies[rowIndex].RemoveAt(enemyIndex);
                         Enemies[rowIndex][enemyIndex].OnDeath();
+                        Enemies[rowIndex].RemoveAt(enemyIndex);
                         continue;
                     }
 
@@ -124,20 +144,19 @@ namespace Xaria
                     }
                 }
             }
-            #endregion
-            #region Update Projectiles
+        }
+
+        private void UpdateEnemyProjectiles()
+        {
             for (int projectileIndex = Projectiles.Count - 1; projectileIndex >= 0; projectileIndex--)
             {
                 Projectiles[projectileIndex].Position += Projectiles[projectileIndex].Velocity;
-                if (Game1.player.IsHit(Projectiles[projectileIndex]))
+                if (Game1.player.Intersects(Projectiles[projectileIndex]))
                 {
-                    Game1.player.Health -= Projectiles[projectileIndex].Damage;
-                    if (Game1.player.Health <= 0)
-                        GameOver();
+                    Projectiles[projectileIndex].OnCollision(ref Game1.player);
                     Projectiles.RemoveAt(projectileIndex);
                 }
             }
-            #endregion
         }
 
         /// <summary>
@@ -163,6 +182,10 @@ namespace Xaria
             foreach (Projectile projectile in Projectiles)
             {
                 projectile.Draw(ref spriteBatch, Color.Red);
+            }
+            foreach(Drop drop in Drops)
+            {
+                drop.Draw(ref spriteBatch);
             }
         }
 

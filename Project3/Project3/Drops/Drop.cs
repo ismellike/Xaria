@@ -4,17 +4,13 @@ namespace Xaria.Drops
 {
     public class Drop : GameElement
     {
-        /// <summary>
-        /// Gets the velocity.
-        /// </summary>
-        /// <value>
-        /// The velocity.
-        /// </value>
-        public Vector2 Velocity { get; internal set; }
+        //make drop textures around 32x32
+        public const float DROP_SPEED = 10f;
 
-        public virtual void OnReceive()
+        public readonly Vector2 Velocity = new Vector2(0, DROP_SPEED);
+
+        public virtual void OnReceive(ref Player player)
         {
-
         }
     }
 }

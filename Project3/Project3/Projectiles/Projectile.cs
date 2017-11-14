@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using System.Collections.Generic;
 
 namespace Xaria
 {
@@ -22,5 +23,15 @@ namespace Xaria
         /// The velocity.
         /// </value>
         public Vector2 Velocity { get; internal set; }
+
+        internal virtual void OnCollision(ref List<List<Enemy>> Enemies, int y, int x)
+        {
+
+        }
+
+        internal virtual void OnCollision(ref Player player)
+        {
+
+        }
     }
 }

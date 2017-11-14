@@ -35,7 +35,7 @@ namespace Xaria
 
         public override void Draw(ref SpriteBatch spriteBatch)
         {
-            spriteBatch.DrawString(Game1.font, Health.ToString(), Position + new Vector2(10, -25), Color.White);
+            spriteBatch.DrawString(Game1.font, Health.ToString(), Position + new Vector2(10, -25), Color.Red);
             spriteBatch.Draw(Texture, Position, Color.White);
         }
 
