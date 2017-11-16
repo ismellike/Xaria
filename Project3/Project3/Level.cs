@@ -67,7 +67,8 @@ namespace Xaria
             Enemies.Clear();
             if (difficulty % 5 == 0)
             {
-                Enemies.Add(new Boss(new Vector2(Game1.textureDictionary["Boss" + difficulty/5].Width, Game1.textureDictionary["Boss" + difficulty/5].Height), difficulty/5));
+                Enemies.Add(new List<Enemy>());
+                Enemies[0].Add(new Boss1(new Vector2(Game1.textureDictionary["Boss" + difficulty/5].Width, Game1.textureDictionary["Boss" + difficulty/5].Height)));
             }
             else
             {
@@ -159,12 +160,7 @@ namespace Xaria
                 {
                     if (Enemies[rowIndex].Count == 0)
                     {
-<<<<<<< HEAD
                         Enemies.RemoveAt(rowIndex);
-=======
-                        Enemies[rowIndex][enemyIndex].OnDeath();
-                        Enemies[rowIndex].RemoveAt(enemyIndex);
->>>>>>> 5631efb2b70ae5c4b18703490aa82509f760a5f8
                         continue;
                     }
                     for (int enemyIndex = Enemies[rowIndex].Count - 1; enemyIndex >= 0; enemyIndex--)
@@ -172,6 +168,7 @@ namespace Xaria
                         Enemy enemy = Enemies[rowIndex][enemyIndex];
                         if (enemy.Health <= 0)
                         {
+                            Enemies[rowIndex][enemyIndex].OnDeath();
                             Enemies[rowIndex].RemoveAt(enemyIndex);
                             continue;
                         }

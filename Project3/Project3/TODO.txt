@@ -1,0 +1,13 @@
+﻿New Projectiles
+	Spray
+	1 hit giant laser
+	Explosion
+
+Drops
+	Projectile upgrades
+	Life
+	Shield
+
+New Enemies
+	Bosses
+		

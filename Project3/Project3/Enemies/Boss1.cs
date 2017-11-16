@@ -4,31 +4,24 @@ using Xaria.Projectiles;
 
 namespace Xaria
 {
-    class Boss
+    class Boss1 : Enemy
     {
-        public Boss(Vector2 position, int bossLvl)
+        public Boss1(Vector2 position)
         {
-            Health = 5000 + 5000*(bossLvl/4);
+            Health = 5000;
             Position = position;
-            Texture = Game1.textureDictionary["boss" + bossLvl];//texture changes
+            Texture = Game1.textureDictionary["boss1"];//texture changes
         }
 
 
-        public override void Shoot(GameTime gameTime, ref List<Projectile> Projectiles, int bossLvl)
+        internal override void Shoot(GameTime gameTime, ref List<Projectile> Projectiles)
         {
-            if(bossLvl==1)
-            {
                 NextShoot -= gameTime.ElapsedGameTime.Milliseconds;
                 if (NextShoot <= 0)
                 {
                     NextShoot = Level.random.Next(1000, 10000);
                     Projectiles.Add(new Beam(Position + new Vector2(Texture.Width / 2f - 1f, Texture.Height + 5f), new Vector2(0, 20), 200));
                 }
-            }
-            else
-            {
-
-            }
         }
     }
 }

@@ -107,7 +107,7 @@
     <Compile Include="Drops\Drop.cs" />
     <Compile Include="Drops\Shield.cs" />
     <Compile Include="Enemies\Basic.cs" />
-    <Compile Include="Enemies\Class1.cs" />
+    <Compile Include="Enemies\Boss.cs" />
     <Compile Include="Enemies\Enemy.cs" />
     <Compile Include="Game1.cs" />
     <Compile Include="GameElement.cs" />
@@ -148,6 +148,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Properties\AndroidManifest.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="TODO.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Novell\Novell.MonoDroid.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath)\MonoGame\v3.0\MonoGame.Content.Builder.targets" />
