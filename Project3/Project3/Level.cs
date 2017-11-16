@@ -115,17 +115,38 @@ namespace Xaria
                 NextLevel();
             if(Difficulty%5 ==0 )
             {
+                Enemy enemy = Enemies[0][0];
                 if(Difficulty/5 == 1)
                 {
-
+                    enemy.Position = new Vector2(random.Next(0, ((int)Game1.screenSize.X - enemy.Texture.Width)), random.Next((500 + enemy.Texture.Height), (int)Game1.screenSize.Y));
                 }
                 else if(Difficulty/5 == 2)
                 {
-
+                    if (movingRight)
+                    {
+                        enemy.Position.X += 4;
+                        if (enemy.Position.X + enemy.Texture.Width >= Game1.screenSize.X)
+                        {
+                            movingRight = !movingRight;
+                        }
+                    }
+                    else
+                    {
+                        enemy.Position.X -= 4;
+                        if (enemy.Position.X <= 0)
+                        {
+                            movingRight = !movingRight;
+                        }
+                    }
                 }
                 else if(Difficulty/5 == 3)
                 {
-                    
+                   /*     NextShoot -= gameTime.ElapsedGameTime.Milliseconds;
+                    if (NextShoot <= 0)
+                    {
+                        NextShoot = Level.random.Next(1000, 10000);
+                        Projectiles.Add(new Laser(Position + new Vector2(Texture.Width / 2f - 1f, Texture.Height + 5f), new Vector2(0, 20), 20)); //moving up
+                    }*/
                 }
                 else if(Difficulty/5 == 4)
                 {
