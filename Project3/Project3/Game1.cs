@@ -40,10 +40,7 @@ namespace Xaria
         /// The sprite batch for drawings
         /// </summary>
         SpriteBatch spriteBatch;
-        /// <summary>
-        /// The scale for game drawing
-        /// </summary>
-        internal static Vector2 scale;
+        RenderTarget2D renderTarget;
         #endregion
         #region screens
         /// <summary>
@@ -110,8 +107,8 @@ namespace Xaria
         protected override void Initialize()
         {
             // TODO: Add your initialization logic here
-            screenSize = new Vector2() { X = GraphicsDevice.Viewport.Width, Y = GraphicsDevice.Viewport.Height };
-            scale = new Vector2() { X = GraphicsDevice.Viewport.Width / 1080f, Y = GraphicsDevice.Viewport.Height / 1799f }; 
+            screenSize = new Vector2() { X = 1024, Y = 2048 };
+            renderTarget = new RenderTarget2D(GraphicsDevice, (int)screenSize.X, (int)screenSize.Y);
             base.Initialize();
         }
 
@@ -124,15 +121,19 @@ namespace Xaria
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
             startScreen = new Start(Content);
-            startScreen = new Endless(Content);
+           // startScreen = new Endless(Content);
             endScreen = new End(Content);
 
             textureDictionary.Add("ship", Content.Load<Texture2D>("ship"));
             textureDictionary.Add("laser", Content.Load<Texture2D>("laser"));
             textureDictionary.Add("basic", Content.Load<Texture2D>("basic"));
             textureDictionary.Add("star", Content.Load<Texture2D>("star"));
+<<<<<<< HEAD
             textureDictionary.Add("Boss1", Content.Load<Texture2D>("Boss1"));
             textureDictionary.Add("beam", Content.Load<Texture2D>("beam"));
+=======
+            textureDictionary.Add("shield", Content.Load<Texture2D>("shield"));
+>>>>>>> 5631efb2b70ae5c4b18703490aa82509f760a5f8
             font = Content.Load<SpriteFont>("font");
 
             player = new Player();
@@ -149,17 +150,22 @@ namespace Xaria
         {
             //check for input
             background.Update(gameTime);
+            //get input
             TouchCollection touchCollection = TouchPanel.GetState();
+            //scale input
+            TouchLocation[] touchLocations = new TouchLocation[touchCollection.Count];
+            for (int i = 0; i < touchCollection.Count; i++)
+                touchLocations[i] = new TouchLocation(touchCollection[i].Id, touchCollection[i].State, touchCollection[i].Position *screenSize / new Vector2(Window.ClientBounds.Width, Window.ClientBounds.Height));
                 switch (state)
                 {
                     case GameState.Start:
-                        startScreen.Update(touchCollection);
+                        startScreen.Update(touchLocations);
                         break;
                     case GameState.Playing:
-                        level.Update(gameTime, touchCollection);
+                        level.Update(gameTime, touchLocations);
                         break;
                     case GameState.End:
-                        endScreen.Update(touchCollection);
+                        endScreen.Update(touchLocations);
                     break;
                 }
         }
@@ -171,6 +177,7 @@ namespace Xaria
         protected override void Draw(GameTime gameTime)
         {
             GraphicsDevice.Clear(Color.Black);
+            GraphicsDevice.SetRenderTarget(renderTarget);
             spriteBatch.Begin(); //do something with this to rescale
             // TODO: Add your drawing code here
             background.Draw(ref spriteBatch);
@@ -189,14 +196,12 @@ namespace Xaria
             }
 
             spriteBatch.End();
-            base.Draw(gameTime);
-        }
-    }
+            GraphicsDevice.SetRenderTarget(null);
 
-    internal class Endless : Start
-    {
-        public Endless(ContentManager Content) : base(Content)
-        {
+            spriteBatch.Begin(samplerState: SamplerState.PointClamp);
+            spriteBatch.Draw(renderTarget, new Rectangle(0, 0, Window.ClientBounds.Width, Window.ClientBounds.Height), Color.White);
+            spriteBatch.End();
+            base.Draw(gameTime);
         }
     }
 }

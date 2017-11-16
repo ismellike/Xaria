@@ -6,8 +6,9 @@ namespace Xaria.Projectiles
     /// The star class
     /// </summary>
     /// <seealso cref="Xaria.Projectile" />
-    class Star : Projectile
+    class Star : GameElement
     {
+        public Vector2 Velocity { get; internal set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="Star" /> class.
         /// </summary>

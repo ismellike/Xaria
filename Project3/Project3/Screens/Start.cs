@@ -35,8 +35,9 @@ namespace Xaria.Screens
     {
         public Endless(ContentManager Content)
         {
-            Texture2D startTexture = Content.Load<Texture2D>("Endless");
-            Buttons.Add(new Button(startTexture, new Vector2(2 * (Game1.screenSize.X - startTexture.Width) / 3f, 2 * (Game1.screenSize.Y - startTexture.Height) / 3f), EndlessGame));
+            //error
+            //Texture2D startTexture = Content.Load<Texture2D>("Endless");
+           // Buttons.Add(new Button(startTexture, new Vector2(2 * (Game1.screenSize.X - startTexture.Width) / 3f, 2 * (Game1.screenSize.Y - startTexture.Height) / 3f), EndlessGame));
         }
 
         void EndlessGame()

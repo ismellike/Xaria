@@ -27,7 +27,7 @@ namespace Xaria
         /// <param name="color">The color.</param>
         public void Draw(ref SpriteBatch spriteBatch, Color color)
         {
-            spriteBatch.Draw(Texture, Position, null, color, 0f, Vector2.Zero, Game1.scale, SpriteEffects.None, 0f);
+            spriteBatch.Draw(Texture, Position, color);
         }
 
         /// <summary>

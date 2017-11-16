@@ -10,15 +10,15 @@ namespace Xaria
     /// <summary>
     /// Our player class
     /// </summary>
-    class Player : GameElement
+    public class Player : GameElement
     {
-
         public int Health { get; internal set; }
-        public List<Projectile> Projectiles = new List<Projectile>();
+        internal List<Projectile> Projectiles = new List<Projectile>();
         public double ShootCooldown { get; internal set; }
         internal double nextShoot; //start at ShootCooldown go to 0 then reset
-        public float Velocity = 10;
+        internal float Velocity = 10;
         internal const int STARTING_HEALTH = 100;
+        public int Shield { get; internal set; }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="Player"/> class.
@@ -37,13 +37,13 @@ namespace Xaria
         /// </summary>
         /// <param name="touch">The touch.</param>
         /// <param name="Enemies">The enemies.</param>
-        internal void Update(TouchCollection touch, ref List<List<Enemy>> Enemies)
+        internal void Update(TouchLocation[] touches, ref List<List<Enemy>> Enemies)
         {
             //move the player
-            if (touch.Count > 0)
-                if (Math.Abs(touch[0].Position.X - Position.X - Texture.Width / 2f) > Velocity * 1.25f) //stops oscillation
+            if (touches.Length > 0)
+                if (Math.Abs(touches[0].Position.X - Position.X - Texture.Width / 2f) > Velocity * 1.25f) //stops oscillation
                 {
-                    if (touch[0].Position.X < Position.X + Texture.Width / 2f)
+                    if (touches[0].Position.X < Position.X + Texture.Width / 2f)
                     {
                         Position.X -= Velocity;
                     }
@@ -68,7 +68,7 @@ namespace Xaria
                     {
                         if (Enemies[y][x].IsHit(projectile))
                         {
-                            Enemies[y][x].Health -= projectile.Damage;
+                            projectile.OnCollision(ref Enemies, y, x);
                             Projectiles.RemoveAt(projectileIndex);
                             goto exit;
                         }
@@ -82,8 +82,10 @@ namespace Xaria
         /// <param name="spriteBatch">The sprite batch.</param>
         public override void Draw(ref SpriteBatch spriteBatch)
         {
-            spriteBatch.DrawString(Game1.font, Health.ToString(), Position + new Vector2(10, -25), Color.White, 0f, Vector2.Zero, Game1.scale, SpriteEffects.None, 0f);
-            spriteBatch.Draw(Texture, Position, null, Color.White, 0f, Vector2.Zero, Game1.scale, SpriteEffects.None, 0f);
+            spriteBatch.DrawString(Game1.font, Health.ToString(), Position + new Vector2(-5, -25), Color.Green);
+            if(Shield>0)
+                spriteBatch.DrawString(Game1.font, Shield.ToString(), Position + new Vector2(25, -25), Color.Cyan);
+            spriteBatch.Draw(Texture, Position, Color.White);
             foreach (Projectile projectile in Projectiles)
             {
                 projectile.Draw(ref spriteBatch);
@@ -104,18 +106,30 @@ namespace Xaria
             }
         }
 
-        /// <summary>
-        /// Determines whether the player is hit by a projectile.
-        /// </summary>
-        /// <param name="shot">The projectile.</param>
-        /// <returns>
-        ///   <c>true</c> if the specified player is hit; otherwise, <c>false</c>.
-        /// </returns>
-        public bool IsHit(Projectile shot)
+        public bool Intersects(GameElement shot)
         {
             if (Bounds().Intersects(shot.Bounds()))
                 return true;
             return false;
+        }
+
+        internal void Damage(int damage)
+        {
+            if(Shield > 0)
+            {
+                if (Shield < damage)
+                {
+                    damage -= Shield;
+                    Shield = 0;
+                    Health -= damage;
+                }
+                else
+                {
+                    Shield -= damage;
+                }
+            }
+            else
+                Health -= damage;
         }
     }
 }

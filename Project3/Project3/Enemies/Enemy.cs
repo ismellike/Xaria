@@ -1,6 +1,8 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using System;
 using System.Collections.Generic;
+using Xaria.Drops;
 
 namespace Xaria
 {
@@ -33,11 +35,11 @@ namespace Xaria
 
         public override void Draw(ref SpriteBatch spriteBatch)
         {
-            spriteBatch.DrawString(Game1.font, Health.ToString(), Position + new Vector2(10, -25), Color.White, 0f, Vector2.Zero, Game1.scale, SpriteEffects.None, 0f);
-            spriteBatch.Draw(Texture, Position, null, Color.White, 0f, Vector2.Zero, Game1.scale, SpriteEffects.None, 0f);
+            spriteBatch.DrawString(Game1.font, Health.ToString(), Position + new Vector2(10, -25), Color.Red);
+            spriteBatch.Draw(Texture, Position, Color.White);
         }
 
-        public virtual void Shoot(GameTime gameTime, ref List<Projectile> Projectiles) {  } //can be inherited by enemies to shoot projectiles down
+        internal virtual void Shoot(GameTime gameTime, ref List<Projectile> Projectiles) {  } //can be inherited by enemies to shoot projectiles down
 
         //returns true if hit so the projectile can be deleted
         public bool IsHit(Projectile shot)
@@ -45,6 +47,10 @@ namespace Xaria
             if(Bounds().Intersects(shot.Bounds()))
                 return true;
             return false;
+        }
+
+        internal virtual void OnDeath()
+        {
         }
     }
 }

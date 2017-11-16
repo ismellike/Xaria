@@ -15,7 +15,7 @@ namespace Xaria
             , Theme = "@style/Theme.Splash"
             , AlwaysRetainTaskState = true
             , LaunchMode = LaunchMode.SingleInstance
-            , ScreenOrientation = ScreenOrientation.Portrait
+            , ScreenOrientation = ScreenOrientation.Portrait 
             , ConfigurationChanges = ConfigChanges.Orientation | ConfigChanges.KeyboardHidden | ConfigChanges.ScreenSize)]
     public class Activity1 : Microsoft.Xna.Framework.AndroidGameActivity
     {
