@@ -90,7 +90,7 @@ namespace Xaria
             #region Update Enemies
             if (Enemies.Count == 0)
                 NextLevel();
-            if(Difficulty%5==0)
+            if(Difficulty%5 ==0 )
             {
                 if(Difficulty/5 == 1)
                 {
