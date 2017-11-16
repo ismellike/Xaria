@@ -124,16 +124,13 @@ namespace Xaria
            // startScreen = new Endless(Content);
             endScreen = new End(Content);
 
-            textureDictionary.Add("ship", Content.Load<Texture2D>("ship"));
-            textureDictionary.Add("laser", Content.Load<Texture2D>("laser"));
-            textureDictionary.Add("basic", Content.Load<Texture2D>("basic"));
+            textureDictionary.Add("ship", Content.Load<Texture2D>("player_ship"));
+            textureDictionary.Add("laser", Content.Load<Texture2D>("Projectiles/laser"));
+            textureDictionary.Add("basic", Content.Load<Texture2D>("Enemies/basic"));
             textureDictionary.Add("star", Content.Load<Texture2D>("star"));
-<<<<<<< HEAD
-            textureDictionary.Add("Boss1", Content.Load<Texture2D>("Boss1"));
-            textureDictionary.Add("beam", Content.Load<Texture2D>("beam"));
-=======
-            textureDictionary.Add("shield", Content.Load<Texture2D>("shield"));
->>>>>>> 5631efb2b70ae5c4b18703490aa82509f760a5f8
+            textureDictionary.Add("Boss1", Content.Load<Texture2D>("Enemies/Boss1"));
+            textureDictionary.Add("beam", Content.Load<Texture2D>("Projectiles/beam"));
+            textureDictionary.Add("shield", Content.Load<Texture2D>("Drops/shield"));
             font = Content.Load<SpriteFont>("font");
 
             player = new Player();
