@@ -107,6 +107,7 @@
     <Compile Include="Drops\Drop.cs" />
     <Compile Include="Drops\Shield.cs" />
     <Compile Include="Enemies\Basic.cs" />
+    <Compile Include="Enemies\Class1.cs" />
     <Compile Include="Enemies\Enemy.cs" />
     <Compile Include="Game1.cs" />
     <Compile Include="GameElement.cs" />
