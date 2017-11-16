@@ -131,6 +131,8 @@ namespace Xaria
             textureDictionary.Add("laser", Content.Load<Texture2D>("laser"));
             textureDictionary.Add("basic", Content.Load<Texture2D>("basic"));
             textureDictionary.Add("star", Content.Load<Texture2D>("star"));
+            textureDictionary.Add("Boss1", Content.Load<Texture2D>("Boss1"));
+            textureDictionary.Add("beam", Content.Load<Texture2D>("beam"));
             font = Content.Load<SpriteFont>("font");
 
             player = new Player();

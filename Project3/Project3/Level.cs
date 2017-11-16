@@ -61,11 +61,18 @@ namespace Xaria
         private void GenerateLevel(int difficulty)
         {
             Enemies.Clear();
-            for (int i = 1; i <= difficulty; i++) //use rows for difficulty
+            if (difficulty % 5 == 0)
             {
-                Enemies.Add(new List<Enemy>());
-                for (int x = 1; x <= ENEMIES_PER_ROW; x++) //10 enemies per row
-                    Enemies[i - 1].Add(new Basic(new Vector2((Game1.textureDictionary["basic"].Width + spacing.X) * x - spacing.X + Game1.textureDictionary["basic"].Width * (i % 2), (Game1.textureDictionary["basic"].Height + spacing.Y) * i + spacing.Y)));
+                Enemies.Add(new Boss(new Vector2(Game1.textureDictionary["Boss" + difficulty/5].Width, Game1.textureDictionary["Boss" + difficulty/5].Height), difficulty/5));
+            }
+            else
+            {
+                for (int i = 1; i <= difficulty; i++) //use rows for difficulty
+                {
+                    Enemies.Add(new List<Enemy>());
+                    for (int x = 1; x <= ENEMIES_PER_ROW; x++) //10 enemies per row
+                        Enemies[i - 1].Add(new Basic(new Vector2((Game1.textureDictionary["basic"].Width + spacing.X) * x - spacing.X + Game1.textureDictionary["basic"].Width * (i % 2), (Game1.textureDictionary["basic"].Height + spacing.Y) * i + spacing.Y)));
+                }
             }
         }
 
@@ -83,39 +90,61 @@ namespace Xaria
             #region Update Enemies
             if (Enemies.Count == 0)
                 NextLevel();
-            for (int rowIndex = Enemies.Count - 1; rowIndex >= 0; rowIndex--) //move right to left then move down
+            if(Difficulty%5==0)
             {
-                if (Enemies[rowIndex].Count == 0)
+                if(Difficulty/5 == 1)
                 {
-                    Enemies.RemoveAt(rowIndex);
-                    continue;
+
                 }
-                for (int enemyIndex = Enemies[rowIndex].Count - 1; enemyIndex >= 0; enemyIndex--)
+                else if(Difficulty/5 == 2)
                 {
-                    Enemy enemy = Enemies[rowIndex][enemyIndex];
-                    if (enemy.Health <= 0)
+
+                }
+                else if(Difficulty/5 == 3)
+                {
+                    
+                }
+                else if(Difficulty/5 == 4)
+                {
+
+                }
+            }
+            else
+            {
+                for (int rowIndex = Enemies.Count - 1; rowIndex >= 0; rowIndex--) //move right to left then move down
+                {
+                    if (Enemies[rowIndex].Count == 0)
                     {
-                        Enemies[rowIndex].RemoveAt(enemyIndex);
+                        Enemies.RemoveAt(rowIndex);
                         continue;
                     }
-
-                    enemy.Shoot(gameTime, ref Projectiles);
-                    if (movingRight)
+                    for (int enemyIndex = Enemies[rowIndex].Count - 1; enemyIndex >= 0; enemyIndex--)
                     {
-                        enemy.Position.X += 1;
-                        if (enemy.Position.X + enemy.Texture.Width >= Game1.screenSize.X)
+                        Enemy enemy = Enemies[rowIndex][enemyIndex];
+                        if (enemy.Health <= 0)
                         {
-                            movingRight = !movingRight;
-                            MoveDown();
+                            Enemies[rowIndex].RemoveAt(enemyIndex);
+                            continue;
                         }
-                    }
-                    else
-                    {
-                        enemy.Position.X -= 1;
-                        if (enemy.Position.X <= 0)
+
+                        enemy.Shoot(gameTime, ref Projectiles);
+                        if (movingRight)
                         {
-                            movingRight = !movingRight;
-                            MoveDown();
+                            enemy.Position.X += 1;
+                            if (enemy.Position.X + enemy.Texture.Width >= Game1.screenSize.X)
+                            {
+                                movingRight = !movingRight;
+                                MoveDown();
+                            }
+                        }
+                        else
+                        {
+                            enemy.Position.X -= 1;
+                            if (enemy.Position.X <= 0)
+                            {
+                                movingRight = !movingRight;
+                                MoveDown();
+                            }
                         }
                     }
                 }
@@ -167,15 +196,22 @@ namespace Xaria
         /// </summary>
         private void MoveDown()
         {
-            foreach (List<Enemy> row in Enemies)
-                foreach (Enemy enemy in row)
-                {
-                    enemy.Position.Y += (enemy.Texture.Height + spacing.Y);
-                    if (enemy.Position.Y >= Game1.screenSize.Y - Game1.textureDictionary["ship"].Height - 5)
+            if (Difficulty % 5 == 0)
+            {
+
+            }
+            else
+            {
+                foreach (List<Enemy> row in Enemies)
+                    foreach (Enemy enemy in row)
                     {
-                        GameOver();
+                        enemy.Position.Y += (enemy.Texture.Height + spacing.Y);
+                        if (enemy.Position.Y >= Game1.screenSize.Y - Game1.textureDictionary["ship"].Height - 5)
+                        {
+                            GameOver();
+                        }
                     }
-                }
+            }
         }
 
         /// <summary>
