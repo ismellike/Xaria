@@ -16,7 +16,7 @@ namespace Xaria.Screens
         /// <param name="Content">The content.</param>
         public End(ContentManager Content)
         {
-            Texture2D endTexture = Content.Load<Texture2D>("end");
+            Texture2D endTexture = Content.Load<Texture2D>("Buttons/end");
             Buttons.Add(new Button(endTexture, new Vector2((Game1.screenSize.X - endTexture.Width) / 2f, Game1.screenSize.Y-300), GoToStart));
         }
 

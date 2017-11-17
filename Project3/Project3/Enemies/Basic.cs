@@ -54,5 +54,27 @@ namespace Xaria.Enemies
                 }
             }
         }
+
+        internal override void UpdateMovement(Level level, GameTime gameTime = null)
+        {
+            if (level.movingRight)
+            {
+                Position.X += 1;
+                if (Position.X + Texture.Width >= Game1.screenSize.X)
+                {
+                    level.movingRight = !level.movingRight;
+                    level.MoveDown();
+                }
+            }
+            else
+            {
+                Position.X -= 1;
+                if (Position.X <= 0)
+                {
+                    level.movingRight = !level.movingRight;
+                    level.MoveDown();
+                }
+            }
+        }
     }
 }

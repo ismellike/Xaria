@@ -32,9 +32,6 @@ namespace Xaria
     /// </summary>
     public class Game1 : Game
     {
-        private SensorManager sensorManager;
-        private object accelerometer;
-        private object magnetometer;
         private TouchCollection touchCollection;
         #region drawing
         /// <summary>
@@ -80,10 +77,6 @@ namespace Xaria
         internal static SpriteFont font;
         //game variables
         /// <summary>
-        /// The player
-        /// </summary>
-        internal Player player;
-        /// <summary>
         /// The level
         /// </summary>
         internal Level level;
@@ -114,9 +107,6 @@ namespace Xaria
             // TODO: Add your initialization logic here
             screenSize = new Vector2() { X = 1024, Y = 2048 };
             renderTarget = new RenderTarget2D(GraphicsDevice, (int)screenSize.X, (int)screenSize.Y);
-            sensorManager = (SensorManager)Activity.GetSystemService(Android.Content.Context.SensorService);
-            accelerometer = sensorManager.GetDefaultSensor(SensorType.Accelerometer);
-            magnetometer = sensorManager.GetDefaultSensor(SensorType.MagneticField);
             base.Initialize();
         }
 
@@ -141,7 +131,6 @@ namespace Xaria
             textureDictionary.Add("shield", Content.Load<Texture2D>("Drops/shield"));
             font = Content.Load<SpriteFont>("font");
 
-            player = new Player();
             level = new Level(1);
             background = new Background(2017);
         }
@@ -157,7 +146,7 @@ namespace Xaria
             background.Update(gameTime);
             //get input
             float[] R = new float[9];
-            SensorManager.GetRotationMatrix(R, null, null, null);
+            SensorManager.GetRotationMatrix(R, null, Activity1.accelValues, Activity1.magnetoValues);
             float[] orientation = new float[9];
             SensorManager.GetOrientation(R, orientation);
             float roll = (float)Java.Lang.Math.ToDegrees(orientation[2]);
@@ -170,7 +159,7 @@ namespace Xaria
                         startScreen.Update(touchCollection);
                         break;
                     case GameState.Playing:
-                        level.Update(ref player, gameTime, touchCollection, roll);
+                        level.Update(gameTime, touchCollection, roll);
                         break;
                     case GameState.End:
                         endScreen.Update(touchCollection);
@@ -195,7 +184,6 @@ namespace Xaria
                     startScreen.Draw(ref spriteBatch);
                     break;
                 case GameState.Playing:
-                    player.Draw(ref spriteBatch);
                     level.Draw(ref spriteBatch);
                     break;
                 case GameState.End:

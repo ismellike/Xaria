@@ -56,6 +56,11 @@ namespace Xaria
             return false;
         }
 
+        internal virtual void UpdateMovement(Level level, GameTime gameTime)
+        {
+
+        }
+
         internal virtual void OnDeath(ref List<Drop> drops)
         {
         }

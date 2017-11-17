@@ -35,7 +35,7 @@ namespace Xaria
         internal void Update(TouchCollection touches, float roll, ref List<List<Enemy>> Enemies)
         {
             //move the player
-            if (Math.Abs(roll) < 5)
+            if (Math.Abs(roll) > 3)
             {
                 if (Position.X + roll <= 0)
                 {
@@ -92,6 +92,12 @@ namespace Xaria
             {
                 projectile.Draw(ref spriteBatch);
             }
+        }
+
+        internal void Reset()
+        {
+            Projectiles.Clear();
+            Health = STARTING_HEALTH;
         }
 
         /// <summary>
