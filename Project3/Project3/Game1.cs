@@ -136,7 +136,7 @@ namespace Xaria
             textureDictionary.Add("laser", Content.Load<Texture2D>("Projectiles/laser"));
             textureDictionary.Add("basic", Content.Load<Texture2D>("Enemies/basic"));
             textureDictionary.Add("star", Content.Load<Texture2D>("star"));
-            textureDictionary.Add("Boss1", Content.Load<Texture2D>("Enemies/Boss1"));
+            textureDictionary.Add("boss1", Content.Load<Texture2D>("Enemies/boss1"));
             textureDictionary.Add("beam", Content.Load<Texture2D>("Projectiles/beam"));
             textureDictionary.Add("shield", Content.Load<Texture2D>("Drops/shield"));
             font = Content.Load<SpriteFont>("font");

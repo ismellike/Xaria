@@ -70,19 +70,19 @@ namespace Xaria
                 Enemies.Add(new List<Enemy>());
                 if(difficulty/5 == 1)
                 {
-                    Enemies[0].Add(new Boss1(new Vector2(Game1.textureDictionary["Boss1"].Width, Game1.textureDictionary["Boss1"].Height)));
+                    Enemies[0].Add(new Boss1(new Vector2(Game1.textureDictionary["boss1"].Width, Game1.textureDictionary["boss1"].Height)));
                 }
                 else if(difficulty/5 == 2)
                 {
-                    Enemies[0].Add(new Boss2(new Vector2(Game1.textureDictionary["Boss2"].Width, Game1.textureDictionary["Boss2"].Height)));
+                    Enemies[0].Add(new Boss2(new Vector2(Game1.textureDictionary["boss2"].Width, Game1.textureDictionary["boss2"].Height)));
                 }
                 else if(difficulty/5 == 3)
                 {
-                    Enemies[0].Add(new Boss3(new Vector2(Game1.textureDictionary["Boss3"].Width, Game1.textureDictionary["Boss3"].Height)));
+                    Enemies[0].Add(new Boss3(new Vector2(Game1.textureDictionary["boss3"].Width, Game1.textureDictionary["boss3"].Height)));
                 }
                 else if(difficulty/5 == 4)
                 {
-                    Enemies[0].Add(new Boss4(new Vector2(Game1.textureDictionary["Boss4"].Width, Game1.textureDictionary["Boss4"].Height)));
+                    Enemies[0].Add(new Boss4(new Vector2(Game1.textureDictionary["boss4"].Width, Game1.textureDictionary["boss4"].Height)));
                 }
             }
             else
