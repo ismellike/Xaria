@@ -10,14 +10,12 @@ namespace Xaria.Screens
     /// <seealso cref="Xaria.Screen" />
     class End : Screen
     {
-        public static int Difficulty { get; internal set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="End" /> class.
         /// </summary>
         /// <param name="Content">The content.</param>
         public End(ContentManager Content)
         {
-            Difficulty = 0;
             Texture2D endTexture = Content.Load<Texture2D>("end");
             Buttons.Add(new Button(endTexture, new Vector2((Game1.screenSize.X - endTexture.Width) / 2f, Game1.screenSize.Y-300), GoToStart));
         }
@@ -30,7 +28,7 @@ namespace Xaria.Screens
         {
             foreach (Button button in Buttons)
                 button.Draw(ref spriteBatch);
-            spriteBatch.DrawString(Game1.font, "You made it to level " + Difficulty + ".", new Vector2(Game1.screenSize.X/2f - 200, Game1.screenSize.Y - 500), Color.Yellow, 0f, Vector2.Zero, 3f, SpriteEffects.None, 0f);
+            spriteBatch.DrawString(Game1.font, "You made it to level " + Level.Difficulty + ".", new Vector2(Game1.screenSize.X/2f - 200, Game1.screenSize.Y - 500), Color.Yellow, 0f, Vector2.Zero, 3f, SpriteEffects.None, 0f);
         }
 
         /// <summary>

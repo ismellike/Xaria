@@ -19,7 +19,7 @@ namespace Xaria
         /// <value>
         /// The difficulty.
         /// </value>
-        public int Difficulty { get; private set; }
+        public static int Difficulty { get; private set; }
         /// <summary>
         /// The enemies
         /// </summary>
@@ -270,7 +270,6 @@ namespace Xaria
         /// </summary>
         private void GameOver()
         {
-            Screens.End.Difficulty = Difficulty;
             Game1.state = GameState.End;
         }
     }
