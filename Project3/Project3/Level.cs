@@ -81,30 +81,24 @@ namespace Xaria
             }
         }
 
-        /// <summary>
-        /// Updates the Level's player, enemy projectiles, and enemies.
-        /// </summary>
-        /// <param name="gameTime">The game time.</param>
-        /// <param name="touchCollection">The touch collection.</param>
-        internal void Update(GameTime gameTime,TouchLocation[] touches)
+        internal void Update(ref Player player, GameTime gameTime,TouchCollection touches, float roll)
         {
-            Game1.player.Update(touches, ref Enemies);
-            Game1.player.Shoot(gameTime);
+            player.Update(touches, roll, ref Enemies);
             UpdateEnemies(gameTime);
-            UpdateEnemyProjectiles();
-            UpdateDrops();
-            if (Game1.player.Health <= 0)
+            UpdateEnemyProjectiles(ref player);
+            UpdateDrops(ref player);
+            if (player.Health <= 0)
                 GameOver();
         }
 
-        private void UpdateDrops()
+        private void UpdateDrops(ref Player player)
         {
             for (int dropIndex = Drops.Count - 1; dropIndex >= 0; dropIndex--)
             {
                 Drops[dropIndex].Position += Drops[dropIndex].Velocity;
-                if (Game1.player.Intersects(Drops[dropIndex]))
+                if (player.Intersects(Drops[dropIndex]))
                 {
-                    Drops[dropIndex].OnReceive(ref Game1.player);
+                    Drops[dropIndex].OnReceive(ref player);
                     Drops.RemoveAt(dropIndex);
                 }
             }
@@ -147,7 +141,7 @@ namespace Xaria
                         Enemy enemy = Enemies[rowIndex][enemyIndex];
                         if (enemy.Health <= 0)
                         {
-                            Enemies[rowIndex][enemyIndex].OnDeath();
+                            Enemies[rowIndex][enemyIndex].OnDeath(ref Drops);
                             Enemies[rowIndex].RemoveAt(enemyIndex);
                             continue;
                         }
@@ -176,14 +170,14 @@ namespace Xaria
             }
         }
 
-        private void UpdateEnemyProjectiles()
+        private void UpdateEnemyProjectiles(ref Player player)
         {
             for (int projectileIndex = Projectiles.Count - 1; projectileIndex >= 0; projectileIndex--)
             {
                 Projectiles[projectileIndex].Position += Projectiles[projectileIndex].Velocity;
-                if (Game1.player.Intersects(Projectiles[projectileIndex]))
+                if (player.Intersects(Projectiles[projectileIndex]))
                 {
-                    Projectiles[projectileIndex].OnCollision(ref Game1.player);
+                    Projectiles[projectileIndex].OnCollision(ref player);
                     Projectiles.RemoveAt(projectileIndex);
                 }
             }
@@ -224,12 +218,6 @@ namespace Xaria
         /// </summary>
         private void MoveDown()
         {
-            if (Difficulty % 5 == 0)
-            {
-
-            }
-            else
-            {
                 foreach (List<Enemy> row in Enemies)
                     foreach (Enemy enemy in row)
                     {
@@ -239,7 +227,6 @@ namespace Xaria
                             GameOver();
                         }
                     }
-            }
         }
 
         /// <summary>
@@ -247,12 +234,8 @@ namespace Xaria
         /// </summary>
         private void GameOver()
         {
+            Screens.End.Difficulty = Difficulty;
             Game1.state = GameState.End;
-        }
-
-        internal void AddDrop(Drop drop)
-        {
-            Drops.Add(drop);
         }
     }
 }

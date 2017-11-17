@@ -26,8 +26,6 @@ namespace Xaria.Screens
         void StartGame()
         {
             Game1.state = GameState.Playing;
-            Game1.player.Health = Player.STARTING_HEALTH;
-            Game1.level = new Level(1);
         }
     }
 
@@ -43,8 +41,8 @@ namespace Xaria.Screens
         void EndlessGame()
         {
             Game1.state = GameState.Playing;
-            Game1.player.Health = Player.STARTING_HEALTH;
-            Game1.level = new Level(1);
+            //Game1.player.Health = Player.STARTING_HEALTH;
+           // Game1.level = new Level(1);
         }
     }
 }

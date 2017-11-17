@@ -5,6 +5,7 @@ using Microsoft.Xna.Framework.Input.Touch;
 using System.Collections.Generic;
 using Xaria.Screens;
 using Microsoft.Xna.Framework.Content;
+using Android.Hardware;
 
 namespace Xaria
 {
@@ -31,6 +32,10 @@ namespace Xaria
     /// </summary>
     public class Game1 : Game
     {
+        private SensorManager sensorManager;
+        private object accelerometer;
+        private object magnetometer;
+        private TouchCollection touchCollection;
         #region drawing
         /// <summary>
         /// The graphics device manager
@@ -77,11 +82,11 @@ namespace Xaria
         /// <summary>
         /// The player
         /// </summary>
-        internal static Player player;
+        internal Player player;
         /// <summary>
         /// The level
         /// </summary>
-        internal static Level level;
+        internal Level level;
         #endregion
 
         /// <summary>
@@ -109,6 +114,9 @@ namespace Xaria
             // TODO: Add your initialization logic here
             screenSize = new Vector2() { X = 1024, Y = 2048 };
             renderTarget = new RenderTarget2D(GraphicsDevice, (int)screenSize.X, (int)screenSize.Y);
+            sensorManager = (SensorManager)Activity.GetSystemService(Android.Content.Context.SensorService);
+            accelerometer = sensorManager.GetDefaultSensor(SensorType.Accelerometer);
+            magnetometer = sensorManager.GetDefaultSensor(SensorType.MagneticField);
             base.Initialize();
         }
 
@@ -148,21 +156,24 @@ namespace Xaria
             //check for input
             background.Update(gameTime);
             //get input
-            TouchCollection touchCollection = TouchPanel.GetState();
-            //scale input
-            TouchLocation[] touchLocations = new TouchLocation[touchCollection.Count];
-            for (int i = 0; i < touchCollection.Count; i++)
-                touchLocations[i] = new TouchLocation(touchCollection[i].Id, touchCollection[i].State, touchCollection[i].Position *screenSize / new Vector2(Window.ClientBounds.Width, Window.ClientBounds.Height));
-                switch (state)
+            float[] R = new float[9];
+            SensorManager.GetRotationMatrix(R, null, null, null);
+            float[] orientation = new float[9];
+            SensorManager.GetOrientation(R, orientation);
+            float roll = (float)Java.Lang.Math.ToDegrees(orientation[2]);
+
+            touchCollection = TouchPanel.GetState();
+
+            switch (state)
                 {
                     case GameState.Start:
-                        startScreen.Update(touchLocations);
+                        startScreen.Update(touchCollection);
                         break;
                     case GameState.Playing:
-                        level.Update(gameTime, touchLocations);
+                        level.Update(ref player, gameTime, touchCollection, roll);
                         break;
                     case GameState.End:
-                        endScreen.Update(touchLocations);
+                        endScreen.Update(touchCollection);
                     break;
                 }
         }
