@@ -68,7 +68,22 @@ namespace Xaria
             if (difficulty % 5 == 0)
             {
                 Enemies.Add(new List<Enemy>());
-                Enemies[0].Add(new Boss1(new Vector2(Game1.textureDictionary["Boss" + difficulty/5].Width, Game1.textureDictionary["Boss" + difficulty/5].Height)));
+                if(difficulty/5 == 1)
+                {
+                    Enemies[0].Add(new Boss1(new Vector2(Game1.textureDictionary["Boss1"].Width, Game1.textureDictionary["Boss1"].Height)));
+                }
+                else if(difficulty/5 == 2)
+                {
+                    Enemies[0].Add(new Boss2(new Vector2(Game1.textureDictionary["Boss2"].Width, Game1.textureDictionary["Boss2"].Height)));
+                }
+                else if(difficulty/5 == 3)
+                {
+                    Enemies[0].Add(new Boss3(new Vector2(Game1.textureDictionary["Boss3"].Width, Game1.textureDictionary["Boss3"].Height)));
+                }
+                else if(difficulty/5 == 4)
+                {
+                    Enemies[0].Add(new Boss4(new Vector2(Game1.textureDictionary["Boss4"].Width, Game1.textureDictionary["Boss4"].Height)));
+                }
             }
             else
             {
