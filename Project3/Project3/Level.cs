@@ -68,7 +68,22 @@ namespace Xaria
             if (difficulty % 5 == 0)
             {
                 Enemies.Add(new List<Enemy>());
-                Enemies[0].Add(new Boss1(new Vector2(Game1.textureDictionary["Boss" + difficulty/5].Width, Game1.textureDictionary["Boss" + difficulty/5].Height)));
+                if(difficulty/5 == 1)
+                {
+                    Enemies[0].Add(new Boss1(new Vector2(Game1.textureDictionary["Boss1"].Width, Game1.textureDictionary["Boss1"].Height)));
+                }
+                else if(difficulty/5 == 2)
+                {
+                    Enemies[0].Add(new Boss2(new Vector2(Game1.textureDictionary["Boss2"].Width, Game1.textureDictionary["Boss2"].Height)));
+                }
+                else if(difficulty/5 == 3)
+                {
+                    Enemies[0].Add(new Boss3(new Vector2(Game1.textureDictionary["Boss3"].Width, Game1.textureDictionary["Boss3"].Height)));
+                }
+                else if(difficulty/5 == 4)
+                {
+                    Enemies[0].Add(new Boss4(new Vector2(Game1.textureDictionary["Boss4"].Width, Game1.textureDictionary["Boss4"].Height)));
+                }
             }
             else
             {
@@ -110,17 +125,38 @@ namespace Xaria
                 NextLevel();
             if(Difficulty%5 ==0 )
             {
+                Enemy enemy = Enemies[0][0];
                 if(Difficulty/5 == 1)
                 {
-
+                    enemy.Position = new Vector2(random.Next(0, ((int)Game1.screenSize.X - enemy.Texture.Width)), random.Next((500 + enemy.Texture.Height), (int)Game1.screenSize.Y));
                 }
                 else if(Difficulty/5 == 2)
                 {
-
+                    if (movingRight)
+                    {
+                        enemy.Position.X += 4;
+                        if (enemy.Position.X + enemy.Texture.Width >= Game1.screenSize.X)
+                        {
+                            movingRight = !movingRight;
+                        }
+                    }
+                    else
+                    {
+                        enemy.Position.X -= 4;
+                        if (enemy.Position.X <= 0)
+                        {
+                            movingRight = !movingRight;
+                        }
+                    }
                 }
                 else if(Difficulty/5 == 3)
                 {
-                    
+                   /*     NextShoot -= gameTime.ElapsedGameTime.Milliseconds;
+                    if (NextShoot <= 0)
+                    {
+                        NextShoot = Level.random.Next(1000, 10000);
+                        Projectiles.Add(new Laser(Position + new Vector2(Texture.Width / 2f - 1f, Texture.Height + 5f), new Vector2(0, 20), 20)); //moving up
+                    }*/
                 }
                 else if(Difficulty/5 == 4)
                 {

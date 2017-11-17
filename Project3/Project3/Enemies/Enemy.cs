@@ -32,6 +32,13 @@ namespace Xaria
         /// The next shoot.
         /// </value>
         public double NextShoot { get; internal set; }
+        /// <summary>
+        /// Gets the next shoot.
+        /// </summary>
+        /// <value>
+        /// The next shoot.
+        /// </value>
+        public double NextShoot2 { get; internal set; }
 
         public override void Draw(ref SpriteBatch spriteBatch)
         {
