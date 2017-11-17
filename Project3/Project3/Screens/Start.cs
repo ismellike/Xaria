@@ -16,7 +16,7 @@ namespace Xaria.Screens
         /// <param name="Content">The content.</param>
         public Start(ContentManager Content)
         {
-            Texture2D startTexture = Content.Load<Texture2D>("start");
+            Texture2D startTexture = Content.Load<Texture2D>("Buttons/start");
             Buttons.Add(new Button(startTexture, new Vector2((Game1.screenSize.X - startTexture.Width) / 3f, 2*(Game1.screenSize.Y - startTexture.Height) / 3f), StartGame));
         }
 
@@ -26,8 +26,6 @@ namespace Xaria.Screens
         void StartGame()
         {
             Game1.state = GameState.Playing;
-            Game1.player.Health = Player.STARTING_HEALTH;
-            Game1.level = new Level(1);
         }
     }
 
@@ -43,8 +41,8 @@ namespace Xaria.Screens
         void EndlessGame()
         {
             Game1.state = GameState.Playing;
-            Game1.player.Health = Player.STARTING_HEALTH;
-            Game1.level = new Level(1);
+            //Game1.player.Health = Player.STARTING_HEALTH;
+           // Game1.level = new Level(1);
         }
     }
 }

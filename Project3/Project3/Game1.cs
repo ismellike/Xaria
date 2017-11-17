@@ -5,6 +5,7 @@ using Microsoft.Xna.Framework.Input.Touch;
 using System.Collections.Generic;
 using Xaria.Screens;
 using Microsoft.Xna.Framework.Content;
+using Android.Hardware;
 
 namespace Xaria
 {
@@ -31,6 +32,7 @@ namespace Xaria
     /// </summary>
     public class Game1 : Game
     {
+        private TouchCollection touchCollection;
         #region drawing
         /// <summary>
         /// The graphics device manager
@@ -75,13 +77,9 @@ namespace Xaria
         internal static SpriteFont font;
         //game variables
         /// <summary>
-        /// The player
-        /// </summary>
-        internal static Player player;
-        /// <summary>
         /// The level
         /// </summary>
-        internal static Level level;
+        internal Level level;
         #endregion
 
         /// <summary>
@@ -128,12 +126,11 @@ namespace Xaria
             textureDictionary.Add("laser", Content.Load<Texture2D>("Projectiles/laser"));
             textureDictionary.Add("basic", Content.Load<Texture2D>("Enemies/basic"));
             textureDictionary.Add("star", Content.Load<Texture2D>("star"));
-            textureDictionary.Add("Boss1", Content.Load<Texture2D>("Enemies/Boss1"));
+            textureDictionary.Add("boss1", Content.Load<Texture2D>("Enemies/boss1"));
             textureDictionary.Add("beam", Content.Load<Texture2D>("Projectiles/beam"));
             textureDictionary.Add("shield", Content.Load<Texture2D>("Drops/shield"));
             font = Content.Load<SpriteFont>("font");
 
-            player = new Player();
             level = new Level(1);
             background = new Background(2017);
         }
@@ -148,21 +145,24 @@ namespace Xaria
             //check for input
             background.Update(gameTime);
             //get input
-            TouchCollection touchCollection = TouchPanel.GetState();
-            //scale input
-            TouchLocation[] touchLocations = new TouchLocation[touchCollection.Count];
-            for (int i = 0; i < touchCollection.Count; i++)
-                touchLocations[i] = new TouchLocation(touchCollection[i].Id, touchCollection[i].State, touchCollection[i].Position *screenSize / new Vector2(Window.ClientBounds.Width, Window.ClientBounds.Height));
-                switch (state)
+            float[] R = new float[9];
+            SensorManager.GetRotationMatrix(R, null, Activity1.accelValues, Activity1.magnetoValues);
+            float[] orientation = new float[9];
+            SensorManager.GetOrientation(R, orientation);
+            float roll = (float)Java.Lang.Math.ToDegrees(orientation[2]);
+
+            touchCollection = TouchPanel.GetState();
+
+            switch (state)
                 {
                     case GameState.Start:
-                        startScreen.Update(touchLocations);
+                        startScreen.Update(touchCollection);
                         break;
                     case GameState.Playing:
-                        level.Update(gameTime, touchLocations);
+                        level.Update(gameTime, touchCollection, roll);
                         break;
                     case GameState.End:
-                        endScreen.Update(touchLocations);
+                        endScreen.Update(touchCollection);
                     break;
                 }
         }
@@ -184,7 +184,6 @@ namespace Xaria
                     startScreen.Draw(ref spriteBatch);
                     break;
                 case GameState.Playing:
-                    player.Draw(ref spriteBatch);
                     level.Draw(ref spriteBatch);
                     break;
                 case GameState.End:

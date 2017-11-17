@@ -44,13 +44,35 @@ namespace Xaria.Enemies
             }
         }
 
-        internal override void OnDeath()
+        internal override void OnDeath(ref List<Drop> drops)
         {
             if(Level.random.Next(10) == 1) // 1/10 chance of giving drop
             {
                 if(Level.random.Next(100) < 20) // x% chance of dropping a shield
                 {
-                    Game1.level.AddDrop(new Shield(Position + new Vector2(Texture.Width/2f, Texture.Height), 20));
+                    drops.Add(new Shield(Position + new Vector2(Texture.Width/2f, Texture.Height), 20));
+                }
+            }
+        }
+
+        internal override void UpdateMovement(Level level, GameTime gameTime = null)
+        {
+            if (level.movingRight)
+            {
+                Position.X += 1;
+                if (Position.X + Texture.Width >= Game1.screenSize.X)
+                {
+                    level.movingRight = !level.movingRight;
+                    level.MoveDown();
+                }
+            }
+            else
+            {
+                Position.X -= 1;
+                if (Position.X <= 0)
+                {
+                    level.movingRight = !level.movingRight;
+                    level.MoveDown();
                 }
             }
         }

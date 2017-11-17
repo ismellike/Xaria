@@ -14,9 +14,6 @@ namespace Xaria
     {
         public int Health { get; internal set; }
         internal List<Projectile> Projectiles = new List<Projectile>();
-        public double ShootCooldown { get; internal set; }
-        internal double nextShoot; //start at ShootCooldown go to 0 then reset
-        internal float Velocity = 10;
         internal const int STARTING_HEALTH = 100;
         public int Shield { get; internal set; }
 
@@ -28,8 +25,6 @@ namespace Xaria
             Health = STARTING_HEALTH;
             Texture = Game1.textureDictionary["ship"];
             Position = new Vector2((Game1.screenSize.X + Texture.Width)/ 2f, Game1.screenSize.Y - Texture.Height - 10);
-            ShootCooldown = .5; //seconds between shots
-            nextShoot = ShootCooldown;
         }
 
         /// <summary>
@@ -37,21 +32,28 @@ namespace Xaria
         /// </summary>
         /// <param name="touch">The touch.</param>
         /// <param name="Enemies">The enemies.</param>
-        internal void Update(TouchLocation[] touches, ref List<List<Enemy>> Enemies)
+        internal void Update(TouchCollection touches, float roll, ref List<List<Enemy>> Enemies)
         {
             //move the player
-            if (touches.Length > 0)
-                if (Math.Abs(touches[0].Position.X - Position.X - Texture.Width / 2f) > Velocity * 1.25f) //stops oscillation
+            if (Math.Abs(roll) > 3)
+            {
+                if (Position.X + roll <= 0)
                 {
-                    if (touches[0].Position.X < Position.X + Texture.Width / 2f)
-                    {
-                        Position.X -= Velocity;
-                    }
-                    else
-                    {
-                        Position.X += Velocity;
-                    }
+                    Position.X = 0;
                 }
+                else if (Position.X + Texture.Width + roll >= Game1.screenSize.X)
+                {
+                    Position.X = Game1.screenSize.X - Texture.Width;
+                }
+                else
+                {
+                    Position.X += roll;
+                }
+            }
+            if(touches.Count > 0)
+            {
+                Shoot();
+            }
             //move their projectiles
             for (int projectileIndex = Projectiles.Count - 1; projectileIndex >= 0; projectileIndex--)
             {
@@ -92,18 +94,19 @@ namespace Xaria
             }
         }
 
+        internal void Reset()
+        {
+            Projectiles.Clear();
+            Health = STARTING_HEALTH;
+        }
+
         /// <summary>
         /// Shoots a projectile after a given time.
         /// </summary>
         /// <param name="gameTime">The game time.</param>
-        internal void Shoot(GameTime gameTime)
+        internal void Shoot()
         {
-            nextShoot -= gameTime.ElapsedGameTime.TotalSeconds;
-            if (nextShoot <= 0)
-            {
-                nextShoot = ShootCooldown;
                 Projectiles.Add(new Laser(Position + new Vector2(Texture.Width / 2f - 1f, -5f), new Vector2(0, -30), 50)); //moving up
-            }
         }
 
         public bool Intersects(GameElement shot)

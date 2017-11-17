@@ -22,7 +22,6 @@ namespace Xaria.Projectiles
             Velocity = velocity;
             //Texture = Game1.textureDictionary["Rocket"];
             Damage = damage;
-            Rectangle hitBox = new Rectangle((int)Position.X, (int)Position.Y, Texture.Width, Texture.Height);
         }
 
         internal override void OnCollision(ref List<List<Enemy>> Enemies, int y, int x)
