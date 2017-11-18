@@ -23,6 +23,12 @@ namespace Xaria.Enemies
                 NextShoot = Level.random.Next(200, 1000);
                 Projectiles.Add(new Pellet(Position + new Vector2(Texture.Width / 2f - 1f, Texture.Height + 5f), new Vector2(0, 15), 15));
             }
+            NextShoot2 -= gameTime.ElapsedGameTime.Milliseconds;
+            if (NextShoot2 <= 0)
+            {
+                NextShoot = Level.random.Next(5000, 10000);
+                Projectiles.Add(new Beam(Position + new Vector2(Texture.Width / 2f - 1f, Texture.Height + 5f), new Vector2(0, 50), 200));
+            }
         }
     }
 }

@@ -98,12 +98,46 @@ namespace Xaria
             }
         }
 
-        internal void Update(GameTime gameTime,TouchCollection touches, float roll)
+        internal void Update(GameTime gameTime, TouchCollection touches, float roll)
         {
             player.Update(touches, roll, ref Enemies);
-            UpdateEnemies(gameTime);
-            UpdateEnemyProjectiles();
-            UpdateDrops();
+            if (Difficulty % 5 == 0)
+            {
+                if(Difficulty/5==1)
+                {
+                    Enemies[0][0].updateMovement(gameTime);
+                    UpdateEnemyProjectiles();
+                    if(Enemies[0][0].Health == 0)
+                    {
+                        //remove boss
+                    }
+                    if(Enemies.Count == 0)
+                    {
+                        NextLevel();
+                    }
+                }
+                else if(Difficulty/5==2)
+                {
+                    //UpdateBoss2();
+                    //UpdateBoss2Projectiles();
+                }
+                else if(Difficulty/5==3)
+                {
+                    //UpdateBoss3();
+                    //UpdateBoss3Projectiles();
+                }
+                else if(Difficulty/5==4)
+                {
+                    //UpdateBoss4();
+                    //UpdateBoss4Projectiles();
+                }
+            }
+            else
+            {
+                UpdateEnemies(gameTime);
+                UpdateEnemyProjectiles();
+                UpdateDrops();
+            }
             if (player.Health <= 0)
                 GameOver();
         }
@@ -125,27 +159,27 @@ namespace Xaria
         {
             if (Enemies.Count == 0)
                 NextLevel();
-                for (int rowIndex = Enemies.Count - 1; rowIndex >= 0; rowIndex--) //move right to left then move down
+            for (int rowIndex = Enemies.Count - 1; rowIndex >= 0; rowIndex--) //move right to left then move down
+            {
+                if (Enemies[rowIndex].Count == 0)
                 {
-                    if (Enemies[rowIndex].Count == 0)
+                    Enemies.RemoveAt(rowIndex);
+                    continue;
+                }
+                for (int enemyIndex = Enemies[rowIndex].Count - 1; enemyIndex >= 0; enemyIndex--)
+                {
+                    Enemy enemy = Enemies[rowIndex][enemyIndex];
+                    if (enemy.Health <= 0)
                     {
-                        Enemies.RemoveAt(rowIndex);
+                        Enemies[rowIndex][enemyIndex].OnDeath(ref Drops);
+                        Enemies[rowIndex].RemoveAt(enemyIndex);
                         continue;
                     }
-                    for (int enemyIndex = Enemies[rowIndex].Count - 1; enemyIndex >= 0; enemyIndex--)
-                    {
-                        Enemy enemy = Enemies[rowIndex][enemyIndex];
-                        if (enemy.Health <= 0)
-                        {
-                            Enemies[rowIndex][enemyIndex].OnDeath(ref Drops);
-                            Enemies[rowIndex].RemoveAt(enemyIndex);
-                            continue;
-                        }
-                        enemy.UpdateMovement(this, gameTime);
-                        enemy.Shoot(gameTime, ref Projectiles);
+                    enemy.UpdateMovement(this, gameTime);
+                    enemy.Shoot(gameTime, ref Projectiles);
 
-                    }
                 }
+            }
         }
 
         private void UpdateEnemyProjectiles()

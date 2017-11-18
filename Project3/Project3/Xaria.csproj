@@ -107,7 +107,11 @@
     <Compile Include="Drops\Drop.cs" />
     <Compile Include="Drops\Shield.cs" />
     <Compile Include="Enemies\Basic.cs" />
+<<<<<<< HEAD
+    <Compile Include="Enemies\Boss.cs" />
+=======
     <Compile Include="Enemies\Boss1.cs" />
+>>>>>>> 2981ce6ce3bd0d0d9678c63c44d72cf4e64c7ac0
     <Compile Include="Enemies\Boss2.cs" />
     <Compile Include="Enemies\Boss3.cs" />
     <Compile Include="Enemies\Boss4.cs" />
@@ -116,9 +120,15 @@
     <Compile Include="GameElement.cs" />
     <Compile Include="Level.cs" />
     <Compile Include="Player.cs" />
+<<<<<<< HEAD
+    <Compile Include="Projectiles\Pellet.cs" />
+    <Compile Include="Projectiles\Rocket.cs" />
+    <Compile Include="Projectiles\Emp.cs" />
+=======
     <Compile Include="Projectiles\Beam.cs" />
     <Compile Include="Projectiles\emp.cs" />
     <Compile Include="Projectiles\Pellet.cs" />
+>>>>>>> 2981ce6ce3bd0d0d9678c63c44d72cf4e64c7ac0
     <Compile Include="Projectiles\Projectile.cs" />
     <Compile Include="Projectiles\Laser.cs" />
     <Compile Include="Projectiles\Rocket.cs" />

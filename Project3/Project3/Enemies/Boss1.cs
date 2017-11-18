@@ -34,7 +34,7 @@ namespace Xaria.Enemies
             base.OnDeath(ref drops);
         }
 
-        internal override void UpdateMovement(Level level, GameTime gameTime)
+        internal override void UpdateMovement(GameTime gameTime)
         {
             Countdown -= gameTime.ElapsedGameTime.Milliseconds;
             if (Countdown <= 0)
