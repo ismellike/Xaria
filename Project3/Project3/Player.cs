@@ -34,8 +34,7 @@ namespace Xaria
         /// <param name="Enemies">The enemies.</param>
         internal void Update(TouchCollection touches, float roll, ref List<List<Enemy>> Enemies)
         {
-            //move the player
-            if (Math.Abs(roll) > 3)
+           if (Math.Abs(roll) > 3) //code for moving player with rotation
             {
                 if (Position.X + roll <= 0)
                 {
@@ -50,9 +49,10 @@ namespace Xaria
                     Position.X += roll;
                 }
             }
-            if(touches.Count > 0)
-            {
-                Shoot();
+           foreach(TouchLocation touch in touches)
+            { 
+                    if (touch.State == TouchLocationState.Pressed || touch.State == TouchLocationState.Released)
+                        Shoot();
             }
             //move their projectiles
             for (int projectileIndex = Projectiles.Count - 1; projectileIndex >= 0; projectileIndex--)

@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework.Graphics;
+﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input.Touch;
 using System.Collections.Generic;
 
@@ -27,16 +28,21 @@ namespace Xaria
         /// Updates the specified touch to see if buttons are clicked.
         /// </summary>
         /// <param name="touch">The touch.</param>
-        internal void Update(TouchCollection touches)
+        internal void Update(TouchCollection touches, GameWindow window)
         {
+
             if (touches.Count > 0)
-                Buttons.ForEach((Button button) =>
+            {
+                TouchLocation scaled = new TouchLocation(touches[0].Id, touches[0].State, touches[0].Position * Game1.screenSize / new Vector2(window.ClientBounds.Width, window.ClientBounds.Height));
+            }
+
+            Buttons.ForEach((Button button) =>
+            {
+                if (button.IsClicked(touches[0].Position))
                 {
-                    if (button.IsClicked(touches[0].Position))
-                    {
-                        button.Click();
-                    }
-                });
+                    button.Click();
+                }
+            });
         }
     }
 }

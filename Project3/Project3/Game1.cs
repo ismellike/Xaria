@@ -79,7 +79,7 @@ namespace Xaria
         /// <summary>
         /// The level
         /// </summary>
-        internal Level level;
+        internal static Level level;
         #endregion
 
         /// <summary>
@@ -132,7 +132,7 @@ namespace Xaria
             font = Content.Load<SpriteFont>("font");
 
             level = new Level(1);
-            background = new Background(2017);
+            background = new Background();
         }
 
         /// <summary>
@@ -156,13 +156,13 @@ namespace Xaria
             switch (state)
                 {
                     case GameState.Start:
-                        startScreen.Update(touchCollection);
+                        startScreen.Update(touchCollection, Window);
                         break;
                     case GameState.Playing:
                         level.Update(gameTime, touchCollection, roll);
                         break;
                     case GameState.End:
-                        endScreen.Update(touchCollection);
+                        endScreen.Update(touchCollection, Window);
                     break;
                 }
         }

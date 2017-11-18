@@ -60,15 +60,6 @@ namespace Xaria
             GenerateLevel(Difficulty);
         }
 
-        void Reset()
-        {
-            player.Reset();
-            Projectiles.Clear();
-            Drops.Clear();
-            Difficulty = 1;
-            GenerateLevel(Difficulty);
-        }
-
         /// <summary>
         /// Generates the level.
         /// </summary>
@@ -222,7 +213,6 @@ namespace Xaria
         /// </summary>
         private void GameOver()
         {
-            Reset();
             Game1.state = GameState.End;
         }
     }
