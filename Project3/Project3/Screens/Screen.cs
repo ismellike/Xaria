@@ -34,15 +34,15 @@ namespace Xaria
             if (touches.Count > 0)
             {
                 TouchLocation scaled = new TouchLocation(touches[0].Id, touches[0].State, touches[0].Position * Game1.screenSize / new Vector2(window.ClientBounds.Width, window.ClientBounds.Height));
-            }
 
-            Buttons.ForEach((Button button) =>
-            {
-                if (button.IsClicked(touches[0].Position))
+                Buttons.ForEach((Button button) =>
                 {
-                    button.Click();
-                }
-            });
+                    if (button.IsClicked(scaled.Position))
+                    {
+                        button.Click();
+                    }
+                });
+            }
         }
     }
 }

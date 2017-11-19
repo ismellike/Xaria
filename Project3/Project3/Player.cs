@@ -12,6 +12,7 @@ namespace Xaria
     /// </summary>
     public class Player : GameElement
     {
+        public int ExtraLives { get; internal set; }
         public int Health { get; internal set; }
         internal List<Projectile> Projectiles = new List<Projectile>();
         internal const int STARTING_HEALTH = 100;
@@ -25,6 +26,7 @@ namespace Xaria
             Health = STARTING_HEALTH;
             Texture = Game1.textureDictionary["ship"];
             Position = new Vector2((Game1.screenSize.X + Texture.Width)/ 2f, Game1.screenSize.Y - Texture.Height - 10);
+            ExtraLives = 0;
         }
 
         /// <summary>
@@ -51,7 +53,7 @@ namespace Xaria
             }
            foreach(TouchLocation touch in touches)
             { 
-                    if (touch.State == TouchLocationState.Pressed || touch.State == TouchLocationState.Released)
+                    if (touch.State == TouchLocationState.Released)
                         Shoot();
             }
             //move their projectiles
@@ -84,9 +86,9 @@ namespace Xaria
         /// <param name="spriteBatch">The sprite batch.</param>
         public override void Draw(ref SpriteBatch spriteBatch)
         {
-            spriteBatch.DrawString(Game1.font, Health.ToString(), Position + new Vector2(-5, -25), Color.Green);
+            spriteBatch.DrawString(Game1.font, Health.ToString() + (ExtraLives > 0 ? " + " + ExtraLives.ToString(): ""), Position + new Vector2(-5, -25), Color.LimeGreen);
             if(Shield>0)
-                spriteBatch.DrawString(Game1.font, Shield.ToString(), Position + new Vector2(25, -25), Color.Cyan);
+                spriteBatch.DrawString(Game1.font, Shield.ToString(), Position +  new Vector2(Texture.Width - 25, -25), Color.Cyan);
             spriteBatch.Draw(Texture, Position, Color.White);
             foreach (Projectile projectile in Projectiles)
             {
@@ -133,6 +135,14 @@ namespace Xaria
             }
             else
                 Health -= damage;
+            if(Health <= 0)
+            {
+                if (ExtraLives >= 1)
+                {
+                    ExtraLives--;
+                    Health = 100;
+                }
+            }
         }
     }
 }

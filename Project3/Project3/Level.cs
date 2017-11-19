@@ -72,11 +72,12 @@ namespace Xaria
                 Enemies.Add(new List<Enemy>());
                 if(difficulty/5 == 1)
                 {
-                    Enemies[0].Add(new Boss1(new Vector2(Game1.textureDictionary["boss1"].Width, Game1.textureDictionary["boss1"].Height)));
+                    Enemies[0].Add(new Boss1(new Vector2(random.Next(((int)Game1.screenSize.X - Game1.textureDictionary["boss1"].Width)), random.Next((500 + Game1.textureDictionary["boss1"].Width)))));
                 }
                 else if(difficulty/5 == 2)
                 {
-                    Enemies[0].Add(new Boss2(new Vector2(Game1.textureDictionary["boss2"].Width, Game1.textureDictionary["boss2"].Height)));
+                    Enemies[0].Add(new Boss1(new Vector2(random.Next(((int)Game1.screenSize.X - Game1.textureDictionary["boss1"].Width)), random.Next((500 + Game1.textureDictionary["boss1"].Width)))));
+                    Enemies[0].Add(new Boss1(new Vector2(random.Next(((int)Game1.screenSize.X - Game1.textureDictionary["boss1"].Width)), random.Next((500 + Game1.textureDictionary["boss1"].Width)))));
                 }
                 else if(difficulty/5 == 3)
                 {
@@ -101,43 +102,10 @@ namespace Xaria
         internal void Update(GameTime gameTime, TouchCollection touches, float roll)
         {
             player.Update(touches, roll, ref Enemies);
-            if (Difficulty % 5 == 0)
-            {
-                if(Difficulty/5==1)
-                {
-                    Enemies[0][0].updateMovement(gameTime);
-                    UpdateEnemyProjectiles();
-                    if(Enemies[0][0].Health == 0)
-                    {
-                        //remove boss
-                    }
-                    if(Enemies.Count == 0)
-                    {
-                        NextLevel();
-                    }
-                }
-                else if(Difficulty/5==2)
-                {
-                    //UpdateBoss2();
-                    //UpdateBoss2Projectiles();
-                }
-                else if(Difficulty/5==3)
-                {
-                    //UpdateBoss3();
-                    //UpdateBoss3Projectiles();
-                }
-                else if(Difficulty/5==4)
-                {
-                    //UpdateBoss4();
-                    //UpdateBoss4Projectiles();
-                }
-            }
-            else
-            {
+
                 UpdateEnemies(gameTime);
                 UpdateEnemyProjectiles();
                 UpdateDrops();
-            }
             if (player.Health <= 0)
                 GameOver();
         }
@@ -224,6 +192,7 @@ namespace Xaria
             {
                 drop.Draw(ref spriteBatch);
             }
+            spriteBatch.DrawString(Game1.font, "Level: " + Difficulty.ToString(), new Vector2(30, 10), Color.White);
         }
 
         /// <summary>

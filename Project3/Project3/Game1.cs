@@ -81,6 +81,7 @@ namespace Xaria
         /// </summary>
         internal static Level level;
         #endregion
+        public const int STARTING_LEVEL = 1;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="Game1"/> class.
@@ -123,15 +124,17 @@ namespace Xaria
             endScreen = new End(Content);
 
             textureDictionary.Add("ship", Content.Load<Texture2D>("player_ship"));
-            textureDictionary.Add("laser", Content.Load<Texture2D>("Projectiles/laser"));
-            textureDictionary.Add("basic", Content.Load<Texture2D>("Enemies/basic"));
             textureDictionary.Add("star", Content.Load<Texture2D>("star"));
+            textureDictionary.Add("basic", Content.Load<Texture2D>("Enemies/basic"));
             textureDictionary.Add("boss1", Content.Load<Texture2D>("Enemies/boss1"));
             textureDictionary.Add("beam", Content.Load<Texture2D>("Projectiles/beam"));
+            textureDictionary.Add("laser", Content.Load<Texture2D>("Projectiles/laser"));
             textureDictionary.Add("shield", Content.Load<Texture2D>("Drops/shield"));
+            textureDictionary.Add("life", Content.Load<Texture2D>("Drops/life"));
+
             font = Content.Load<SpriteFont>("font");
 
-            level = new Level(1);
+            level = new Level(STARTING_LEVEL);
             background = new Background();
         }
 
