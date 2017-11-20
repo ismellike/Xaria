@@ -7,40 +7,48 @@ namespace Xaria.Enemies
 {
     class Boss1 : Enemy
     {
-        private const double NEXT_TELEPORT = 3000; //3 seconds
+        private const double NEXT_TELEPORT = 4000; //4 seconds
+        private const double SHOOT = 1500; //1.5 seconds after teleporting shoot
         private const int HEALTH = 5000;
         private double Countdown = NEXT_TELEPORT;
+        private bool CanShoot = false;
 
         public Boss1(Vector2 position)
         {
             Health = HEALTH;
             Position = position;
             Texture = Game1.textureDictionary["boss1"];//texture changes
+            NextShoot = SHOOT;
         }
 
 
         internal override void Shoot(GameTime gameTime, ref List<Projectile> Projectiles)
         {
-            NextShoot -= gameTime.ElapsedGameTime.Milliseconds;
-            if (NextShoot <= 0)
+            if (CanShoot)
             {
-                NextShoot = Level.random.Next(1000, 10000);
-                Projectiles.Add(new Beam(Position + new Vector2(Texture.Width / 2f - 1f, Texture.Height + 5f), new Vector2(0, 50), 200));
+                NextShoot -= gameTime.ElapsedGameTime.Milliseconds;
+                if (NextShoot <= 0)
+                {
+                    NextShoot = SHOOT;
+                    Projectiles.Add(new Beam(Position + new Vector2(Texture.Width / 2f, Texture.Height + 5f), new Vector2(0, 50), 100));
+                    CanShoot = false;
+                }
             }
         }
 
         internal override void OnDeath(ref List<Drop> drops)
         {
-            base.OnDeath(ref drops);
+            drops.Add(new Life(Position + new Vector2(Texture.Width / 2f, Texture.Height + 5f)));
         }
 
-        internal override void UpdateMovement(GameTime gameTime)
+        internal override void UpdateMovement(Level level, GameTime gameTime)
         {
             Countdown -= gameTime.ElapsedGameTime.Milliseconds;
             if (Countdown <= 0)
             {
                 Position = new Vector2(Level.random.Next(((int)Game1.screenSize.X - Texture.Width)), Level.random.Next((500 + Texture.Height)));
                 Countdown = NEXT_TELEPORT;
+                CanShoot = true;
             }
         }
     }

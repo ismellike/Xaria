@@ -36,6 +36,7 @@ namespace Xaria.Screens
         /// </summary>
         void GoToStart()
         {
+            Game1.level = new Level(Game1.STARTING_LEVEL);
             Game1.state = GameState.Start;
         }
     }

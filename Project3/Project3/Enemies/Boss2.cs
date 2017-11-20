@@ -7,6 +7,8 @@ namespace Xaria.Enemies
 {
     class Boss2 : Enemy
     {
+        public double NextShoot2 { get; internal set; }
+
         public Boss2(Vector2 position)
         {
             Health = 5000;

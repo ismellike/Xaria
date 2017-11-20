@@ -60,15 +60,6 @@ namespace Xaria
             GenerateLevel(Difficulty);
         }
 
-        void Reset()
-        {
-            player.Reset();
-            Projectiles.Clear();
-            Drops.Clear();
-            Difficulty = 1;
-            GenerateLevel(Difficulty);
-        }
-
         /// <summary>
         /// Generates the level.
         /// </summary>
@@ -81,11 +72,12 @@ namespace Xaria
                 Enemies.Add(new List<Enemy>());
                 if(difficulty/5 == 1)
                 {
-                    Enemies[0].Add(new Boss1(new Vector2(Game1.textureDictionary["boss1"].Width, Game1.textureDictionary["boss1"].Height)));
+                    Enemies[0].Add(new Boss1(new Vector2(random.Next(((int)Game1.screenSize.X - Game1.textureDictionary["boss1"].Width)), random.Next((500 + Game1.textureDictionary["boss1"].Width)))));
                 }
                 else if(difficulty/5 == 2)
                 {
-                    Enemies[0].Add(new Boss2(new Vector2(Game1.textureDictionary["boss2"].Width, Game1.textureDictionary["boss2"].Height)));
+                    Enemies[0].Add(new Boss1(new Vector2(random.Next(((int)Game1.screenSize.X - Game1.textureDictionary["boss1"].Width)), random.Next((500 + Game1.textureDictionary["boss1"].Width)))));
+                    Enemies[0].Add(new Boss1(new Vector2(random.Next(((int)Game1.screenSize.X - Game1.textureDictionary["boss1"].Width)), random.Next((500 + Game1.textureDictionary["boss1"].Width)))));
                 }
                 else if(difficulty/5 == 3)
                 {
@@ -109,6 +101,7 @@ namespace Xaria
 
         internal void Update(GameTime gameTime, TouchCollection touches, float roll)
         {
+<<<<<<< HEAD
             player.Update(touches, roll, ref Enemies, gameTime);
             /*if (Difficulty % 5 == 0)
             {
@@ -147,6 +140,13 @@ namespace Xaria
                 UpdateEnemyProjectiles();
                 UpdateDrops();
             //}
+=======
+            player.Update(touches, roll, ref Enemies);
+
+                UpdateEnemies(gameTime);
+                UpdateEnemyProjectiles();
+                UpdateDrops();
+>>>>>>> 82cb159b0c63d65d68836bf53f086f87f6a6ee2b
             if (player.Health <= 0)
                 GameOver();
         }
@@ -233,6 +233,7 @@ namespace Xaria
             {
                 drop.Draw(ref spriteBatch);
             }
+            spriteBatch.DrawString(Game1.font, "Level: " + Difficulty.ToString(), new Vector2(30, 10), Color.White);
         }
 
         /// <summary>
@@ -256,7 +257,6 @@ namespace Xaria
         /// </summary>
         private void GameOver()
         {
-            Reset();
             Game1.state = GameState.End;
         }
     }
