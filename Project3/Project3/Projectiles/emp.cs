@@ -25,14 +25,10 @@ namespace Xaria.Projectiles
            // Rectangle hitBox = new Rectangle((int)Position.X, (int)Position.Y, Texture.Width, Texture.Height); Given by this.Bounds();
         }
 
-        internal override void OnCollision(ref List<List<Enemy>> Enemies, int y, int x)
-        {
-            Enemies[y][x].Health -= Damage;
-        }
-
         internal override void OnCollision(ref Player player)
         {
             player.Damage(Damage);
+            stunned = 3000;
         }
 
         public override void Draw(ref SpriteBatch spriteBatch)

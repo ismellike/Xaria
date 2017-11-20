@@ -109,13 +109,13 @@ namespace Xaria
 
         internal void Update(GameTime gameTime, TouchCollection touches, float roll)
         {
-            player.Update(touches, roll, ref Enemies);
-            if (Difficulty % 5 == 0)
+            player.Update(touches, roll, ref Enemies, gameTime);
+            /*if (Difficulty % 5 == 0)
             {
                 if(Difficulty/5==1)
                 {
                     Enemies[0][0].updateMovement(gameTime);
-                    UpdateEnemyProjectiles();
+                    UpdateEnemyProjectiles();//check
                     if(Enemies[0][0].Health == 0)
                     {
                         //remove boss
@@ -142,11 +142,11 @@ namespace Xaria
                 }
             }
             else
-            {
+            {*/
                 UpdateEnemies(gameTime);
                 UpdateEnemyProjectiles();
                 UpdateDrops();
-            }
+            //}
             if (player.Health <= 0)
                 GameOver();
         }

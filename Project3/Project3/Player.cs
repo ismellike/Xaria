@@ -16,6 +16,7 @@ namespace Xaria
         internal List<Projectile> Projectiles = new List<Projectile>();
         internal const int STARTING_HEALTH = 100;
         public int Shield { get; internal set; }
+        public double stunned = -1;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="Player"/> class.
@@ -32,50 +33,57 @@ namespace Xaria
         /// </summary>
         /// <param name="touch">The touch.</param>
         /// <param name="Enemies">The enemies.</param>
-        internal void Update(TouchCollection touches, float roll, ref List<List<Enemy>> Enemies)
+        internal void Update(TouchCollection touches, float roll, ref List<List<Enemy>> Enemies, GameTime gameTime)
         {
-            //move the player
-            if (Math.Abs(roll) > 3)
+            stunned -= gameTime.ElapsedGameTime.milliseconds;
+            if (stunned >= 0)
             {
-                if (Position.X + roll <= 0)
-                {
-                    Position.X = 0;
-                }
-                else if (Position.X + Texture.Width + roll >= Game1.screenSize.X)
-                {
-                    Position.X = Game1.screenSize.X - Texture.Width;
-                }
-                else
-                {
-                    Position.X += roll;
-                }
+                //player can't do anything.
             }
-            if(touches.Count > 0)
+            else
             {
-                Shoot();
-            }
-            //move their projectiles
-            for (int projectileIndex = Projectiles.Count - 1; projectileIndex >= 0; projectileIndex--)
-            {
-                Projectile projectile = Projectiles[projectileIndex];
-                if (projectile.Position.X <= 0)
+                if (Math.Abs(roll) > 3)
                 {
-                    Projectiles.RemoveAt(projectileIndex);
-                    continue;
-                }
-                projectile.Position += projectile.Velocity;
-
-                for (int y = Enemies.Count - 1; y >= 0; y--)
-                    for (int x = Enemies[y].Count - 1; x >= 0; x--) //lower rows are more likely to be hit by a projecitle
+                    if (Position.X + roll <= 0)
                     {
-                        if (Enemies[y][x].IsHit(projectile))
-                        {
-                            projectile.OnCollision(ref Enemies, y, x);
-                            Projectiles.RemoveAt(projectileIndex);
-                            goto exit;
-                        }
+                        Position.X = 0;
                     }
-                exit:;
+                    else if (Position.X + Texture.Width + roll >= Game1.screenSize.X)
+                    {
+                        Position.X = Game1.screenSize.X - Texture.Width;
+                    }
+                    else
+                    {
+                        Position.X += roll;
+                    }
+                }
+                if (touches.Count > 0)
+                {
+                    Shoot();
+                }
+                //move their projectiles
+                for (int projectileIndex = Projectiles.Count - 1; projectileIndex >= 0; projectileIndex--)
+                {
+                    Projectile projectile = Projectiles[projectileIndex];
+                    if (projectile.Position.X <= 0)
+                    {
+                        Projectiles.RemoveAt(projectileIndex);
+                        continue;
+                    }
+                    projectile.Position += projectile.Velocity;
+
+                    for (int y = Enemies.Count - 1; y >= 0; y--)
+                        for (int x = Enemies[y].Count - 1; x >= 0; x--) //lower rows are more likely to be hit by a projecitle
+                        {
+                            if (Enemies[y][x].IsHit(projectile))
+                            {
+                                projectile.OnCollision(ref Enemies, y, x);
+                                Projectiles.RemoveAt(projectileIndex);
+                                goto exit;
+                            }
+                        }
+                    exit:;
+                }
             }
         }
 

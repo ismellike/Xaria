@@ -24,11 +24,6 @@ namespace Xaria.Projectiles
             Damage = damage;
         }
 
-        internal override void OnCollision(ref List<List<Enemy>> Enemies, int y, int x)
-        {
-            Enemies[y][x].Health -= Damage;
-        }
-
         internal override void OnCollision(ref Player player)
         {
             player.Damage(Damage);
