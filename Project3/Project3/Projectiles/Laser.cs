@@ -23,11 +23,19 @@ namespace Xaria.Projectiles
             Damage = damage;
         }
 
+        /* @Pre: laser projectile overlaps enemy sprite
+         * @Post: Enemy's health is reduced by lasers damage
+         * @Return: None
+         */
         internal override void OnCollision(ref List<List<Enemy>> Enemies, int y, int x)
         {
             Enemies[y][x].Health -= Damage;
         }
 
+        /* @Pre: laser projectile overlaps player sprite
+         * @Post: players health is reduced by the amount of damage the pellet does
+         * @Return: None
+         */
         internal override void OnCollision(ref Player player)
         {
             player.Damage(Damage);

@@ -24,11 +24,10 @@ namespace Xaria.Projectiles
             Rectangle hitBox = new Rectangle((int)Position.X, (int)Position.Y, Texture.Width, Texture.Height);
         }
 
-        internal override void OnCollision(ref List<List<Enemy>> Enemies, int y, int x)
-        {
-            Enemies[y][x].Health -= Damage;
-        }
-
+        /* @Pre: beam projectile overlaps player sprite
+         * @Post: players health is reduced by the amount of damage the beam does
+         * @Return: None
+         */
         internal override void OnCollision(ref Player player)
         {
             player.Damage(Damage);

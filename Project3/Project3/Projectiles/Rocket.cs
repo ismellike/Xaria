@@ -43,6 +43,10 @@ namespace Xaria.Projectiles
         }
 
 >>>>>>> 82cb159b0c63d65d68836bf53f086f87f6a6ee2b
+        /* @Pre: rocket projectile overlaps player sprite
+         * @Post: players health is reduced by the amount of damage the rocket does
+         * @Return: None
+         */
         internal override void OnCollision(ref Player player)
         {
             player.Damage(Damage);

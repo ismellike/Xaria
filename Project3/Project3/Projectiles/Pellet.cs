@@ -24,11 +24,19 @@ namespace Xaria.Projectiles
             Damage = damage;
         }
 
+        /* @Pre: pellet projectile overlaps player sprite
+         * @Post: players health is reduced by the amount of damage the pellet does
+         * @Return: None
+         */
         internal override void OnCollision(ref Player player)
         {
             player.Damage(Damage);
         }
 
+        /* @Pre:
+         * @Post:
+         * @Return:
+         */
         public override void Draw(ref SpriteBatch spriteBatch)
         {
             //spriteBatch.

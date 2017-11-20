@@ -99,10 +99,14 @@ namespace Xaria
             }
         }
 
+        /* @Pre: Player has started the game.
+         * @Post: The current level the player is playing is updated. This includes: Player movement, projectiles, drops. Enemy movement and projectiles as well.
+         * @Return: None
+         */
         internal void Update(GameTime gameTime, TouchCollection touches, float roll)
         {
 <<<<<<< HEAD
-            player.Update(touches, roll, ref Enemies, gameTime);
+            player.Update(touches, roll, ref Enemies, gameTime);//update player actions
             /*if (Difficulty % 5 == 0)
             {
                 if(Difficulty/5==1)

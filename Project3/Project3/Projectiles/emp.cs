@@ -25,10 +25,14 @@ namespace Xaria.Projectiles
            // Rectangle hitBox = new Rectangle((int)Position.X, (int)Position.Y, Texture.Width, Texture.Height); Given by this.Bounds();
         }
 
+        /* @Pre: emp projectile overlaps player sprite
+         * @Post: players health is reduced by the amount of damage the emp does. Player cannot move for three seconds.
+         * @Return: None
+         */
         internal override void OnCollision(ref Player player)
         {
             player.Damage(Damage);
-            stunned = 3000;
+            stunned = 3000;//stunned variable in player.cs set to 3000 milliseconds, player cannot do anything during that time.
         }
 
         public override void Draw(ref SpriteBatch spriteBatch)
