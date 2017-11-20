@@ -35,18 +35,13 @@ namespace Xaria
         /// </summary>
         /// <param name="touch">The touch.</param>
         /// <param name="Enemies">The enemies.</param>
-        internal void Update(TouchCollection touches, float roll, ref List<List<Enemy>> Enemies, GameTime gameTime)
+        internal void Update(GameTime gameTime, TouchCollection touches, float roll, ref List<List<Enemy>> Enemies)
         {
-<<<<<<< HEAD
-            stunned -= gameTime.ElapsedGameTime.milliseconds;
             if (stunned >= 0)
-=======
-           if (Math.Abs(roll) > 3) //code for moving player with rotation
->>>>>>> 82cb159b0c63d65d68836bf53f086f87f6a6ee2b
             {
-                //player can't do anything.
+                stunned -= gameTime.ElapsedGameTime.Milliseconds;
             }
-            else
+            else if (Math.Abs(roll) > 3)
             {
                 if (Math.Abs(roll) > 3)
                 {
@@ -63,47 +58,34 @@ namespace Xaria
                         Position.X += roll;
                     }
                 }
-                if (touches.Count > 0)
-                {
-                    Shoot();
-                }
-<<<<<<< HEAD
-                //move their projectiles
-                for (int projectileIndex = Projectiles.Count - 1; projectileIndex >= 0; projectileIndex--)
-=======
             }
-           foreach(TouchLocation touch in touches)
-            { 
-                    if (touch.State == TouchLocationState.Released)
-                        Shoot();
+            foreach (TouchLocation touch in touches)
+            {
+                if (touch.State == TouchLocationState.Released)
+                    Shoot();
             }
             //move their projectiles
             for (int projectileIndex = Projectiles.Count - 1; projectileIndex >= 0; projectileIndex--)
             {
                 Projectile projectile = Projectiles[projectileIndex];
                 if (projectile.Position.X <= 0)
->>>>>>> 82cb159b0c63d65d68836bf53f086f87f6a6ee2b
                 {
-                    Projectile projectile = Projectiles[projectileIndex];
-                    if (projectile.Position.X <= 0)
-                    {
-                        Projectiles.RemoveAt(projectileIndex);
-                        continue;
-                    }
-                    projectile.Position += projectile.Velocity;
-
-                    for (int y = Enemies.Count - 1; y >= 0; y--)
-                        for (int x = Enemies[y].Count - 1; x >= 0; x--) //lower rows are more likely to be hit by a projecitle
-                        {
-                            if (Enemies[y][x].IsHit(projectile))
-                            {
-                                projectile.OnCollision(ref Enemies, y, x);
-                                Projectiles.RemoveAt(projectileIndex);
-                                goto exit;
-                            }
-                        }
-                    exit:;
+                    Projectiles.RemoveAt(projectileIndex);
+                    continue;
                 }
+                projectile.Position += projectile.Velocity;
+
+                for (int y = Enemies.Count - 1; y >= 0; y--)
+                    for (int x = Enemies[y].Count - 1; x >= 0; x--) //lower rows are more likely to be hit by a projecitle
+                    {
+                        if (Enemies[y][x].IsHit(projectile))
+                        {
+                            projectile.OnCollision(ref Enemies, y, x);
+                            Projectiles.RemoveAt(projectileIndex);
+                            goto exit;
+                        }
+                    }
+                exit:;
             }
         }
 

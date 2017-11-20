@@ -105,52 +105,10 @@ namespace Xaria
          */
         internal void Update(GameTime gameTime, TouchCollection touches, float roll)
         {
-<<<<<<< HEAD
-            player.Update(touches, roll, ref Enemies, gameTime);//update player actions
-            /*if (Difficulty % 5 == 0)
-            {
-                if(Difficulty/5==1)
-                {
-                    Enemies[0][0].updateMovement(gameTime);
-                    UpdateEnemyProjectiles();//check
-                    if(Enemies[0][0].Health == 0)
-                    {
-                        //remove boss
-                    }
-                    if(Enemies.Count == 0)
-                    {
-                        NextLevel();
-                    }
-                }
-                else if(Difficulty/5==2)
-                {
-                    //UpdateBoss2();
-                    //UpdateBoss2Projectiles();
-                }
-                else if(Difficulty/5==3)
-                {
-                    //UpdateBoss3();
-                    //UpdateBoss3Projectiles();
-                }
-                else if(Difficulty/5==4)
-                {
-                    //UpdateBoss4();
-                    //UpdateBoss4Projectiles();
-                }
-            }
-            else
-            {*/
+            player.Update(gameTime, touches, roll, ref Enemies);
                 UpdateEnemies(gameTime);
                 UpdateEnemyProjectiles();
                 UpdateDrops();
-            //}
-=======
-            player.Update(touches, roll, ref Enemies);
-
-                UpdateEnemies(gameTime);
-                UpdateEnemyProjectiles();
-                UpdateDrops();
->>>>>>> 82cb159b0c63d65d68836bf53f086f87f6a6ee2b
             if (player.Health <= 0)
                 GameOver();
         }
