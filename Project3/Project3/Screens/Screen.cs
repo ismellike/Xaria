@@ -28,16 +28,14 @@ namespace Xaria
         /// Updates the specified touch to see if buttons are clicked.
         /// </summary>
         /// <param name="touch">The touch.</param>
-        internal void Update(TouchCollection touches, GameWindow window)
+        internal void Update(TouchLocation[] touches, GameWindow window)
         {
 
-            if (touches.Count > 0)
+            if (touches.Length > 0)
             {
-                TouchLocation scaled = new TouchLocation(touches[0].Id, touches[0].State, touches[0].Position * Game1.screenSize / new Vector2(window.ClientBounds.Width, window.ClientBounds.Height));
-
                 Buttons.ForEach((Button button) =>
                 {
-                    if (button.IsClicked(scaled.Position))
+                    if (button.IsClicked(touches[0].Position))
                     {
                         button.Click();
                     }

@@ -11,9 +11,24 @@ namespace Xaria
     /// Our player class
     /// </summary>
     public class Player : GameElement
-    {
+    {   
         public int ExtraLives { get; internal set; }
         public int Health { get; internal set; }
+        public struct Weapon
+        {
+            public Type projectileType { get; internal set; }
+            public int ammo { get; internal set; }
+            public bool infinite { get; internal set; }
+
+            public Weapon(Type ProjectileType, int Ammo, bool Infinite = false)
+            {
+                projectileType = ProjectileType;
+                ammo = Ammo;
+                infinite = Infinite;
+            }
+        }
+        internal List<Weapon> Weapons = new List<Weapon>() { new Weapon(typeof(Laser), 1, true), new Weapon(typeof(Rocket), 20) };
+        private Weapon weapon = new Weapon(typeof(Laser), 1, true);
         internal List<Projectile> Projectiles = new List<Projectile>();
         internal const int STARTING_HEALTH = 100;
         public int Shield { get; internal set; }
@@ -26,7 +41,7 @@ namespace Xaria
         {
             Health = STARTING_HEALTH;
             Texture = Game1.textureDictionary["ship"];
-            Position = new Vector2((Game1.screenSize.X + Texture.Width)/ 2f, Game1.screenSize.Y - Texture.Height - 10);
+            Position = new Vector2((Game1.screenSize.X + Texture.Width)/ 2f, Game1.screenSize.Y - Texture.Height - 25);
             ExtraLives = 0;
         }
 
@@ -35,7 +50,7 @@ namespace Xaria
         /// </summary>
         /// <param name="touch">The touch.</param>
         /// <param name="Enemies">The enemies.</param>
-        internal void Update(GameTime gameTime, TouchCollection touches, float roll, ref List<List<Enemy>> Enemies)
+        internal void Update(GameTime gameTime, TouchLocation[] touches, float roll, ref List<List<Enemy>> Enemies)
         {
             if (stunned >= 0)
             {
@@ -62,7 +77,12 @@ namespace Xaria
             foreach (TouchLocation touch in touches)
             {
                 if (touch.State == TouchLocationState.Released)
-                    Shoot();
+                {
+                    if (IsClicked(touch.Position))
+                        SwitchWeapon();
+                    else
+                        Shoot();
+                }
             }
             //move their projectiles
             for (int projectileIndex = Projectiles.Count - 1; projectileIndex >= 0; projectileIndex--)
@@ -81,12 +101,37 @@ namespace Xaria
                         if (Enemies[y][x].IsHit(projectile))
                         {
                             projectile.OnCollision(ref Enemies, y, x);
-                            Projectiles.RemoveAt(projectileIndex);
+                            if(!projectile.Immovable)
+                                Projectiles.RemoveAt(projectileIndex);
                             goto exit;
                         }
                     }
                 exit:;
             }
+        }
+
+        private void SwitchWeapon()
+        {
+            Weapon prevWeapon = weapon;
+            for(int i = 0; i < Weapons.Count; i++)
+            {
+                if(Weapons[i].projectileType == weapon.projectileType)
+                {
+                    if (i + 1 >= Weapons.Count)
+                    {
+                        Weapons[i] = weapon;
+                        weapon = Weapons[0];
+                    }
+                    else
+                    {
+                        Weapons[i] = weapon;
+                        weapon = Weapons[i + 1];
+                    }
+                    break;
+                }
+            }
+            if (prevWeapon.ammo <= 0)
+                Weapons.Remove(prevWeapon);
         }
 
         /// <summary>
@@ -102,6 +147,7 @@ namespace Xaria
             {
                 projectile.Draw(ref spriteBatch);
             }
+            spriteBatch.DrawString(Game1.font, weapon.projectileType.Name + ": " + weapon.ammo.ToString(), new Vector2(Position.X, Position.Y + Texture.Height + 2f), Color.White);
         }
 
         internal void Reset()
@@ -116,7 +162,20 @@ namespace Xaria
         /// <param name="gameTime">The game time.</param>
         internal void Shoot()
         {
-                Projectiles.Add(new Laser(Position + new Vector2(Texture.Width / 2f - 1f, -5f), new Vector2(0, -30), 50)); //moving up
+            if (weapon.ammo <= 0)
+            {
+                SwitchWeapon();
+            }
+            if (!weapon.infinite)
+                weapon.ammo--;
+            if (weapon.projectileType == typeof(Laser))
+            {
+                Projectiles.Add(new Laser(Position + new Vector2(Texture.Width / 2f - 1f, -5f), new Vector2(0, -30), Laser.DEFAULT_DMG)); //moving up
+            }
+            else if (weapon.projectileType == typeof(Rocket))
+            {
+                Projectiles.Add(new Rocket(Position + new Vector2(Texture.Width / 2f - 1f, -5f), new Vector2(0, -30), Rocket.DEFAULT_DMG)); //moving up
+            }
         }
 
         public bool Intersects(GameElement shot)
@@ -126,7 +185,15 @@ namespace Xaria
             return false;
         }
 
-        internal void Damage(int damage)
+        public bool IsClicked(Vector2 input)
+        {
+            if (Position.X + Texture.Width >= input.X && Position.X - Texture.Width <= input.X
+                && Position.Y + Texture.Height >= input.Y && Position.Y - Texture.Height <= input.Y)
+                return true;
+            return false;
+        }
+
+        public void Damage(int damage)
         {
             if(Shield > 0)
             {

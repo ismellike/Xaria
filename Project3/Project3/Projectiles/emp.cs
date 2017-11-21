@@ -29,15 +29,20 @@ namespace Xaria.Projectiles
          * @Post: players health is reduced by the amount of damage the emp does. Player cannot move for three seconds.
          * @Return: None
          */
-        internal override void OnCollision(ref Player player)
+        public override void OnCollision(ref Player player)
         {
             player.Damage(Damage);
-            stunned = 3000;//stunned variable in player.cs set to 3000 milliseconds, player cannot do anything during that time.
+            player.stunned = 3000;//stunned variable in player.cs set to 3000 milliseconds, player cannot do anything during that time.
         }
 
         public override void Draw(ref SpriteBatch spriteBatch)
         {
             //spriteBatch.
+        }
+
+        public override void OnCollision(ref List<List<Enemy>> Enemies, int y, int x)
+        {
+            throw new System.NotImplementedException();
         }
     }
 }

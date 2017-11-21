@@ -26,6 +26,7 @@ namespace Xaria
         /// The end game state
         /// </summary>
         End,
+
     }
     /// <summary>
     /// This is the main type for your game.
@@ -57,6 +58,7 @@ namespace Xaria
         /// The background
         /// </summary>
         Background background;
+
         #endregion
         #region variables
         /// <summary>
@@ -75,6 +77,8 @@ namespace Xaria
         /// The font
         /// </summary>
         internal static SpriteFont font;
+        internal static SpriteFont largeFont;
+
         //game variables
         /// <summary>
         /// The level
@@ -129,10 +133,12 @@ namespace Xaria
             textureDictionary.Add("boss1", Content.Load<Texture2D>("Enemies/boss1"));
             textureDictionary.Add("beam", Content.Load<Texture2D>("Projectiles/beam"));
             textureDictionary.Add("laser", Content.Load<Texture2D>("Projectiles/laser"));
+            textureDictionary.Add("rocket", Content.Load<Texture2D>("Projectiles/rocket"));
             textureDictionary.Add("shield", Content.Load<Texture2D>("Drops/shield"));
             textureDictionary.Add("life", Content.Load<Texture2D>("Drops/life"));
 
             font = Content.Load<SpriteFont>("font");
+            largeFont = Content.Load<SpriteFont>("largeFont");
 
             level = new Level(STARTING_LEVEL);
             background = new Background();
@@ -155,17 +161,23 @@ namespace Xaria
             float roll = (float)Java.Lang.Math.ToDegrees(orientation[2]);
 
             touchCollection = TouchPanel.GetState();
+            TouchLocation[] touches = new TouchLocation[touchCollection.Count];
+            for(int i = 0; i < touchCollection.Count; i++)
+            {
+                touches[i] = new TouchLocation(touchCollection[i].Id, touchCollection[i].State, touchCollection[i].Position * Game1.screenSize / new Vector2(Window.ClientBounds.Width, Window.ClientBounds.Height));
+            }
 
             switch (state)
                 {
                     case GameState.Start:
-                        startScreen.Update(touchCollection, Window);
+                        startScreen.Update(touches, Window);
                         break;
                     case GameState.Playing:
-                        level.Update(gameTime, touchCollection, roll);
+                    
+                        level.Update(gameTime, touches, roll);
                         break;
                     case GameState.End:
-                        endScreen.Update(touchCollection, Window);
+                        endScreen.Update(touches, Window);
                     break;
                 }
         }

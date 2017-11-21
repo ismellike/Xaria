@@ -34,7 +34,7 @@ namespace Xaria.Enemies
         /// </summary>
         /// <param name="gameTime">The game time.</param>
         /// <param name="Projectiles">The projectiles.</param>
-        internal override void Shoot(GameTime gameTime, ref List<Projectile> Projectiles)
+        public override void Shoot(GameTime gameTime, ref List<Projectile> Projectiles)
         {
             NextShoot -= gameTime.ElapsedGameTime.Milliseconds;
             if(NextShoot<= 0)
@@ -55,7 +55,7 @@ namespace Xaria.Enemies
             }
         }
 
-        internal override void UpdateMovement(Level level, GameTime gameTime = null)
+        public override void UpdateMovement(Level level, GameTime gameTime = null)
         {
             if (level.movingRight)
             {

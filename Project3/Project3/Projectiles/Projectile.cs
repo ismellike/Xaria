@@ -6,7 +6,7 @@ namespace Xaria
     /// <summary>
     /// The Projectile class
     /// </summary>
-    public class Projectile : GameElement//can be an inherited class for different types of projectiles
+    public abstract class Projectile : GameElement//can be an inherited class for different types of projectiles
     {
         /// <summary>
         /// Gets the damage.
@@ -23,14 +23,10 @@ namespace Xaria
         /// </value>
         public Vector2 Velocity { get; internal set; }
 
-        internal virtual void OnCollision(ref List<List<Enemy>> Enemies, int y, int x)
-        {
+        public bool Immovable = false;
 
-        }
+        public abstract void OnCollision(ref List<List<Enemy>> Enemies, int y, int x);
 
-        internal virtual void OnCollision(ref Player player)
-        {
-
-        }
+        public abstract void OnCollision(ref Player player);
     }
 }

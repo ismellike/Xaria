@@ -9,6 +9,7 @@ namespace Xaria.Projectiles
     /// <seealso cref="Xaria.Projectile" />
     class Laser : Projectile
     {
+        public const int DEFAULT_DMG = 50;
         /// <summary>
         /// Initializes a new instance of the <see cref="Laser" /> class.
         /// </summary>
@@ -27,7 +28,7 @@ namespace Xaria.Projectiles
          * @Post: Enemy's health is reduced by lasers damage
          * @Return: None
          */
-        internal override void OnCollision(ref List<List<Enemy>> Enemies, int y, int x)
+        public override void OnCollision(ref List<List<Enemy>> Enemies, int y, int x)
         {
             Enemies[y][x].Health -= Damage;
         }
@@ -36,7 +37,7 @@ namespace Xaria.Projectiles
          * @Post: players health is reduced by the amount of damage the pellet does
          * @Return: None
          */
-        internal override void OnCollision(ref Player player)
+        public override void OnCollision(ref Player player)
         {
             player.Damage(Damage);
         }

@@ -22,7 +22,7 @@ namespace Xaria.Enemies
         }
 
 
-        internal override void Shoot(GameTime gameTime, ref List<Projectile> Projectiles)
+        public override void Shoot(GameTime gameTime, ref List<Projectile> Projectiles)
         {
             if (CanShoot)
             {
@@ -41,7 +41,7 @@ namespace Xaria.Enemies
             drops.Add(new Life(Position + new Vector2(Texture.Width / 2f, Texture.Height + 5f)));
         }
 
-        internal override void UpdateMovement(Level level, GameTime gameTime)
+        public override void UpdateMovement(Level level, GameTime gameTime)
         {
             Countdown -= gameTime.ElapsedGameTime.Milliseconds;
             if (Countdown <= 0)

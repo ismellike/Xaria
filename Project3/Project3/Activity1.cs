@@ -54,12 +54,22 @@ namespace Xaria
             {
                 case SensorType.Accelerometer:
                     e.Values.CopyTo(accelValues, 0);
-                        break;
+                    break;
 
-                    case SensorType.MagneticField:
+                case SensorType.MagneticField:
                     e.Values.CopyTo(magnetoValues, 0);
                     break;
-        } }
+            }
+        }
+
+        public override bool OnKeyUp([GeneratedEnum] Keycode keyCode, KeyEvent e)
+        {
+            if(keyCode == Keycode.Back)
+            {
+                return true;
+            }
+            return false;
+        }
     }
 }
 

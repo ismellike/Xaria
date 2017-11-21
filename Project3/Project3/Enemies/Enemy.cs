@@ -9,7 +9,7 @@ namespace Xaria
     /// <summary>
     /// Generic enemy class inherited by specific enemies
     /// </summary>
-    public class Enemy : GameElement
+    public abstract class Enemy : GameElement
     {
         /// <summary>
         /// Gets the health.
@@ -45,7 +45,7 @@ namespace Xaria
             spriteBatch.Draw(Texture, Position, Color.White);
         }
 
-        internal virtual void Shoot(GameTime gameTime, ref List<Projectile> Projectiles) {  } //can be inherited by enemies to shoot projectiles down
+        public abstract void Shoot(GameTime gameTime, ref List<Projectile> Projectiles); //can be inherited by enemies to shoot projectiles down
 
         //returns true if hit so the projectile can be deleted
         public bool IsHit(Projectile shot)
@@ -55,13 +55,8 @@ namespace Xaria
             return false;
         }
 
-        internal virtual void UpdateMovement(Level level, GameTime gameTime)
-        {
+        public abstract void UpdateMovement(Level level, GameTime gameTime);
 
-        }
-
-        internal virtual void OnDeath(ref List<Drop> drops)
-        {
-        }
+        internal abstract void OnDeath(ref List<Drop> drops);
     }
 }

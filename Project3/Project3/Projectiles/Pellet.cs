@@ -28,7 +28,7 @@ namespace Xaria.Projectiles
          * @Post: players health is reduced by the amount of damage the pellet does
          * @Return: None
          */
-        internal override void OnCollision(ref Player player)
+        public override void OnCollision(ref Player player)
         {
             player.Damage(Damage);
         }
@@ -40,6 +40,11 @@ namespace Xaria.Projectiles
         public override void Draw(ref SpriteBatch spriteBatch)
         {
             //spriteBatch.
+        }
+
+        public override void OnCollision(ref List<List<Enemy>> Enemies, int y, int x)
+        {
+            throw new System.NotImplementedException();
         }
     }
 }

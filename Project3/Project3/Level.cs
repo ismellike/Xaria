@@ -103,7 +103,7 @@ namespace Xaria
          * @Post: The current level the player is playing is updated. This includes: Player movement, projectiles, drops. Enemy movement and projectiles as well.
          * @Return: None
          */
-        internal void Update(GameTime gameTime, TouchCollection touches, float roll)
+        internal void Update(GameTime gameTime, TouchLocation[] touches, float roll)
         {
             player.Update(gameTime, touches, roll, ref Enemies);
                 UpdateEnemies(gameTime);
