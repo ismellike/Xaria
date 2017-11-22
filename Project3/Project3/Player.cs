@@ -14,7 +14,7 @@ namespace Xaria
     {   
         public int ExtraLives { get; private set; }
         public int Health { get; private set; }
-        private List<Weapon> Weapons = new List<Weapon>() { new Weapon(typeof(Laser), 1, true), new Weapon(typeof(Rocket), 20) };
+        private List<Weapon> Weapons = new List<Weapon>() { new Weapon(typeof(Laser), 1, true), new Weapon(typeof(Rocket), 20), new Weapon(typeof(Beam), 20,immovable: true) };
         private Weapon weapon = new Weapon(typeof(Laser), 1, true);
         private List<Projectile> Projectiles = new List<Projectile>();
         public const int STARTING_HEALTH = 100;
@@ -171,7 +171,7 @@ namespace Xaria
                 SwitchWeapon();
             }
             if (!weapon.Infinite)
-                weapon.Ammo--;
+                weapon.DecreaseAmmo();
             if (weapon.ProjectileType == typeof(Laser))
             {
                 Projectiles.Add(new Laser(Position + new Vector2(Texture.Width / 2f - 1f, -5f), new Vector2(0, -30), Laser.DEFAULT_DMG)); //moving up
@@ -179,6 +179,10 @@ namespace Xaria
             else if (weapon.ProjectileType == typeof(Rocket))
             {
                 Projectiles.Add(new Rocket(Position + new Vector2(Texture.Width / 2f - 1f, -5f), new Vector2(0, -30), Rocket.DEFAULT_DMG)); //moving up
+            }
+            else if(weapon.ProjectileType == typeof(Beam))
+            {
+                Projectiles.Add(new Beam(Position + new Vector2(Texture.Width / 2f - 1f, -5f), new Vector2(0, -50), Beam.DEFAULT_DMG));
             }
         }
 
@@ -225,17 +229,17 @@ namespace Xaria
         }
 
 
-        internal void IncreaseAmmo(Type projectileType, int ammo)
+        internal void IncreaseAmmo(Type projectileType, int ammo, bool immovable = false)
         {
             for (int i = 0; i < Weapons.Count; i++)
             {
                 if (Weapons[i].ProjectileType == projectileType)
                 {
-                    Weapons[i].Ammo += ammo;
+                    Weapons[i].IncreaseAmmo(ammo);
                     return;
                 }
             }
-            Weapons.Add(new Weapon(typeof(Rocket), ammo));
+            Weapons.Add(new Weapon(projectileType, ammo, false, immovable));
         }
     }
 }

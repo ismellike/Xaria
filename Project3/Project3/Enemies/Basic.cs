@@ -46,11 +46,16 @@ namespace Xaria.Enemies
 
         internal override void OnDeath(ref List<Drop> drops)
         {
-            if(Level.random.Next(10) == 1) // 1/10 chance of giving drop
+            if(Level.random.Next(20) == 1) // 1/x chance of giving drop
             {
-                if(Level.random.Next(100) < 100) // x% chance of dropping a shield
+                int random = Level.random.Next(100);
+                if(random < 70) // x% chance of dropping a shield
                 {
-                    drops.Add(new Shield(Position + new Vector2(Texture.Width/2f, Texture.Height), 20));
+                    drops.Add(new Shield(Position + new Vector2(Texture.Width/2f, Texture.Height), 50));
+                }
+                else
+                {
+                    drops.Add(new RocketAmmo(Position + new Vector2(Texture.Width / 2f, Texture.Height), 10));
                 }
             }
         }

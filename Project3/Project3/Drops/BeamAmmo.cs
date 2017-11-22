@@ -10,25 +10,24 @@ using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 using Microsoft.Xna.Framework;
-using static Xaria.Player;
 using Xaria.Projectiles;
 
 namespace Xaria.Drops
 {
-    class RocketAmmo : Drop
+    class BeamAmmo : Drop
     {
         public int amount = 0;
 
-        public RocketAmmo(Vector2 position, int Amount)
+        public BeamAmmo(Vector2 position, int Amount)
         {
             Position = position;
             amount = Amount;
-            Texture = Game1.textureDictionary["rocket"];
+            Texture = Game1.textureDictionary["beam"];
         }
 
         public override void OnReceive(ref Player player)
         {
-            player.IncreaseAmmo(typeof(Rocket), amount);
+            player.IncreaseAmmo(typeof(Beam), amount);
         }
     }
 }

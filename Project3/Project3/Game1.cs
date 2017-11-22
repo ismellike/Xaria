@@ -195,6 +195,7 @@ namespace Xaria
             switch(state)
             {
                 case GameState.Start:
+                    spriteBatch.Draw(Content.Load<Texture2D>("Title"), new Vector2(0f, 100f), Color.White);
                     startScreen.Draw(ref spriteBatch);
                     break;
                 case GameState.Playing:

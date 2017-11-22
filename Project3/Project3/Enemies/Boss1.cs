@@ -30,7 +30,7 @@ namespace Xaria.Enemies
                 if (NextShoot <= 0)
                 {
                     NextShoot = SHOOT;
-                    Projectiles.Add(new Beam(Position + new Vector2(Texture.Width / 2f, Texture.Height + 5f), new Vector2(0, 50), 100));
+                    Projectiles.Add(new Beam(Position + new Vector2(Texture.Width / 2f, Texture.Height + 5f), new Vector2(0, 50), 100, false));
                     CanShoot = false;
                 }
             }
@@ -39,6 +39,10 @@ namespace Xaria.Enemies
         internal override void OnDeath(ref List<Drop> drops)
         {
             drops.Add(new Life(Position + new Vector2(Texture.Width / 2f, Texture.Height + 5f)));
+            if (Level.random.Next(2) == 1) //1/2 chance to drop
+            {
+                drops.Add(new BeamAmmo(Position + new Vector2(Texture.Width / 2f, Texture.Height + 5f), 5));
+            }
         }
 
         public override void UpdateMovement(Level level, GameTime gameTime)

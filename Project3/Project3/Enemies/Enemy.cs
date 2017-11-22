@@ -59,7 +59,7 @@ namespace Xaria
 
         public bool IsDead()
         {
-            return Health < 0;
+            return Health <= 0;
         }
     }
 }
