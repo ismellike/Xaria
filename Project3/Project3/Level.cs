@@ -140,7 +140,7 @@ namespace Xaria
                 for (int enemyIndex = Enemies[rowIndex].Count - 1; enemyIndex >= 0; enemyIndex--)
                 {
                     Enemy enemy = Enemies[rowIndex][enemyIndex];
-                    if (enemy.Health <= 0)
+                    if (enemy.IsDead())
                     {
                         Enemies[rowIndex][enemyIndex].OnDeath(ref Drops);
                         Enemies[rowIndex].RemoveAt(enemyIndex);
@@ -157,7 +157,7 @@ namespace Xaria
         {
             for (int projectileIndex = Projectiles.Count - 1; projectileIndex >= 0; projectileIndex--)
             {
-                Projectiles[projectileIndex].Position += Projectiles[projectileIndex].Velocity;
+                Projectiles[projectileIndex].Position += Projectiles[projectileIndex].GetVelocity();
                 if (player.Intersects(Projectiles[projectileIndex]))
                 {
                     Projectiles[projectileIndex].OnCollision(ref player);

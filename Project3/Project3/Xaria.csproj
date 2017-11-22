@@ -106,7 +106,9 @@
     <Compile Include="Button.cs" />
     <Compile Include="Drops\Drop.cs" />
     <Compile Include="Drops\Life.cs" />
+    <Compile Include="Drops\RocketAmmo.cs" />
     <Compile Include="Drops\Shield.cs" />
+    <Compile Include="Weapon.cs" />
     <Compile Include="Enemies\Basic.cs" />
     <Compile Include="Enemies\Boss1.cs" />
     <Compile Include="Enemies\Boss2.cs" />

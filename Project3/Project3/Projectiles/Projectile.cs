@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using System.Collections.Generic;
+using System;
 
 namespace Xaria
 {
@@ -14,19 +15,29 @@ namespace Xaria
         /// <value>
         /// The damage.
         /// </value>
-        public int Damage { get; internal set; }
+        protected int Damage { get; set; }
         /// <summary>
         /// Gets the velocity.
         /// </summary>
         /// <value>
         /// The velocity.
         /// </value>
-        public Vector2 Velocity { get; internal set; }
+        protected Vector2 Velocity { get; set; }
 
-        public bool Immovable = false;
+        protected bool Immovable = false;
 
         public abstract void OnCollision(ref List<List<Enemy>> Enemies, int y, int x);
 
         public abstract void OnCollision(ref Player player);
+
+        public bool IsImmovable()
+        {
+            return Immovable;
+        }
+
+        public Vector2 GetVelocity()
+        {
+            return Velocity;
+        }
     }
 }

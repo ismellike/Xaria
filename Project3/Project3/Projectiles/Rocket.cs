@@ -33,7 +33,7 @@ namespace Xaria.Projectiles
                 {
                     if (enemy.Bounds().Intersects(aoe))
                     {
-                        enemy.Health -= Damage;
+                        enemy.Damage(Damage);
                     }
                 }
             //create explosion effect

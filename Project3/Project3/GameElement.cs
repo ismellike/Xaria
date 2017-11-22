@@ -14,11 +14,11 @@ namespace Xaria
         /// <value>
         /// The texture.
         /// </value>
-        public Texture2D Texture { get; internal set; }
+        internal protected Texture2D Texture { get; set; }
         /// <summary>
         /// The position
         /// </summary>
-        internal Vector2 Position;
+        protected internal Vector2 Position;
 
         /// <summary>
         /// Draws the specified sprite batch.

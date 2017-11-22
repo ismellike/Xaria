@@ -12,27 +12,14 @@ namespace Xaria
     /// </summary>
     public class Player : GameElement
     {   
-        public int ExtraLives { get; internal set; }
-        public int Health { get; internal set; }
-        public struct Weapon
-        {
-            public Type projectileType { get; internal set; }
-            public int ammo { get; internal set; }
-            public bool infinite { get; internal set; }
-
-            public Weapon(Type ProjectileType, int Ammo, bool Infinite = false)
-            {
-                projectileType = ProjectileType;
-                ammo = Ammo;
-                infinite = Infinite;
-            }
-        }
-        internal List<Weapon> Weapons = new List<Weapon>() { new Weapon(typeof(Laser), 1, true), new Weapon(typeof(Rocket), 20) };
+        public int ExtraLives { get; private set; }
+        public int Health { get; private set; }
+        private List<Weapon> Weapons = new List<Weapon>() { new Weapon(typeof(Laser), 1, true), new Weapon(typeof(Rocket), 20) };
         private Weapon weapon = new Weapon(typeof(Laser), 1, true);
-        internal List<Projectile> Projectiles = new List<Projectile>();
-        internal const int STARTING_HEALTH = 100;
-        public int Shield { get; internal set; }
-        public double stunned = -1;
+        private List<Projectile> Projectiles = new List<Projectile>();
+        public const int STARTING_HEALTH = 100;
+        public int Shield { get; private set; }
+        public double Stunned { get; private set; }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="Player"/> class.
@@ -43,6 +30,23 @@ namespace Xaria
             Texture = Game1.textureDictionary["ship"];
             Position = new Vector2((Game1.screenSize.X + Texture.Width)/ 2f, Game1.screenSize.Y - Texture.Height - 25);
             ExtraLives = 0;
+            Stunned = -1;
+        }
+
+        public void AddStun(int StunDuration)
+        {
+            Stunned += StunDuration;
+        }
+
+
+        public void AddLife()
+        {
+            ExtraLives++;
+        }
+
+        public void AddShield(int ShieldStrength)
+        {
+            Shield += ShieldStrength;
         }
 
         /// <summary>
@@ -52,9 +56,9 @@ namespace Xaria
         /// <param name="Enemies">The enemies.</param>
         internal void Update(GameTime gameTime, TouchLocation[] touches, float roll, ref List<List<Enemy>> Enemies)
         {
-            if (stunned >= 0)
+            if (Stunned >= 0)
             {
-                stunned -= gameTime.ElapsedGameTime.Milliseconds;
+                Stunned -= gameTime.ElapsedGameTime.Milliseconds;
             }
             else if (Math.Abs(roll) > 3)
             {
@@ -93,7 +97,7 @@ namespace Xaria
                     Projectiles.RemoveAt(projectileIndex);
                     continue;
                 }
-                projectile.Position += projectile.Velocity;
+                projectile.Position += projectile.GetVelocity();
 
                 for (int y = Enemies.Count - 1; y >= 0; y--)
                     for (int x = Enemies[y].Count - 1; x >= 0; x--) //lower rows are more likely to be hit by a projecitle
@@ -101,7 +105,7 @@ namespace Xaria
                         if (Enemies[y][x].IsHit(projectile))
                         {
                             projectile.OnCollision(ref Enemies, y, x);
-                            if(!projectile.Immovable)
+                            if(!projectile.IsImmovable())
                                 Projectiles.RemoveAt(projectileIndex);
                             goto exit;
                         }
@@ -115,7 +119,7 @@ namespace Xaria
             Weapon prevWeapon = weapon;
             for(int i = 0; i < Weapons.Count; i++)
             {
-                if(Weapons[i].projectileType == weapon.projectileType)
+                if(Weapons[i].ProjectileType == weapon.ProjectileType)
                 {
                     if (i + 1 >= Weapons.Count)
                     {
@@ -130,7 +134,7 @@ namespace Xaria
                     break;
                 }
             }
-            if (prevWeapon.ammo <= 0)
+            if (prevWeapon.Ammo <= 0)
                 Weapons.Remove(prevWeapon);
         }
 
@@ -147,7 +151,7 @@ namespace Xaria
             {
                 projectile.Draw(ref spriteBatch);
             }
-            spriteBatch.DrawString(Game1.font, weapon.projectileType.Name + ": " + weapon.ammo.ToString(), new Vector2(Position.X, Position.Y + Texture.Height + 2f), Color.White);
+            spriteBatch.DrawString(Game1.font, weapon.ProjectileType.Name + ": " + weapon.Ammo.ToString(), new Vector2(Position.X, Position.Y + Texture.Height + 2f), Color.White);
         }
 
         internal void Reset()
@@ -162,17 +166,17 @@ namespace Xaria
         /// <param name="gameTime">The game time.</param>
         internal void Shoot()
         {
-            if (weapon.ammo <= 0)
+            if (weapon.Ammo <= 0)
             {
                 SwitchWeapon();
             }
-            if (!weapon.infinite)
-                weapon.ammo--;
-            if (weapon.projectileType == typeof(Laser))
+            if (!weapon.Infinite)
+                weapon.Ammo--;
+            if (weapon.ProjectileType == typeof(Laser))
             {
                 Projectiles.Add(new Laser(Position + new Vector2(Texture.Width / 2f - 1f, -5f), new Vector2(0, -30), Laser.DEFAULT_DMG)); //moving up
             }
-            else if (weapon.projectileType == typeof(Rocket))
+            else if (weapon.ProjectileType == typeof(Rocket))
             {
                 Projectiles.Add(new Rocket(Position + new Vector2(Texture.Width / 2f - 1f, -5f), new Vector2(0, -30), Rocket.DEFAULT_DMG)); //moving up
             }
@@ -218,6 +222,20 @@ namespace Xaria
                     Health = 100;
                 }
             }
+        }
+
+
+        internal void IncreaseAmmo(Type projectileType, int ammo)
+        {
+            for (int i = 0; i < Weapons.Count; i++)
+            {
+                if (Weapons[i].ProjectileType == projectileType)
+                {
+                    Weapons[i].Ammo += ammo;
+                    return;
+                }
+            }
+            Weapons.Add(new Weapon(typeof(Rocket), ammo));
         }
     }
 }

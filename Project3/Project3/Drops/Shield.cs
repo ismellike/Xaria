@@ -15,7 +15,7 @@ namespace Xaria.Drops
 {
     class Shield : Drop
     {
-        public int Strength { get; internal set; }
+        public int Strength { get; private set; }
 
         public Shield(Vector2 position, int strength)
         {
@@ -26,7 +26,7 @@ namespace Xaria.Drops
 
         public override void OnReceive(ref Player player)
         {
-            player.Shield += Strength;
+            player.AddShield(Strength);
         }
     }
 }

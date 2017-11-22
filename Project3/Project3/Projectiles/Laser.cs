@@ -30,7 +30,7 @@ namespace Xaria.Projectiles
          */
         public override void OnCollision(ref List<List<Enemy>> Enemies, int y, int x)
         {
-            Enemies[y][x].Health -= Damage;
+            Enemies[y][x].Damage(Damage);
         }
 
         /* @Pre: laser projectile overlaps player sprite

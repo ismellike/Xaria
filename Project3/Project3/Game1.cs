@@ -173,7 +173,6 @@ namespace Xaria
                         startScreen.Update(touches, Window);
                         break;
                     case GameState.Playing:
-                    
                         level.Update(gameTime, touches, roll);
                         break;
                     case GameState.End:

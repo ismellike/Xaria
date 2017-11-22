@@ -17,21 +17,14 @@ namespace Xaria
         /// <value>
         /// The health.
         /// </value>
-        public int Health { get; internal set; }
-        /// <summary>
-        /// Gets the damage.
-        /// </summary>
-        /// <value>
-        /// The damage.
-        /// </value>
-        public int Damage { get; internal set; }
+        protected int Health { get; set; }
         /// <summary>
         /// Gets the next shoot.
         /// </summary>
         /// <value>
         /// The next shoot.
         /// </value>
-        public double NextShoot { get; internal set; }
+        protected double NextShoot { get; set; }
         /// <summary>
         /// Gets the next shoot.
         /// </summary>
@@ -58,5 +51,15 @@ namespace Xaria
         public abstract void UpdateMovement(Level level, GameTime gameTime);
 
         internal abstract void OnDeath(ref List<Drop> drops);
+
+        public void Damage(int damage)
+        {
+            Health -= damage;
+        }
+
+        public bool IsDead()
+        {
+            return Health < 0;
+        }
     }
 }

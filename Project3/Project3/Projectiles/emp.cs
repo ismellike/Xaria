@@ -32,7 +32,7 @@ namespace Xaria.Projectiles
         public override void OnCollision(ref Player player)
         {
             player.Damage(Damage);
-            player.stunned = 3000;//stunned variable in player.cs set to 3000 milliseconds, player cannot do anything during that time.
+            player.AddStun(3000); //stunned variable in player.cs set to 3000 milliseconds, player cannot do anything during that time.
         }
 
         public override void Draw(ref SpriteBatch spriteBatch)
