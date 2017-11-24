@@ -50,7 +50,7 @@ namespace Xaria.Enemies
             Countdown -= gameTime.ElapsedGameTime.Milliseconds;
             if (Countdown <= 0)
             {
-                Position = new Vector2(Level.random.Next(((int)Game1.screenSize.X - Texture.Width)), Level.random.Next((500 + Texture.Height)));
+                Position = new Vector2(Level.random.Next(((int)Game1.screenSize.X - Texture.Width)), Position.Y);
                 Countdown = NEXT_TELEPORT;
                 CanShoot = true;
             }

@@ -28,5 +28,10 @@ namespace Xaria.Drops
         {
             player.AddShield(Strength);
         }
+
+        public override string ToString()
+        {
+            return "Shield: " + Strength.ToString();
+        }
     }
 }

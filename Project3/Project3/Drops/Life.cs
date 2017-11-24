@@ -27,5 +27,10 @@ namespace Xaria.Drops
         {
             player.AddLife();
         }
+
+        public override string ToString()
+        {
+            return "Extra Life";
+        }
     }
 }

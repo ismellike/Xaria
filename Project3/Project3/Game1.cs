@@ -130,11 +130,14 @@ namespace Xaria
             textureDictionary.Add("ship", Content.Load<Texture2D>("player_ship"));
             textureDictionary.Add("star", Content.Load<Texture2D>("star"));
             textureDictionary.Add("basic", Content.Load<Texture2D>("Enemies/basic"));
+            textureDictionary.Add("intermediate", Content.Load<Texture2D>("Enemies/intermediate"));
             textureDictionary.Add("boss1", Content.Load<Texture2D>("Enemies/boss1"));
             textureDictionary.Add("beam", Content.Load<Texture2D>("Projectiles/beam"));
             textureDictionary.Add("laser", Content.Load<Texture2D>("Projectiles/laser"));
             textureDictionary.Add("rocket", Content.Load<Texture2D>("Projectiles/rocket"));
             textureDictionary.Add("shield", Content.Load<Texture2D>("Drops/shield"));
+            textureDictionary.Add("beamAmmo", Content.Load<Texture2D>("Drops/beamAmmo"));
+            textureDictionary.Add("rocketAmmo", Content.Load<Texture2D>("Drops/rocketAmmo"));
             textureDictionary.Add("life", Content.Load<Texture2D>("Drops/life"));
 
             font = Content.Load<SpriteFont>("font");

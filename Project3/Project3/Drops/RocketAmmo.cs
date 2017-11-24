@@ -23,12 +23,17 @@ namespace Xaria.Drops
         {
             Position = position;
             amount = Amount;
-            Texture = Game1.textureDictionary["rocket"];
+            Texture = Game1.textureDictionary["rocketAmmo"];
         }
 
         public override void OnReceive(ref Player player)
         {
             player.IncreaseAmmo(typeof(Rocket), amount);
+        }
+
+        public override string ToString()
+        {
+            return "Rocket Ammo: " + amount.ToString();
         }
     }
 }

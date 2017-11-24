@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 using System.Collections.Generic;
 using System;
 
@@ -30,14 +31,16 @@ namespace Xaria
 
         public abstract void OnCollision(ref Player player);
 
+        public abstract void DrawFromEnemy(ref SpriteBatch spriteBatch);
+
+        public virtual void Move()
+        {
+            Position += Velocity;
+        }
+
         public bool IsImmovable()
         {
             return Immovable;
-        }
-
-        public Vector2 GetVelocity()
-        {
-            return Velocity;
         }
     }
 }

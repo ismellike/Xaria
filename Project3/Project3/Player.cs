@@ -97,7 +97,7 @@ namespace Xaria
                     Projectiles.RemoveAt(projectileIndex);
                     continue;
                 }
-                projectile.Position += projectile.GetVelocity();
+                projectile.Move();
 
                 for (int y = Enemies.Count - 1; y >= 0; y--)
                     for (int x = Enemies[y].Count - 1; x >= 0; x--) //lower rows are more likely to be hit by a projecitle

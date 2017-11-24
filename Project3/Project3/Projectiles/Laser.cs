@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 
 namespace Xaria.Projectiles
 {
@@ -22,6 +23,11 @@ namespace Xaria.Projectiles
             Velocity = velocity;
             Texture = Game1.textureDictionary["laser"];
             Damage = damage;
+        }
+
+        public override void DrawFromEnemy(ref SpriteBatch spriteBatch)
+        {
+            Draw(ref spriteBatch, Color.Red);
         }
 
         /* @Pre: laser projectile overlaps enemy sprite

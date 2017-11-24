@@ -52,5 +52,16 @@ namespace Xaria.Projectiles
         {
             return new Rectangle((int)Position.X - 100, (int)Position.Y - 100, 200, 200);
         }
+
+        public override void Move()
+        {
+            Position += Velocity;
+            Velocity = new Vector2(Velocity.X, Velocity.Y * 1.01f);
+        }
+
+        public override void DrawFromEnemy(ref SpriteBatch spriteBatch)
+        {
+            spriteBatch.Draw(Texture, Position, null, Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.FlipHorizontally, 0f);
+        }
     }
 }

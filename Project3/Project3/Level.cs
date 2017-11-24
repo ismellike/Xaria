@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using Xaria.Drops;
 using Xaria.Enemies;
+using Xaria.Projectiles;
 
 namespace Xaria
 {
@@ -24,7 +25,7 @@ namespace Xaria
         /// <summary>
         /// The enemies
         /// </summary>
-        internal List<List<Enemy>> Enemies = new List<List<Enemy>>();
+        private List<List<Enemy>> Enemies = new List<List<Enemy>>();
         /// <summary>
         /// The spacing between enemies
         /// </summary>
@@ -42,7 +43,7 @@ namespace Xaria
         /// <summary>
         /// The enemies per row
         /// </summary>
-        private const int ENEMIES_PER_ROW = 7;
+        public const int ENEMIES_PER_ROW = 7;
         /// <summary>
         /// A random class for determining enemy shooting
         /// </summary>
@@ -67,35 +68,59 @@ namespace Xaria
         private void GenerateLevel(int difficulty)
         {
             Enemies.Clear();
-            if (difficulty % 5 == 0)
+            if (difficulty % 4 == 0)
             {
                 Enemies.Add(new List<Enemy>());
-                if(difficulty/5 == 1)
+                if(difficulty/4 == 1)
                 {
-                    Enemies[0].Add(new Boss1(new Vector2(random.Next(((int)Game1.screenSize.X - Game1.textureDictionary["boss1"].Width)), random.Next((500 + Game1.textureDictionary["boss1"].Width)))));
+                    Enemies[0].Add(new Boss1(new Vector2(random.Next(((int)Game1.screenSize.X - Game1.textureDictionary["boss1"].Width)), spacing.Y)));
+                    AddRowOfEnemy(typeof(Basic));
+                    AddRowOfEnemy(typeof(Basic));
                 }
-                else if(difficulty/5 == 2)
+                else if(difficulty/4 == 2)
                 {
-                    Enemies[0].Add(new Boss1(new Vector2(random.Next(((int)Game1.screenSize.X - Game1.textureDictionary["boss1"].Width)), random.Next((500 + Game1.textureDictionary["boss1"].Width)))));
-                    Enemies[0].Add(new Boss1(new Vector2(random.Next(((int)Game1.screenSize.X - Game1.textureDictionary["boss1"].Width)), random.Next((500 + Game1.textureDictionary["boss1"].Width)))));
+                    Enemies[0].Add(new Boss1(new Vector2(random.Next(((int)Game1.screenSize.X - Game1.textureDictionary["boss1"].Width)), spacing.Y)));
+                    Enemies[0].Add(new Boss1(new Vector2(random.Next(((int)Game1.screenSize.X - Game1.textureDictionary["boss1"].Width)), spacing.Y)));
+                    AddRowOfEnemy(typeof(Basic));
+                    AddRowOfEnemy(typeof(Basic));
                 }
-                else if(difficulty/5 == 3)
+                else if(difficulty/4 == 3)
                 {
                     Enemies[0].Add(new Boss3(new Vector2(Game1.textureDictionary["boss3"].Width, Game1.textureDictionary["boss3"].Height)));
                 }
-                else if(difficulty/5 == 4)
+                else if(difficulty/4 == 4)
                 {
                     Enemies[0].Add(new Boss4(new Vector2(Game1.textureDictionary["boss4"].Width, Game1.textureDictionary["boss4"].Height)));
                 }
             }
             else
             {
-                for (int i = 1; i <= difficulty; i++) //use rows for difficulty
+                for(int i = 0; i < difficulty % 4; i++)
                 {
-                    Enemies.Add(new List<Enemy>());
-                    for (int x = 1; x <= ENEMIES_PER_ROW; x++) //10 enemies per row
-                        Enemies[i - 1].Add(new Basic(new Vector2((Game1.textureDictionary["basic"].Width + spacing.X) * x - spacing.X + Game1.textureDictionary["basic"].Width * (i % 2), (Game1.textureDictionary["basic"].Height + spacing.Y) * i + spacing.Y)));
+                    AddRowOfEnemy(typeof(Basic));
                 }
+            }
+        }
+
+
+        private void AddRowOfEnemy(Type enemyType)
+        {
+            Enemy prevEnemy = Enemies.Count > 0 ? Enemies[Enemies.Count - 1][0] : null;
+            float newPosY = prevEnemy == null ? spacing.Y : prevEnemy.Position.Y + prevEnemy.Texture.Height + spacing.Y;
+            Enemies.Add(new List<Enemy>());
+            for (int x = 1; x <= ENEMIES_PER_ROW; x++)
+            {
+                Enemy enemy = null;
+                if (enemyType == typeof(Basic))
+                {
+                    enemy = new Basic(new Vector2((Game1.textureDictionary["basic"].Width + spacing.X) * x - spacing.X + Game1.textureDictionary["basic"].Width * (Enemies.Count % 2), newPosY));
+                }
+                else if (enemyType == typeof(Intermediate))
+                {
+                    enemy = new Intermediate(new Vector2((Game1.textureDictionary["intermediate"].Width + spacing.X) * x - spacing.X + Game1.textureDictionary["intermediate"].Width * (Enemies.Count % 2), newPosY));
+                }
+
+                Enemies[Enemies.Count - 1].Add(enemy);
             }
         }
 
@@ -157,7 +182,7 @@ namespace Xaria
         {
             for (int projectileIndex = Projectiles.Count - 1; projectileIndex >= 0; projectileIndex--)
             {
-                Projectiles[projectileIndex].Position += Projectiles[projectileIndex].GetVelocity();
+                Projectiles[projectileIndex].Move();
                 if (player.Intersects(Projectiles[projectileIndex]))
                 {
                     Projectiles[projectileIndex].OnCollision(ref player);
@@ -189,7 +214,7 @@ namespace Xaria
                 }
             foreach (Projectile projectile in Projectiles)
             {
-                projectile.Draw(ref spriteBatch, Color.Red);
+                projectile.DrawFromEnemy(ref spriteBatch);
             }
             foreach(Drop drop in Drops)
             {
@@ -203,15 +228,18 @@ namespace Xaria
         /// </summary>
         internal void MoveDown()
         {
-                foreach (List<Enemy> row in Enemies)
-                    foreach (Basic enemy in row)
+            foreach (List<Enemy> row in Enemies)
+                foreach (Enemy enemy in row)
+                {
+                    if (enemy is Basic || enemy is Intermediate)
                     {
                         enemy.Position.Y += (enemy.Texture.Height + spacing.Y);
                         if (enemy.Position.Y >= Game1.screenSize.Y - Game1.textureDictionary["ship"].Height - 5)
                         {
-                        GameOver();
+                            GameOver();
                         }
                     }
+                }
         }
 
         /// <summary>

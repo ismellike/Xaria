@@ -109,6 +109,7 @@
     <Compile Include="Drops\Life.cs" />
     <Compile Include="Drops\RocketAmmo.cs" />
     <Compile Include="Drops\Shield.cs" />
+    <Compile Include="Enemies\Intermediate.cs" />
     <Compile Include="Weapon.cs" />
     <Compile Include="Enemies\Basic.cs" />
     <Compile Include="Enemies\Boss1.cs" />

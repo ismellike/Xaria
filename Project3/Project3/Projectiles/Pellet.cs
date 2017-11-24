@@ -46,5 +46,10 @@ namespace Xaria.Projectiles
         {
             throw new System.NotImplementedException();
         }
+
+        public override void DrawFromEnemy(ref SpriteBatch spriteBatch)
+        {
+            throw new System.NotImplementedException();
+        }
     }
 }

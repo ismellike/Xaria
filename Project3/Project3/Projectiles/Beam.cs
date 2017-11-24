@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 using System.Collections.Generic;
 
 namespace Xaria.Projectiles
@@ -23,6 +24,11 @@ namespace Xaria.Projectiles
             Texture = Game1.textureDictionary["beam"];
             Damage = damage;
             Immovable = immovable;
+        }
+
+        public override void DrawFromEnemy(ref SpriteBatch spriteBatch)
+        {
+            Draw(ref spriteBatch, Color.Red);
         }
 
         /* @Pre: beam projectile overlaps player sprite
