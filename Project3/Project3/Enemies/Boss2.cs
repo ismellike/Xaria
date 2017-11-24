@@ -14,7 +14,7 @@ namespace Xaria.Enemies
         {
             Health = 5000;
             Position = position;
-            Texture = Game1.textureDictionary["boss2"];//texture changes
+            Texture = Game1.textureDictionary["boss2"];
         }
 
 

@@ -22,6 +22,16 @@ namespace Xaria
         /// The difficulty.
         /// </value>
         public static int Difficulty { get; private set; }
+
+        public int Tier
+        {
+            get
+            {
+                return Difficulty / (BOSS_LEVEL * 2 + 1);
+            }
+        }
+
+        public const int BOSS_LEVEL = 4;
         /// <summary>
         /// The enemies
         /// </summary>
@@ -68,40 +78,59 @@ namespace Xaria
         private void GenerateLevel(int difficulty)
         {
             Enemies.Clear();
-            if (difficulty % 4 == 0)
+            if (difficulty % BOSS_LEVEL == 0)
             {
-                Enemies.Add(new List<Enemy>());
-                if(difficulty/4 == 1)
+                if (difficulty / BOSS_LEVEL == 1)
                 {
-                    Enemies[0].Add(new Boss1(new Vector2(random.Next(((int)Game1.screenSize.X - Game1.textureDictionary["boss1"].Width)), spacing.Y)));
-                    AddRowOfEnemy(typeof(Basic));
-                    AddRowOfEnemy(typeof(Basic));
+                    AddBoss(typeof(Boss1));
                 }
-                else if(difficulty/4 == 2)
+                else if (difficulty / BOSS_LEVEL == 2)
                 {
-                    Enemies[0].Add(new Boss1(new Vector2(random.Next(((int)Game1.screenSize.X - Game1.textureDictionary["boss1"].Width)), spacing.Y)));
-                    Enemies[0].Add(new Boss1(new Vector2(random.Next(((int)Game1.screenSize.X - Game1.textureDictionary["boss1"].Width)), spacing.Y)));
-                    AddRowOfEnemy(typeof(Basic));
-                    AddRowOfEnemy(typeof(Basic));
+                    AddBoss(typeof(Boss1));
+                    AddBoss(typeof(Boss1));
                 }
-                else if(difficulty/4 == 3)
+                else if (difficulty / BOSS_LEVEL == 3)
                 {
-                    Enemies[0].Add(new Boss3(new Vector2(Game1.textureDictionary["boss3"].Width, Game1.textureDictionary["boss3"].Height)));
+                    AddBoss(typeof(Boss1));
+                    AddBoss(typeof(Boss1));
+                    AddBoss(typeof(Boss1));
                 }
-                else if(difficulty/4 == 4)
+                else if (difficulty / BOSS_LEVEL == 4)
                 {
-                    Enemies[0].Add(new Boss4(new Vector2(Game1.textureDictionary["boss4"].Width, Game1.textureDictionary["boss4"].Height)));
+                    AddBoss(typeof(Boss1));
+                    AddBoss(typeof(Boss1));
+                    AddBoss(typeof(Boss1));
+                    AddBoss(typeof(Boss1));
                 }
             }
             else
             {
-                for(int i = 0; i < difficulty % 4; i++)
+                for (int i = 0; i < Tier; i++)
+                {
+                    AddRowOfEnemy(typeof(Intermediate));
+                }
+                for (int i = 0; i < difficulty % BOSS_LEVEL; i++)
                 {
                     AddRowOfEnemy(typeof(Basic));
                 }
             }
         }
 
+        private void AddBoss(Type bossType)
+        {
+            Enemy prevEnemy = Enemies.Count > 0 ? Enemies[Enemies.Count - 1][0] : null;
+            float newPosY = prevEnemy == null ? spacing.Y : prevEnemy.Position.Y + prevEnemy.Texture.Height + spacing.Y;
+
+            Enemies.Add(new List<Enemy>());
+            if(bossType == typeof(Boss1))
+                Enemies[Enemies.Count - 1].Add(new Boss1(new Vector2(random.Next(((int)Game1.screenSize.X - Game1.textureDictionary["boss1"].Width)), newPosY)));
+            else if(bossType == typeof(Boss2))
+                Enemies[Enemies.Count - 1].Add(new Boss2(new Vector2(random.Next(((int)Game1.screenSize.X - Game1.textureDictionary["boss2"].Width)), newPosY)));
+            else if(bossType == typeof(Boss3))
+                Enemies[Enemies.Count - 1].Add(new Boss3(new Vector2(random.Next(((int)Game1.screenSize.X - Game1.textureDictionary["boss3"].Width)), newPosY)));
+            else if(bossType == typeof(Boss4))
+                Enemies[Enemies.Count - 1].Add(new Boss4(new Vector2(random.Next(((int)Game1.screenSize.X - Game1.textureDictionary["boss4"].Width)), newPosY)));
+        }
 
         private void AddRowOfEnemy(Type enemyType)
         {
