@@ -10,6 +10,7 @@ namespace Xaria.Enemies
         private const double NEXT_TELEPORT = 4000; //4 seconds
         private const double SHOOT = 1500; //1.5 seconds after teleporting shoot
         private const int HEALTH = 5000;
+        const int BEAM_DMG = 100;
         private double Countdown = NEXT_TELEPORT;
         private bool CanShoot = false;
 
@@ -30,7 +31,7 @@ namespace Xaria.Enemies
                 if (NextShoot <= 0)
                 {
                     NextShoot = SHOOT;
-                    Projectiles.Add(new Beam(Position + new Vector2(Texture.Width / 2f, Texture.Height + 5f), new Vector2(0, 50), 100, false));
+                    Projectiles.Add(new Beam(Position + new Vector2(Texture.Width / 2f, Texture.Height + 5f), new Vector2(0, 50), BEAM_DMG, false));
                     CanShoot = false;
                 }
             }

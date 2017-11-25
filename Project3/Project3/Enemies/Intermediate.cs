@@ -20,8 +20,9 @@ namespace Xaria.Enemies
         /// <summary>
         /// The health
         /// </summary>
-        const int HEALTH = 100;
+        const int HEALTH = 200;
         const int NEXT = 7000;
+        const int ROCKET_DMG = 20;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="Basic"/> class.
@@ -46,7 +47,7 @@ namespace Xaria.Enemies
             if (NextShoot <= 0)
             {
                 NextShoot = Level.random.Next(1000, NEXT);
-                Projectiles.Add(new Rocket(Position + new Vector2(Texture.Width / 2f, Texture.Height + 5f), new Vector2(0, 20), 20)); //moving down
+                Projectiles.Add(new Rocket(Position + new Vector2(Texture.Width / 2f, Texture.Height + 5f), new Vector2(0, 20), ROCKET_DMG)); //moving down
             }
         }
 
