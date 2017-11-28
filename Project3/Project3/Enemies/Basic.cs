@@ -16,13 +16,25 @@ namespace Xaria.Enemies
         /// The health
         /// </summary>
         const int HEALTH = 100;
+        /// <summary>
+        /// The next
+        /// </summary>
         const int NEXT = 13000;
+        /// <summary>
+        /// The first
+        /// </summary>
         const int FIRST = 3000;
+        /// <summary>
+        /// The laser DMG
+        /// </summary>
         const int LASER_DMG = 20;
+        /// <summary>
+        /// The shield strength
+        /// </summary>
         const int SHIELD_STRENGTH = 50;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="Basic"/> class.
+        /// Initializes a new instance of the <see cref="Basic" /> class.
         /// </summary>
         /// <param name="position">The position.</param>
         public Basic(Vector2 position)
@@ -47,6 +59,10 @@ namespace Xaria.Enemies
             }
         }
 
+        /// <summary>
+        /// Called when [death].
+        /// </summary>
+        /// <param name="drops">The drops.</param>
         internal override void OnDeath(ref List<Drop> drops)
         {
             if(Level.random.Next(20) == 1) // 1/x chance of giving drop
@@ -55,6 +71,11 @@ namespace Xaria.Enemies
             }
         }
 
+        /// <summary>
+        /// Updates the movement.
+        /// </summary>
+        /// <param name="level">The level.</param>
+        /// <param name="gameTime">The game time.</param>
         public override void UpdateMovement(Level level, GameTime gameTime = null)
         {
             if (level.movingRight)

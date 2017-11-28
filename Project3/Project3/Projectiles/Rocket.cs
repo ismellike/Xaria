@@ -10,6 +10,9 @@ namespace Xaria.Projectiles
     /// <seealso cref="Xaria.Projectile" />
     class Rocket : Projectile
     {
+        /// <summary>
+        /// The default DMG
+        /// </summary>
         public const int DEFAULT_DMG = 50;
         /// <summary>
         /// Initializes a new instance of the <see cref="Laser" /> class.
@@ -26,6 +29,12 @@ namespace Xaria.Projectiles
             ProjectileType = Type.Rocket;
         }
 
+        /// <summary>
+        /// Called when [collision].
+        /// </summary>
+        /// <param name="Enemies">The enemies.</param>
+        /// <param name="y">The y.</param>
+        /// <param name="x">The x.</param>
         public override void OnCollision(ref List<List<Enemy>> Enemies, int y, int x)
         {
             Rectangle aoe = AOE();
@@ -44,22 +53,37 @@ namespace Xaria.Projectiles
          * @Post: players health is reduced by the amount of damage the rocket does
          * @Return: None
          */
+        /// <summary>
+        /// Called when [collision].
+        /// </summary>
+        /// <param name="player">The player.</param>
         public override void OnCollision(ref Player player)
         {
             player.Damage(Damage);
         }
 
+        /// <summary>
+        /// Aoes this instance.
+        /// </summary>
+        /// <returns></returns>
         public Rectangle AOE()
         {
             return new Rectangle((int)Position.X - 100, (int)Position.Y - 100, 200, 200);
         }
 
+        /// <summary>
+        /// Moves this instance.
+        /// </summary>
         public override void Move()
         {
             Position += Velocity;
             Velocity = new Vector2(Velocity.X, Velocity.Y * 1.01f);
         }
 
+        /// <summary>
+        /// Draws from enemy.
+        /// </summary>
+        /// <param name="spriteBatch">The sprite batch.</param>
         public override void DrawFromEnemy(ref SpriteBatch spriteBatch)
         {
             spriteBatch.Draw(Texture, Position, null, Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.FlipVertically, 0f);

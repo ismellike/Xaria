@@ -26,13 +26,20 @@ namespace Xaria
         /// The end game state
         /// </summary>
         End,
+        /// <summary>
+        /// The testing
+        /// </summary>
         Testing,
     }
     /// <summary>
     /// This is the main type for your game.
     /// </summary>
+    /// <seealso cref="Microsoft.Xna.Framework.Game" />
     public class Game1 : Game
     {
+        /// <summary>
+        /// The touch collection
+        /// </summary>
         private TouchCollection touchCollection;
         #region drawing
         /// <summary>
@@ -43,6 +50,9 @@ namespace Xaria
         /// The sprite batch for drawings
         /// </summary>
         SpriteBatch spriteBatch;
+        /// <summary>
+        /// The render target
+        /// </summary>
         RenderTarget2D renderTarget;
         #endregion
         #region screens
@@ -77,19 +87,28 @@ namespace Xaria
         /// The font
         /// </summary>
         internal static SpriteFont font;
+        /// <summary>
+        /// The large font
+        /// </summary>
         internal static SpriteFont largeFont;
 
         //game variables
+        /// <summary>
+        /// The test
+        /// </summary>
         Test test;
         /// <summary>
         /// The level
         /// </summary>
         internal static Level level;
         #endregion
+        /// <summary>
+        /// The starting level
+        /// </summary>
         public const int STARTING_LEVEL = 1;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="Game1"/> class.
+        /// Initializes a new instance of the <see cref="Game1" /> class.
         /// </summary>
         public Game1()
         {

@@ -74,7 +74,8 @@ namespace Xaria
         /// <summary>
         /// Updates the specified touch to see if buttons are clicked.
         /// </summary>
-        /// <param name="touch">The touch.</param>
+        /// <param name="touches">The touches.</param>
+        /// <param name="window">The window.</param>
         internal void Update(TouchLocation[] touches, GameWindow window)
         {
             foreach (TouchLocation touch in touches)
