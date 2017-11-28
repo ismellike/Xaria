@@ -9,10 +9,17 @@ namespace Xaria.Enemies
     class Boss3 : Boss
     {
         public double NextShoot2 { get; internal set; }
+        const int HEALTH = 5000;
+        const int FIRST1 = 500;
+        const int FIRST2 = 5000;
+        const int NEXT1 = 1000;
+        const int NEXT2 = 10000;
+        const int PELLET_DMG = 15;
+        const int LASER_DMG = 150;
 
         public Boss3(Vector2 position)
         {
-            Health = 5000;
+            Health = HEALTH;
             Position = position;
             Texture = Game1.textureDictionary["boss3"];//texture changes
             EnemyType = Enemy.Type.Boss;
@@ -24,14 +31,14 @@ namespace Xaria.Enemies
             NextShoot -= gameTime.ElapsedGameTime.Milliseconds;
             if (NextShoot <= 0)
             {
-                NextShoot = Level.random.Next(500, 1000);
-                Projectiles.Add(new Pellet(Position + new Vector2(Texture.Width / 2f - 1f, Texture.Height + 5f), new Vector2(0, 15), 15));
+                NextShoot = Level.random.Next(FIRST1, NEXT1);
+                Projectiles.Add(new Pellet(Position + new Vector2(Texture.Width / 2f - 1f, Texture.Height + 5f), new Vector2(0, 15), PELLET_DMG));
             }
             NextShoot2 -= gameTime.ElapsedGameTime.Milliseconds;
             if (NextShoot2 <= 0)
             {
-                NextShoot2 = Level.random.Next(5000, 10000);
-                Projectiles.Add(new Beam(Position + new Vector2(Texture.Width / 2f - 1f, Texture.Height + 5f), new Vector2(0, 50), 200));
+                NextShoot2 = Level.random.Next(FIRST2, NEXT2);
+                Projectiles.Add(new Beam(Position + new Vector2(Texture.Width / 2f - 1f, Texture.Height + 5f), new Vector2(0, 50), LASER_DMG));
             }
         }
 

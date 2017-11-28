@@ -17,7 +17,10 @@ namespace Xaria.Screens
         public Start(ContentManager Content)
         {
             Texture2D startTexture = Content.Load<Texture2D>("Buttons/start");
+            Texture2D testTexture = Content.Load<Texture2D>("Buttons/test");
             Buttons.Add(new Button(startTexture, new Vector2((Game1.screenSize.X - startTexture.Width) / 3f, 2*(Game1.screenSize.Y - startTexture.Height) / 3f), StartGame));
+            Buttons.Add(new Button(testTexture, new Vector2(2*(Game1.screenSize.X - startTexture.Width) / 3f, 2 * (Game1.screenSize.Y - startTexture.Height) / 3f), TestGame));
+
         }
 
         /// <summary>
@@ -27,22 +30,10 @@ namespace Xaria.Screens
         {
             Game1.state = GameState.Playing;
         }
-    }
 
-    class Endless : Screen
-    {
-        public Endless(ContentManager Content)
+        void TestGame()
         {
-            //error
-            //Texture2D startTexture = Content.Load<Texture2D>("Endless");
-           // Buttons.Add(new Button(startTexture, new Vector2(2 * (Game1.screenSize.X - startTexture.Width) / 3f, 2 * (Game1.screenSize.Y - startTexture.Height) / 3f), EndlessGame));
-        }
-
-        void EndlessGame()
-        {
-            Game1.state = GameState.Playing;
-            //Game1.player.Health = Player.STARTING_HEALTH;
-           // Game1.level = new Level(1);
+            Game1.state = GameState.Testing;
         }
     }
 }

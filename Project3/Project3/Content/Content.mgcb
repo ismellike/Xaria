@@ -243,6 +243,18 @@
 /processorParam:TextureFormat=Color
 /build:Projectiles/emp.png
 
+#begin Projectiles/pellet.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Projectiles/pellet.png
+
 #begin Enemies/boss4.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -255,7 +267,7 @@
 /processorParam:TextureFormat=Color
 /build:Enemies/boss4.png
 
-#begin Projectiles/pellet.png
+#begin Enemies/advanced.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -265,5 +277,5 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:Projectiles/pellet.png
+/build:Enemies/advanced.png
 

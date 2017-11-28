@@ -28,7 +28,10 @@ namespace Xaria.Screens
         {
             foreach (Button button in Buttons)
                 button.Draw(ref spriteBatch);
-            spriteBatch.DrawString(Game1.largeFont, "You made it to level " + Level.Difficulty + ".", new Vector2(Game1.screenSize.X/4f, Game1.screenSize.Y - 500), Color.Yellow);
+            if (Level.Difficulty > Level.FINAL_LEVEL)
+                spriteBatch.DrawString(Game1.largeFont, "Congratulations, you beat Xaria!", new Vector2(20, Game1.screenSize.Y - 500), Color.Yellow);
+            else
+                spriteBatch.DrawString(Game1.largeFont, "You made it to level " + Level.Difficulty + ".", new Vector2(20, Game1.screenSize.Y - 500), Color.Yellow);
         }
 
         /// <summary>

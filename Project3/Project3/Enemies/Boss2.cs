@@ -10,7 +10,12 @@ namespace Xaria.Enemies
     {
         private double NextShoot2 { get; set; }
         const int HEALTH = 6000;
-        const int FIRSTSHOOT = 1000;
+        const int FIRST1 = 1500;
+        const int FIRST2 = 1500;
+        const int NEXT1 = 10000;
+        const int NEXT2 = 3000;
+        const int ROCKET_DMG = 50;
+        const int EMP_DMG = 10;
 
         public Boss2(Vector2 position)
         {
@@ -21,48 +26,25 @@ namespace Xaria.Enemies
             BossType = Type.Boss2;
         }
 
-        private bool Spawned = false;
-        public bool SpawnMoreEnemies()
-        {
-            return !Spawned && Health < 2500;
-        }
-
         public override void Shoot(GameTime gameTime, ref List<Projectile> Projectiles)
         {
             NextShoot -= gameTime.ElapsedGameTime.Milliseconds;
             if (NextShoot <= 0)
             {
-                NextShoot = Level.random.Next(1000, 10000);
-                Projectiles.Add(new Emp(Position + new Vector2(Texture.Width / 2f - 1f, Texture.Height + 5f), new Vector2(0, 15), 10));
+                NextShoot = Level.random.Next(FIRST1, NEXT1);
+                Projectiles.Add(new Emp(Position + new Vector2(Texture.Width / 2f - 1f, Texture.Height + 5f), new Vector2(0, 15), EMP_DMG));
             }
             NextShoot2 -= gameTime.ElapsedGameTime.Milliseconds;
             if (NextShoot2 <= 0)
             {
-                NextShoot2 = Level.random.Next(1000, 3000);
-                Projectiles.Add(new Rocket(Position + new Vector2(Texture.Width / 2f - 1f, Texture.Height + 5f), new Vector2(0, 22), 60));
+                NextShoot2 = Level.random.Next(FIRST2, NEXT2);
+                Projectiles.Add(new Rocket(Position + new Vector2(Texture.Width / 2f - 1f, Texture.Height + 5f), new Vector2(0, 22), ROCKET_DMG));
             }
         }
 
         public override void UpdateMovement(Level level, GameTime gameTime)
         {
-            if (level.movingRight)
-            {
-                Position.X += 1;
-                if (Position.X + Texture.Width >= Game1.screenSize.X)
-                {
-                    level.movingRight = !level.movingRight;
-                    level.MoveDown();
-                }
-            }
-            else
-            {
-                Position.X -= 1;
-                if (Position.X <= 0)
-                {
-                    level.movingRight = !level.movingRight;
-                    level.MoveDown();
-                }
-            }
+            Position.X = level.player.Position.X + level.player.Texture.Width/2f - Texture.Width/2f;
         }
 
         internal override void OnDeath(ref List<Drop> drops)

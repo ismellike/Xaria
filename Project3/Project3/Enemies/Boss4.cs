@@ -8,15 +8,17 @@ namespace Xaria.Enemies
 {
     class Boss4 : Boss
     {
-        private double NextShoot2;
-        private double NextShoot3;
-        private double NextShoot4;
+        private double NextShoot2 = 0;
+        private double NextShoot3 = 10000;
+        private double NextShoot4 = 20000;
+        const int HEALTH = 10000;
 
         public Boss4(Vector2 position)
         {
-            Health = 10000;
+            Health = HEALTH;
             Position = position;
-            Texture = Game1.textureDictionary["boss4"];//texture changes
+            Texture = Game1.textureDictionary["boss4"];
+            NextShoot = 5000;
             EnemyType = Enemy.Type.Boss;
             BossType = Type.Boss4;
         }

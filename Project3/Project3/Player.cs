@@ -119,7 +119,7 @@ namespace Xaria
             Weapon prevWeapon = weapon;
             for(int i = 0; i < Weapons.Count; i++)
             {
-                if(Weapons[i].ProjectileType.GetType() == weapon.ProjectileType.GetType())
+                if(Weapons[i].ProjectileType == weapon.ProjectileType)
                 {
                     if (i + 1 >= Weapons.Count)
                     {
@@ -151,7 +151,7 @@ namespace Xaria
             {
                 projectile.Draw(ref spriteBatch);
             }
-            spriteBatch.DrawString(Game1.font, weapon.ProjectileType.GetType().Name + ": " + weapon.Ammo.ToString(), new Vector2(Position.X, Position.Y + Texture.Height + 2f), Color.White);
+            spriteBatch.DrawString(Game1.font, weapon.ProjectileType.ToString() + ": " + weapon.Ammo.ToString(), new Vector2(Position.X, Position.Y + Texture.Height + 2f), Color.White);
         }
 
         internal void Reset()

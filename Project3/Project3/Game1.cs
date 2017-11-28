@@ -26,7 +26,7 @@ namespace Xaria
         /// The end game state
         /// </summary>
         End,
-
+        Testing,
     }
     /// <summary>
     /// This is the main type for your game.
@@ -79,13 +79,14 @@ namespace Xaria
         internal static SpriteFont font;
         internal static SpriteFont largeFont;
 
+        Test test;
         //game variables
         /// <summary>
         /// The level
         /// </summary>
         internal static Level level;
         #endregion
-        public const int STARTING_LEVEL = 1;
+        public const int STARTING_LEVEL = 16;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="Game1"/> class.
@@ -131,6 +132,7 @@ namespace Xaria
             textureDictionary.Add("star", Content.Load<Texture2D>("star"));
             textureDictionary.Add("basic", Content.Load<Texture2D>("Enemies/basic"));
             textureDictionary.Add("intermediate", Content.Load<Texture2D>("Enemies/intermediate"));
+            textureDictionary.Add("advanced", Content.Load<Texture2D>("Enemies/advanced"));
             textureDictionary.Add("boss1", Content.Load<Texture2D>("Enemies/boss1"));
             textureDictionary.Add("boss2", Content.Load<Texture2D>("Enemies/boss2"));
             textureDictionary.Add("boss3", Content.Load<Texture2D>("Enemies/boss3"));
@@ -149,6 +151,7 @@ namespace Xaria
             largeFont = Content.Load<SpriteFont>("largeFont");
 
             level = new Level(STARTING_LEVEL);
+            test = new Test(level);
             background = new Background();
         }
 
@@ -186,6 +189,9 @@ namespace Xaria
                     case GameState.End:
                         endScreen.Update(touches, Window);
                     break;
+                case GameState.Testing:
+                    //test.Update(gameTime);
+                    break;
                 }
         }
 
@@ -211,6 +217,9 @@ namespace Xaria
                     break;
                 case GameState.End:
                     endScreen.Draw(ref spriteBatch);
+                    break;
+                case GameState.Testing:
+                    test.Draw(ref spriteBatch);
                     break;
             }
 

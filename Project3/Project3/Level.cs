@@ -14,7 +14,7 @@ namespace Xaria
     /// </summary>
     public class Level
     {
-        private Player player;
+        internal Player player;
         /// <summary>
         /// Gets the difficulty.
         /// </summary>
@@ -24,6 +24,7 @@ namespace Xaria
         public static int Difficulty { get; private set; }
 
         public const int BOSS_LEVEL = 4;
+        public const int FINAL_LEVEL = 16;
         /// <summary>
         /// The enemies
         /// </summary>
@@ -70,9 +71,15 @@ namespace Xaria
         private void GenerateLevel(int difficulty)
         {
             Enemies.Clear();
+            if (difficulty > FINAL_LEVEL)
+            {
+                GameOver();
+                return;
+            }
+
             if (difficulty % BOSS_LEVEL == 0)
             {
-                switch (difficulty / BOSS_LEVEL % 4)
+                switch (difficulty / BOSS_LEVEL)
                 {
                     case 1:
                         AddBoss(Boss.Type.Boss1);
@@ -111,10 +118,13 @@ namespace Xaria
                 prevLevel.Add(Enemy.Type.Basic);
             else
             {
-
+                if (prevLevel.Contains(Enemy.Type.Basic))
+                    prevLevel[prevLevel.IndexOf(Enemy.Type.Basic)] = Enemy.Type.Intermediate;
+                else if (prevLevel.Contains(Enemy.Type.Intermediate))
+                    prevLevel[prevLevel.IndexOf(Enemy.Type.Intermediate)] = Enemy.Type.Advanced;
             }
 
-            if (Difficulty == difficulty)
+            if (Difficulty <= difficulty)
                 return prevLevel;
             else
                 return GetEnemyTypes(prevLevel, difficulty + 1);
@@ -159,6 +169,9 @@ namespace Xaria
                         break;
                     case Enemy.Type.Intermediate:
                         enemy = new Intermediate(new Vector2((Game1.textureDictionary["intermediate"].Width + spacing.X) * x - spacing.X + Game1.textureDictionary["intermediate"].Width * (Enemies.Count % 2), newPosY));
+                        break;
+                    case Enemy.Type.Advanced:
+                        enemy = new Advanced(new Vector2((Game1.textureDictionary["advanced"].Width + spacing.X) * x - spacing.X + Game1.textureDictionary["advanced"].Width * (Enemies.Count % 2), newPosY));
                         break;
                 }
 
@@ -207,13 +220,6 @@ namespace Xaria
                 for (int enemyIndex = Enemies[rowIndex].Count - 1; enemyIndex >= 0; enemyIndex--)
                 {
                     Enemy enemy = Enemies[rowIndex][enemyIndex];
-                    if(enemy is Boss2)
-                    {
-                        if((enemy as Boss2).SpawnMoreEnemies())
-                        {
-                            AddRowOfEnemy(Enemy.Type.Intermediate);
-                        }
-                    }
                     if (enemy.IsDead())
                     {
                         Enemies[rowIndex][enemyIndex].OnDeath(ref Drops);

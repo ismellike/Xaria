@@ -16,7 +16,8 @@ namespace Xaria
         {
             Basic = 1,
             Intermediate = 2,
-            Boss = 3,
+            Advanced = 3,
+            Boss = 4,
         }
 
         protected Type EnemyType { get; set; }

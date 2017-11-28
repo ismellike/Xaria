@@ -15,52 +15,32 @@ using Xaria.Projectiles;
 
 namespace Xaria.Enemies
 {
-    class Intermediate : Enemy
+    class Advanced : Enemy
     {
-        /// <summary>
-        /// The health
-        /// </summary>
-        const int HEALTH = 200;
-        const int FIRST = 2000;
-        const int NEXT = 12000;
-        const int ROCKET_DMG = 20;
+        const int HEALTH = 250;
+        const int FIRST = 1000;
+        const int NEXT = 10000;
+        const int PELLET_DMG = 10;
 
-        /// <summary>
-        /// Initializes a new instance of the <see cref="Basic"/> class.
-        /// </summary>
-        /// <param name="position">The position.</param>
-        public Intermediate(Vector2 position)
+        public Advanced(Vector2 position)
         {
             Health = HEALTH;
             Position = position;
             NextShoot = Level.random.Next(FIRST, NEXT);
-            Texture = Game1.textureDictionary["intermediate"];
+            Texture = Game1.textureDictionary["advanced"];
         }
 
-        /// <summary>
-        /// Shoots a projectile from the enemy.
-        /// </summary>
-        /// <param name="gameTime">The game time.</param>
-        /// <param name="Projectiles">The projectiles.</param>
         public override void Shoot(GameTime gameTime, ref List<Projectile> Projectiles)
         {
             NextShoot -= gameTime.ElapsedGameTime.Milliseconds;
             if (NextShoot <= 0)
             {
                 NextShoot = Level.random.Next(FIRST, NEXT);
-                Projectiles.Add(new Rocket(Position + new Vector2(Texture.Width / 2f, Texture.Height + 5f), new Vector2(0, 20), ROCKET_DMG)); //moving down
+                Projectiles.Add(new Pellet(Position + new Vector2(Texture.Width / 2f, Texture.Height + 5f), new Vector2(0, 30), PELLET_DMG)); //moving down
             }
         }
 
-        internal override void OnDeath(ref List<Drop> drops)
-        {
-            if (Level.random.Next(20) == 1) // 1/x chance of giving drop
-            {
-                 drops.Add(new RocketAmmo(Position + new Vector2(Texture.Width / 2f, Texture.Height), 15));
-            }
-        }
-
-        public override void UpdateMovement(Level level, GameTime gameTime = null)
+        public override void UpdateMovement(Level level, GameTime gameTime)
         {
             if (level.movingRight)
             {
@@ -79,6 +59,14 @@ namespace Xaria.Enemies
                     level.movingRight = !level.movingRight;
                     level.MoveDown();
                 }
+            }
+        }
+
+        internal override void OnDeath(ref List<Drop> drops)
+        {
+            if (Level.random.Next(20) == 1) // 1/x chance of giving drop
+            {
+                drops.Add(new Shield(Position + new Vector2(Texture.Width / 2f, Texture.Height), 50));
             }
         }
     }
