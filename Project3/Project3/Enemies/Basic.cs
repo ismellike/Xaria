@@ -16,8 +16,10 @@ namespace Xaria.Enemies
         /// The health
         /// </summary>
         const int HEALTH = 100;
-        const int NEXT = 10000;
+        const int NEXT = 13000;
+        const int FIRST = 3000;
         const int LASER_DMG = 20;
+        const int SHIELD_STRENGTH = 50;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="Basic"/> class.
@@ -27,10 +29,9 @@ namespace Xaria.Enemies
         {
             Health = HEALTH;
             Position = position;
-            NextShoot = Level.random.Next(1000, NEXT);
+            NextShoot = Level.random.Next(FIRST, NEXT);
             Texture = Game1.textureDictionary["basic"];
         }
-
         /// <summary>
         /// Shoots a projectile from the enemy.
         /// </summary>
@@ -50,7 +51,7 @@ namespace Xaria.Enemies
         {
             if(Level.random.Next(20) == 1) // 1/x chance of giving drop
             {
-                 drops.Add(new Shield(Position + new Vector2(Texture.Width/2f, Texture.Height), 50));
+                 drops.Add(new Shield(Position + new Vector2(Texture.Width/2f, Texture.Height), SHIELD_STRENGTH));
             }
         }
 

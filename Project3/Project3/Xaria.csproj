@@ -109,6 +109,7 @@
     <Compile Include="Drops\Life.cs" />
     <Compile Include="Drops\RocketAmmo.cs" />
     <Compile Include="Drops\Shield.cs" />
+    <Compile Include="Enemies\Boss.cs" />
     <Compile Include="Enemies\Intermediate.cs" />
     <Compile Include="Weapon.cs" />
     <Compile Include="Enemies\Basic.cs" />
@@ -122,7 +123,7 @@
     <Compile Include="Level.cs" />
     <Compile Include="Player.cs" />
     <Compile Include="Projectiles\Beam.cs" />
-    <Compile Include="Projectiles\emp.cs" />
+    <Compile Include="Projectiles\Emp.cs" />
     <Compile Include="Projectiles\Pellet.cs" />
     <Compile Include="Projectiles\Projectile.cs" />
     <Compile Include="Projectiles\Laser.cs" />

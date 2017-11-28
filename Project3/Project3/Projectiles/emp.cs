@@ -20,9 +20,9 @@ namespace Xaria.Projectiles
         {
             Position = position;
             Velocity = velocity;
-            Texture = Game1.textureDictionary["Emp"];
+            Texture = Game1.textureDictionary["emp"];
             Damage = damage;
-           // Rectangle hitBox = new Rectangle((int)Position.X, (int)Position.Y, Texture.Width, Texture.Height); Given by this.Bounds();
+            ProjectileType = Type.Emp;
         }
 
         /* @Pre: emp projectile overlaps player sprite
@@ -35,11 +35,6 @@ namespace Xaria.Projectiles
             player.AddStun(3000); //stunned variable in player.cs set to 3000 milliseconds, player cannot do anything during that time.
         }
 
-        public override void Draw(ref SpriteBatch spriteBatch)
-        {
-            //spriteBatch.
-        }
-
         public override void OnCollision(ref List<List<Enemy>> Enemies, int y, int x)
         {
             throw new System.NotImplementedException();
@@ -47,7 +42,7 @@ namespace Xaria.Projectiles
 
         public override void DrawFromEnemy(ref SpriteBatch spriteBatch)
         {
-            throw new System.NotImplementedException();
+            spriteBatch.Draw(Texture, Position, Color.White);
         }
     }
 }

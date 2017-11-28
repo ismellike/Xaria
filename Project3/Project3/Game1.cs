@@ -132,9 +132,14 @@ namespace Xaria
             textureDictionary.Add("basic", Content.Load<Texture2D>("Enemies/basic"));
             textureDictionary.Add("intermediate", Content.Load<Texture2D>("Enemies/intermediate"));
             textureDictionary.Add("boss1", Content.Load<Texture2D>("Enemies/boss1"));
+            textureDictionary.Add("boss2", Content.Load<Texture2D>("Enemies/boss2"));
+            textureDictionary.Add("boss3", Content.Load<Texture2D>("Enemies/boss3"));
+            textureDictionary.Add("boss4", Content.Load<Texture2D>("Enemies/boss4"));
             textureDictionary.Add("beam", Content.Load<Texture2D>("Projectiles/beam"));
             textureDictionary.Add("laser", Content.Load<Texture2D>("Projectiles/laser"));
+            textureDictionary.Add("emp", Content.Load<Texture2D>("Projectiles/emp"));
             textureDictionary.Add("rocket", Content.Load<Texture2D>("Projectiles/rocket"));
+            textureDictionary.Add("pellet", Content.Load<Texture2D>("Projectiles/pellet"));
             textureDictionary.Add("shield", Content.Load<Texture2D>("Drops/shield"));
             textureDictionary.Add("beamAmmo", Content.Load<Texture2D>("Drops/beamAmmo"));
             textureDictionary.Add("rocketAmmo", Content.Load<Texture2D>("Drops/rocketAmmo"));

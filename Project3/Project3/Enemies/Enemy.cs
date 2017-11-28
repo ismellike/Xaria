@@ -3,6 +3,7 @@ using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
 using Xaria.Drops;
+using Xaria.Enemies;
 
 namespace Xaria
 {
@@ -11,6 +12,14 @@ namespace Xaria
     /// </summary>
     public abstract class Enemy : GameElement
     {
+        public enum Type
+        {
+            Basic = 1,
+            Intermediate = 2,
+            Boss = 3,
+        }
+
+        protected Type EnemyType { get; set; }
         /// <summary>
         /// Gets the health.
         /// </summary>
@@ -43,7 +52,7 @@ namespace Xaria
         //returns true if hit so the projectile can be deleted
         public bool IsHit(Projectile shot)
         {
-            if(Bounds().Intersects(shot.Bounds()))
+            if (Bounds().Intersects(shot.Bounds()))
                 return true;
             return false;
         }

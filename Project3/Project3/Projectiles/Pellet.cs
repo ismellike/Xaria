@@ -20,8 +20,9 @@ namespace Xaria.Projectiles
         {
             Position = position;
             Velocity = velocity;
-            Texture = Game1.textureDictionary["Pellet"];
+            Texture = Game1.textureDictionary["pellet"];
             Damage = damage;
+            ProjectileType = Type.Pellet;
         }
 
         /* @Pre: pellet projectile overlaps player sprite
@@ -33,15 +34,6 @@ namespace Xaria.Projectiles
             player.Damage(Damage);
         }
 
-        /* @Pre:
-         * @Post:
-         * @Return:
-         */
-        public override void Draw(ref SpriteBatch spriteBatch)
-        {
-            //spriteBatch.
-        }
-
         public override void OnCollision(ref List<List<Enemy>> Enemies, int y, int x)
         {
             throw new System.NotImplementedException();
@@ -49,7 +41,7 @@ namespace Xaria.Projectiles
 
         public override void DrawFromEnemy(ref SpriteBatch spriteBatch)
         {
-            throw new System.NotImplementedException();
+            spriteBatch.Draw(Texture, Position, Color.White);
         }
     }
 }

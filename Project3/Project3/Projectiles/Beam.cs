@@ -24,6 +24,7 @@ namespace Xaria.Projectiles
             Texture = Game1.textureDictionary["beam"];
             Damage = damage;
             Immovable = immovable;
+            ProjectileType = Type.Beam;
         }
 
         public override void DrawFromEnemy(ref SpriteBatch spriteBatch)

@@ -23,14 +23,6 @@ namespace Xaria
         /// </value>
         public static int Difficulty { get; private set; }
 
-        public int Tier
-        {
-            get
-            {
-                return Difficulty / (BOSS_LEVEL * 2 + 1);
-            }
-        }
-
         public const int BOSS_LEVEL = 4;
         /// <summary>
         /// The enemies
@@ -80,59 +72,78 @@ namespace Xaria
             Enemies.Clear();
             if (difficulty % BOSS_LEVEL == 0)
             {
-                if (difficulty / BOSS_LEVEL == 1)
+                switch (difficulty / BOSS_LEVEL % 4)
                 {
-                    AddBoss(typeof(Boss1));
+                    case 1:
+                        AddBoss(Boss.Type.Boss1);
+                        break;
+                    case 2:
+                        AddBoss(Boss.Type.Boss2);
+                        break;
+                    case 3:
+                        AddBoss(Boss.Type.Boss3);
+                        break;
+                    case 4:
+                        AddBoss(Boss.Type.Boss4);
+                        break;
                 }
-                else if (difficulty / BOSS_LEVEL == 2)
-                {
-                    AddBoss(typeof(Boss1));
-                    AddBoss(typeof(Boss1));
-                }
-                else if (difficulty / BOSS_LEVEL == 3)
-                {
-                    AddBoss(typeof(Boss1));
-                    AddBoss(typeof(Boss1));
-                    AddBoss(typeof(Boss1));
-                }
-                else if (difficulty / BOSS_LEVEL == 4)
-                {
-                    AddBoss(typeof(Boss1));
-                    AddBoss(typeof(Boss1));
-                    AddBoss(typeof(Boss1));
-                    AddBoss(typeof(Boss1));
-                }
+                for (int i = 0; i < 5; i++)
+                    AddRowOfEnemy(Enemy.Type.Basic);
             }
             else
             {
-                for (int i = 0; i < Tier; i++)
+                List<Enemy.Type> types = GetEnemyTypes();
+                for(int i = 0; i < types.Count; i++)
                 {
-                    AddRowOfEnemy(typeof(Intermediate));
-                }
-                for (int i = 0; i < difficulty % BOSS_LEVEL; i++)
-                {
-                    AddRowOfEnemy(typeof(Basic));
+                    AddRowOfEnemy(types[i]);
                 }
             }
         }
 
-        private void AddBoss(Type bossType)
+        private List<Enemy.Type> GetEnemyTypes(List<Enemy.Type> prevLevel = null, int difficulty = 1)
+        {
+            if (difficulty % BOSS_LEVEL == 0)
+                return GetEnemyTypes(prevLevel, difficulty + 1);
+
+            if (difficulty == 1)
+                prevLevel = new List<Enemy.Type>() { Enemy.Type.Basic, Enemy.Type.Basic};
+            else if (difficulty % 4 == 1 && prevLevel.Count < 5)
+                prevLevel.Add(Enemy.Type.Basic);
+            else
+            {
+
+            }
+
+            if (Difficulty == difficulty)
+                return prevLevel;
+            else
+                return GetEnemyTypes(prevLevel, difficulty + 1);
+        }
+
+        private void AddBoss(Boss.Type bossType)
         {
             Enemy prevEnemy = Enemies.Count > 0 ? Enemies[Enemies.Count - 1][0] : null;
             float newPosY = prevEnemy == null ? spacing.Y : prevEnemy.Position.Y + prevEnemy.Texture.Height + spacing.Y;
 
             Enemies.Add(new List<Enemy>());
-            if(bossType == typeof(Boss1))
-                Enemies[Enemies.Count - 1].Add(new Boss1(new Vector2(random.Next(((int)Game1.screenSize.X - Game1.textureDictionary["boss1"].Width)), newPosY)));
-            else if(bossType == typeof(Boss2))
-                Enemies[Enemies.Count - 1].Add(new Boss2(new Vector2(random.Next(((int)Game1.screenSize.X - Game1.textureDictionary["boss2"].Width)), newPosY)));
-            else if(bossType == typeof(Boss3))
-                Enemies[Enemies.Count - 1].Add(new Boss3(new Vector2(random.Next(((int)Game1.screenSize.X - Game1.textureDictionary["boss3"].Width)), newPosY)));
-            else if(bossType == typeof(Boss4))
-                Enemies[Enemies.Count - 1].Add(new Boss4(new Vector2(random.Next(((int)Game1.screenSize.X - Game1.textureDictionary["boss4"].Width)), newPosY)));
+            switch (bossType)
+            {
+                case Boss.Type.Boss1:
+                    Enemies[Enemies.Count - 1].Add(new Boss1(new Vector2(random.Next(((int)Game1.screenSize.X - Game1.textureDictionary["boss1"].Width)), newPosY)));
+                    break;
+                case Boss.Type.Boss2:
+                    Enemies[Enemies.Count - 1].Add(new Boss2(new Vector2(random.Next(((int)Game1.screenSize.X - Game1.textureDictionary["boss2"].Width)), newPosY)));
+                    break;
+                case Boss.Type.Boss3:
+                    Enemies[Enemies.Count - 1].Add(new Boss3(new Vector2(random.Next(((int)Game1.screenSize.X - Game1.textureDictionary["boss3"].Width)), newPosY)));
+                    break;
+                case Boss.Type.Boss4:
+                    Enemies[Enemies.Count - 1].Add(new Boss4(new Vector2(random.Next(((int)Game1.screenSize.X - Game1.textureDictionary["boss4"].Width)), newPosY)));
+                    break;
+            }
         }
 
-        private void AddRowOfEnemy(Type enemyType)
+        private void AddRowOfEnemy(Enemy.Type enemyType)
         {
             Enemy prevEnemy = Enemies.Count > 0 ? Enemies[Enemies.Count - 1][0] : null;
             float newPosY = prevEnemy == null ? spacing.Y : prevEnemy.Position.Y + prevEnemy.Texture.Height + spacing.Y;
@@ -140,13 +151,15 @@ namespace Xaria
             for (int x = 1; x <= ENEMIES_PER_ROW; x++)
             {
                 Enemy enemy = null;
-                if (enemyType == typeof(Basic))
+
+                switch (enemyType)
                 {
-                    enemy = new Basic(new Vector2((Game1.textureDictionary["basic"].Width + spacing.X) * x - spacing.X + Game1.textureDictionary["basic"].Width * (Enemies.Count % 2), newPosY));
-                }
-                else if (enemyType == typeof(Intermediate))
-                {
-                    enemy = new Intermediate(new Vector2((Game1.textureDictionary["intermediate"].Width + spacing.X) * x - spacing.X + Game1.textureDictionary["intermediate"].Width * (Enemies.Count % 2), newPosY));
+                    case Enemy.Type.Basic:
+                        enemy = new Basic(new Vector2((Game1.textureDictionary["basic"].Width + spacing.X) * x - spacing.X + Game1.textureDictionary["basic"].Width * (Enemies.Count % 2), newPosY));
+                        break;
+                    case Enemy.Type.Intermediate:
+                        enemy = new Intermediate(new Vector2((Game1.textureDictionary["intermediate"].Width + spacing.X) * x - spacing.X + Game1.textureDictionary["intermediate"].Width * (Enemies.Count % 2), newPosY));
+                        break;
                 }
 
                 Enemies[Enemies.Count - 1].Add(enemy);
@@ -194,6 +207,13 @@ namespace Xaria
                 for (int enemyIndex = Enemies[rowIndex].Count - 1; enemyIndex >= 0; enemyIndex--)
                 {
                     Enemy enemy = Enemies[rowIndex][enemyIndex];
+                    if(enemy is Boss2)
+                    {
+                        if((enemy as Boss2).SpawnMoreEnemies())
+                        {
+                            AddRowOfEnemy(Enemy.Type.Intermediate);
+                        }
+                    }
                     if (enemy.IsDead())
                     {
                         Enemies[rowIndex][enemyIndex].OnDeath(ref Drops);

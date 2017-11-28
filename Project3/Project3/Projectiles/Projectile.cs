@@ -10,6 +10,16 @@ namespace Xaria
     /// </summary>
     public abstract class Projectile : GameElement//can be an inherited class for different types of projectiles
     {
+        public enum Type
+        {
+            Laser,
+            Rocket,
+            Beam,
+            Emp,
+            Pellet,
+        }
+
+        protected Type ProjectileType {get; set;}
         /// <summary>
         /// Gets the damage.
         /// </summary>

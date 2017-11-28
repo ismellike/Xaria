@@ -14,8 +14,8 @@ namespace Xaria
     {   
         public int ExtraLives { get; private set; }
         public int Health { get; private set; }
-        private List<Weapon> Weapons = new List<Weapon>() { new Weapon(typeof(Laser), 1, true), new Weapon(typeof(Rocket), 20), new Weapon(typeof(Beam), 20,immovable: true) };
-        private Weapon weapon = new Weapon(typeof(Laser), 1, true);
+        private List<Weapon> Weapons = new List<Weapon>() { new Weapon(Projectile.Type.Laser, 1, true), new Weapon(Projectile.Type.Rocket, 20), new Weapon(Projectile.Type.Beam, 20,immovable: true) };
+        private Weapon weapon = new Weapon(Projectile.Type.Laser, 1, true);
         private List<Projectile> Projectiles = new List<Projectile>();
         public const int STARTING_HEALTH = 100;
         public int Shield { get; private set; }
@@ -119,7 +119,7 @@ namespace Xaria
             Weapon prevWeapon = weapon;
             for(int i = 0; i < Weapons.Count; i++)
             {
-                if(Weapons[i].ProjectileType == weapon.ProjectileType)
+                if(Weapons[i].ProjectileType.GetType() == weapon.ProjectileType.GetType())
                 {
                     if (i + 1 >= Weapons.Count)
                     {
@@ -151,7 +151,7 @@ namespace Xaria
             {
                 projectile.Draw(ref spriteBatch);
             }
-            spriteBatch.DrawString(Game1.font, weapon.ProjectileType.Name + ": " + weapon.Ammo.ToString(), new Vector2(Position.X, Position.Y + Texture.Height + 2f), Color.White);
+            spriteBatch.DrawString(Game1.font, weapon.ProjectileType.GetType().Name + ": " + weapon.Ammo.ToString(), new Vector2(Position.X, Position.Y + Texture.Height + 2f), Color.White);
         }
 
         internal void Reset()
@@ -170,19 +170,20 @@ namespace Xaria
             {
                 SwitchWeapon();
             }
+
             if (!weapon.Infinite)
                 weapon.DecreaseAmmo();
-            if (weapon.ProjectileType == typeof(Laser))
-            {
+
+            switch (weapon.ProjectileType) {
+                case Projectile.Type.Laser:
                 Projectiles.Add(new Laser(Position + new Vector2(Texture.Width / 2f - 1f, -5f), new Vector2(0, -30), Laser.DEFAULT_DMG)); //moving up
-            }
-            else if (weapon.ProjectileType == typeof(Rocket))
-            {
-                Projectiles.Add(new Rocket(Position + new Vector2(Texture.Width / 2f - 1f, -5f), new Vector2(0, -30), Rocket.DEFAULT_DMG)); //moving up
-            }
-            else if(weapon.ProjectileType == typeof(Beam))
-            {
-                Projectiles.Add(new Beam(Position + new Vector2(Texture.Width / 2f - 1f, -5f), new Vector2(0, -50), Beam.DEFAULT_DMG));
+                    break;
+                case Projectile.Type.Rocket:
+                    Projectiles.Add(new Rocket(Position + new Vector2(Texture.Width / 2f - 1f, -5f), new Vector2(0, -30), Rocket.DEFAULT_DMG)); //moving up
+                    break;
+                case Projectile.Type.Beam:
+                    Projectiles.Add(new Beam(Position + new Vector2(Texture.Width / 2f - 1f, -5f), new Vector2(0, -50), Beam.DEFAULT_DMG));
+                    break;
             }
         }
 
@@ -223,13 +224,13 @@ namespace Xaria
                 if (ExtraLives >= 1)
                 {
                     ExtraLives--;
-                    Health = 100;
+                    Health = STARTING_HEALTH;
                 }
             }
         }
 
 
-        internal void IncreaseAmmo(Type projectileType, int ammo, bool immovable = false)
+        internal void IncreaseAmmo(Projectile.Type projectileType, int ammo, bool immovable = false)
         {
             for (int i = 0; i < Weapons.Count; i++)
             {

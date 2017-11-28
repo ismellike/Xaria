@@ -23,6 +23,7 @@ namespace Xaria.Projectiles
             Velocity = velocity;
             Texture = Game1.textureDictionary["rocket"];
             Damage = damage;
+            ProjectileType = Type.Rocket;
         }
 
         public override void OnCollision(ref List<List<Enemy>> Enemies, int y, int x)

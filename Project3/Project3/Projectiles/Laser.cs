@@ -23,6 +23,7 @@ namespace Xaria.Projectiles
             Velocity = velocity;
             Texture = Game1.textureDictionary["laser"];
             Damage = damage;
+            ProjectileType = Type.Laser;
         }
 
         public override void DrawFromEnemy(ref SpriteBatch spriteBatch)

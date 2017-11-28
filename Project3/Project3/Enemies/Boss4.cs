@@ -6,7 +6,7 @@ using Xaria.Drops;
 
 namespace Xaria.Enemies
 {
-    class Boss4 : Enemy
+    class Boss4 : Boss
     {
         private double NextShoot2;
         private double NextShoot3;
@@ -17,8 +17,9 @@ namespace Xaria.Enemies
             Health = 10000;
             Position = position;
             Texture = Game1.textureDictionary["boss4"];//texture changes
+            EnemyType = Enemy.Type.Boss;
+            BossType = Type.Boss4;
         }
-
 
         public override void Shoot(GameTime gameTime, ref List<Projectile> Projectiles)
         {
@@ -67,12 +68,33 @@ namespace Xaria.Enemies
 
         public override void UpdateMovement(Level level, GameTime gameTime)
         {
-            throw new System.NotImplementedException();
+            if (level.movingRight)
+            {
+                Position.X += 1;
+                if (Position.X + Texture.Width >= Game1.screenSize.X)
+                {
+                    level.movingRight = !level.movingRight;
+                    level.MoveDown();
+                }
+            }
+            else
+            {
+                Position.X -= 1;
+                if (Position.X <= 0)
+                {
+                    level.movingRight = !level.movingRight;
+                    level.MoveDown();
+                }
+            }
         }
 
         internal override void OnDeath(ref List<Drop> drops)
         {
-            throw new System.NotImplementedException();
+            drops.Add(new Life(Position + new Vector2(Texture.Width / 2f, Texture.Height + 5f)));
+            if (Level.random.Next(2) == 1) //1/2 chance to drop
+            {
+                drops.Add(new BeamAmmo(Position + new Vector2(Texture.Width / 2f, Texture.Height + 5f), 5));
+            }
         }
     }
 }

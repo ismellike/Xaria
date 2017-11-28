@@ -27,7 +27,7 @@ namespace Xaria.Drops
 
         public override void OnReceive(ref Player player)
         {
-            player.IncreaseAmmo(typeof(Beam), amount);
+            player.IncreaseAmmo(Projectile.Type.Beam, amount);
         }
 
         public override string ToString()
