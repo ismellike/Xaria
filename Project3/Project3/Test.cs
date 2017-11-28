@@ -17,36 +17,24 @@ namespace Xaria
 {
     class Test
     {
-        enum State
-        {
-            Levels,
-            Projectiles,
-            Input
-        }
         private  Level level = new Level(1);
         private int difficulty = 1;
-        private string Display = "Testing Level Generation for Level 1";
-        State state = State.Levels;
+        StringBuilder testContent = new StringBuilder();
+        bool runTests = true;
 
         public void Update(GameTime gameTime, TouchCollection touchCollection)
         {
-            switch (state)
+            if (runTests)
             {
-                case State.Levels:
-                    CheckLevels(touchCollection);
-                    break;
-                case State.Projectiles:
-                    CheckProjectiles(touchCollection);
-                    break;
-                case State.Input:
-                    CheckInput(touchCollection);
-                    break;
+                RunTests();
+                runTests = false;
             }
-            level.Update(gameTime, new TouchLocation[0], 0f);
+                    CheckLevels(touchCollection);
         }
 
-        private void CheckInput(TouchCollection touchCollection)
+        private void RunTests()
         {
+            //testContent.AppendLine("info");
         }
 
         bool ShouldTest(TouchCollection touchCollection)
@@ -59,52 +47,24 @@ namespace Xaria
             return false;
         }
 
-        private void CheckProjectiles(TouchCollection touchCollection)
-        {
-            if (ShouldTest(touchCollection))
-            {
-                switch (level.player.weapon.ProjectileType)
-                {
-                    case Projectile.Type.Laser:
-                        level.player.Shoot();
-                        level.player.IncreaseAmmo(Projectile.Type.Beam, 1, true);
-                        level.player.SwitchWeapon();
-                        break;
-                    case Projectile.Type.Beam:
-                        level.player.Shoot();
-                        level.player.IncreaseAmmo(Projectile.Type.Rocket, 1);
-                        level.player.SwitchWeapon();
-                        break;
-                    case Projectile.Type.Rocket:
-                        level.player.Shoot();
-                        state = State.Input;
-                        break;
-                }
-                Display = "Testing shooting " + level.player.weapon.ProjectileType.ToString() + " projectile.";
-            }
-        }
-
         private void CheckLevels(TouchCollection touchCollection)
         {
             if(ShouldTest(touchCollection))
             {
                 if(difficulty >= Level.FINAL_LEVEL)
                 {
-                    state = State.Projectiles;
                     difficulty = 1;
                     level = new Level(difficulty);
-                    Display = "Level reset. Testing shooting Beam projectile.";
                 }
                 difficulty++;
                 level = new Level(difficulty);
-                Display = "Testing Level Generation for Level: " + difficulty.ToString();
             }
         }
 
         public void Draw(ref SpriteBatch spriteBatch)
         {
             level.Draw(ref spriteBatch);
-            spriteBatch.DrawString(Game1.font, Display, new Vector2(100, 1200), Color.White);
+            spriteBatch.DrawString(Game1.font, testContent, new Vector2(100, 1200), Color.White);
         }
 
         private void Reset()
