@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Input.Touch;
 using System;
 
 namespace Xaria
@@ -35,11 +36,12 @@ namespace Xaria
         /// <returns>
         ///   <c>true</c> if the specified input is clicked; otherwise, <c>false</c>.
         /// </returns>
-        public bool IsClicked(Vector2 input)
+        public bool IsClicked(TouchLocation input)
         {
-            if (Position.X + Texture.Width >= input.X && Position.X - Texture.Width <= input.X
-                && Position.Y + Texture.Height >= input.Y && Position.Y - Texture.Height <= input.Y)
-                return true;
+            if (input.State == TouchLocationState.Released)
+                if (Position.X + Texture.Width >= input.Position.X && Position.X - Texture.Width <= input.Position.X
+                    && Position.Y + Texture.Height >= input.Position.Y && Position.Y - Texture.Height <= input.Position.Y)
+                    return true;
             return false;
         }
 

@@ -14,8 +14,8 @@ namespace Xaria
     {   
         public int ExtraLives { get; private set; }
         public int Health { get; private set; }
-        private List<Weapon> Weapons = new List<Weapon>() { new Weapon(Projectile.Type.Laser, 1, true), new Weapon(Projectile.Type.Rocket, 20), new Weapon(Projectile.Type.Beam, 20,immovable: true) };
-        private Weapon weapon = new Weapon(Projectile.Type.Laser, 1, true);
+        private List<Weapon> Weapons = new List<Weapon>() { new Weapon(Projectile.Type.Laser, 1, true) };
+        internal Weapon weapon = new Weapon(Projectile.Type.Laser, 1, true);
         private List<Projectile> Projectiles = new List<Projectile>();
         public const int STARTING_HEALTH = 100;
         public int Shield { get; private set; }
@@ -88,7 +88,12 @@ namespace Xaria
                         Shoot();
                 }
             }
-            //move their projectiles
+
+            UpdateProjectiles(ref Enemies);
+        }
+
+        private void UpdateProjectiles(ref List<List<Enemy>> Enemies)
+        {
             for (int projectileIndex = Projectiles.Count - 1; projectileIndex >= 0; projectileIndex--)
             {
                 Projectile projectile = Projectiles[projectileIndex];
@@ -105,7 +110,7 @@ namespace Xaria
                         if (Enemies[y][x].IsHit(projectile))
                         {
                             projectile.OnCollision(ref Enemies, y, x);
-                            if(!projectile.IsImmovable())
+                            if (!projectile.IsImmovable())
                                 Projectiles.RemoveAt(projectileIndex);
                             goto exit;
                         }
@@ -114,7 +119,7 @@ namespace Xaria
             }
         }
 
-        private void SwitchWeapon()
+        public void SwitchWeapon()
         {
             Weapon prevWeapon = weapon;
             for(int i = 0; i < Weapons.Count; i++)
@@ -154,23 +159,12 @@ namespace Xaria
             spriteBatch.DrawString(Game1.font, weapon.ProjectileType.ToString() + ": " + weapon.Ammo.ToString(), new Vector2(Position.X, Position.Y + Texture.Height + 2f), Color.White);
         }
 
-        internal void Reset()
-        {
-            Projectiles.Clear();
-            Health = STARTING_HEALTH;
-        }
-
         /// <summary>
         /// Shoots a projectile after a given time.
         /// </summary>
         /// <param name="gameTime">The game time.</param>
         internal void Shoot()
         {
-            if (weapon.Ammo <= 0)
-            {
-                SwitchWeapon();
-            }
-
             if (!weapon.Infinite)
                 weapon.DecreaseAmmo();
 
@@ -185,6 +179,8 @@ namespace Xaria
                     Projectiles.Add(new Beam(Position + new Vector2(Texture.Width / 2f - 1f, -5f), new Vector2(0, -50), Beam.DEFAULT_DMG));
                     break;
             }
+            if (weapon.Ammo <= 0)
+                SwitchWeapon();
         }
 
         public bool Intersects(GameElement shot)

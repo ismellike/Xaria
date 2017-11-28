@@ -30,12 +30,11 @@ namespace Xaria
         /// <param name="touch">The touch.</param>
         internal void Update(TouchLocation[] touches, GameWindow window)
         {
-
-            if (touches.Length > 0)
+            foreach (TouchLocation touch in touches)
             {
                 Buttons.ForEach((Button button) =>
                 {
-                    if (button.IsClicked(touches[0].Position))
+                    if (button.IsClicked(touch))
                     {
                         button.Click();
                     }

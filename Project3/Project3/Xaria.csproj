@@ -112,6 +112,7 @@
     <Compile Include="Enemies\Advanced..cs" />
     <Compile Include="Enemies\Boss.cs" />
     <Compile Include="Enemies\Intermediate.cs" />
+    <Compile Include="Test.cs" />
     <Compile Include="Weapon.cs" />
     <Compile Include="Enemies\Basic.cs" />
     <Compile Include="Enemies\Boss1.cs" />

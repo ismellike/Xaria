@@ -79,14 +79,14 @@ namespace Xaria
         internal static SpriteFont font;
         internal static SpriteFont largeFont;
 
-        Test test;
         //game variables
+        Test test;
         /// <summary>
         /// The level
         /// </summary>
         internal static Level level;
         #endregion
-        public const int STARTING_LEVEL = 16;
+        public const int STARTING_LEVEL = 1;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="Game1"/> class.
@@ -151,7 +151,7 @@ namespace Xaria
             largeFont = Content.Load<SpriteFont>("largeFont");
 
             level = new Level(STARTING_LEVEL);
-            test = new Test(level);
+            test = new Test();
             background = new Background();
         }
 
@@ -190,7 +190,7 @@ namespace Xaria
                         endScreen.Update(touches, Window);
                     break;
                 case GameState.Testing:
-                    //test.Update(gameTime);
+                    test.Update(touchCollection);
                     break;
                 }
         }
@@ -219,7 +219,7 @@ namespace Xaria
                     endScreen.Draw(ref spriteBatch);
                     break;
                 case GameState.Testing:
-                    test.Draw(ref spriteBatch);
+                   test.Draw(ref spriteBatch);
                     break;
             }
 
