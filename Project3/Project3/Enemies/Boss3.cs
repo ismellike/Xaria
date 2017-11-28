@@ -22,6 +22,7 @@ namespace Xaria.Enemies
             Health = HEALTH;
             Position = position;
             Texture = Game1.textureDictionary["boss3"];//texture changes
+            NextShoot2 = Level.random.Next(FIRST2, NEXT2);
             EnemyType = Enemy.Type.Boss;
             BossType = Type.Boss3;
         }

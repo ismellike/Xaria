@@ -71,5 +71,10 @@ namespace Xaria
         {
             return Health <= 0;
         }
+
+        public bool IsBoss()
+        {
+            return EnemyType == Type.Boss;
+        }
     }
 }

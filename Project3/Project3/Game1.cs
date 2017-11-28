@@ -190,7 +190,7 @@ namespace Xaria
                         endScreen.Update(touches, Window);
                     break;
                 case GameState.Testing:
-                    test.Update(touchCollection);
+                    test.Update(gameTime, touchCollection);
                     break;
                 }
         }

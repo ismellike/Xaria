@@ -200,6 +200,8 @@ namespace Xaria
 
         public void Damage(int damage)
         {
+            if (Game1.state == GameState.Testing)
+                return;
             if(Shield > 0)
             {
                 if (Shield < damage)

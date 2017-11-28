@@ -286,9 +286,9 @@ namespace Xaria
             foreach (List<Enemy> row in Enemies)
                 foreach (Enemy enemy in row)
                 {
-                    if (enemy is Basic || enemy is Intermediate)
+                    if (!enemy.IsBoss())
                     {
-                        enemy.Position.Y += (enemy.Texture.Height + spacing.Y);
+                        enemy.Position.Y += (3*spacing.Y);
                         if (enemy.Position.Y >= Game1.screenSize.Y - Game1.textureDictionary["ship"].Height - 5)
                         {
                             GameOver();

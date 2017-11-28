@@ -28,7 +28,7 @@ namespace Xaria
         private string Display = "Testing Level Generation for Level 1";
         State state = State.Levels;
 
-        public void Update(TouchCollection touchCollection)
+        public void Update(GameTime gameTime, TouchCollection touchCollection)
         {
             switch (state)
             {
@@ -42,6 +42,7 @@ namespace Xaria
                     CheckInput(touchCollection);
                     break;
             }
+            level.Update(gameTime, new TouchLocation[0], 0f);
         }
 
         private void CheckInput(TouchCollection touchCollection)
@@ -66,17 +67,17 @@ namespace Xaria
                 {
                     case Projectile.Type.Laser:
                         level.player.Shoot();
-                        state = State.Input;
+                        level.player.IncreaseAmmo(Projectile.Type.Beam, 1, true);
+                        level.player.SwitchWeapon();
                         break;
                     case Projectile.Type.Beam:
-                        level.player.IncreaseAmmo(Projectile.Type.Rocket, 1);
                         level.player.Shoot();
+                        level.player.IncreaseAmmo(Projectile.Type.Rocket, 1);
                         level.player.SwitchWeapon();
                         break;
                     case Projectile.Type.Rocket:
-                        level.player.IncreaseAmmo(Projectile.Type.Laser, 1, true);
                         level.player.Shoot();
-                        level.player.SwitchWeapon();
+                        state = State.Input;
                         break;
                 }
                 Display = "Testing shooting " + level.player.weapon.ProjectileType.ToString() + " projectile.";
@@ -92,7 +93,7 @@ namespace Xaria
                     state = State.Projectiles;
                     difficulty = 1;
                     level = new Level(difficulty);
-                    Display = "Testing shooting Beam projectile";
+                    Display = "Level reset. Testing shooting Beam projectile.";
                 }
                 difficulty++;
                 level = new Level(difficulty);
@@ -103,7 +104,7 @@ namespace Xaria
         public void Draw(ref SpriteBatch spriteBatch)
         {
             level.Draw(ref spriteBatch);
-            spriteBatch.DrawString(Game1.font, Display, new Vector2(100, 700), Color.White);
+            spriteBatch.DrawString(Game1.font, Display, new Vector2(100, 1200), Color.White);
         }
 
         private void Reset()
