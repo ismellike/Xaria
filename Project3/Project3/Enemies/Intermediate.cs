@@ -15,18 +15,31 @@ using Xaria.Projectiles;
 
 namespace Xaria.Enemies
 {
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <seealso cref="Xaria.Enemy" />
     class Intermediate : Enemy
     {
         /// <summary>
         /// The health
         /// </summary>
         const int HEALTH = 200;
+        /// <summary>
+        /// The first
+        /// </summary>
         const int FIRST = 2000;
+        /// <summary>
+        /// The next
+        /// </summary>
         const int NEXT = 12000;
+        /// <summary>
+        /// The rocket DMG
+        /// </summary>
         const int ROCKET_DMG = 20;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="Basic"/> class.
+        /// Initializes a new instance of the <see cref="Basic" /> class.
         /// </summary>
         /// <param name="position">The position.</param>
         public Intermediate(Vector2 position)
@@ -52,6 +65,10 @@ namespace Xaria.Enemies
             }
         }
 
+        /// <summary>
+        /// Called when [death].
+        /// </summary>
+        /// <param name="drops">The drops.</param>
         internal override void OnDeath(ref List<Drop> drops)
         {
             if (Level.random.Next(20) == 1) // 1/x chance of giving drop
@@ -60,6 +77,11 @@ namespace Xaria.Enemies
             }
         }
 
+        /// <summary>
+        /// Updates the movement.
+        /// </summary>
+        /// <param name="level">The level.</param>
+        /// <param name="gameTime">The game time.</param>
         public override void UpdateMovement(Level level, GameTime gameTime = null)
         {
             if (level.movingRight)

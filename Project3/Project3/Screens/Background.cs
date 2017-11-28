@@ -27,7 +27,6 @@ namespace Xaria.Screens
         /// <summary>
         /// Initializes a new instance of the <see cref="Background" /> class.
         /// </summary>
-        /// <param name="seed">The seed.</param>
         public Background()
         {
             random = new Random();
