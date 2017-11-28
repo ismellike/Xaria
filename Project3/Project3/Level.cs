@@ -14,6 +14,9 @@ namespace Xaria
     /// </summary>
     public class Level
     {
+        /// <summary>
+        /// The player
+        /// </summary>
         internal Player player;
         /// <summary>
         /// Gets the difficulty.
@@ -23,7 +26,13 @@ namespace Xaria
         /// </value>
         public static int Difficulty { get; private set; }
 
+        /// <summary>
+        /// The boss level
+        /// </summary>
         public const int BOSS_LEVEL = 4;
+        /// <summary>
+        /// The final level
+        /// </summary>
         public const int FINAL_LEVEL = 16;
         /// <summary>
         /// The enemies
@@ -38,6 +47,9 @@ namespace Xaria
         /// </summary>
         internal List<Projectile> Projectiles = new List<Projectile>();
 
+        /// <summary>
+        /// The drops
+        /// </summary>
         internal List<Drop> Drops = new List<Drop>();
         /// <summary>
         /// Bool for enemy movements to right or left
@@ -107,6 +119,12 @@ namespace Xaria
             }
         }
 
+        /// <summary>
+        /// Gets the enemy types.
+        /// </summary>
+        /// <param name="prevLevel">The previous level.</param>
+        /// <param name="difficulty">The difficulty.</param>
+        /// <returns></returns>
         private List<Enemy.Type> GetEnemyTypes(List<Enemy.Type> prevLevel = null, int difficulty = 1)
         {
             if (difficulty % BOSS_LEVEL == 0)
@@ -130,6 +148,10 @@ namespace Xaria
                 return GetEnemyTypes(prevLevel, difficulty + 1);
         }
 
+        /// <summary>
+        /// Adds the boss.
+        /// </summary>
+        /// <param name="bossType">Type of the boss.</param>
         private void AddBoss(Boss.Type bossType)
         {
             Enemy prevEnemy = Enemies.Count > 0 ? Enemies[Enemies.Count - 1][0] : null;
@@ -153,6 +175,10 @@ namespace Xaria
             }
         }
 
+        /// <summary>
+        /// Adds the row of enemy.
+        /// </summary>
+        /// <param name="enemyType">Type of the enemy.</param>
         private void AddRowOfEnemy(Enemy.Type enemyType)
         {
             Enemy prevEnemy = Enemies.Count > 0 ? Enemies[Enemies.Count - 1][0] : null;
@@ -183,6 +209,12 @@ namespace Xaria
          * @Post: The current level the player is playing is updated. This includes: Player movement, projectiles, drops. Enemy movement and projectiles as well.
          * @Return: None
          */
+        /// <summary>
+        /// Updates the specified game time.
+        /// </summary>
+        /// <param name="gameTime">The game time.</param>
+        /// <param name="touches">The touches.</param>
+        /// <param name="roll">The roll.</param>
         internal void Update(GameTime gameTime, TouchLocation[] touches, float roll)
         {
             player.Update(gameTime, touches, roll, ref Enemies);
@@ -193,6 +225,9 @@ namespace Xaria
                 GameOver();
         }
 
+        /// <summary>
+        /// Updates the drops.
+        /// </summary>
         private void UpdateDrops()
         {
             for (int dropIndex = Drops.Count - 1; dropIndex >= 0; dropIndex--)
@@ -206,6 +241,10 @@ namespace Xaria
             }
         }
 
+        /// <summary>
+        /// Updates the enemies.
+        /// </summary>
+        /// <param name="gameTime">The game time.</param>
         private void UpdateEnemies(GameTime gameTime)
         {
             if (Enemies.Count == 0)
@@ -233,6 +272,9 @@ namespace Xaria
             }
         }
 
+        /// <summary>
+        /// Updates the enemy projectiles.
+        /// </summary>
         private void UpdateEnemyProjectiles()
         {
             for (int projectileIndex = Projectiles.Count - 1; projectileIndex >= 0; projectileIndex--)

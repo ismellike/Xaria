@@ -29,12 +29,40 @@ namespace Xaria
                 RunTests();
                 runTests = false;
             }
-                    CheckLevels(touchCollection);
+            CheckLevels(touchCollection);
         }
 
         private void RunTests()
         {
+            TestPlayerDamage();
+            TestPlayerAddAmmos();
+            TestPlayerSwitchWeapons();
+            TestEnemiesDamage();
             //testContent.AppendLine("info");
+        }
+
+        /// <summary>
+        /// Tests the enemies damage.
+        /// </summary>
+        /// <exception cref="NotImplementedException"></exception>
+        private void TestEnemiesDamage()
+        {
+            throw new NotImplementedException();
+        }
+
+        private void TestPlayerSwitchWeapons()
+        {
+            throw new NotImplementedException();
+        }
+
+        private void TestPlayerAddAmmos()
+        {
+            throw new NotImplementedException();
+        }
+
+        private void TestPlayerDamage()
+        {
+            throw new NotImplementedException();
         }
 
         bool ShouldTest(TouchCollection touchCollection)
