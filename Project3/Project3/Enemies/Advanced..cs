@@ -15,13 +15,33 @@ using Xaria.Projectiles;
 
 namespace Xaria.Enemies
 {
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <seealso cref="Xaria.Enemy" />
     class Advanced : Enemy
     {
+        /// <summary>
+        /// The health
+        /// </summary>
         const int HEALTH = 250;
+        /// <summary>
+        /// The first
+        /// </summary>
         const int FIRST = 1000;
+        /// <summary>
+        /// The next
+        /// </summary>
         const int NEXT = 10000;
+        /// <summary>
+        /// The pellet DMG
+        /// </summary>
         const int PELLET_DMG = 10;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Advanced"/> class.
+        /// </summary>
+        /// <param name="position">The position.</param>
         public Advanced(Vector2 position)
         {
             Health = HEALTH;
@@ -30,6 +50,11 @@ namespace Xaria.Enemies
             Texture = Game1.textureDictionary["advanced"];
         }
 
+        /// <summary>
+        /// Shoots the specified game time.
+        /// </summary>
+        /// <param name="gameTime">The game time.</param>
+        /// <param name="Projectiles">The projectiles.</param>
         public override void Shoot(GameTime gameTime, ref List<Projectile> Projectiles)
         {
             NextShoot -= gameTime.ElapsedGameTime.Milliseconds;
@@ -40,6 +65,11 @@ namespace Xaria.Enemies
             }
         }
 
+        /// <summary>
+        /// Updates the movement.
+        /// </summary>
+        /// <param name="level">The level.</param>
+        /// <param name="gameTime">The game time.</param>
         public override void UpdateMovement(Level level, GameTime gameTime)
         {
             if (level.movingRight)
@@ -62,6 +92,10 @@ namespace Xaria.Enemies
             }
         }
 
+        /// <summary>
+        /// Called when [death].
+        /// </summary>
+        /// <param name="drops">The drops.</param>
         internal override void OnDeath(ref List<Drop> drops)
         {
             if (Level.random.Next(20) == 1) // 1/x chance of giving drop

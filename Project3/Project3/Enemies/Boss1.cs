@@ -5,16 +5,45 @@ using Xaria.Drops;
 
 namespace Xaria.Enemies
 {
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <seealso cref="Xaria.Enemies.Boss" />
     class Boss1 : Boss
     {
+        /// <summary>
+        /// The next teleport
+        /// </summary>
         private const double NEXT_TELEPORT = 4000; //4 seconds
+        /// <summary>
+        /// The shoot
+        /// </summary>
         private const double SHOOT = 1500; //1.5 seconds after teleporting shoot
+        /// <summary>
+        /// The health
+        /// </summary>
         private const int HEALTH = 5000;
+        /// <summary>
+        /// The beam DMG
+        /// </summary>
         const int BEAM_DMG = 100;
+        /// <summary>
+        /// The beam ammo
+        /// </summary>
         const int BEAM_AMMO = 5;
+        /// <summary>
+        /// The countdown
+        /// </summary>
         private double Countdown = NEXT_TELEPORT;
+        /// <summary>
+        /// The can shoot
+        /// </summary>
         private bool CanShoot = false;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Boss1"/> class.
+        /// </summary>
+        /// <param name="position">The position.</param>
         public Boss1(Vector2 position)
         {
             Health = HEALTH;
@@ -26,6 +55,11 @@ namespace Xaria.Enemies
         }
 
 
+        /// <summary>
+        /// Shoots the specified game time.
+        /// </summary>
+        /// <param name="gameTime">The game time.</param>
+        /// <param name="Projectiles">The projectiles.</param>
         public override void Shoot(GameTime gameTime, ref List<Projectile> Projectiles)
         {
             if (CanShoot)
@@ -40,6 +74,10 @@ namespace Xaria.Enemies
             }
         }
 
+        /// <summary>
+        /// Called when [death].
+        /// </summary>
+        /// <param name="drops">The drops.</param>
         internal override void OnDeath(ref List<Drop> drops)
         {
             drops.Add(new Life(Position + new Vector2(Texture.Width / 2f, Texture.Height + 5f)));
@@ -49,6 +87,11 @@ namespace Xaria.Enemies
             }
         }
 
+        /// <summary>
+        /// Updates the movement.
+        /// </summary>
+        /// <param name="level">The level.</param>
+        /// <param name="gameTime">The game time.</param>
         public override void UpdateMovement(Level level, GameTime gameTime)
         {
             Countdown -= gameTime.ElapsedGameTime.Milliseconds;

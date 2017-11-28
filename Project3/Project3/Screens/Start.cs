@@ -31,6 +31,9 @@ namespace Xaria.Screens
             Game1.state = GameState.Playing;
         }
 
+        /// <summary>
+        /// Tests the game.
+        /// </summary>
         void TestGame()
         {
             Game1.state = GameState.Testing;

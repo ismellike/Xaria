@@ -10,19 +10,56 @@ namespace Xaria
     /// <summary>
     /// Our player class
     /// </summary>
+    /// <seealso cref="Xaria.GameElement" />
     public class Player : GameElement
-    {   
+    {
+        /// <summary>
+        /// Gets the extra lives.
+        /// </summary>
+        /// <value>
+        /// The extra lives.
+        /// </value>
         public int ExtraLives { get; private set; }
+        /// <summary>
+        /// Gets the health.
+        /// </summary>
+        /// <value>
+        /// The health.
+        /// </value>
         public int Health { get; private set; }
+        /// <summary>
+        /// The weapons
+        /// </summary>
         private List<Weapon> Weapons = new List<Weapon>() { new Weapon(Projectile.Type.Laser, 1, true) };
+        /// <summary>
+        /// The weapon
+        /// </summary>
         internal Weapon weapon = new Weapon(Projectile.Type.Laser, 1, true);
+        /// <summary>
+        /// The projectiles
+        /// </summary>
         private List<Projectile> Projectiles = new List<Projectile>();
+        /// <summary>
+        /// The starting health
+        /// </summary>
         public const int STARTING_HEALTH = 100;
+        /// <summary>
+        /// Gets the shield.
+        /// </summary>
+        /// <value>
+        /// The shield.
+        /// </value>
         public int Shield { get; private set; }
+        /// <summary>
+        /// Gets the stunned.
+        /// </summary>
+        /// <value>
+        /// The stunned.
+        /// </value>
         public double Stunned { get; private set; }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="Player"/> class.
+        /// Initializes a new instance of the <see cref="Player" /> class.
         /// </summary>
         public Player()
         {
@@ -33,17 +70,28 @@ namespace Xaria
             Stunned = -1;
         }
 
+        /// <summary>
+        /// Adds the stun.
+        /// </summary>
+        /// <param name="StunDuration">Duration of the stun.</param>
         public void AddStun(int StunDuration)
         {
             Stunned += StunDuration;
         }
 
 
+        /// <summary>
+        /// Adds the life.
+        /// </summary>
         public void AddLife()
         {
             ExtraLives++;
         }
 
+        /// <summary>
+        /// Adds the shield.
+        /// </summary>
+        /// <param name="ShieldStrength">The shield strength.</param>
         public void AddShield(int ShieldStrength)
         {
             Shield += ShieldStrength;
@@ -52,7 +100,9 @@ namespace Xaria
         /// <summary>
         /// Updates the specified touch and checks for player projectile collision with enemies.
         /// </summary>
-        /// <param name="touch">The touch.</param>
+        /// <param name="gameTime">The game time.</param>
+        /// <param name="touches">The touches.</param>
+        /// <param name="roll">The roll.</param>
         /// <param name="Enemies">The enemies.</param>
         internal void Update(GameTime gameTime, TouchLocation[] touches, float roll, ref List<List<Enemy>> Enemies)
         {
@@ -92,6 +142,10 @@ namespace Xaria
             UpdateProjectiles(ref Enemies);
         }
 
+        /// <summary>
+        /// Updates the projectiles.
+        /// </summary>
+        /// <param name="Enemies">The enemies.</param>
         private void UpdateProjectiles(ref List<List<Enemy>> Enemies)
         {
             for (int projectileIndex = Projectiles.Count - 1; projectileIndex >= 0; projectileIndex--)
@@ -119,6 +173,9 @@ namespace Xaria
             }
         }
 
+        /// <summary>
+        /// Switches the weapon.
+        /// </summary>
         public void SwitchWeapon()
         {
             Weapon prevWeapon = weapon;
@@ -144,7 +201,8 @@ namespace Xaria
         }
 
         /// <summary>
-        /// Draws the player, projectiles, and health.
+        /// Draws the specified sprite batch.
+        /// </summary>
         /// <param name="spriteBatch">The sprite batch.</param>
         public override void Draw(ref SpriteBatch spriteBatch)
         {
@@ -162,7 +220,6 @@ namespace Xaria
         /// <summary>
         /// Shoots a projectile after a given time.
         /// </summary>
-        /// <param name="gameTime">The game time.</param>
         internal void Shoot()
         {
             if (!weapon.Infinite)
@@ -183,6 +240,11 @@ namespace Xaria
                 SwitchWeapon();
         }
 
+        /// <summary>
+        /// Intersectses the specified shot.
+        /// </summary>
+        /// <param name="shot">The shot.</param>
+        /// <returns></returns>
         public bool Intersects(GameElement shot)
         {
             if (Bounds().Intersects(shot.Bounds()))
@@ -190,6 +252,13 @@ namespace Xaria
             return false;
         }
 
+        /// <summary>
+        /// Determines whether the specified input is clicked.
+        /// </summary>
+        /// <param name="input">The input.</param>
+        /// <returns>
+        ///   <c>true</c> if the specified input is clicked; otherwise, <c>false</c>.
+        /// </returns>
         public bool IsClicked(Vector2 input)
         {
             if (Position.X + Texture.Width >= input.X && Position.X - Texture.Width <= input.X
@@ -198,6 +267,10 @@ namespace Xaria
             return false;
         }
 
+        /// <summary>
+        /// Damages the specified damage.
+        /// </summary>
+        /// <param name="damage">The damage.</param>
         public void Damage(int damage)
         {
             if (Game1.state == GameState.Testing)
@@ -228,6 +301,12 @@ namespace Xaria
         }
 
 
+        /// <summary>
+        /// Increases the ammo.
+        /// </summary>
+        /// <param name="projectileType">Type of the projectile.</param>
+        /// <param name="ammo">The ammo.</param>
+        /// <param name="immovable">if set to <c>true</c> [immovable].</param>
         internal void IncreaseAmmo(Projectile.Type projectileType, int ammo, bool immovable = false)
         {
             for (int i = 0; i < Weapons.Count; i++)

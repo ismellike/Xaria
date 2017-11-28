@@ -6,13 +6,33 @@ using Xaria.Drops;
 
 namespace Xaria.Enemies
 {
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <seealso cref="Xaria.Enemies.Boss" />
     class Boss4 : Boss
     {
+        /// <summary>
+        /// The next shoot2
+        /// </summary>
         private double NextShoot2 = 0;
+        /// <summary>
+        /// The next shoot3
+        /// </summary>
         private double NextShoot3 = 10000;
+        /// <summary>
+        /// The next shoot4
+        /// </summary>
         private double NextShoot4 = 20000;
+        /// <summary>
+        /// The health
+        /// </summary>
         const int HEALTH = 10000;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Boss4"/> class.
+        /// </summary>
+        /// <param name="position">The position.</param>
         public Boss4(Vector2 position)
         {
             Health = HEALTH;
@@ -23,6 +43,11 @@ namespace Xaria.Enemies
             BossType = Type.Boss4;
         }
 
+        /// <summary>
+        /// Shoots the specified game time.
+        /// </summary>
+        /// <param name="gameTime">The game time.</param>
+        /// <param name="Projectiles">The projectiles.</param>
         public override void Shoot(GameTime gameTime, ref List<Projectile> Projectiles)
         {
             NextShoot -= gameTime.ElapsedGameTime.Milliseconds;
@@ -68,6 +93,11 @@ namespace Xaria.Enemies
             }
         }
 
+        /// <summary>
+        /// Updates the movement.
+        /// </summary>
+        /// <param name="level">The level.</param>
+        /// <param name="gameTime">The game time.</param>
         public override void UpdateMovement(Level level, GameTime gameTime)
         {
             if (level.movingRight)
@@ -90,6 +120,10 @@ namespace Xaria.Enemies
             }
         }
 
+        /// <summary>
+        /// Called when [death].
+        /// </summary>
+        /// <param name="drops">The drops.</param>
         internal override void OnDeath(ref List<Drop> drops)
         {
             drops.Add(new Life(Position + new Vector2(Texture.Width / 2f, Texture.Height + 5f)));
