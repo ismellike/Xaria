@@ -59,7 +59,9 @@ namespace Xaria
         public double Stunned { get; private set; }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="Player" /> class.
+        /// @Pre: Game has  started. Player needs to be created.
+        /// @Post: Player is created
+        /// @Return: None
         /// </summary>
         public Player()
         {
@@ -71,7 +73,9 @@ namespace Xaria
         }
 
         /// <summary>
-        /// Adds the stun.
+        /// @Pre: Player is hit by an emp
+        /// @Post: Player cannot move for stun duration
+        /// @Return: None
         /// </summary>
         /// <param name="StunDuration">Duration of the stun.</param>
         public void AddStun(int StunDuration)
@@ -79,9 +83,10 @@ namespace Xaria
             Stunned += StunDuration;
         }
 
-
         /// <summary>
-        /// Adds the life.
+        /// @Pre: Enemy has dropped a bonus life. Player's hitbox intersects bonus life hitbox
+        /// @Post: Player gets an extra life
+        /// @Return: None
         /// </summary>
         public void AddLife()
         {
@@ -89,7 +94,9 @@ namespace Xaria
         }
 
         /// <summary>
-        /// Adds the shield.
+        /// @Pre: Enemy has dropped a shield. Player's hitbox intersects shield hitbox
+        /// @Post: Player gets a shield
+        /// @Return: None
         /// </summary>
         /// <param name="ShieldStrength">The shield strength.</param>
         public void AddShield(int ShieldStrength)
@@ -98,7 +105,9 @@ namespace Xaria
         }
 
         /// <summary>
-        /// Updates the specified touch and checks for player projectile collision with enemies.
+        /// @Pre: Game has been launched. Player is in a game.
+        /// @Post: Player movement and projectiles are update.
+        /// @Return: None
         /// </summary>
         /// <param name="gameTime">The game time.</param>
         /// <param name="touches">The touches.</param>
@@ -106,10 +115,12 @@ namespace Xaria
         /// <param name="Enemies">The enemies.</param>
         internal void Update(GameTime gameTime, TouchLocation[] touches, float roll, ref List<List<Enemy>> Enemies)
         {
+            //player cant move if they are stunned by an emp
             if (Stunned >= 0)
             {
                 Stunned -= gameTime.ElapsedGameTime.Milliseconds;
             }
+            //movement for the player when they tilt their phone
             else if (Math.Abs(roll) > 3)
             {
                 if (Math.Abs(roll) > 3)
@@ -128,6 +139,7 @@ namespace Xaria
                     }
                 }
             }
+            //changes state of projectiles for thep layer if they have touched the ship. If not, then the player fires a projectile
             foreach (TouchLocation touch in touches)
             {
                 if (touch.State == TouchLocationState.Released)
@@ -143,11 +155,14 @@ namespace Xaria
         }
 
         /// <summary>
-        /// Updates the projectiles.
+        /// @Pre: player has fired a projectile
+        /// @Post: Players projectiles are removed if they have collided with an enemy. Players projectiles also move.
+        /// @Return: None.
         /// </summary>
         /// <param name="Enemies">The enemies.</param>
         private void UpdateProjectiles(ref List<List<Enemy>> Enemies)
         {
+            //checks each projectile in the projectile index and updates their movement
             for (int projectileIndex = Projectiles.Count - 1; projectileIndex >= 0; projectileIndex--)
             {
                 Projectile projectile = Projectiles[projectileIndex];
@@ -174,7 +189,9 @@ namespace Xaria
         }
 
         /// <summary>
-        /// Switches the weapon.
+        /// @Pre: Player has grabbed a powerup weapon
+        /// @Post: Switches the weapon for the player
+        /// @Return: None
         /// </summary>
         public void SwitchWeapon()
         {
@@ -201,7 +218,9 @@ namespace Xaria
         }
 
         /// <summary>
-        /// Draws the specified sprite batch.
+        /// @Pre: Game has been initiated
+        /// @Post: Player is drawn
+        /// @Return: None
         /// </summary>
         /// <param name="spriteBatch">The sprite batch.</param>
         public override void Draw(ref SpriteBatch spriteBatch)
@@ -218,7 +237,9 @@ namespace Xaria
         }
 
         /// <summary>
-        /// Shoots a projectile after a given time.
+        /// @Pre: player has touched the screen
+        /// @Post: a projectile is fired
+        /// @Return: None
         /// </summary>
         internal void Shoot()
         {
@@ -241,7 +262,9 @@ namespace Xaria
         }
 
         /// <summary>
-        /// Intersectses the specified shot.
+        /// @Pre: a comparison is made between projectiles and the player
+        /// @Post: none
+        /// @Return: true if the projectile and player intersect, false otherwise
         /// </summary>
         /// <param name="shot">The shot.</param>
         /// <returns></returns>
@@ -253,7 +276,9 @@ namespace Xaria
         }
 
         /// <summary>
-        /// Determines whether the specified input is clicked.
+        /// @Pre: player touches the screen
+        /// @Post: none
+        /// @Return: true if the position on the screen touched is within the position of the button, false otherwise
         /// </summary>
         /// <param name="input">The input.</param>
         /// <returns>
@@ -268,7 +293,9 @@ namespace Xaria
         }
 
         /// <summary>
-        /// Damages the specified damage.
+        /// @Pre: player has been hit by a projectile
+        /// @Post: player's health is lowered by projectile damage
+        /// @Return: None
         /// </summary>
         /// <param name="damage">The damage.</param>
         public void Damage(int damage)
@@ -302,7 +329,9 @@ namespace Xaria
 
 
         /// <summary>
-        /// Increases the ammo.
+        /// @Pre: player's hitbox has intersected a powerup projectile drop.
+        /// @Post: Players ammo for the weapon is increased
+        /// @Return: None
         /// </summary>
         /// <param name="projectileType">Type of the projectile.</param>
         /// <param name="ammo">The ammo.</param>

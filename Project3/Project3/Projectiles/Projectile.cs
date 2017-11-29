@@ -80,13 +80,17 @@ namespace Xaria
         public abstract void OnCollision(ref Player player);
 
         /// <summary>
-        /// Draws from enemy.
+        /// @Pre: RNG is a success for creating an enemy projectile
+        /// @Post: A projectile is created below the enemy
+        /// @Return: None
         /// </summary>
         /// <param name="spriteBatch">The sprite batch.</param>
         public abstract void DrawFromEnemy(ref SpriteBatch spriteBatch);
 
         /// <summary>
-        /// Moves this instance.
+        /// @Pre: A level is being played. The specified projectile has been fired.
+        /// @Post: Projectile moves downwards at the rate of its velocity
+        /// @Return: None
         /// </summary>
         public virtual void Move()
         {
@@ -94,7 +98,9 @@ namespace Xaria
         }
 
         /// <summary>
-        /// Determines whether this instance is immovable.
+        /// @Pre: Projectile is not needed to be removed (mainly beam)
+        /// @Post: None.
+        /// @Return: True if the projectile is not to be removed when intersecting an enemy or player, false otherwise
         /// </summary>
         /// <returns>
         ///   <c>true</c> if this instance is immovable; otherwise, <c>false</c>.

@@ -38,10 +38,6 @@ namespace Xaria.Projectiles
             Draw(ref spriteBatch, Color.Red);
         }
 
-        /* @Pre: laser projectile overlaps enemy sprite
-         * @Post: Enemy's health is reduced by lasers damage
-         * @Return: None
-         */
         /// <summary>
         /// Called when [collision].
         /// </summary>
@@ -53,10 +49,6 @@ namespace Xaria.Projectiles
             Enemies[y][x].Damage(Damage);
         }
 
-        /* @Pre: laser projectile overlaps player sprite
-         * @Post: players health is reduced by the amount of damage the pellet does
-         * @Return: None
-         */
         /// <summary>
         /// Called when [collision].
         /// </summary>
