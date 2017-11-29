@@ -25,12 +25,10 @@ namespace Xaria.Projectiles
             ProjectileType = Type.Pellet;
         }
 
-        /* @Pre: pellet projectile overlaps player sprite
-         * @Post: players health is reduced by the amount of damage the pellet does
-         * @Return: None
-         */
         /// <summary>
-        /// Called when [collision].
+        /// @Pre: pellet projectile overlaps enemy sprite
+        /// @Post: Enemy's health is reduced by laser's damage amount
+        /// @Return: None
         /// </summary>
         /// <param name="player">The player.</param>
         public override void OnCollision(ref Player player)

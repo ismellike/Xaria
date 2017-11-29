@@ -57,14 +57,13 @@ namespace Xaria
         /// The next shoot.
         /// </value>
         protected double NextShoot { get; set; }
+
         /// <summary>
-        /// Gets the next shoot.
+        /// @Pre: Enemy is needed to be drawn for the current level being generated
+        /// @Post: Enemy is drawn
+        /// @Return: None.
         /// </summary>
         /// <param name="spriteBatch">The sprite batch.</param>
-        /// <value>
-        /// The next shoot.
-        /// </value>
-
         public override void Draw(ref SpriteBatch spriteBatch)
         {
             spriteBatch.DrawString(Game1.font, Health.ToString(), Position + new Vector2(10, -25), Color.Red);
@@ -72,7 +71,9 @@ namespace Xaria
         }
 
         /// <summary>
-        /// Shoots the specified game time.
+        /// @Pre: RNG is a success for the enemy to shoot
+        /// @Post: A projectile is shot if the enemy's fire rate is not on cooldown
+        /// @Return: None
         /// </summary>
         /// <param name="gameTime">The game time.</param>
         /// <param name="Projectiles">The projectiles.</param>
@@ -85,7 +86,9 @@ namespace Xaria
 
         //returns true if hit so the projectile can be deleted
         /// <summary>
-        /// Determines whether the specified shot is hit.
+        /// @Pre: Projectile has been shot at the enemy. Enemy's hitbox intersects the player's projectile
+        /// @Post: None.
+        /// @Return: True if the projectile bounds intersect the enemy, false otherwise
         /// </summary>
         /// <param name="shot">The shot.</param>
         /// <returns>
@@ -99,20 +102,26 @@ namespace Xaria
         }
 
         /// <summary>
-        /// Updates the movement.
+        /// @Pre: Update is being called on the current level.
+        /// @Post: Enemy's move the way they need to go.
+        /// @Return: None.
         /// </summary>
         /// <param name="level">The level.</param>
         /// <param name="gameTime">The game time.</param>
         public abstract void UpdateMovement(Level level, GameTime gameTime);
 
         /// <summary>
-        /// Called when [death].
+        /// @Pre: Enemy health is less than 0
+        /// @Post: Enemy may drop a powerup
+        /// @Return: None
         /// </summary>
         /// <param name="drops">The drops.</param>
         internal abstract void OnDeath(ref List<Drop> drops);
 
         /// <summary>
-        /// Damages the specified damage.
+        /// @Pre: Enemy hitbox intersects a player projectile's hitbox
+        /// @Post: Damage is done to the enemy
+        /// @Return: None
         /// </summary>
         /// <param name="damage">The damage.</param>
         public void Damage(int damage)
@@ -121,7 +130,9 @@ namespace Xaria
         }
 
         /// <summary>
-        /// Determines whether this instance is dead.
+        /// @Pre: Update is being called. Need to check if the enemy has died
+        /// @Post: None
+        /// @Return: true if the enemy health is less than or equal to 0, false otherwise
         /// </summary>
         /// <returns>
         ///   <c>true</c> if this instance is dead; otherwise, <c>false</c>.
@@ -132,7 +143,9 @@ namespace Xaria
         }
 
         /// <summary>
-        /// Determines whether this instance is boss.
+        /// @Pre: Update is being called. Need to check if the enemy type is a boss
+        /// @Post: None.
+        /// @Return: True if the enemyType is boss, false otherwise
         /// </summary>
         /// <returns>
         ///   <c>true</c> if this instance is boss; otherwise, <c>false</c>.

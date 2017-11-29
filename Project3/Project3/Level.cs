@@ -77,18 +77,21 @@ namespace Xaria
         }
 
         /// <summary>
-        /// Generates the level.
+        /// @Pre: Either the game has just started, or a level was just beaten. Difficulty level is needed.
+        /// @Post: The current level the player needs to go through is generated
+        /// @Return: None.
         /// </summary>
-        /// <param name="difficulty">The difficulty.</param>
+        /// <param name="difficulty">The difficulty of the level.</param>
         private void GenerateLevel(int difficulty)
         {
             Enemies.Clear();
+            //ends the game
             if (difficulty > FINAL_LEVEL)
             {
                 GameOver();
                 return;
             }
-
+            //adds a boss every 4 levels
             if (difficulty % BOSS_LEVEL == 0)
             {
                 switch (difficulty / BOSS_LEVEL)
@@ -120,7 +123,9 @@ namespace Xaria
         }
 
         /// <summary>
-        /// Gets the enemy types.
+        /// @Pre: Requires level difficulty. A new level is needed to be generated.
+        /// @Post: The previous level's row types for the enemy rows is found
+        /// @Return: enemy list for the current level
         /// </summary>
         /// <param name="prevLevel">The previous level.</param>
         /// <param name="difficulty">The difficulty.</param>
@@ -148,10 +153,16 @@ namespace Xaria
                 return GetEnemyTypes(prevLevel, difficulty + 1);
         }
 
+<<<<<<< HEAD
+
+=======
         /// <summary>
-        /// Adds the boss.
+        /// @Pre: Level 3, 7, 11, or 15 has been completed. A boss is needed for the next level and is generated.
+        /// @Post: Boss is generated
+        /// @Return: None
         /// </summary>
         /// <param name="bossType">Type of the boss.</param>
+>>>>>>> 67e56694492c07fa3a016b42fc389f8efc8adda4
         private void AddBoss(Boss.Type bossType)
         {
             Enemy prevEnemy = Enemies.Count > 0 ? Enemies[Enemies.Count - 1][0] : null;
@@ -175,10 +186,16 @@ namespace Xaria
             }
         }
 
+<<<<<<< HEAD
+
+=======
         /// <summary>
-        /// Adds the row of enemy.
+        /// @Pre: A row of enemies is needed for the next level
+        /// @Post: A level of enemies (basic, intermediate, or advanced) is added to the enemy list
+        /// @Return: None.
         /// </summary>
         /// <param name="enemyType">Type of the enemy.</param>
+>>>>>>> 67e56694492c07fa3a016b42fc389f8efc8adda4
         private void AddRowOfEnemy(Enemy.Type enemyType)
         {
             Enemy prevEnemy = Enemies.Count > 0 ? Enemies[Enemies.Count - 1][0] : null;
@@ -205,6 +222,16 @@ namespace Xaria
             }
         }
 
+<<<<<<< HEAD
+        /// <summary>
+        /// <param name="gameTime"></param>
+        /// <param name="touches"></param>
+        /// <param name="roll"></param>
+        /// @Pre: Player has started the game.
+        /// @Post: The current level the player is playing is updated. This includes: Player movement, projectiles, drops. Enemy movement and projectiles as well.
+        /// @Return: None
+        /// </summary>
+=======
         /* @Pre: Player has started the game.
          * @Post: The current level the player is playing is updated. This includes: Player movement, projectiles, drops. Enemy movement and projectiles as well.
          * @Return: None
@@ -215,6 +242,7 @@ namespace Xaria
         /// <param name="gameTime">The game time.</param>
         /// <param name="touches">The touches.</param>
         /// <param name="roll">The roll.</param>
+>>>>>>> 67e56694492c07fa3a016b42fc389f8efc8adda4
         internal void Update(GameTime gameTime, TouchLocation[] touches, float roll)
         {
             player.Update(gameTime, touches, roll, ref Enemies);
@@ -224,12 +252,20 @@ namespace Xaria
             if (player.Health <= 0)
                 GameOver();
         }
+<<<<<<< HEAD
+        /// <summary>
+        /// @Pre: An enemy has died and powerup drop for the player has been created
+        /// @Post: powerup drop is moved downward until it is off the screen or the player's hitbox intersects the drops hitbox
+        /// @Return: None
+=======
 
         /// <summary>
         /// Updates the drops.
+>>>>>>> 67e56694492c07fa3a016b42fc389f8efc8adda4
         /// </summary>
         private void UpdateDrops()
         {
+            //checks every drop, then checks if the drop intersects the player. If so, the player gains the powerup
             for (int dropIndex = Drops.Count - 1; dropIndex >= 0; dropIndex--)
             {
                 Drops[dropIndex].Position += Drops[dropIndex].Velocity;
@@ -242,9 +278,16 @@ namespace Xaria
         }
 
         /// <summary>
+<<<<<<< HEAD
+        /// @Pre: The list of enemies has been created.
+        /// @Post: All enemy sprites are updated. This means if their health is below 0, they are removed from the list and the game. Calls UpdateMovement and Shoot on all enemies.
+        /// @Return: None
+        /// </summary>
+=======
         /// Updates the enemies.
         /// </summary>
         /// <param name="gameTime">The game time.</param>
+>>>>>>> 67e56694492c07fa3a016b42fc389f8efc8adda4
         private void UpdateEnemies(GameTime gameTime)
         {
             if (Enemies.Count == 0)
@@ -256,13 +299,14 @@ namespace Xaria
                     Enemies.RemoveAt(rowIndex);
                     continue;
                 }
+                //updates every enemies movement and checks if their health is below 0
                 for (int enemyIndex = Enemies[rowIndex].Count - 1; enemyIndex >= 0; enemyIndex--)
                 {
                     Enemy enemy = Enemies[rowIndex][enemyIndex];
                     if (enemy.IsDead())
                     {
-                        Enemies[rowIndex][enemyIndex].OnDeath(ref Drops);
-                        Enemies[rowIndex].RemoveAt(enemyIndex);
+                        Enemies[rowIndex][enemyIndex].OnDeath(ref Drops);//checks if a drop is needed
+                        Enemies[rowIndex].RemoveAt(enemyIndex);//removes enemy from the list
                         continue;
                     }
                     enemy.UpdateMovement(this, gameTime);
@@ -271,15 +315,24 @@ namespace Xaria
                 }
             }
         }
+<<<<<<< HEAD
+        /// <summary>
+        /// @Pre: An enemy has shot a projectile (decided by RNG)
+        /// @Post: All enemy projectiles are moved downward.If it intersects the player, the player loses health.
+        /// @Return: None
+=======
 
         /// <summary>
         /// Updates the enemy projectiles.
+>>>>>>> 67e56694492c07fa3a016b42fc389f8efc8adda4
         /// </summary>
         private void UpdateEnemyProjectiles()
         {
+            //checks every projectile then updates their movement
             for (int projectileIndex = Projectiles.Count - 1; projectileIndex >= 0; projectileIndex--)
             {
                 Projectiles[projectileIndex].Move();
+                //if the projectile intersects the player it is removed and the player is damaged
                 if (player.Intersects(Projectiles[projectileIndex]))
                 {
                     Projectiles[projectileIndex].OnCollision(ref player);
@@ -290,6 +343,9 @@ namespace Xaria
 
         /// <summary>
         /// Goes to the next level.
+        /// @Pre: An enemy has shot a projectile (decided by RNG)
+        /// @Post: All enemy projectiles are moved downward.If it intersects the player, the player loses health.
+        /// @Return: None
         /// </summary>
         private void NextLevel()
         {
@@ -298,11 +354,14 @@ namespace Xaria
         }
 
         /// <summary>
-        /// Draws the Level's enemies and enemy projectiles.
+        /// @Pre: The game has been started or the previous level has ended. The sprites are needed to be drawn.
+        /// @Post: Enemy sprites are drawn to screen
+        /// @Return: None
         /// </summary>
         /// <param name="spriteBatch">The sprite batch.</param>
         internal void Draw(ref SpriteBatch spriteBatch)
         {
+            //draws each enemy and projectile
             player.Draw(ref spriteBatch);
             foreach (List<Enemy> row in Enemies)
                 foreach (Enemy enemy in row)
@@ -321,7 +380,9 @@ namespace Xaria
         }
 
         /// <summary>
-        /// Moves the enemies down.
+        /// @Pre: Enemy sprite's texture has reached the edge of the screen from either moving right or left. If they were moving right, this would mean the sprite(s) all the way on the right has reached the edge of the right side of the screen, and vice versa.
+        /// @Post: All enemies move downward a row.
+        /// @Return: None
         /// </summary>
         internal void MoveDown()
         {
@@ -331,6 +392,7 @@ namespace Xaria
                     if (!enemy.IsBoss())
                     {
                         enemy.Position.Y += (3*spacing.Y);
+                        //if the ships get right above the player, the player loses the game
                         if (enemy.Position.Y >= Game1.screenSize.Y - Game1.textureDictionary["ship"].Height - 5)
                         {
                             GameOver();
@@ -340,7 +402,9 @@ namespace Xaria
         }
 
         /// <summary>
-        /// Ends the game
+        /// @Pre: Player has beaten the final level (level 16) or has lost all of their lives
+        /// @Post: GameState is changed to End
+        /// @Return: None
         /// </summary>
         private void GameOver()
         {
