@@ -22,7 +22,7 @@ namespace Xaria.Screens
         public Pause(ContentManager Content)
         {
             Texture2D startTexture = Content.Load<Texture2D>("Buttons/pause");
-            Buttons.Add(new Button(startTexture, new Vector2(100, 0), PauseGame));
+            Buttons.Add(new Button(startTexture, new Vector2(200, 0), PauseGame));
         }
         void PauseGame()
         {
