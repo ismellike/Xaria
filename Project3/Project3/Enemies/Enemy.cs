@@ -78,6 +78,11 @@ namespace Xaria
         /// <param name="Projectiles">The projectiles.</param>
         public abstract void Shoot(GameTime gameTime, ref List<Projectile> Projectiles); //can be inherited by enemies to shoot projectiles down
 
+        internal int GetHealth()
+        {
+            return Health;
+        }
+
         //returns true if hit so the projectile can be deleted
         /// <summary>
         /// Determines whether the specified shot is hit.

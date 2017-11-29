@@ -30,7 +30,7 @@ namespace Xaria
         /// <summary>
         /// The weapons
         /// </summary>
-        private List<Weapon> Weapons = new List<Weapon>() { new Weapon(Projectile.Type.Laser, 1, true) };
+        internal List<Weapon> Weapons = new List<Weapon>() { new Weapon(Projectile.Type.Laser, 1, true) };
         /// <summary>
         /// The weapon
         /// </summary>
@@ -273,8 +273,6 @@ namespace Xaria
         /// <param name="damage">The damage.</param>
         public void Damage(int damage)
         {
-            if (Game1.state == GameState.Testing)
-                return;
             if(Shield > 0)
             {
                 if (Shield < damage)

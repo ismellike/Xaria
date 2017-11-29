@@ -12,6 +12,7 @@ using Android.Widget;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input.Touch;
+using Xaria.Enemies;
 
 namespace Xaria
 {
@@ -57,9 +58,9 @@ namespace Xaria
         /// </summary>
         private void RunTests()
         {
-            TestPlayerDamage();
-            TestPlayerAddAmmos();
-            TestPlayerSwitchWeapons();
+            Player player = new Player();
+            TestPlayerDamage(ref player);
+            TestPlayeAmmos(ref player);
             TestEnemiesDamage();
             //testContent.AppendLine("info");
         }
@@ -70,34 +71,128 @@ namespace Xaria
         /// <exception cref="NotImplementedException"></exception>
         private void TestEnemiesDamage()
         {
-            throw new NotImplementedException();
-        }
+            const int enemyCount = 7;
+            int damage = 50;
 
-        /// <summary>
-        /// Tests the player switch weapons.
-        /// </summary>
-        /// <exception cref="NotImplementedException"></exception>
-        private void TestPlayerSwitchWeapons()
-        {
-            throw new NotImplementedException();
+            Enemy[] enemy = new Enemy[enemyCount] { new Basic(Vector2.Zero), new Intermediate(Vector2.Zero), new Advanced(Vector2.Zero), new Boss1(Vector2.Zero),
+                new Boss2(Vector2.Zero), new Boss3(Vector2.Zero), new Boss4(Vector2.Zero)};
+            for (int i = 0; i < enemyCount; i++)
+            {
+                int eHealth = enemy[i].GetHealth();
+                enemy[i].Damage(damage);
+                if(eHealth - damage == enemy[i].GetHealth())
+                    testContent.AppendLine("Testing Enemy.Damage(int damage) for "+enemy[i].GetType().Name+" : PASSED");
+                else
+                    testContent.AppendLine("Testing Enemy.Damage(int damage) for " + enemy[i].GetType().Name + " : FAILED");
+            }
         }
 
         /// <summary>
         /// Tests the player add ammos.
         /// </summary>
         /// <exception cref="NotImplementedException"></exception>
-        private void TestPlayerAddAmmos()
+        private void TestPlayeAmmos(ref Player player)
         {
-            throw new NotImplementedException();
+            int rocketAmmo = 0;
+            int beamAmmo = 0; //infinite
+            int ammoToAdd = 5;
+
+            for (int i = 0; i < 3; i++)
+            {
+                switch (player.weapon.ProjectileType)
+                {
+                    case Projectile.Type.Laser:
+                        player.Shoot();
+                        if (player.Weapons[0].Ammo == 1)
+                            testContent.AppendLine("Testing Player.Shoot() w/ Laser : PASSED");
+                        else
+                            testContent.AppendLine("Testing Player.Shoot() w/ Laser : FAILED");
+
+                        player.IncreaseAmmo(Projectile.Type.Rocket, rocketAmmo = ammoToAdd);
+                        if (rocketAmmo == player.Weapons.Find(weapon => weapon.ProjectileType == Projectile.Type.Rocket).Ammo)
+                            testContent.AppendLine("Testing Player.IncreasAmmo(Projectile.Type.Rocket, "+ammoToAdd.ToString()+") : PASSED");
+                        else
+                            testContent.AppendLine("Testing Player.IncreasAmmo(Projectile.Type.Rocket, " + ammoToAdd.ToString() + ") : FAILED");
+
+                        player.SwitchWeapon();
+                        if (player.weapon.ProjectileType == Projectile.Type.Rocket)
+                            testContent.AppendLine("Testing Player.SwitchWeapon() from Laser : PASSED");
+                        else
+                            testContent.AppendLine("Testing Player.SwitchWeapon() from Laser: FAILED");
+
+                        break;
+                    case Projectile.Type.Beam:
+                        player.Shoot();
+                        beamAmmo--;
+                        if (beamAmmo == player.Weapons.Find(weapon => weapon.ProjectileType == Projectile.Type.Beam).Ammo)
+                            testContent.AppendLine("Testing Player.Shoot() w/ Rocket : PASSED");
+                        else
+                            testContent.AppendLine("Testing Player.Shoot() w/ Rocket : FAILED");
+
+                        player.SwitchWeapon();
+                        if (player.weapon.ProjectileType == Projectile.Type.Laser)
+                            testContent.AppendLine("Testing Player.SwitchWeapon() from Beam : PASSED");
+                        else
+                            testContent.AppendLine("Testing Player.SwitchWeapon() from Beam: FAILED");
+                        break;
+                    case Projectile.Type.Rocket:
+                        player.Shoot();
+                        rocketAmmo--;
+                        if (rocketAmmo == player.Weapons.Find(weapon => weapon.ProjectileType == Projectile.Type.Rocket).Ammo)
+                            testContent.AppendLine("Testing Player.Shoot() w/ Rocket : PASSED");
+                        else
+                            testContent.AppendLine("Testing Player.Shoot() w/ Rocket : FAILED");
+
+                        player.IncreaseAmmo(Projectile.Type.Beam, beamAmmo = ammoToAdd);
+                        if (beamAmmo == player.Weapons.Find(type => type.ProjectileType == Projectile.Type.Beam).Ammo)
+                            testContent.AppendLine("Testing Player.IncreasAmmo(Projectile.Type.Beam, " + ammoToAdd.ToString() + ") : PASSED");
+                        else
+                            testContent.AppendLine("Testing Player.IncreasAmmo(Projectile.Type.Beam, " + ammoToAdd.ToString() + ") : FAILED");
+
+                        player.SwitchWeapon();
+                        if (player.weapon.ProjectileType == Projectile.Type.Beam)
+                            testContent.AppendLine("Testing Player.SwitchWeapon() from Rocket : PASSED");
+                        else
+                            testContent.AppendLine("Testing Player.SwitchWeapon() from Rocket: FAILED");
+                        break;
+                }
+            }
         }
 
         /// <summary>
         /// Tests the player damage.
         /// </summary>
         /// <exception cref="NotImplementedException"></exception>
-        private void TestPlayerDamage()
+        private void TestPlayerDamage(ref Player player)
         {
-            throw new NotImplementedException();
+            int pHealth = player.Health;
+            int damage = 50;
+            player.Damage(damage);
+            if (pHealth - damage == player.Health)
+                testContent.AppendLine("Testing Player.Damage(int damage) w/o shield : PASSED");
+            else
+                testContent.AppendLine("Testing Player.Damage(int damage) w/o shield : FAILED");
+
+            TestAddShield(ref player);
+            int shield = player.Shield;
+            damage = 30;
+            player.Damage(damage);
+            if (shield - damage == player.Shield)
+                testContent.AppendLine("Testing Player.Damage(int damage) w/ shield : PASSED");
+            else
+                testContent.AppendLine("Testing Player.Damage(int damage) w/ shield : FAILED");
+        }
+
+        private void TestAddShield(ref Player player)
+        {
+            int shield = player.Shield;
+            int strength = 50;
+            player.AddShield(strength);
+
+            if (shield + strength == player.Shield)
+                testContent.AppendLine("Testing Player.AddShield(int strength) : PASSED");
+            else
+                testContent.AppendLine("Testing Player.AddShield(int strength) : FAILED");
         }
 
         /// <summary>
@@ -123,13 +218,15 @@ namespace Xaria
         {
             if(ShouldTest(touchCollection))
             {
-                if(difficulty >= Level.FINAL_LEVEL)
+                if (difficulty >= Level.FINAL_LEVEL)
                 {
-                    difficulty = 1;
+                    Reset();
+                }
+                else
+                {
+                    difficulty++;
                     level = new Level(difficulty);
                 }
-                difficulty++;
-                level = new Level(difficulty);
             }
         }
 
@@ -143,11 +240,12 @@ namespace Xaria
             spriteBatch.DrawString(Game1.font, testContent, new Vector2(100, 1200), Color.White);
         }
 
-        /// <summary>
-        /// Resets this instance.
-        /// </summary>
-        private void Reset()
+        void Reset()
         {
+            difficulty = 1;
+            level = new Level(difficulty);
+            testContent.Clear();
+            runTests = true;
             Game1.state = GameState.Start;
         }
     }

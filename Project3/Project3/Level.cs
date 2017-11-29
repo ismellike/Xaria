@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using Xaria.Drops;
 using Xaria.Enemies;
 using Xaria.Projectiles;
+using Xaria.Screens;
 
 namespace Xaria
 {
@@ -24,7 +25,7 @@ namespace Xaria
         /// <value>
         /// The difficulty.
         /// </value>
-        public static int Difficulty { get; private set; }
+        public int Difficulty { get; private set; }
 
         /// <summary>
         /// The boss level
@@ -63,7 +64,6 @@ namespace Xaria
         /// A random class for determining enemy shooting
         /// </summary>
         public static Random random = new Random();
-
 
         /// <summary>
         /// Initializes a new instance of the <see cref="Level" /> class.

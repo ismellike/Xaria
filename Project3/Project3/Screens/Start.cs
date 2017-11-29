@@ -18,8 +18,8 @@ namespace Xaria.Screens
         {
             Texture2D startTexture = Content.Load<Texture2D>("Buttons/start");
             Texture2D testTexture = Content.Load<Texture2D>("Buttons/test");
-            Buttons.Add(new Button(startTexture, new Vector2((Game1.screenSize.X - startTexture.Width) / 3f, 2*(Game1.screenSize.Y - startTexture.Height) / 3f), StartGame));
-            Buttons.Add(new Button(testTexture, new Vector2(2*(Game1.screenSize.X - startTexture.Width) / 3f, 2 * (Game1.screenSize.Y - startTexture.Height) / 3f), TestGame));
+            Buttons.Add(new Button(startTexture, new Vector2(Game1.screenSize.X/ 3f - startTexture.Width/2f, 2*Game1.screenSize.Y / 3f - startTexture.Height/2f), StartGame));
+            Buttons.Add(new Button(testTexture, new Vector2(2*Game1.screenSize.X / 3f - startTexture.Width / 2f, 2 * Game1.screenSize.Y / 3f - startTexture.Height / 2f), TestGame));
 
         }
 

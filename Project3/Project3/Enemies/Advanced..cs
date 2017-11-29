@@ -36,7 +36,7 @@ namespace Xaria.Enemies
         /// <summary>
         /// The pellet DMG
         /// </summary>
-        const int PELLET_DMG = 10;
+        const int PELLET_DMG = 30;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="Advanced"/> class.
