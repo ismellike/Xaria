@@ -152,17 +152,12 @@ namespace Xaria
             else
                 return GetEnemyTypes(prevLevel, difficulty + 1);
         }
-
-<<<<<<< HEAD
-
-=======
         /// <summary>
         /// @Pre: Level 3, 7, 11, or 15 has been completed. A boss is needed for the next level and is generated.
         /// @Post: Boss is generated
         /// @Return: None
         /// </summary>
         /// <param name="bossType">Type of the boss.</param>
->>>>>>> 67e56694492c07fa3a016b42fc389f8efc8adda4
         private void AddBoss(Boss.Type bossType)
         {
             Enemy prevEnemy = Enemies.Count > 0 ? Enemies[Enemies.Count - 1][0] : null;
@@ -186,16 +181,12 @@ namespace Xaria
             }
         }
 
-<<<<<<< HEAD
-
-=======
         /// <summary>
         /// @Pre: A row of enemies is needed for the next level
         /// @Post: A level of enemies (basic, intermediate, or advanced) is added to the enemy list
         /// @Return: None.
         /// </summary>
         /// <param name="enemyType">Type of the enemy.</param>
->>>>>>> 67e56694492c07fa3a016b42fc389f8efc8adda4
         private void AddRowOfEnemy(Enemy.Type enemyType)
         {
             Enemy prevEnemy = Enemies.Count > 0 ? Enemies[Enemies.Count - 1][0] : null;
@@ -222,27 +213,14 @@ namespace Xaria
             }
         }
 
-<<<<<<< HEAD
         /// <summary>
-        /// <param name="gameTime"></param>
-        /// <param name="touches"></param>
-        /// <param name="roll"></param>
-        /// @Pre: Player has started the game.
-        /// @Post: The current level the player is playing is updated. This includes: Player movement, projectiles, drops. Enemy movement and projectiles as well.
-        /// @Return: None
-        /// </summary>
-=======
-        /* @Pre: Player has started the game.
-         * @Post: The current level the player is playing is updated. This includes: Player movement, projectiles, drops. Enemy movement and projectiles as well.
-         * @Return: None
-         */
-        /// <summary>
-        /// Updates the specified game time.
+        ///@Pre: Player has started the game.
+        ///@Post: The current level the player is playing is updated.This includes: Player movement, projectiles, drops. Enemy movement and projectiles as well.
+        ///@Return: None
         /// </summary>
         /// <param name="gameTime">The game time.</param>
         /// <param name="touches">The touches.</param>
         /// <param name="roll">The roll.</param>
->>>>>>> 67e56694492c07fa3a016b42fc389f8efc8adda4
         internal void Update(GameTime gameTime, TouchLocation[] touches, float roll)
         {
             player.Update(gameTime, touches, roll, ref Enemies);
@@ -252,16 +230,10 @@ namespace Xaria
             if (player.Health <= 0)
                 GameOver();
         }
-<<<<<<< HEAD
         /// <summary>
         /// @Pre: An enemy has died and powerup drop for the player has been created
         /// @Post: powerup drop is moved downward until it is off the screen or the player's hitbox intersects the drops hitbox
         /// @Return: None
-=======
-
-        /// <summary>
-        /// Updates the drops.
->>>>>>> 67e56694492c07fa3a016b42fc389f8efc8adda4
         /// </summary>
         private void UpdateDrops()
         {
@@ -278,16 +250,11 @@ namespace Xaria
         }
 
         /// <summary>
-<<<<<<< HEAD
         /// @Pre: The list of enemies has been created.
         /// @Post: All enemy sprites are updated. This means if their health is below 0, they are removed from the list and the game. Calls UpdateMovement and Shoot on all enemies.
         /// @Return: None
         /// </summary>
-=======
-        /// Updates the enemies.
-        /// </summary>
         /// <param name="gameTime">The game time.</param>
->>>>>>> 67e56694492c07fa3a016b42fc389f8efc8adda4
         private void UpdateEnemies(GameTime gameTime)
         {
             if (Enemies.Count == 0)
@@ -315,16 +282,11 @@ namespace Xaria
                 }
             }
         }
-<<<<<<< HEAD
+
         /// <summary>
         /// @Pre: An enemy has shot a projectile (decided by RNG)
         /// @Post: All enemy projectiles are moved downward.If it intersects the player, the player loses health.
         /// @Return: None
-=======
-
-        /// <summary>
-        /// Updates the enemy projectiles.
->>>>>>> 67e56694492c07fa3a016b42fc389f8efc8adda4
         /// </summary>
         private void UpdateEnemyProjectiles()
         {
