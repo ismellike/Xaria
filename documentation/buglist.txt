@@ -1,0 +1,6 @@
+Known bugs:
+	Holding the phone at a position other than phone screen side up gives tilt values that give undesirable movement speeds.
+	
+	Not necessarily a bug, but projectile collision is determined by a texture rectangle and not the drawable, which causes the projectile to register a hit when it has not hit the drawn texture.
+
+	Occasionally, when you switch activities and return, the xaria activity crashes and restarts.

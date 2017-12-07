@@ -1,11 +1,11 @@
-﻿using System.Collections.Generic;
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using System.Collections.Generic;
 
 namespace Xaria.Projectiles
 {
     /// <summary>
-    /// The Laser class.
+    /// The Laser projectile class.
     /// </summary>
     /// <seealso cref="Xaria.Projectile" />
     class Laser : Projectile

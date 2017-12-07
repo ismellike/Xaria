@@ -1,0 +1,191 @@
+\hypertarget{classXaria_1_1Enemies_1_1Boss1}{}\section{Xaria.\+Enemies.\+Boss1 Class Reference}
+\label{classXaria_1_1Enemies_1_1Boss1}\index{Xaria.\+Enemies.\+Boss1@{Xaria.\+Enemies.\+Boss1}}
+
+
+The boss1 boss.  
+
+
+Inheritance diagram for Xaria.\+Enemies.\+Boss1\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=4.000000cm]{classXaria_1_1Enemies_1_1Boss1}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classXaria_1_1Enemies_1_1Boss1_a759929946aa105ff64f584b2d265db2b}{Boss1} (Vector2 position)
+\begin{DoxyCompactList}\small\item\em Initializes a new instance of the \hyperlink{classXaria_1_1Enemies_1_1Boss1}{Boss1} class. \end{DoxyCompactList}\item 
+override void \hyperlink{classXaria_1_1Enemies_1_1Boss1_a10fd351c6577ca1e85ec2396d421c313}{Shoot} (Game\+Time game\+Time, ref List$<$ \hyperlink{classXaria_1_1Projectile}{Projectile} $>$ Projectiles)
+\begin{DoxyCompactList}\small\item\em Shoots the specified game time. \end{DoxyCompactList}\item 
+override void \hyperlink{classXaria_1_1Enemies_1_1Boss1_aed5d8f9843c47b9022104ea2de498830}{Update\+Movement} (\hyperlink{classXaria_1_1Level}{Level} level, Game\+Time game\+Time)
+\begin{DoxyCompactList}\small\item\em Updates the movement. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+const double \hyperlink{classXaria_1_1Enemies_1_1Boss1_ac916e1349e4fb79ac96167fdb7eb508a}{N\+E\+X\+T\+\_\+\+T\+E\+L\+E\+P\+O\+RT} = 4000
+\begin{DoxyCompactList}\small\item\em The next teleport \end{DoxyCompactList}\item 
+const double \hyperlink{classXaria_1_1Enemies_1_1Boss1_ab4e7aea397f0d4d722c7cac36bf40197}{S\+H\+O\+OT} = 1500
+\begin{DoxyCompactList}\small\item\em The shoot \end{DoxyCompactList}\item 
+const int \hyperlink{classXaria_1_1Enemies_1_1Boss1_ac1e5b15413592a0dce2e9f80db7d628e}{H\+E\+A\+L\+TH} = 5000
+\begin{DoxyCompactList}\small\item\em The health \end{DoxyCompactList}\item 
+const int \hyperlink{classXaria_1_1Enemies_1_1Boss1_a1a48031798f8b98baaac0af0d3c4c4a5}{B\+E\+A\+M\+\_\+\+D\+MG} = 100
+\begin{DoxyCompactList}\small\item\em The beam D\+MG \end{DoxyCompactList}\item 
+const int \hyperlink{classXaria_1_1Enemies_1_1Boss1_ad85f92fd4e33ef534afaaa61eae052a0}{B\+E\+A\+M\+\_\+\+A\+M\+MO} = 5
+\begin{DoxyCompactList}\small\item\em The beam ammo \end{DoxyCompactList}\item 
+double \hyperlink{classXaria_1_1Enemies_1_1Boss1_a6d1aae7e6051daf6d76165d25a1a03d6}{Countdown} = \hyperlink{classXaria_1_1Enemies_1_1Boss1_ac916e1349e4fb79ac96167fdb7eb508a}{N\+E\+X\+T\+\_\+\+T\+E\+L\+E\+P\+O\+RT}
+\begin{DoxyCompactList}\small\item\em The countdown \end{DoxyCompactList}\item 
+bool \hyperlink{classXaria_1_1Enemies_1_1Boss1_a7e11f0ec442ef552077c1fae0ce92215}{Can\+Shoot} = false
+\begin{DoxyCompactList}\small\item\em The can shoot \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Detailed Description}
+The boss1 boss. 
+
+\begin{DoxySeeAlso}{See also}
+\hyperlink{classXaria_1_1Enemies_1_1Boss}{Xaria.\+Enemies.\+Boss}
+
+
+\end{DoxySeeAlso}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classXaria_1_1Enemies_1_1Boss1_a759929946aa105ff64f584b2d265db2b}\label{classXaria_1_1Enemies_1_1Boss1_a759929946aa105ff64f584b2d265db2b}} 
+\index{Xaria\+::\+Enemies\+::\+Boss1@{Xaria\+::\+Enemies\+::\+Boss1}!Boss1@{Boss1}}
+\index{Boss1@{Boss1}!Xaria\+::\+Enemies\+::\+Boss1@{Xaria\+::\+Enemies\+::\+Boss1}}
+\subsubsection{\texorpdfstring{Boss1()}{Boss1()}}
+{\footnotesize\ttfamily Xaria.\+Enemies.\+Boss1.\+Boss1 (\begin{DoxyParamCaption}\item[{Vector2}]{position }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Initializes a new instance of the \hyperlink{classXaria_1_1Enemies_1_1Boss1}{Boss1} class. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em position} & The position.\\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classXaria_1_1Enemies_1_1Boss1_a10fd351c6577ca1e85ec2396d421c313}\label{classXaria_1_1Enemies_1_1Boss1_a10fd351c6577ca1e85ec2396d421c313}} 
+\index{Xaria\+::\+Enemies\+::\+Boss1@{Xaria\+::\+Enemies\+::\+Boss1}!Shoot@{Shoot}}
+\index{Shoot@{Shoot}!Xaria\+::\+Enemies\+::\+Boss1@{Xaria\+::\+Enemies\+::\+Boss1}}
+\subsubsection{\texorpdfstring{Shoot()}{Shoot()}}
+{\footnotesize\ttfamily override void Xaria.\+Enemies.\+Boss1.\+Shoot (\begin{DoxyParamCaption}\item[{Game\+Time}]{game\+Time,  }\item[{ref List$<$ \hyperlink{classXaria_1_1Projectile}{Projectile} $>$}]{Projectiles }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Shoots the specified game time. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em game\+Time} & The game time.\\
+\hline
+{\em \hyperlink{namespaceXaria_1_1Projectiles}{Projectiles}} & The projectiles.\\
+\hline
+\end{DoxyParams}
+
+
+Implements \hyperlink{classXaria_1_1Enemy_a229b595e96e1429a9e9b1d9816d4370b}{Xaria.\+Enemy}.
+
+\mbox{\Hypertarget{classXaria_1_1Enemies_1_1Boss1_aed5d8f9843c47b9022104ea2de498830}\label{classXaria_1_1Enemies_1_1Boss1_aed5d8f9843c47b9022104ea2de498830}} 
+\index{Xaria\+::\+Enemies\+::\+Boss1@{Xaria\+::\+Enemies\+::\+Boss1}!Update\+Movement@{Update\+Movement}}
+\index{Update\+Movement@{Update\+Movement}!Xaria\+::\+Enemies\+::\+Boss1@{Xaria\+::\+Enemies\+::\+Boss1}}
+\subsubsection{\texorpdfstring{Update\+Movement()}{UpdateMovement()}}
+{\footnotesize\ttfamily override void Xaria.\+Enemies.\+Boss1.\+Update\+Movement (\begin{DoxyParamCaption}\item[{\hyperlink{classXaria_1_1Level}{Level}}]{level,  }\item[{Game\+Time}]{game\+Time }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Updates the movement. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em level} & The level.\\
+\hline
+{\em game\+Time} & The game time.\\
+\hline
+\end{DoxyParams}
+
+
+Implements \hyperlink{classXaria_1_1Enemy_abe1058263c5512b5e098e73d3b6d704c}{Xaria.\+Enemy}.
+
+
+
+\subsection{Member Data Documentation}
+\mbox{\Hypertarget{classXaria_1_1Enemies_1_1Boss1_ad85f92fd4e33ef534afaaa61eae052a0}\label{classXaria_1_1Enemies_1_1Boss1_ad85f92fd4e33ef534afaaa61eae052a0}} 
+\index{Xaria\+::\+Enemies\+::\+Boss1@{Xaria\+::\+Enemies\+::\+Boss1}!B\+E\+A\+M\+\_\+\+A\+M\+MO@{B\+E\+A\+M\+\_\+\+A\+M\+MO}}
+\index{B\+E\+A\+M\+\_\+\+A\+M\+MO@{B\+E\+A\+M\+\_\+\+A\+M\+MO}!Xaria\+::\+Enemies\+::\+Boss1@{Xaria\+::\+Enemies\+::\+Boss1}}
+\subsubsection{\texorpdfstring{B\+E\+A\+M\+\_\+\+A\+M\+MO}{BEAM\_AMMO}}
+{\footnotesize\ttfamily const int Xaria.\+Enemies.\+Boss1.\+B\+E\+A\+M\+\_\+\+A\+M\+MO = 5\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The beam ammo 
+
+\mbox{\Hypertarget{classXaria_1_1Enemies_1_1Boss1_a1a48031798f8b98baaac0af0d3c4c4a5}\label{classXaria_1_1Enemies_1_1Boss1_a1a48031798f8b98baaac0af0d3c4c4a5}} 
+\index{Xaria\+::\+Enemies\+::\+Boss1@{Xaria\+::\+Enemies\+::\+Boss1}!B\+E\+A\+M\+\_\+\+D\+MG@{B\+E\+A\+M\+\_\+\+D\+MG}}
+\index{B\+E\+A\+M\+\_\+\+D\+MG@{B\+E\+A\+M\+\_\+\+D\+MG}!Xaria\+::\+Enemies\+::\+Boss1@{Xaria\+::\+Enemies\+::\+Boss1}}
+\subsubsection{\texorpdfstring{B\+E\+A\+M\+\_\+\+D\+MG}{BEAM\_DMG}}
+{\footnotesize\ttfamily const int Xaria.\+Enemies.\+Boss1.\+B\+E\+A\+M\+\_\+\+D\+MG = 100\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The beam D\+MG 
+
+\mbox{\Hypertarget{classXaria_1_1Enemies_1_1Boss1_a7e11f0ec442ef552077c1fae0ce92215}\label{classXaria_1_1Enemies_1_1Boss1_a7e11f0ec442ef552077c1fae0ce92215}} 
+\index{Xaria\+::\+Enemies\+::\+Boss1@{Xaria\+::\+Enemies\+::\+Boss1}!Can\+Shoot@{Can\+Shoot}}
+\index{Can\+Shoot@{Can\+Shoot}!Xaria\+::\+Enemies\+::\+Boss1@{Xaria\+::\+Enemies\+::\+Boss1}}
+\subsubsection{\texorpdfstring{Can\+Shoot}{CanShoot}}
+{\footnotesize\ttfamily bool Xaria.\+Enemies.\+Boss1.\+Can\+Shoot = false\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The can shoot 
+
+\mbox{\Hypertarget{classXaria_1_1Enemies_1_1Boss1_a6d1aae7e6051daf6d76165d25a1a03d6}\label{classXaria_1_1Enemies_1_1Boss1_a6d1aae7e6051daf6d76165d25a1a03d6}} 
+\index{Xaria\+::\+Enemies\+::\+Boss1@{Xaria\+::\+Enemies\+::\+Boss1}!Countdown@{Countdown}}
+\index{Countdown@{Countdown}!Xaria\+::\+Enemies\+::\+Boss1@{Xaria\+::\+Enemies\+::\+Boss1}}
+\subsubsection{\texorpdfstring{Countdown}{Countdown}}
+{\footnotesize\ttfamily double Xaria.\+Enemies.\+Boss1.\+Countdown = \hyperlink{classXaria_1_1Enemies_1_1Boss1_ac916e1349e4fb79ac96167fdb7eb508a}{N\+E\+X\+T\+\_\+\+T\+E\+L\+E\+P\+O\+RT}\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The countdown 
+
+\mbox{\Hypertarget{classXaria_1_1Enemies_1_1Boss1_ac1e5b15413592a0dce2e9f80db7d628e}\label{classXaria_1_1Enemies_1_1Boss1_ac1e5b15413592a0dce2e9f80db7d628e}} 
+\index{Xaria\+::\+Enemies\+::\+Boss1@{Xaria\+::\+Enemies\+::\+Boss1}!H\+E\+A\+L\+TH@{H\+E\+A\+L\+TH}}
+\index{H\+E\+A\+L\+TH@{H\+E\+A\+L\+TH}!Xaria\+::\+Enemies\+::\+Boss1@{Xaria\+::\+Enemies\+::\+Boss1}}
+\subsubsection{\texorpdfstring{H\+E\+A\+L\+TH}{HEALTH}}
+{\footnotesize\ttfamily const int Xaria.\+Enemies.\+Boss1.\+H\+E\+A\+L\+TH = 5000\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The health 
+
+\mbox{\Hypertarget{classXaria_1_1Enemies_1_1Boss1_ac916e1349e4fb79ac96167fdb7eb508a}\label{classXaria_1_1Enemies_1_1Boss1_ac916e1349e4fb79ac96167fdb7eb508a}} 
+\index{Xaria\+::\+Enemies\+::\+Boss1@{Xaria\+::\+Enemies\+::\+Boss1}!N\+E\+X\+T\+\_\+\+T\+E\+L\+E\+P\+O\+RT@{N\+E\+X\+T\+\_\+\+T\+E\+L\+E\+P\+O\+RT}}
+\index{N\+E\+X\+T\+\_\+\+T\+E\+L\+E\+P\+O\+RT@{N\+E\+X\+T\+\_\+\+T\+E\+L\+E\+P\+O\+RT}!Xaria\+::\+Enemies\+::\+Boss1@{Xaria\+::\+Enemies\+::\+Boss1}}
+\subsubsection{\texorpdfstring{N\+E\+X\+T\+\_\+\+T\+E\+L\+E\+P\+O\+RT}{NEXT\_TELEPORT}}
+{\footnotesize\ttfamily const double Xaria.\+Enemies.\+Boss1.\+N\+E\+X\+T\+\_\+\+T\+E\+L\+E\+P\+O\+RT = 4000\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The next teleport 
+
+\mbox{\Hypertarget{classXaria_1_1Enemies_1_1Boss1_ab4e7aea397f0d4d722c7cac36bf40197}\label{classXaria_1_1Enemies_1_1Boss1_ab4e7aea397f0d4d722c7cac36bf40197}} 
+\index{Xaria\+::\+Enemies\+::\+Boss1@{Xaria\+::\+Enemies\+::\+Boss1}!S\+H\+O\+OT@{S\+H\+O\+OT}}
+\index{S\+H\+O\+OT@{S\+H\+O\+OT}!Xaria\+::\+Enemies\+::\+Boss1@{Xaria\+::\+Enemies\+::\+Boss1}}
+\subsubsection{\texorpdfstring{S\+H\+O\+OT}{SHOOT}}
+{\footnotesize\ttfamily const double Xaria.\+Enemies.\+Boss1.\+S\+H\+O\+OT = 1500\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The shoot 
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+Project3/\+Project3/\+Enemies/Boss1.\+cs\end{DoxyCompactItemize}

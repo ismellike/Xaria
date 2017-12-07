@@ -1,11 +1,9 @@
+using Android.Hardware;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Input.Touch;
 using System.Collections.Generic;
 using Xaria.Screens;
-using Microsoft.Xna.Framework.Content;
-using Android.Hardware;
 
 namespace Xaria
 {

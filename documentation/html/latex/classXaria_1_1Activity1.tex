@@ -1,0 +1,209 @@
+\hypertarget{classXaria_1_1Activity1}{}\section{Xaria.\+Activity1 Class Reference}
+\label{classXaria_1_1Activity1}\index{Xaria.\+Activity1@{Xaria.\+Activity1}}
+
+
+The android activity  
+
+
+Inheritance diagram for Xaria.\+Activity1\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classXaria_1_1Activity1}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{classXaria_1_1Activity1_aadf94688926beaaf66d1000b73662a43}{On\+Accuracy\+Changed} (Sensor sensor, Sensor\+Status accuracy)
+\begin{DoxyCompactList}\small\item\em Called when the accuracy of a sensor has changed. \end{DoxyCompactList}\item 
+void \hyperlink{classXaria_1_1Activity1_a9a7df9c23656ef7839a8fddd1e14dc49}{On\+Sensor\+Changed} (Sensor\+Event e)
+\begin{DoxyCompactList}\small\item\em Called when sensor values have changed. \end{DoxyCompactList}\item 
+override bool \hyperlink{classXaria_1_1Activity1_ab27a73ce9dd28a79774b7c10e3630235}{On\+Key\+Up} (\mbox{[}Generated\+Enum\mbox{]} Keycode key\+Code, Key\+Event e)
+\begin{DoxyCompactList}\small\item\em Called when a key was released and not handled by any of the views inside of the activity. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+static Sensor\+Manager \hyperlink{classXaria_1_1Activity1_a24e5f33379e7c617726f819305e211a1}{sensor\+Manager}
+\begin{DoxyCompactList}\small\item\em The sensor manager \end{DoxyCompactList}\item 
+static float \mbox{[}$\,$\mbox{]} \hyperlink{classXaria_1_1Activity1_a27724ecd7f40103c5f2e1175d4138283}{accel\+Values} = new float\mbox{[}3\mbox{]}
+\begin{DoxyCompactList}\small\item\em The accel values \end{DoxyCompactList}\item 
+static float \mbox{[}$\,$\mbox{]} \hyperlink{classXaria_1_1Activity1_a258919f676bc970cf2b0742591932ba9}{magneto\+Values} = new float\mbox{[}3\mbox{]}
+\begin{DoxyCompactList}\small\item\em The magneto values \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+override void \hyperlink{classXaria_1_1Activity1_a1b2c637e080b9032389a43705d193581}{On\+Create} (Bundle bundle)
+\begin{DoxyCompactList}\small\item\em Android activity creation event \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+Sensor \hyperlink{classXaria_1_1Activity1_a60c77f521c1a61fe00fad362d9cae9ea}{accelerometer}
+\begin{DoxyCompactList}\small\item\em The accelerometer \end{DoxyCompactList}\item 
+Sensor \hyperlink{classXaria_1_1Activity1_a7fd08945593fa05793e41e4e52818636}{magnetometer}
+\begin{DoxyCompactList}\small\item\em The magnetometer \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+The android activity 
+
+\begin{DoxySeeAlso}{See also}
+Android.\+Hardware.\+I\+Sensor\+Event\+Listener, Microsoft.\+Xna.\+Framework.\+Android\+Game\+Activity
+
+
+\end{DoxySeeAlso}
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classXaria_1_1Activity1_aadf94688926beaaf66d1000b73662a43}\label{classXaria_1_1Activity1_aadf94688926beaaf66d1000b73662a43}} 
+\index{Xaria\+::\+Activity1@{Xaria\+::\+Activity1}!On\+Accuracy\+Changed@{On\+Accuracy\+Changed}}
+\index{On\+Accuracy\+Changed@{On\+Accuracy\+Changed}!Xaria\+::\+Activity1@{Xaria\+::\+Activity1}}
+\subsubsection{\texorpdfstring{On\+Accuracy\+Changed()}{OnAccuracyChanged()}}
+{\footnotesize\ttfamily void Xaria.\+Activity1.\+On\+Accuracy\+Changed (\begin{DoxyParamCaption}\item[{Sensor}]{sensor,  }\item[{Sensor\+Status}]{accuracy }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Called when the accuracy of a sensor has changed. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em sensor} & To be added.\\
+\hline
+{\em accuracy} & The new accuracy of this sensor\\
+\hline
+\end{DoxyParams}
+
+
+Called when the accuracy of a sensor has changed. 
+
+See {\ttfamily T\+:\+Android.\+Hardware.\+Sensor\+Manager} for details.
+
+$<$format type=\char`\"{}text/html\char`\"{}$>$ \href{http://developer.android.com/reference/android/hardware/SensorEventListener.html#onAccuracyChanged(android.hardware.Sensor, int)}{\tt \mbox{[}Android Documentation\mbox{]}} $<$/format$>$ 
+
+$<$since version=\char`\"{}\+Added in A\+P\+I level 3\char`\"{}$>$ \mbox{\Hypertarget{classXaria_1_1Activity1_a1b2c637e080b9032389a43705d193581}\label{classXaria_1_1Activity1_a1b2c637e080b9032389a43705d193581}} 
+\index{Xaria\+::\+Activity1@{Xaria\+::\+Activity1}!On\+Create@{On\+Create}}
+\index{On\+Create@{On\+Create}!Xaria\+::\+Activity1@{Xaria\+::\+Activity1}}
+\subsubsection{\texorpdfstring{On\+Create()}{OnCreate()}}
+{\footnotesize\ttfamily override void Xaria.\+Activity1.\+On\+Create (\begin{DoxyParamCaption}\item[{Bundle}]{bundle }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [protected]}}
+
+
+
+Android activity creation event 
+
+
+\begin{DoxyParams}{Parameters}
+{\em bundle} & The bundle.\\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classXaria_1_1Activity1_ab27a73ce9dd28a79774b7c10e3630235}\label{classXaria_1_1Activity1_ab27a73ce9dd28a79774b7c10e3630235}} 
+\index{Xaria\+::\+Activity1@{Xaria\+::\+Activity1}!On\+Key\+Up@{On\+Key\+Up}}
+\index{On\+Key\+Up@{On\+Key\+Up}!Xaria\+::\+Activity1@{Xaria\+::\+Activity1}}
+\subsubsection{\texorpdfstring{On\+Key\+Up()}{OnKeyUp()}}
+{\footnotesize\ttfamily override bool Xaria.\+Activity1.\+On\+Key\+Up (\begin{DoxyParamCaption}\item[{\mbox{[}\+Generated\+Enum\mbox{]} Keycode}]{key\+Code,  }\item[{Key\+Event}]{e }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Called when a key was released and not handled by any of the views inside of the activity. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em key\+Code} & The value in event.\+get\+Key\+Code().\\
+\hline
+{\em e} & Description of the key event.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+To be added. 
+\end{DoxyReturn}
+
+
+Called when a key was released and not handled by any of the views inside of the activity. So, for example, key presses while the cursor is inside a Text\+View will not trigger the event (unless it is a navigation to another object) because Text\+View handles its own key presses. 
+
+The default implementation handles K\+E\+Y\+C\+O\+D\+E\+\_\+\+B\+A\+CK to stop the activity and go back.
+
+$<$format type=\char`\"{}text/html\char`\"{}$>$ \href{http://developer.android.com/reference/android/app/Activity.html#onKeyUp(int, android.view.KeyEvent)}{\tt \mbox{[}Android Documentation\mbox{]}} $<$/format$>$ 
+
+$<$since version=\char`\"{}\+Added in A\+P\+I level 1\char`\"{}$>$ $<$altmember cref=\char`\"{}\+M\+:\+Android.\+App.\+Activity.\+On\+Key\+Down(\+Android.\+Views.\+Keycode, Android.\+Views.\+Key\+Event)\char`\"{}$>$ $<$altmember cref=\char`\"{}\+T\+:\+Android.\+Views.\+Key\+Event\char`\"{}$>$ \mbox{\Hypertarget{classXaria_1_1Activity1_a9a7df9c23656ef7839a8fddd1e14dc49}\label{classXaria_1_1Activity1_a9a7df9c23656ef7839a8fddd1e14dc49}} 
+\index{Xaria\+::\+Activity1@{Xaria\+::\+Activity1}!On\+Sensor\+Changed@{On\+Sensor\+Changed}}
+\index{On\+Sensor\+Changed@{On\+Sensor\+Changed}!Xaria\+::\+Activity1@{Xaria\+::\+Activity1}}
+\subsubsection{\texorpdfstring{On\+Sensor\+Changed()}{OnSensorChanged()}}
+{\footnotesize\ttfamily void Xaria.\+Activity1.\+On\+Sensor\+Changed (\begin{DoxyParamCaption}\item[{Sensor\+Event}]{e }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Called when sensor values have changed. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em e} & the {\ttfamily T\+:\+Android.\+Hardware.\+Sensor\+Event}.\\
+\hline
+\end{DoxyParams}
+
+
+Called when sensor values have changed. 
+
+See {\ttfamily T\+:\+Android.\+Hardware.\+Sensor\+Manager} for details on possible sensor types. 
+
+See also {\ttfamily T\+:\+Android.\+Hardware.\+Sensor\+Event}. 
+
+$<$format type=\char`\"{}text/html\char`\"{}$>$ {\bfseries N\+O\+TE\+:} $<$/format$>$ The application doesn\textquotesingle{}t own the {\ttfamily T\+:\+Android.\+Hardware.\+Sensor\+Event} object passed as a parameter and therefore cannot hold on to it. The object may be part of an internal pool and may be reused by the framework.
+
+$<$format type=\char`\"{}text/html\char`\"{}$>$ \href{http://developer.android.com/reference/android/hardware/SensorEventListener.html#onSensorChanged(android.hardware.SensorEvent)}{\tt \mbox{[}Android Documentation\mbox{]}} $<$/format$>$ 
+
+$<$since version=\char`\"{}\+Added in A\+P\+I level 3\char`\"{}$>$ 
+
+\subsection{Member Data Documentation}
+\mbox{\Hypertarget{classXaria_1_1Activity1_a60c77f521c1a61fe00fad362d9cae9ea}\label{classXaria_1_1Activity1_a60c77f521c1a61fe00fad362d9cae9ea}} 
+\index{Xaria\+::\+Activity1@{Xaria\+::\+Activity1}!accelerometer@{accelerometer}}
+\index{accelerometer@{accelerometer}!Xaria\+::\+Activity1@{Xaria\+::\+Activity1}}
+\subsubsection{\texorpdfstring{accelerometer}{accelerometer}}
+{\footnotesize\ttfamily Sensor Xaria.\+Activity1.\+accelerometer\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The accelerometer 
+
+\mbox{\Hypertarget{classXaria_1_1Activity1_a27724ecd7f40103c5f2e1175d4138283}\label{classXaria_1_1Activity1_a27724ecd7f40103c5f2e1175d4138283}} 
+\index{Xaria\+::\+Activity1@{Xaria\+::\+Activity1}!accel\+Values@{accel\+Values}}
+\index{accel\+Values@{accel\+Values}!Xaria\+::\+Activity1@{Xaria\+::\+Activity1}}
+\subsubsection{\texorpdfstring{accel\+Values}{accelValues}}
+{\footnotesize\ttfamily float \mbox{[}$\,$\mbox{]} Xaria.\+Activity1.\+accel\+Values = new float\mbox{[}3\mbox{]}\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+The accel values 
+
+\mbox{\Hypertarget{classXaria_1_1Activity1_a7fd08945593fa05793e41e4e52818636}\label{classXaria_1_1Activity1_a7fd08945593fa05793e41e4e52818636}} 
+\index{Xaria\+::\+Activity1@{Xaria\+::\+Activity1}!magnetometer@{magnetometer}}
+\index{magnetometer@{magnetometer}!Xaria\+::\+Activity1@{Xaria\+::\+Activity1}}
+\subsubsection{\texorpdfstring{magnetometer}{magnetometer}}
+{\footnotesize\ttfamily Sensor Xaria.\+Activity1.\+magnetometer\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The magnetometer 
+
+\mbox{\Hypertarget{classXaria_1_1Activity1_a258919f676bc970cf2b0742591932ba9}\label{classXaria_1_1Activity1_a258919f676bc970cf2b0742591932ba9}} 
+\index{Xaria\+::\+Activity1@{Xaria\+::\+Activity1}!magneto\+Values@{magneto\+Values}}
+\index{magneto\+Values@{magneto\+Values}!Xaria\+::\+Activity1@{Xaria\+::\+Activity1}}
+\subsubsection{\texorpdfstring{magneto\+Values}{magnetoValues}}
+{\footnotesize\ttfamily float \mbox{[}$\,$\mbox{]} Xaria.\+Activity1.\+magneto\+Values = new float\mbox{[}3\mbox{]}\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+The magneto values 
+
+\mbox{\Hypertarget{classXaria_1_1Activity1_a24e5f33379e7c617726f819305e211a1}\label{classXaria_1_1Activity1_a24e5f33379e7c617726f819305e211a1}} 
+\index{Xaria\+::\+Activity1@{Xaria\+::\+Activity1}!sensor\+Manager@{sensor\+Manager}}
+\index{sensor\+Manager@{sensor\+Manager}!Xaria\+::\+Activity1@{Xaria\+::\+Activity1}}
+\subsubsection{\texorpdfstring{sensor\+Manager}{sensorManager}}
+{\footnotesize\ttfamily Sensor\+Manager Xaria.\+Activity1.\+sensor\+Manager\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+The sensor manager 
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+Project3/\+Project3/Activity1.\+cs\end{DoxyCompactItemize}

@@ -5,7 +5,7 @@ using System.Collections.Generic;
 namespace Xaria.Projectiles
 {
     /// <summary>
-    /// The Beam class.
+    /// The Beam projectile class.
     /// </summary>
     /// <seealso cref="Xaria.Projectile" />
     class Beam : Projectile

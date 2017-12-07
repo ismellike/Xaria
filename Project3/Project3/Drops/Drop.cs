@@ -4,7 +4,7 @@ using Microsoft.Xna.Framework.Graphics;
 namespace Xaria.Drops
 {
     /// <summary>
-    /// 
+    /// The inheritable drop class
     /// </summary>
     /// <seealso cref="Xaria.GameElement" />
     public abstract class Drop : GameElement

@@ -1,0 +1,167 @@
+\hypertarget{classXaria_1_1Enemies_1_1Basic}{}\section{Xaria.\+Enemies.\+Basic Class Reference}
+\label{classXaria_1_1Enemies_1_1Basic}\index{Xaria.\+Enemies.\+Basic@{Xaria.\+Enemies.\+Basic}}
+
+
+The basic enemy class.  
+
+
+Inheritance diagram for Xaria.\+Enemies.\+Basic\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3.000000cm]{classXaria_1_1Enemies_1_1Basic}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classXaria_1_1Enemies_1_1Basic_abb1a1d9ed8e8b74741d054b8ee2dde07}{Basic} (Vector2 position)
+\begin{DoxyCompactList}\small\item\em Initializes a new instance of the \hyperlink{classXaria_1_1Enemies_1_1Basic}{Basic} class. \end{DoxyCompactList}\item 
+override void \hyperlink{classXaria_1_1Enemies_1_1Basic_a60c5523093585a2d52a9b587acf3bc28}{Shoot} (Game\+Time game\+Time, ref List$<$ \hyperlink{classXaria_1_1Projectile}{Projectile} $>$ Projectiles)
+\begin{DoxyCompactList}\small\item\em Shoots a projectile from the enemy. \end{DoxyCompactList}\item 
+override void \hyperlink{classXaria_1_1Enemies_1_1Basic_a1f8c20016b8ea5c18fca1295510952c9}{Update\+Movement} (\hyperlink{classXaria_1_1Level}{Level} level, Game\+Time game\+Time=null)
+\begin{DoxyCompactList}\small\item\em Updates the movement. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+const int \hyperlink{classXaria_1_1Enemies_1_1Basic_a2609842a1a385794273a9651de16b454}{H\+E\+A\+L\+TH} = 100
+\begin{DoxyCompactList}\small\item\em The health \end{DoxyCompactList}\item 
+const int \hyperlink{classXaria_1_1Enemies_1_1Basic_a377f16806bd88ac6fb4d8e5da6f31115}{N\+E\+XT} = 13000
+\begin{DoxyCompactList}\small\item\em The next \end{DoxyCompactList}\item 
+const int \hyperlink{classXaria_1_1Enemies_1_1Basic_aaf2e0ae06d49fceedf17fbe8b1549fc8}{F\+I\+R\+ST} = 3000
+\begin{DoxyCompactList}\small\item\em The first \end{DoxyCompactList}\item 
+const int \hyperlink{classXaria_1_1Enemies_1_1Basic_af24c36503192c77f398b99b7b58be5ce}{L\+A\+S\+E\+R\+\_\+\+D\+MG} = 20
+\begin{DoxyCompactList}\small\item\em The laser D\+MG \end{DoxyCompactList}\item 
+const int \hyperlink{classXaria_1_1Enemies_1_1Basic_a7b7d731586922c39e6c4ed9a7e380dbf}{S\+H\+I\+E\+L\+D\+\_\+\+S\+T\+R\+E\+N\+G\+TH} = 50
+\begin{DoxyCompactList}\small\item\em The shield strength \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Detailed Description}
+The basic enemy class. 
+
+\begin{DoxySeeAlso}{See also}
+\hyperlink{classXaria_1_1Enemy}{Xaria.\+Enemy}
+
+
+\end{DoxySeeAlso}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classXaria_1_1Enemies_1_1Basic_abb1a1d9ed8e8b74741d054b8ee2dde07}\label{classXaria_1_1Enemies_1_1Basic_abb1a1d9ed8e8b74741d054b8ee2dde07}} 
+\index{Xaria\+::\+Enemies\+::\+Basic@{Xaria\+::\+Enemies\+::\+Basic}!Basic@{Basic}}
+\index{Basic@{Basic}!Xaria\+::\+Enemies\+::\+Basic@{Xaria\+::\+Enemies\+::\+Basic}}
+\subsubsection{\texorpdfstring{Basic()}{Basic()}}
+{\footnotesize\ttfamily Xaria.\+Enemies.\+Basic.\+Basic (\begin{DoxyParamCaption}\item[{Vector2}]{position }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Initializes a new instance of the \hyperlink{classXaria_1_1Enemies_1_1Basic}{Basic} class. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em position} & The position.\\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classXaria_1_1Enemies_1_1Basic_a60c5523093585a2d52a9b587acf3bc28}\label{classXaria_1_1Enemies_1_1Basic_a60c5523093585a2d52a9b587acf3bc28}} 
+\index{Xaria\+::\+Enemies\+::\+Basic@{Xaria\+::\+Enemies\+::\+Basic}!Shoot@{Shoot}}
+\index{Shoot@{Shoot}!Xaria\+::\+Enemies\+::\+Basic@{Xaria\+::\+Enemies\+::\+Basic}}
+\subsubsection{\texorpdfstring{Shoot()}{Shoot()}}
+{\footnotesize\ttfamily override void Xaria.\+Enemies.\+Basic.\+Shoot (\begin{DoxyParamCaption}\item[{Game\+Time}]{game\+Time,  }\item[{ref List$<$ \hyperlink{classXaria_1_1Projectile}{Projectile} $>$}]{Projectiles }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Shoots a projectile from the enemy. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em game\+Time} & The game time.\\
+\hline
+{\em \hyperlink{namespaceXaria_1_1Projectiles}{Projectiles}} & The projectiles.\\
+\hline
+\end{DoxyParams}
+
+
+Implements \hyperlink{classXaria_1_1Enemy_a229b595e96e1429a9e9b1d9816d4370b}{Xaria.\+Enemy}.
+
+\mbox{\Hypertarget{classXaria_1_1Enemies_1_1Basic_a1f8c20016b8ea5c18fca1295510952c9}\label{classXaria_1_1Enemies_1_1Basic_a1f8c20016b8ea5c18fca1295510952c9}} 
+\index{Xaria\+::\+Enemies\+::\+Basic@{Xaria\+::\+Enemies\+::\+Basic}!Update\+Movement@{Update\+Movement}}
+\index{Update\+Movement@{Update\+Movement}!Xaria\+::\+Enemies\+::\+Basic@{Xaria\+::\+Enemies\+::\+Basic}}
+\subsubsection{\texorpdfstring{Update\+Movement()}{UpdateMovement()}}
+{\footnotesize\ttfamily override void Xaria.\+Enemies.\+Basic.\+Update\+Movement (\begin{DoxyParamCaption}\item[{\hyperlink{classXaria_1_1Level}{Level}}]{level,  }\item[{Game\+Time}]{game\+Time = {\ttfamily null} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Updates the movement. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em level} & The level.\\
+\hline
+{\em game\+Time} & The game time.\\
+\hline
+\end{DoxyParams}
+
+
+Implements \hyperlink{classXaria_1_1Enemy_abe1058263c5512b5e098e73d3b6d704c}{Xaria.\+Enemy}.
+
+
+
+\subsection{Member Data Documentation}
+\mbox{\Hypertarget{classXaria_1_1Enemies_1_1Basic_aaf2e0ae06d49fceedf17fbe8b1549fc8}\label{classXaria_1_1Enemies_1_1Basic_aaf2e0ae06d49fceedf17fbe8b1549fc8}} 
+\index{Xaria\+::\+Enemies\+::\+Basic@{Xaria\+::\+Enemies\+::\+Basic}!F\+I\+R\+ST@{F\+I\+R\+ST}}
+\index{F\+I\+R\+ST@{F\+I\+R\+ST}!Xaria\+::\+Enemies\+::\+Basic@{Xaria\+::\+Enemies\+::\+Basic}}
+\subsubsection{\texorpdfstring{F\+I\+R\+ST}{FIRST}}
+{\footnotesize\ttfamily const int Xaria.\+Enemies.\+Basic.\+F\+I\+R\+ST = 3000\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The first 
+
+\mbox{\Hypertarget{classXaria_1_1Enemies_1_1Basic_a2609842a1a385794273a9651de16b454}\label{classXaria_1_1Enemies_1_1Basic_a2609842a1a385794273a9651de16b454}} 
+\index{Xaria\+::\+Enemies\+::\+Basic@{Xaria\+::\+Enemies\+::\+Basic}!H\+E\+A\+L\+TH@{H\+E\+A\+L\+TH}}
+\index{H\+E\+A\+L\+TH@{H\+E\+A\+L\+TH}!Xaria\+::\+Enemies\+::\+Basic@{Xaria\+::\+Enemies\+::\+Basic}}
+\subsubsection{\texorpdfstring{H\+E\+A\+L\+TH}{HEALTH}}
+{\footnotesize\ttfamily const int Xaria.\+Enemies.\+Basic.\+H\+E\+A\+L\+TH = 100\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The health 
+
+\mbox{\Hypertarget{classXaria_1_1Enemies_1_1Basic_af24c36503192c77f398b99b7b58be5ce}\label{classXaria_1_1Enemies_1_1Basic_af24c36503192c77f398b99b7b58be5ce}} 
+\index{Xaria\+::\+Enemies\+::\+Basic@{Xaria\+::\+Enemies\+::\+Basic}!L\+A\+S\+E\+R\+\_\+\+D\+MG@{L\+A\+S\+E\+R\+\_\+\+D\+MG}}
+\index{L\+A\+S\+E\+R\+\_\+\+D\+MG@{L\+A\+S\+E\+R\+\_\+\+D\+MG}!Xaria\+::\+Enemies\+::\+Basic@{Xaria\+::\+Enemies\+::\+Basic}}
+\subsubsection{\texorpdfstring{L\+A\+S\+E\+R\+\_\+\+D\+MG}{LASER\_DMG}}
+{\footnotesize\ttfamily const int Xaria.\+Enemies.\+Basic.\+L\+A\+S\+E\+R\+\_\+\+D\+MG = 20\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The laser D\+MG 
+
+\mbox{\Hypertarget{classXaria_1_1Enemies_1_1Basic_a377f16806bd88ac6fb4d8e5da6f31115}\label{classXaria_1_1Enemies_1_1Basic_a377f16806bd88ac6fb4d8e5da6f31115}} 
+\index{Xaria\+::\+Enemies\+::\+Basic@{Xaria\+::\+Enemies\+::\+Basic}!N\+E\+XT@{N\+E\+XT}}
+\index{N\+E\+XT@{N\+E\+XT}!Xaria\+::\+Enemies\+::\+Basic@{Xaria\+::\+Enemies\+::\+Basic}}
+\subsubsection{\texorpdfstring{N\+E\+XT}{NEXT}}
+{\footnotesize\ttfamily const int Xaria.\+Enemies.\+Basic.\+N\+E\+XT = 13000\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The next 
+
+\mbox{\Hypertarget{classXaria_1_1Enemies_1_1Basic_a7b7d731586922c39e6c4ed9a7e380dbf}\label{classXaria_1_1Enemies_1_1Basic_a7b7d731586922c39e6c4ed9a7e380dbf}} 
+\index{Xaria\+::\+Enemies\+::\+Basic@{Xaria\+::\+Enemies\+::\+Basic}!S\+H\+I\+E\+L\+D\+\_\+\+S\+T\+R\+E\+N\+G\+TH@{S\+H\+I\+E\+L\+D\+\_\+\+S\+T\+R\+E\+N\+G\+TH}}
+\index{S\+H\+I\+E\+L\+D\+\_\+\+S\+T\+R\+E\+N\+G\+TH@{S\+H\+I\+E\+L\+D\+\_\+\+S\+T\+R\+E\+N\+G\+TH}!Xaria\+::\+Enemies\+::\+Basic@{Xaria\+::\+Enemies\+::\+Basic}}
+\subsubsection{\texorpdfstring{S\+H\+I\+E\+L\+D\+\_\+\+S\+T\+R\+E\+N\+G\+TH}{SHIELD\_STRENGTH}}
+{\footnotesize\ttfamily const int Xaria.\+Enemies.\+Basic.\+S\+H\+I\+E\+L\+D\+\_\+\+S\+T\+R\+E\+N\+G\+TH = 50\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The shield strength 
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+Project3/\+Project3/\+Enemies/Basic.\+cs\end{DoxyCompactItemize}

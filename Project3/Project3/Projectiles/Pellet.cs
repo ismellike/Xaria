@@ -1,11 +1,11 @@
-﻿using System.Collections.Generic;
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using System.Collections.Generic;
 
 namespace Xaria.Projectiles
 {
     /// <summary>
-    /// The rocket class.
+    /// The pellet projectile class.
     /// </summary>
     /// <seealso cref="Xaria.Projectile" />
     class Pellet : Projectile

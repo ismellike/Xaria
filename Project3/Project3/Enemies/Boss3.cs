@@ -1,13 +1,12 @@
 ﻿using Microsoft.Xna.Framework;
 using System.Collections.Generic;
-using Xaria.Projectiles;
-using Microsoft.Xna.Framework.Graphics;
 using Xaria.Drops;
+using Xaria.Projectiles;
 
 namespace Xaria.Enemies
 {
     /// <summary>
-    /// 
+    /// The boss3 boss.
     /// </summary>
     /// <seealso cref="Xaria.Enemies.Boss" />
     class Boss3 : Boss

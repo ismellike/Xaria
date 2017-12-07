@@ -1,0 +1,292 @@
+\hypertarget{classXaria_1_1Player}{}\section{Xaria.\+Player Class Reference}
+\label{classXaria_1_1Player}\index{Xaria.\+Player@{Xaria.\+Player}}
+
+
+Our player class  
+
+
+Inheritance diagram for Xaria.\+Player\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classXaria_1_1Player}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classXaria_1_1Player_a86d80bfee5af015e8612cd992bf53ad0}{Player} ()
+\begin{DoxyCompactList}\small\item\em \+: Game has started. \hyperlink{classXaria_1_1Player}{Player} needs to be created. \+: \hyperlink{classXaria_1_1Player}{Player} is created \+: None \end{DoxyCompactList}\item 
+void \hyperlink{classXaria_1_1Player_ad5ad5b8517ebdacc8ed917ab8aaa6b51}{Add\+Stun} (int Stun\+Duration)
+\begin{DoxyCompactList}\small\item\em \+: \hyperlink{classXaria_1_1Player}{Player} is hit by an emp \+: \hyperlink{classXaria_1_1Player}{Player} cannot move for stun duration \+: None \end{DoxyCompactList}\item 
+void \hyperlink{classXaria_1_1Player_a21b21585a59e7768ba843b8051d99a90}{Add\+Life} ()
+\begin{DoxyCompactList}\small\item\em \+: \hyperlink{classXaria_1_1Enemy}{Enemy} has dropped a bonus life. \hyperlink{classXaria_1_1Player}{Player}\textquotesingle{}s hitbox intersects bonus life hitbox \+: \hyperlink{classXaria_1_1Player}{Player} gets an extra life \+: None \end{DoxyCompactList}\item 
+void \hyperlink{classXaria_1_1Player_aff15ed23c2465062f0c70e3a2a5e8a86}{Add\+Shield} (int Shield\+Strength)
+\begin{DoxyCompactList}\small\item\em \+: \hyperlink{classXaria_1_1Enemy}{Enemy} has dropped a shield. \hyperlink{classXaria_1_1Player}{Player}\textquotesingle{}s hitbox intersects shield hitbox \+: \hyperlink{classXaria_1_1Player}{Player} gets a shield \+: None \end{DoxyCompactList}\item 
+void \hyperlink{classXaria_1_1Player_a228a04fe0b09b56bf90bc0a459034bbf}{Switch\+Weapon} ()
+\begin{DoxyCompactList}\small\item\em \+: \hyperlink{classXaria_1_1Player}{Player} has grabbed a powerup weapon \+: Switches the weapon for the player \+: None \end{DoxyCompactList}\item 
+override void \hyperlink{classXaria_1_1Player_a25ddea2b9d8679ab6aa649fda6ce1f22}{Draw} (ref Sprite\+Batch sprite\+Batch)
+\begin{DoxyCompactList}\small\item\em \+: Game has been initiated \+: \hyperlink{classXaria_1_1Player}{Player} is drawn \+: None \end{DoxyCompactList}\item 
+bool \hyperlink{classXaria_1_1Player_a9f8353151c84bf23a7fd646ffdefb852}{Intersects} (\hyperlink{classXaria_1_1GameElement}{Game\+Element} shot)
+\begin{DoxyCompactList}\small\item\em \+: a comparison is made between projectiles and the player \+: none \+: true if the projectile and player intersect, false otherwise \end{DoxyCompactList}\item 
+bool \hyperlink{classXaria_1_1Player_a24728ed29589e0601a9a0c9752f8e4bd}{Is\+Clicked} (Vector2 input)
+\begin{DoxyCompactList}\small\item\em \+: player touches the screen \+: none \+: true if the position on the screen touched is within the position of the button, false otherwise \end{DoxyCompactList}\item 
+void \hyperlink{classXaria_1_1Player_aefc8537a0f978f3cc5f490d1fccefd56}{Damage} (int damage)
+\begin{DoxyCompactList}\small\item\em \+: player has been hit by a projectile \+: player\textquotesingle{}s health is lowered by projectile damage \+: None \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+const int \hyperlink{classXaria_1_1Player_a454099110fca2d19ae08bc7174802018}{S\+T\+A\+R\+T\+I\+N\+G\+\_\+\+H\+E\+A\+L\+TH} = 100
+\begin{DoxyCompactList}\small\item\em The starting health \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Properties}
+\begin{DoxyCompactItemize}
+\item 
+int \hyperlink{classXaria_1_1Player_a4674dac15dedc7b171948e87393ee17b}{Extra\+Lives}\hspace{0.3cm}{\ttfamily  \mbox{[}get, private set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Gets the extra lives. \end{DoxyCompactList}\item 
+int \hyperlink{classXaria_1_1Player_a48a4972a17acb525adca1a30454eaf30}{Health}\hspace{0.3cm}{\ttfamily  \mbox{[}get, private set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Gets the health. \end{DoxyCompactList}\item 
+int \hyperlink{classXaria_1_1Player_a9f03b368b1fa510b106921d0033365e5}{Shield}\hspace{0.3cm}{\ttfamily  \mbox{[}get, private set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Gets the shield. \end{DoxyCompactList}\item 
+double \hyperlink{classXaria_1_1Player_ae675000d7990d74024d26bfa9691d722}{Stunned}\hspace{0.3cm}{\ttfamily  \mbox{[}get, private set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Gets the stunned. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{classXaria_1_1Player_a2604251ff8bb846e1c3cbc5f05e09be2}{Update\+Projectiles} (ref List$<$ List$<$ \hyperlink{classXaria_1_1Enemy}{Enemy} $>$$>$ Enemies)
+\begin{DoxyCompactList}\small\item\em \+: player has fired a projectile \+: Players projectiles are removed if they have collided with an enemy. Players projectiles also move. \+: None. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+List$<$ \hyperlink{classXaria_1_1Projectile}{Projectile} $>$ \hyperlink{classXaria_1_1Player_a643c5dbda599d86c01bde3cfd1749ae6}{Projectiles} = new List$<$\hyperlink{classXaria_1_1Projectile}{Projectile}$>$()
+\begin{DoxyCompactList}\small\item\em The projectiles \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Our player class 
+
+\begin{DoxySeeAlso}{See also}
+\hyperlink{classXaria_1_1GameElement}{Xaria.\+Game\+Element}
+
+
+\end{DoxySeeAlso}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classXaria_1_1Player_a86d80bfee5af015e8612cd992bf53ad0}\label{classXaria_1_1Player_a86d80bfee5af015e8612cd992bf53ad0}} 
+\index{Xaria\+::\+Player@{Xaria\+::\+Player}!Player@{Player}}
+\index{Player@{Player}!Xaria\+::\+Player@{Xaria\+::\+Player}}
+\subsubsection{\texorpdfstring{Player()}{Player()}}
+{\footnotesize\ttfamily Xaria.\+Player.\+Player (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+\+: Game has started. \hyperlink{classXaria_1_1Player}{Player} needs to be created. \+: \hyperlink{classXaria_1_1Player}{Player} is created \+: None 
+
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classXaria_1_1Player_a21b21585a59e7768ba843b8051d99a90}\label{classXaria_1_1Player_a21b21585a59e7768ba843b8051d99a90}} 
+\index{Xaria\+::\+Player@{Xaria\+::\+Player}!Add\+Life@{Add\+Life}}
+\index{Add\+Life@{Add\+Life}!Xaria\+::\+Player@{Xaria\+::\+Player}}
+\subsubsection{\texorpdfstring{Add\+Life()}{AddLife()}}
+{\footnotesize\ttfamily void Xaria.\+Player.\+Add\+Life (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+\+: \hyperlink{classXaria_1_1Enemy}{Enemy} has dropped a bonus life. \hyperlink{classXaria_1_1Player}{Player}\textquotesingle{}s hitbox intersects bonus life hitbox \+: \hyperlink{classXaria_1_1Player}{Player} gets an extra life \+: None 
+
+\mbox{\Hypertarget{classXaria_1_1Player_aff15ed23c2465062f0c70e3a2a5e8a86}\label{classXaria_1_1Player_aff15ed23c2465062f0c70e3a2a5e8a86}} 
+\index{Xaria\+::\+Player@{Xaria\+::\+Player}!Add\+Shield@{Add\+Shield}}
+\index{Add\+Shield@{Add\+Shield}!Xaria\+::\+Player@{Xaria\+::\+Player}}
+\subsubsection{\texorpdfstring{Add\+Shield()}{AddShield()}}
+{\footnotesize\ttfamily void Xaria.\+Player.\+Add\+Shield (\begin{DoxyParamCaption}\item[{int}]{Shield\+Strength }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+\+: \hyperlink{classXaria_1_1Enemy}{Enemy} has dropped a shield. \hyperlink{classXaria_1_1Player}{Player}\textquotesingle{}s hitbox intersects shield hitbox \+: \hyperlink{classXaria_1_1Player}{Player} gets a shield \+: None 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Shield\+Strength} & The shield strength.\\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classXaria_1_1Player_ad5ad5b8517ebdacc8ed917ab8aaa6b51}\label{classXaria_1_1Player_ad5ad5b8517ebdacc8ed917ab8aaa6b51}} 
+\index{Xaria\+::\+Player@{Xaria\+::\+Player}!Add\+Stun@{Add\+Stun}}
+\index{Add\+Stun@{Add\+Stun}!Xaria\+::\+Player@{Xaria\+::\+Player}}
+\subsubsection{\texorpdfstring{Add\+Stun()}{AddStun()}}
+{\footnotesize\ttfamily void Xaria.\+Player.\+Add\+Stun (\begin{DoxyParamCaption}\item[{int}]{Stun\+Duration }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+\+: \hyperlink{classXaria_1_1Player}{Player} is hit by an emp \+: \hyperlink{classXaria_1_1Player}{Player} cannot move for stun duration \+: None 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Stun\+Duration} & Duration of the stun.\\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classXaria_1_1Player_aefc8537a0f978f3cc5f490d1fccefd56}\label{classXaria_1_1Player_aefc8537a0f978f3cc5f490d1fccefd56}} 
+\index{Xaria\+::\+Player@{Xaria\+::\+Player}!Damage@{Damage}}
+\index{Damage@{Damage}!Xaria\+::\+Player@{Xaria\+::\+Player}}
+\subsubsection{\texorpdfstring{Damage()}{Damage()}}
+{\footnotesize\ttfamily void Xaria.\+Player.\+Damage (\begin{DoxyParamCaption}\item[{int}]{damage }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+\+: player has been hit by a projectile \+: player\textquotesingle{}s health is lowered by projectile damage \+: None 
+
+
+\begin{DoxyParams}{Parameters}
+{\em damage} & The damage.\\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classXaria_1_1Player_a25ddea2b9d8679ab6aa649fda6ce1f22}\label{classXaria_1_1Player_a25ddea2b9d8679ab6aa649fda6ce1f22}} 
+\index{Xaria\+::\+Player@{Xaria\+::\+Player}!Draw@{Draw}}
+\index{Draw@{Draw}!Xaria\+::\+Player@{Xaria\+::\+Player}}
+\subsubsection{\texorpdfstring{Draw()}{Draw()}}
+{\footnotesize\ttfamily override void Xaria.\+Player.\+Draw (\begin{DoxyParamCaption}\item[{ref Sprite\+Batch}]{sprite\+Batch }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+\+: Game has been initiated \+: \hyperlink{classXaria_1_1Player}{Player} is drawn \+: None 
+
+
+\begin{DoxyParams}{Parameters}
+{\em sprite\+Batch} & The sprite batch.\\
+\hline
+\end{DoxyParams}
+
+
+Reimplemented from \hyperlink{classXaria_1_1GameElement_a812e0ffbe54519a3fb14a49115bf43d9}{Xaria.\+Game\+Element}.
+
+\mbox{\Hypertarget{classXaria_1_1Player_a9f8353151c84bf23a7fd646ffdefb852}\label{classXaria_1_1Player_a9f8353151c84bf23a7fd646ffdefb852}} 
+\index{Xaria\+::\+Player@{Xaria\+::\+Player}!Intersects@{Intersects}}
+\index{Intersects@{Intersects}!Xaria\+::\+Player@{Xaria\+::\+Player}}
+\subsubsection{\texorpdfstring{Intersects()}{Intersects()}}
+{\footnotesize\ttfamily bool Xaria.\+Player.\+Intersects (\begin{DoxyParamCaption}\item[{\hyperlink{classXaria_1_1GameElement}{Game\+Element}}]{shot }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+\+: a comparison is made between projectiles and the player \+: none \+: true if the projectile and player intersect, false otherwise 
+
+
+\begin{DoxyParams}{Parameters}
+{\em shot} & The shot.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+\mbox{\Hypertarget{classXaria_1_1Player_a24728ed29589e0601a9a0c9752f8e4bd}\label{classXaria_1_1Player_a24728ed29589e0601a9a0c9752f8e4bd}} 
+\index{Xaria\+::\+Player@{Xaria\+::\+Player}!Is\+Clicked@{Is\+Clicked}}
+\index{Is\+Clicked@{Is\+Clicked}!Xaria\+::\+Player@{Xaria\+::\+Player}}
+\subsubsection{\texorpdfstring{Is\+Clicked()}{IsClicked()}}
+{\footnotesize\ttfamily bool Xaria.\+Player.\+Is\+Clicked (\begin{DoxyParamCaption}\item[{Vector2}]{input }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+\+: player touches the screen \+: none \+: true if the position on the screen touched is within the position of the button, false otherwise 
+
+
+\begin{DoxyParams}{Parameters}
+{\em input} & The input.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+{\ttfamily true} if the specified input is clicked; otherwise, {\ttfamily false}. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classXaria_1_1Player_a228a04fe0b09b56bf90bc0a459034bbf}\label{classXaria_1_1Player_a228a04fe0b09b56bf90bc0a459034bbf}} 
+\index{Xaria\+::\+Player@{Xaria\+::\+Player}!Switch\+Weapon@{Switch\+Weapon}}
+\index{Switch\+Weapon@{Switch\+Weapon}!Xaria\+::\+Player@{Xaria\+::\+Player}}
+\subsubsection{\texorpdfstring{Switch\+Weapon()}{SwitchWeapon()}}
+{\footnotesize\ttfamily void Xaria.\+Player.\+Switch\+Weapon (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+\+: \hyperlink{classXaria_1_1Player}{Player} has grabbed a powerup weapon \+: Switches the weapon for the player \+: None 
+
+\mbox{\Hypertarget{classXaria_1_1Player_a2604251ff8bb846e1c3cbc5f05e09be2}\label{classXaria_1_1Player_a2604251ff8bb846e1c3cbc5f05e09be2}} 
+\index{Xaria\+::\+Player@{Xaria\+::\+Player}!Update\+Projectiles@{Update\+Projectiles}}
+\index{Update\+Projectiles@{Update\+Projectiles}!Xaria\+::\+Player@{Xaria\+::\+Player}}
+\subsubsection{\texorpdfstring{Update\+Projectiles()}{UpdateProjectiles()}}
+{\footnotesize\ttfamily void Xaria.\+Player.\+Update\+Projectiles (\begin{DoxyParamCaption}\item[{ref List$<$ List$<$ \hyperlink{classXaria_1_1Enemy}{Enemy} $>$$>$}]{Enemies }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}
+
+
+
+\+: player has fired a projectile \+: Players projectiles are removed if they have collided with an enemy. Players projectiles also move. \+: None. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em \hyperlink{namespaceXaria_1_1Enemies}{Enemies}} & The enemies.\\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Member Data Documentation}
+\mbox{\Hypertarget{classXaria_1_1Player_a643c5dbda599d86c01bde3cfd1749ae6}\label{classXaria_1_1Player_a643c5dbda599d86c01bde3cfd1749ae6}} 
+\index{Xaria\+::\+Player@{Xaria\+::\+Player}!Projectiles@{Projectiles}}
+\index{Projectiles@{Projectiles}!Xaria\+::\+Player@{Xaria\+::\+Player}}
+\subsubsection{\texorpdfstring{Projectiles}{Projectiles}}
+{\footnotesize\ttfamily List$<$\hyperlink{classXaria_1_1Projectile}{Projectile}$>$ Xaria.\+Player.\+Projectiles = new List$<$\hyperlink{classXaria_1_1Projectile}{Projectile}$>$()\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The projectiles 
+
+\mbox{\Hypertarget{classXaria_1_1Player_a454099110fca2d19ae08bc7174802018}\label{classXaria_1_1Player_a454099110fca2d19ae08bc7174802018}} 
+\index{Xaria\+::\+Player@{Xaria\+::\+Player}!S\+T\+A\+R\+T\+I\+N\+G\+\_\+\+H\+E\+A\+L\+TH@{S\+T\+A\+R\+T\+I\+N\+G\+\_\+\+H\+E\+A\+L\+TH}}
+\index{S\+T\+A\+R\+T\+I\+N\+G\+\_\+\+H\+E\+A\+L\+TH@{S\+T\+A\+R\+T\+I\+N\+G\+\_\+\+H\+E\+A\+L\+TH}!Xaria\+::\+Player@{Xaria\+::\+Player}}
+\subsubsection{\texorpdfstring{S\+T\+A\+R\+T\+I\+N\+G\+\_\+\+H\+E\+A\+L\+TH}{STARTING\_HEALTH}}
+{\footnotesize\ttfamily const int Xaria.\+Player.\+S\+T\+A\+R\+T\+I\+N\+G\+\_\+\+H\+E\+A\+L\+TH = 100}
+
+
+
+The starting health 
+
+
+
+\subsection{Property Documentation}
+\mbox{\Hypertarget{classXaria_1_1Player_a4674dac15dedc7b171948e87393ee17b}\label{classXaria_1_1Player_a4674dac15dedc7b171948e87393ee17b}} 
+\index{Xaria\+::\+Player@{Xaria\+::\+Player}!Extra\+Lives@{Extra\+Lives}}
+\index{Extra\+Lives@{Extra\+Lives}!Xaria\+::\+Player@{Xaria\+::\+Player}}
+\subsubsection{\texorpdfstring{Extra\+Lives}{ExtraLives}}
+{\footnotesize\ttfamily int Xaria.\+Player.\+Extra\+Lives\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [private set]}}
+
+
+
+Gets the extra lives. 
+
+The extra lives. \mbox{\Hypertarget{classXaria_1_1Player_a48a4972a17acb525adca1a30454eaf30}\label{classXaria_1_1Player_a48a4972a17acb525adca1a30454eaf30}} 
+\index{Xaria\+::\+Player@{Xaria\+::\+Player}!Health@{Health}}
+\index{Health@{Health}!Xaria\+::\+Player@{Xaria\+::\+Player}}
+\subsubsection{\texorpdfstring{Health}{Health}}
+{\footnotesize\ttfamily int Xaria.\+Player.\+Health\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [private set]}}
+
+
+
+Gets the health. 
+
+The health. \mbox{\Hypertarget{classXaria_1_1Player_a9f03b368b1fa510b106921d0033365e5}\label{classXaria_1_1Player_a9f03b368b1fa510b106921d0033365e5}} 
+\index{Xaria\+::\+Player@{Xaria\+::\+Player}!Shield@{Shield}}
+\index{Shield@{Shield}!Xaria\+::\+Player@{Xaria\+::\+Player}}
+\subsubsection{\texorpdfstring{Shield}{Shield}}
+{\footnotesize\ttfamily int Xaria.\+Player.\+Shield\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [private set]}}
+
+
+
+Gets the shield. 
+
+The shield. \mbox{\Hypertarget{classXaria_1_1Player_ae675000d7990d74024d26bfa9691d722}\label{classXaria_1_1Player_ae675000d7990d74024d26bfa9691d722}} 
+\index{Xaria\+::\+Player@{Xaria\+::\+Player}!Stunned@{Stunned}}
+\index{Stunned@{Stunned}!Xaria\+::\+Player@{Xaria\+::\+Player}}
+\subsubsection{\texorpdfstring{Stunned}{Stunned}}
+{\footnotesize\ttfamily double Xaria.\+Player.\+Stunned\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [private set]}}
+
+
+
+Gets the stunned. 
+
+The stunned. 
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+Project3/\+Project3/Player.\+cs\end{DoxyCompactItemize}

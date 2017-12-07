@@ -1,0 +1,239 @@
+\hypertarget{classXaria_1_1Projectile}{}\section{Xaria.\+Projectile Class Reference}
+\label{classXaria_1_1Projectile}\index{Xaria.\+Projectile@{Xaria.\+Projectile}}
+
+
+The \hyperlink{classXaria_1_1Projectile}{Projectile} class  
+
+
+Inheritance diagram for Xaria.\+Projectile\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.153846cm]{classXaria_1_1Projectile}
+\end{center}
+\end{figure}
+\subsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+enum \hyperlink{classXaria_1_1Projectile_a2f223d18f3b68ae549d974125826b78d}{Type} \{ \newline
+\hyperlink{classXaria_1_1Projectile_a2f223d18f3b68ae549d974125826b78dad47bda86cb76322c22950e84e9cd109d}{Type.\+Laser}, 
+\hyperlink{classXaria_1_1Projectile_a2f223d18f3b68ae549d974125826b78da15e8bfff2c10ca22da244d85b2bf7d94}{Type.\+Rocket}, 
+\hyperlink{classXaria_1_1Projectile_a2f223d18f3b68ae549d974125826b78dadc6e84a67852dd96c1ba57da273b26ac}{Type.\+Beam}, 
+\hyperlink{classXaria_1_1Projectile_a2f223d18f3b68ae549d974125826b78da30fda405a39a1754550e87835c669fbb}{Type.\+Emp}, 
+\newline
+\hyperlink{classXaria_1_1Projectile_a2f223d18f3b68ae549d974125826b78da65df26d4bf6ba8ce4b2c6e2a1b524d12}{Type.\+Pellet}
+ \}
+\end{DoxyCompactItemize}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+abstract void \hyperlink{classXaria_1_1Projectile_a9c2185ee6c1cf40e1cf846aa196ba514}{On\+Collision} (ref List$<$ List$<$ \hyperlink{classXaria_1_1Enemy}{Enemy} $>$$>$ Enemies, int y, int x)
+\begin{DoxyCompactList}\small\item\em Called when \mbox{[}collision\mbox{]}. \end{DoxyCompactList}\item 
+abstract void \hyperlink{classXaria_1_1Projectile_a57ef6f4c3545ab6f1346b36949dcd3d8}{On\+Collision} (ref \hyperlink{classXaria_1_1Player}{Player} player)
+\begin{DoxyCompactList}\small\item\em Called when \mbox{[}collision\mbox{]}. \end{DoxyCompactList}\item 
+abstract void \hyperlink{classXaria_1_1Projectile_a92b00c404863fc5ef875fb598345bcbc}{Draw\+From\+Enemy} (ref Sprite\+Batch sprite\+Batch)
+\begin{DoxyCompactList}\small\item\em \+: R\+NG is a success for creating an enemy projectile \+: A projectile is created below the enemy \+: None \end{DoxyCompactList}\item 
+virtual void \hyperlink{classXaria_1_1Projectile_a7ac9f22571f1bb0059e684f1cb755559}{Move} ()
+\begin{DoxyCompactList}\small\item\em \+: A level is being played. The specified projectile has been fired. \+: \hyperlink{classXaria_1_1Projectile}{Projectile} moves downwards at the rate of its velocity \+: None \end{DoxyCompactList}\item 
+bool \hyperlink{classXaria_1_1Projectile_a00177398f98fba5aad8e9b4a0cb02e0c}{Is\+Immovable} ()
+\begin{DoxyCompactList}\small\item\em \+: \hyperlink{classXaria_1_1Projectile}{Projectile} is not needed to be removed (mainly beam) \+: None. \+: True if the projectile is not to be removed when intersecting an enemy or player, false otherwise \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+bool \hyperlink{classXaria_1_1Projectile_adb312ec0bbc57be2a7099a4ecd556bb8}{Immovable} = false
+\begin{DoxyCompactList}\small\item\em The immovable \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Properties}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classXaria_1_1Projectile_a2f223d18f3b68ae549d974125826b78d}{Type} \hyperlink{classXaria_1_1Projectile_af608c1c14ba53f0b8ae20d52e951db17}{Projectile\+Type}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Gets or sets the type of the projectile. \end{DoxyCompactList}\item 
+int \hyperlink{classXaria_1_1Projectile_a5d5fcce1800aa018bc32689837d2020d}{Damage}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Gets the damage. \end{DoxyCompactList}\item 
+Vector2 \hyperlink{classXaria_1_1Projectile_a5783afe0045a081c6d285cf6801eb983}{Velocity}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Gets the velocity. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+The \hyperlink{classXaria_1_1Projectile}{Projectile} class 
+
+\begin{DoxySeeAlso}{See also}
+\hyperlink{classXaria_1_1GameElement}{Xaria.\+Game\+Element}
+
+
+\end{DoxySeeAlso}
+
+
+\subsection{Member Enumeration Documentation}
+\mbox{\Hypertarget{classXaria_1_1Projectile_a2f223d18f3b68ae549d974125826b78d}\label{classXaria_1_1Projectile_a2f223d18f3b68ae549d974125826b78d}} 
+\index{Xaria\+::\+Projectile@{Xaria\+::\+Projectile}!Type@{Type}}
+\index{Type@{Type}!Xaria\+::\+Projectile@{Xaria\+::\+Projectile}}
+\subsubsection{\texorpdfstring{Type}{Type}}
+{\footnotesize\ttfamily enum \hyperlink{classXaria_1_1Projectile_a2f223d18f3b68ae549d974125826b78d}{Xaria.\+Projectile.\+Type}\hspace{0.3cm}{\ttfamily [strong]}}
+
+
+
+
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Laser@{Laser}!Xaria\+::\+Projectile@{Xaria\+::\+Projectile}}\index{Xaria\+::\+Projectile@{Xaria\+::\+Projectile}!Laser@{Laser}}}\mbox{\Hypertarget{classXaria_1_1Projectile_a2f223d18f3b68ae549d974125826b78dad47bda86cb76322c22950e84e9cd109d}\label{classXaria_1_1Projectile_a2f223d18f3b68ae549d974125826b78dad47bda86cb76322c22950e84e9cd109d}} 
+Laser&The laser \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Rocket@{Rocket}!Xaria\+::\+Projectile@{Xaria\+::\+Projectile}}\index{Xaria\+::\+Projectile@{Xaria\+::\+Projectile}!Rocket@{Rocket}}}\mbox{\Hypertarget{classXaria_1_1Projectile_a2f223d18f3b68ae549d974125826b78da15e8bfff2c10ca22da244d85b2bf7d94}\label{classXaria_1_1Projectile_a2f223d18f3b68ae549d974125826b78da15e8bfff2c10ca22da244d85b2bf7d94}} 
+Rocket&The rocket \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Beam@{Beam}!Xaria\+::\+Projectile@{Xaria\+::\+Projectile}}\index{Xaria\+::\+Projectile@{Xaria\+::\+Projectile}!Beam@{Beam}}}\mbox{\Hypertarget{classXaria_1_1Projectile_a2f223d18f3b68ae549d974125826b78dadc6e84a67852dd96c1ba57da273b26ac}\label{classXaria_1_1Projectile_a2f223d18f3b68ae549d974125826b78dadc6e84a67852dd96c1ba57da273b26ac}} 
+Beam&The beam \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Emp@{Emp}!Xaria\+::\+Projectile@{Xaria\+::\+Projectile}}\index{Xaria\+::\+Projectile@{Xaria\+::\+Projectile}!Emp@{Emp}}}\mbox{\Hypertarget{classXaria_1_1Projectile_a2f223d18f3b68ae549d974125826b78da30fda405a39a1754550e87835c669fbb}\label{classXaria_1_1Projectile_a2f223d18f3b68ae549d974125826b78da30fda405a39a1754550e87835c669fbb}} 
+Emp&The emp \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Pellet@{Pellet}!Xaria\+::\+Projectile@{Xaria\+::\+Projectile}}\index{Xaria\+::\+Projectile@{Xaria\+::\+Projectile}!Pellet@{Pellet}}}\mbox{\Hypertarget{classXaria_1_1Projectile_a2f223d18f3b68ae549d974125826b78da65df26d4bf6ba8ce4b2c6e2a1b524d12}\label{classXaria_1_1Projectile_a2f223d18f3b68ae549d974125826b78da65df26d4bf6ba8ce4b2c6e2a1b524d12}} 
+Pellet&The pellet \\
+\hline
+
+\end{DoxyEnumFields}
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classXaria_1_1Projectile_a92b00c404863fc5ef875fb598345bcbc}\label{classXaria_1_1Projectile_a92b00c404863fc5ef875fb598345bcbc}} 
+\index{Xaria\+::\+Projectile@{Xaria\+::\+Projectile}!Draw\+From\+Enemy@{Draw\+From\+Enemy}}
+\index{Draw\+From\+Enemy@{Draw\+From\+Enemy}!Xaria\+::\+Projectile@{Xaria\+::\+Projectile}}
+\subsubsection{\texorpdfstring{Draw\+From\+Enemy()}{DrawFromEnemy()}}
+{\footnotesize\ttfamily abstract void Xaria.\+Projectile.\+Draw\+From\+Enemy (\begin{DoxyParamCaption}\item[{ref Sprite\+Batch}]{sprite\+Batch }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+\+: R\+NG is a success for creating an enemy projectile \+: A projectile is created below the enemy \+: None 
+
+
+\begin{DoxyParams}{Parameters}
+{\em sprite\+Batch} & The sprite batch.\\
+\hline
+\end{DoxyParams}
+
+
+Implemented in \hyperlink{classXaria_1_1Projectiles_1_1Rocket_ab58c907729bbf1a6f0589ce8e3de469f}{Xaria.\+Projectiles.\+Rocket}, \hyperlink{classXaria_1_1Projectiles_1_1Emp_a9eded776a417679715918b35bfcba6d7}{Xaria.\+Projectiles.\+Emp}, \hyperlink{classXaria_1_1Projectiles_1_1Pellet_a86ecd20381a12b3289203145687f27e8}{Xaria.\+Projectiles.\+Pellet}, \hyperlink{classXaria_1_1Projectiles_1_1Beam_ad7d3c0609b54569416d7be95980d2c3e}{Xaria.\+Projectiles.\+Beam}, and \hyperlink{classXaria_1_1Projectiles_1_1Laser_a8ce585ff80044654b9c697c30cb9b1c2}{Xaria.\+Projectiles.\+Laser}.
+
+\mbox{\Hypertarget{classXaria_1_1Projectile_a00177398f98fba5aad8e9b4a0cb02e0c}\label{classXaria_1_1Projectile_a00177398f98fba5aad8e9b4a0cb02e0c}} 
+\index{Xaria\+::\+Projectile@{Xaria\+::\+Projectile}!Is\+Immovable@{Is\+Immovable}}
+\index{Is\+Immovable@{Is\+Immovable}!Xaria\+::\+Projectile@{Xaria\+::\+Projectile}}
+\subsubsection{\texorpdfstring{Is\+Immovable()}{IsImmovable()}}
+{\footnotesize\ttfamily bool Xaria.\+Projectile.\+Is\+Immovable (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+\+: \hyperlink{classXaria_1_1Projectile}{Projectile} is not needed to be removed (mainly beam) \+: None. \+: True if the projectile is not to be removed when intersecting an enemy or player, false otherwise 
+
+\begin{DoxyReturn}{Returns}
+{\ttfamily true} if this instance is immovable; otherwise, {\ttfamily false}. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classXaria_1_1Projectile_a7ac9f22571f1bb0059e684f1cb755559}\label{classXaria_1_1Projectile_a7ac9f22571f1bb0059e684f1cb755559}} 
+\index{Xaria\+::\+Projectile@{Xaria\+::\+Projectile}!Move@{Move}}
+\index{Move@{Move}!Xaria\+::\+Projectile@{Xaria\+::\+Projectile}}
+\subsubsection{\texorpdfstring{Move()}{Move()}}
+{\footnotesize\ttfamily virtual void Xaria.\+Projectile.\+Move (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+\+: A level is being played. The specified projectile has been fired. \+: \hyperlink{classXaria_1_1Projectile}{Projectile} moves downwards at the rate of its velocity \+: None 
+
+
+
+Reimplemented in \hyperlink{classXaria_1_1Projectiles_1_1Rocket_a6f9beb147ddfbac24227ecb80fdbc71e}{Xaria.\+Projectiles.\+Rocket}.
+
+\mbox{\Hypertarget{classXaria_1_1Projectile_a9c2185ee6c1cf40e1cf846aa196ba514}\label{classXaria_1_1Projectile_a9c2185ee6c1cf40e1cf846aa196ba514}} 
+\index{Xaria\+::\+Projectile@{Xaria\+::\+Projectile}!On\+Collision@{On\+Collision}}
+\index{On\+Collision@{On\+Collision}!Xaria\+::\+Projectile@{Xaria\+::\+Projectile}}
+\subsubsection{\texorpdfstring{On\+Collision()}{OnCollision()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily abstract void Xaria.\+Projectile.\+On\+Collision (\begin{DoxyParamCaption}\item[{ref List$<$ List$<$ \hyperlink{classXaria_1_1Enemy}{Enemy} $>$$>$}]{Enemies,  }\item[{int}]{y,  }\item[{int}]{x }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Called when \mbox{[}collision\mbox{]}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em \hyperlink{namespaceXaria_1_1Enemies}{Enemies}} & The enemies.\\
+\hline
+{\em y} & The y.\\
+\hline
+{\em x} & The x.\\
+\hline
+\end{DoxyParams}
+
+
+Implemented in \hyperlink{classXaria_1_1Projectiles_1_1Beam_a48ab1c618b60104761ef1f95d040c30c}{Xaria.\+Projectiles.\+Beam}, \hyperlink{classXaria_1_1Projectiles_1_1Emp_a845adf4efc1dc6c222c72a554a98ba15}{Xaria.\+Projectiles.\+Emp}, \hyperlink{classXaria_1_1Projectiles_1_1Laser_ae28f7334f6bebf40c613162b2ba9896a}{Xaria.\+Projectiles.\+Laser}, \hyperlink{classXaria_1_1Projectiles_1_1Pellet_ae45215e4e6ea94203472cabb911c52d6}{Xaria.\+Projectiles.\+Pellet}, and \hyperlink{classXaria_1_1Projectiles_1_1Rocket_ae3a599ad8ab26ae2757e1c5948c752ac}{Xaria.\+Projectiles.\+Rocket}.
+
+\mbox{\Hypertarget{classXaria_1_1Projectile_a57ef6f4c3545ab6f1346b36949dcd3d8}\label{classXaria_1_1Projectile_a57ef6f4c3545ab6f1346b36949dcd3d8}} 
+\index{Xaria\+::\+Projectile@{Xaria\+::\+Projectile}!On\+Collision@{On\+Collision}}
+\index{On\+Collision@{On\+Collision}!Xaria\+::\+Projectile@{Xaria\+::\+Projectile}}
+\subsubsection{\texorpdfstring{On\+Collision()}{OnCollision()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily abstract void Xaria.\+Projectile.\+On\+Collision (\begin{DoxyParamCaption}\item[{ref \hyperlink{classXaria_1_1Player}{Player}}]{player }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Called when \mbox{[}collision\mbox{]}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em player} & The player.\\
+\hline
+\end{DoxyParams}
+
+
+Implemented in \hyperlink{classXaria_1_1Projectiles_1_1Rocket_a8d407d47417563e8ebe81e8872e1d73e}{Xaria.\+Projectiles.\+Rocket}, \hyperlink{classXaria_1_1Projectiles_1_1Laser_a0a306ff1779560ed3fec771709182eb5}{Xaria.\+Projectiles.\+Laser}, \hyperlink{classXaria_1_1Projectiles_1_1Beam_a5c2df0bea00c89d32816f7b96ac98e65}{Xaria.\+Projectiles.\+Beam}, \hyperlink{classXaria_1_1Projectiles_1_1Emp_a08ccc50483dd74dacf633f820592cd04}{Xaria.\+Projectiles.\+Emp}, and \hyperlink{classXaria_1_1Projectiles_1_1Pellet_a2491ac1fdf3e4ea69354e1624d7ff690}{Xaria.\+Projectiles.\+Pellet}.
+
+
+
+\subsection{Member Data Documentation}
+\mbox{\Hypertarget{classXaria_1_1Projectile_adb312ec0bbc57be2a7099a4ecd556bb8}\label{classXaria_1_1Projectile_adb312ec0bbc57be2a7099a4ecd556bb8}} 
+\index{Xaria\+::\+Projectile@{Xaria\+::\+Projectile}!Immovable@{Immovable}}
+\index{Immovable@{Immovable}!Xaria\+::\+Projectile@{Xaria\+::\+Projectile}}
+\subsubsection{\texorpdfstring{Immovable}{Immovable}}
+{\footnotesize\ttfamily bool Xaria.\+Projectile.\+Immovable = false\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+The immovable 
+
+
+
+\subsection{Property Documentation}
+\mbox{\Hypertarget{classXaria_1_1Projectile_a5d5fcce1800aa018bc32689837d2020d}\label{classXaria_1_1Projectile_a5d5fcce1800aa018bc32689837d2020d}} 
+\index{Xaria\+::\+Projectile@{Xaria\+::\+Projectile}!Damage@{Damage}}
+\index{Damage@{Damage}!Xaria\+::\+Projectile@{Xaria\+::\+Projectile}}
+\subsubsection{\texorpdfstring{Damage}{Damage}}
+{\footnotesize\ttfamily int Xaria.\+Projectile.\+Damage\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}, {\ttfamily [protected]}}
+
+
+
+Gets the damage. 
+
+The damage. \mbox{\Hypertarget{classXaria_1_1Projectile_af608c1c14ba53f0b8ae20d52e951db17}\label{classXaria_1_1Projectile_af608c1c14ba53f0b8ae20d52e951db17}} 
+\index{Xaria\+::\+Projectile@{Xaria\+::\+Projectile}!Projectile\+Type@{Projectile\+Type}}
+\index{Projectile\+Type@{Projectile\+Type}!Xaria\+::\+Projectile@{Xaria\+::\+Projectile}}
+\subsubsection{\texorpdfstring{Projectile\+Type}{ProjectileType}}
+{\footnotesize\ttfamily \hyperlink{classXaria_1_1Projectile_a2f223d18f3b68ae549d974125826b78d}{Type} Xaria.\+Projectile.\+Projectile\+Type\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}, {\ttfamily [protected]}}
+
+
+
+Gets or sets the type of the projectile. 
+
+The type of the projectile. \mbox{\Hypertarget{classXaria_1_1Projectile_a5783afe0045a081c6d285cf6801eb983}\label{classXaria_1_1Projectile_a5783afe0045a081c6d285cf6801eb983}} 
+\index{Xaria\+::\+Projectile@{Xaria\+::\+Projectile}!Velocity@{Velocity}}
+\index{Velocity@{Velocity}!Xaria\+::\+Projectile@{Xaria\+::\+Projectile}}
+\subsubsection{\texorpdfstring{Velocity}{Velocity}}
+{\footnotesize\ttfamily Vector2 Xaria.\+Projectile.\+Velocity\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}, {\ttfamily [protected]}}
+
+
+
+Gets the velocity. 
+
+The velocity. 
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+Project3/\+Project3/\+Projectiles/Projectile.\+cs\end{DoxyCompactItemize}

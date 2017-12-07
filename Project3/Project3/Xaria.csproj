@@ -35,10 +35,10 @@
     <DefineConstants>DEBUG;TRACE;ANDROID</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <AndroidUseSharedRuntime>true</AndroidUseSharedRuntime>
+    <AndroidUseSharedRuntime>false</AndroidUseSharedRuntime>
     <AndroidLinkMode>Full</AndroidLinkMode>
-    <EmbedAssembliesIntoApk>false</EmbedAssembliesIntoApk>
-    <EnableProguard>false</EnableProguard>
+    <EmbedAssembliesIntoApk>true</EmbedAssembliesIntoApk>
+    <EnableProguard>true</EnableProguard>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -112,7 +112,6 @@
     <Compile Include="Enemies\Advanced..cs" />
     <Compile Include="Enemies\Boss.cs" />
     <Compile Include="Enemies\Intermediate.cs" />
-    <Compile Include="Screens\Pause.cs" />
     <Compile Include="Test.cs" />
     <Compile Include="Weapon.cs" />
     <Compile Include="Enemies\Basic.cs" />

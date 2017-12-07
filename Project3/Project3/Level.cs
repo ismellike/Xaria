@@ -5,8 +5,6 @@ using System;
 using System.Collections.Generic;
 using Xaria.Drops;
 using Xaria.Enemies;
-using Xaria.Projectiles;
-using Xaria.Screens;
 
 namespace Xaria
 {

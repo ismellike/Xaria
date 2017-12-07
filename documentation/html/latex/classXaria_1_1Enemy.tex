@@ -1,0 +1,250 @@
+\hypertarget{classXaria_1_1Enemy}{}\section{Xaria.\+Enemy Class Reference}
+\label{classXaria_1_1Enemy}\index{Xaria.\+Enemy@{Xaria.\+Enemy}}
+
+
+Generic enemy class inherited by specific enemies  
+
+
+Inheritance diagram for Xaria.\+Enemy\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.574713cm]{classXaria_1_1Enemy}
+\end{center}
+\end{figure}
+\subsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+enum \hyperlink{classXaria_1_1Enemy_af736652ccf0a3aabacb41bd1afd41234}{Type} \{ \hyperlink{classXaria_1_1Enemy_af736652ccf0a3aabacb41bd1afd41234a972e73b7a882d0802a4e3a16946a2f94}{Type.\+Basic} = 1, 
+\hyperlink{classXaria_1_1Enemy_af736652ccf0a3aabacb41bd1afd41234ab57ed7a0b4f939d0c048882570336e3a}{Type.\+Intermediate} = 2, 
+\hyperlink{classXaria_1_1Enemy_af736652ccf0a3aabacb41bd1afd41234a9b6545e4cea9b4ad4979d41bb9170e2b}{Type.\+Advanced} = 3, 
+\hyperlink{classXaria_1_1Enemy_af736652ccf0a3aabacb41bd1afd41234a5859831e2b3db23528c710b1451e13fc}{Type.\+Boss} = 4
+ \}
+\end{DoxyCompactItemize}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+override void \hyperlink{classXaria_1_1Enemy_a0f857a720f4a5ecc037887c846c55afc}{Draw} (ref Sprite\+Batch sprite\+Batch)
+\begin{DoxyCompactList}\small\item\em \+: \hyperlink{classXaria_1_1Enemy}{Enemy} is needed to be drawn for the current level being generated \+: \hyperlink{classXaria_1_1Enemy}{Enemy} is drawn \+: None. \end{DoxyCompactList}\item 
+abstract void \hyperlink{classXaria_1_1Enemy_a229b595e96e1429a9e9b1d9816d4370b}{Shoot} (Game\+Time game\+Time, ref List$<$ \hyperlink{classXaria_1_1Projectile}{Projectile} $>$ Projectiles)
+\begin{DoxyCompactList}\small\item\em \+: R\+NG is a success for the enemy to shoot \+: A projectile is shot if the enemy\textquotesingle{}s fire rate is not on cooldown \+: None \end{DoxyCompactList}\item 
+bool \hyperlink{classXaria_1_1Enemy_af2fe968a037dda0f8a17f6d218a55ac6}{Is\+Hit} (\hyperlink{classXaria_1_1Projectile}{Projectile} shot)
+\begin{DoxyCompactList}\small\item\em \+: \hyperlink{classXaria_1_1Projectile}{Projectile} has been shot at the enemy. \hyperlink{classXaria_1_1Enemy}{Enemy}\textquotesingle{}s hitbox intersects the player\textquotesingle{}s projectile \+: None. \+: True if the projectile bounds intersect the enemy, false otherwise \end{DoxyCompactList}\item 
+abstract void \hyperlink{classXaria_1_1Enemy_abe1058263c5512b5e098e73d3b6d704c}{Update\+Movement} (\hyperlink{classXaria_1_1Level}{Level} level, Game\+Time game\+Time)
+\begin{DoxyCompactList}\small\item\em \+: Update is being called on the current level. \+: \hyperlink{classXaria_1_1Enemy}{Enemy}\textquotesingle{}s move the way they need to go. \+: None. \end{DoxyCompactList}\item 
+void \hyperlink{classXaria_1_1Enemy_a611772d6cb14268a7593004afef304b3}{Damage} (int damage)
+\begin{DoxyCompactList}\small\item\em \+: \hyperlink{classXaria_1_1Enemy}{Enemy} hitbox intersects a player projectile\textquotesingle{}s hitbox \+: Damage is done to the enemy \+: None \end{DoxyCompactList}\item 
+bool \hyperlink{classXaria_1_1Enemy_ad4a9e26e30c920fafbae59415476f281}{Is\+Dead} ()
+\begin{DoxyCompactList}\small\item\em \+: Update is being called. Need to check if the enemy has died \+: None \+: true if the enemy health is less than or equal to 0, false otherwise \end{DoxyCompactList}\item 
+bool \hyperlink{classXaria_1_1Enemy_a809f1adcc325a17d07f6cc3cd74e7139}{Is\+Boss} ()
+\begin{DoxyCompactList}\small\item\em \+: Update is being called. Need to check if the enemy type is a boss \+: None. \+: True if the enemy\+Type is boss, false otherwise \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Properties}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classXaria_1_1Enemy_af736652ccf0a3aabacb41bd1afd41234}{Type} \hyperlink{classXaria_1_1Enemy_a5eeea6a504a8f722663fffd8d6f3618a}{Enemy\+Type}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Gets or sets the type of the enemy. \end{DoxyCompactList}\item 
+int \hyperlink{classXaria_1_1Enemy_a074d424a513ab8a574e903f3eda7b9a1}{Health}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Gets the health. \end{DoxyCompactList}\item 
+double \hyperlink{classXaria_1_1Enemy_a29bbc071a0375540281b0f6c2bb36dea}{Next\+Shoot}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Gets the next shoot. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Generic enemy class inherited by specific enemies 
+
+\begin{DoxySeeAlso}{See also}
+\hyperlink{classXaria_1_1GameElement}{Xaria.\+Game\+Element}
+
+
+\end{DoxySeeAlso}
+
+
+\subsection{Member Enumeration Documentation}
+\mbox{\Hypertarget{classXaria_1_1Enemy_af736652ccf0a3aabacb41bd1afd41234}\label{classXaria_1_1Enemy_af736652ccf0a3aabacb41bd1afd41234}} 
+\index{Xaria\+::\+Enemy@{Xaria\+::\+Enemy}!Type@{Type}}
+\index{Type@{Type}!Xaria\+::\+Enemy@{Xaria\+::\+Enemy}}
+\subsubsection{\texorpdfstring{Type}{Type}}
+{\footnotesize\ttfamily enum \hyperlink{classXaria_1_1Enemy_af736652ccf0a3aabacb41bd1afd41234}{Xaria.\+Enemy.\+Type}\hspace{0.3cm}{\ttfamily [strong]}}
+
+
+
+
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Basic@{Basic}!Xaria\+::\+Enemy@{Xaria\+::\+Enemy}}\index{Xaria\+::\+Enemy@{Xaria\+::\+Enemy}!Basic@{Basic}}}\mbox{\Hypertarget{classXaria_1_1Enemy_af736652ccf0a3aabacb41bd1afd41234a972e73b7a882d0802a4e3a16946a2f94}\label{classXaria_1_1Enemy_af736652ccf0a3aabacb41bd1afd41234a972e73b7a882d0802a4e3a16946a2f94}} 
+Basic&The basic \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Intermediate@{Intermediate}!Xaria\+::\+Enemy@{Xaria\+::\+Enemy}}\index{Xaria\+::\+Enemy@{Xaria\+::\+Enemy}!Intermediate@{Intermediate}}}\mbox{\Hypertarget{classXaria_1_1Enemy_af736652ccf0a3aabacb41bd1afd41234ab57ed7a0b4f939d0c048882570336e3a}\label{classXaria_1_1Enemy_af736652ccf0a3aabacb41bd1afd41234ab57ed7a0b4f939d0c048882570336e3a}} 
+Intermediate&The intermediate \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Advanced@{Advanced}!Xaria\+::\+Enemy@{Xaria\+::\+Enemy}}\index{Xaria\+::\+Enemy@{Xaria\+::\+Enemy}!Advanced@{Advanced}}}\mbox{\Hypertarget{classXaria_1_1Enemy_af736652ccf0a3aabacb41bd1afd41234a9b6545e4cea9b4ad4979d41bb9170e2b}\label{classXaria_1_1Enemy_af736652ccf0a3aabacb41bd1afd41234a9b6545e4cea9b4ad4979d41bb9170e2b}} 
+Advanced&The advanced \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Boss@{Boss}!Xaria\+::\+Enemy@{Xaria\+::\+Enemy}}\index{Xaria\+::\+Enemy@{Xaria\+::\+Enemy}!Boss@{Boss}}}\mbox{\Hypertarget{classXaria_1_1Enemy_af736652ccf0a3aabacb41bd1afd41234a5859831e2b3db23528c710b1451e13fc}\label{classXaria_1_1Enemy_af736652ccf0a3aabacb41bd1afd41234a5859831e2b3db23528c710b1451e13fc}} 
+Boss&The boss \\
+\hline
+
+\end{DoxyEnumFields}
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classXaria_1_1Enemy_a611772d6cb14268a7593004afef304b3}\label{classXaria_1_1Enemy_a611772d6cb14268a7593004afef304b3}} 
+\index{Xaria\+::\+Enemy@{Xaria\+::\+Enemy}!Damage@{Damage}}
+\index{Damage@{Damage}!Xaria\+::\+Enemy@{Xaria\+::\+Enemy}}
+\subsubsection{\texorpdfstring{Damage()}{Damage()}}
+{\footnotesize\ttfamily void Xaria.\+Enemy.\+Damage (\begin{DoxyParamCaption}\item[{int}]{damage }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+\+: \hyperlink{classXaria_1_1Enemy}{Enemy} hitbox intersects a player projectile\textquotesingle{}s hitbox \+: Damage is done to the enemy \+: None 
+
+
+\begin{DoxyParams}{Parameters}
+{\em damage} & The damage.\\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classXaria_1_1Enemy_a0f857a720f4a5ecc037887c846c55afc}\label{classXaria_1_1Enemy_a0f857a720f4a5ecc037887c846c55afc}} 
+\index{Xaria\+::\+Enemy@{Xaria\+::\+Enemy}!Draw@{Draw}}
+\index{Draw@{Draw}!Xaria\+::\+Enemy@{Xaria\+::\+Enemy}}
+\subsubsection{\texorpdfstring{Draw()}{Draw()}}
+{\footnotesize\ttfamily override void Xaria.\+Enemy.\+Draw (\begin{DoxyParamCaption}\item[{ref Sprite\+Batch}]{sprite\+Batch }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+\+: \hyperlink{classXaria_1_1Enemy}{Enemy} is needed to be drawn for the current level being generated \+: \hyperlink{classXaria_1_1Enemy}{Enemy} is drawn \+: None. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em sprite\+Batch} & The sprite batch.\\
+\hline
+\end{DoxyParams}
+
+
+Reimplemented from \hyperlink{classXaria_1_1GameElement_a812e0ffbe54519a3fb14a49115bf43d9}{Xaria.\+Game\+Element}.
+
+\mbox{\Hypertarget{classXaria_1_1Enemy_a809f1adcc325a17d07f6cc3cd74e7139}\label{classXaria_1_1Enemy_a809f1adcc325a17d07f6cc3cd74e7139}} 
+\index{Xaria\+::\+Enemy@{Xaria\+::\+Enemy}!Is\+Boss@{Is\+Boss}}
+\index{Is\+Boss@{Is\+Boss}!Xaria\+::\+Enemy@{Xaria\+::\+Enemy}}
+\subsubsection{\texorpdfstring{Is\+Boss()}{IsBoss()}}
+{\footnotesize\ttfamily bool Xaria.\+Enemy.\+Is\+Boss (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+\+: Update is being called. Need to check if the enemy type is a boss \+: None. \+: True if the enemy\+Type is boss, false otherwise 
+
+\begin{DoxyReturn}{Returns}
+{\ttfamily true} if this instance is boss; otherwise, {\ttfamily false}. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classXaria_1_1Enemy_ad4a9e26e30c920fafbae59415476f281}\label{classXaria_1_1Enemy_ad4a9e26e30c920fafbae59415476f281}} 
+\index{Xaria\+::\+Enemy@{Xaria\+::\+Enemy}!Is\+Dead@{Is\+Dead}}
+\index{Is\+Dead@{Is\+Dead}!Xaria\+::\+Enemy@{Xaria\+::\+Enemy}}
+\subsubsection{\texorpdfstring{Is\+Dead()}{IsDead()}}
+{\footnotesize\ttfamily bool Xaria.\+Enemy.\+Is\+Dead (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+\+: Update is being called. Need to check if the enemy has died \+: None \+: true if the enemy health is less than or equal to 0, false otherwise 
+
+\begin{DoxyReturn}{Returns}
+{\ttfamily true} if this instance is dead; otherwise, {\ttfamily false}. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classXaria_1_1Enemy_af2fe968a037dda0f8a17f6d218a55ac6}\label{classXaria_1_1Enemy_af2fe968a037dda0f8a17f6d218a55ac6}} 
+\index{Xaria\+::\+Enemy@{Xaria\+::\+Enemy}!Is\+Hit@{Is\+Hit}}
+\index{Is\+Hit@{Is\+Hit}!Xaria\+::\+Enemy@{Xaria\+::\+Enemy}}
+\subsubsection{\texorpdfstring{Is\+Hit()}{IsHit()}}
+{\footnotesize\ttfamily bool Xaria.\+Enemy.\+Is\+Hit (\begin{DoxyParamCaption}\item[{\hyperlink{classXaria_1_1Projectile}{Projectile}}]{shot }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+\+: \hyperlink{classXaria_1_1Projectile}{Projectile} has been shot at the enemy. \hyperlink{classXaria_1_1Enemy}{Enemy}\textquotesingle{}s hitbox intersects the player\textquotesingle{}s projectile \+: None. \+: True if the projectile bounds intersect the enemy, false otherwise 
+
+
+\begin{DoxyParams}{Parameters}
+{\em shot} & The shot.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+{\ttfamily true} if the specified shot is hit; otherwise, {\ttfamily false}. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classXaria_1_1Enemy_a229b595e96e1429a9e9b1d9816d4370b}\label{classXaria_1_1Enemy_a229b595e96e1429a9e9b1d9816d4370b}} 
+\index{Xaria\+::\+Enemy@{Xaria\+::\+Enemy}!Shoot@{Shoot}}
+\index{Shoot@{Shoot}!Xaria\+::\+Enemy@{Xaria\+::\+Enemy}}
+\subsubsection{\texorpdfstring{Shoot()}{Shoot()}}
+{\footnotesize\ttfamily abstract void Xaria.\+Enemy.\+Shoot (\begin{DoxyParamCaption}\item[{Game\+Time}]{game\+Time,  }\item[{ref List$<$ \hyperlink{classXaria_1_1Projectile}{Projectile} $>$}]{Projectiles }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+\+: R\+NG is a success for the enemy to shoot \+: A projectile is shot if the enemy\textquotesingle{}s fire rate is not on cooldown \+: None 
+
+
+\begin{DoxyParams}{Parameters}
+{\em game\+Time} & The game time.\\
+\hline
+{\em \hyperlink{namespaceXaria_1_1Projectiles}{Projectiles}} & The projectiles.\\
+\hline
+\end{DoxyParams}
+
+
+Implemented in \hyperlink{classXaria_1_1Enemies_1_1Boss3_a5dfe4d674dc5bf5b39b0625ed89b1eb5}{Xaria.\+Enemies.\+Boss3}, \hyperlink{classXaria_1_1Enemies_1_1Boss2_ab1a3c2b68ec14481a3daba180782cce4}{Xaria.\+Enemies.\+Boss2}, \hyperlink{classXaria_1_1Enemies_1_1Boss1_a10fd351c6577ca1e85ec2396d421c313}{Xaria.\+Enemies.\+Boss1}, \hyperlink{classXaria_1_1Enemies_1_1Basic_a60c5523093585a2d52a9b587acf3bc28}{Xaria.\+Enemies.\+Basic}, \hyperlink{classXaria_1_1Enemies_1_1Boss4_a8f2416704b32c1ceedfa08b7e226924e}{Xaria.\+Enemies.\+Boss4}, \hyperlink{classXaria_1_1Enemies_1_1Advanced_af838890dc217792b449a18a266e5518b}{Xaria.\+Enemies.\+Advanced}, and \hyperlink{classXaria_1_1Enemies_1_1Intermediate_a841e04a489be7bf4a75e002ae8b10dcd}{Xaria.\+Enemies.\+Intermediate}.
+
+\mbox{\Hypertarget{classXaria_1_1Enemy_abe1058263c5512b5e098e73d3b6d704c}\label{classXaria_1_1Enemy_abe1058263c5512b5e098e73d3b6d704c}} 
+\index{Xaria\+::\+Enemy@{Xaria\+::\+Enemy}!Update\+Movement@{Update\+Movement}}
+\index{Update\+Movement@{Update\+Movement}!Xaria\+::\+Enemy@{Xaria\+::\+Enemy}}
+\subsubsection{\texorpdfstring{Update\+Movement()}{UpdateMovement()}}
+{\footnotesize\ttfamily abstract void Xaria.\+Enemy.\+Update\+Movement (\begin{DoxyParamCaption}\item[{\hyperlink{classXaria_1_1Level}{Level}}]{level,  }\item[{Game\+Time}]{game\+Time }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+\+: Update is being called on the current level. \+: \hyperlink{classXaria_1_1Enemy}{Enemy}\textquotesingle{}s move the way they need to go. \+: None. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em level} & The level.\\
+\hline
+{\em game\+Time} & The game time.\\
+\hline
+\end{DoxyParams}
+
+
+Implemented in \hyperlink{classXaria_1_1Enemies_1_1Boss4_a7962281c412a9192916819e463d625d2}{Xaria.\+Enemies.\+Boss4}, \hyperlink{classXaria_1_1Enemies_1_1Boss1_aed5d8f9843c47b9022104ea2de498830}{Xaria.\+Enemies.\+Boss1}, \hyperlink{classXaria_1_1Enemies_1_1Boss3_a60ae20b9df383474b5a59b0339773612}{Xaria.\+Enemies.\+Boss3}, \hyperlink{classXaria_1_1Enemies_1_1Boss2_a6121cd1be6449c71e579ab4d59398a9a}{Xaria.\+Enemies.\+Boss2}, \hyperlink{classXaria_1_1Enemies_1_1Basic_a1f8c20016b8ea5c18fca1295510952c9}{Xaria.\+Enemies.\+Basic}, \hyperlink{classXaria_1_1Enemies_1_1Intermediate_a2b9bcfbfd205f279db56bb86c776c07a}{Xaria.\+Enemies.\+Intermediate}, and \hyperlink{classXaria_1_1Enemies_1_1Advanced_a1b3201d7cb5a9aeb8c6bf3fa99b0e194}{Xaria.\+Enemies.\+Advanced}.
+
+
+
+\subsection{Property Documentation}
+\mbox{\Hypertarget{classXaria_1_1Enemy_a5eeea6a504a8f722663fffd8d6f3618a}\label{classXaria_1_1Enemy_a5eeea6a504a8f722663fffd8d6f3618a}} 
+\index{Xaria\+::\+Enemy@{Xaria\+::\+Enemy}!Enemy\+Type@{Enemy\+Type}}
+\index{Enemy\+Type@{Enemy\+Type}!Xaria\+::\+Enemy@{Xaria\+::\+Enemy}}
+\subsubsection{\texorpdfstring{Enemy\+Type}{EnemyType}}
+{\footnotesize\ttfamily \hyperlink{classXaria_1_1Enemy_af736652ccf0a3aabacb41bd1afd41234}{Type} Xaria.\+Enemy.\+Enemy\+Type\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}, {\ttfamily [protected]}}
+
+
+
+Gets or sets the type of the enemy. 
+
+The type of the enemy. \mbox{\Hypertarget{classXaria_1_1Enemy_a074d424a513ab8a574e903f3eda7b9a1}\label{classXaria_1_1Enemy_a074d424a513ab8a574e903f3eda7b9a1}} 
+\index{Xaria\+::\+Enemy@{Xaria\+::\+Enemy}!Health@{Health}}
+\index{Health@{Health}!Xaria\+::\+Enemy@{Xaria\+::\+Enemy}}
+\subsubsection{\texorpdfstring{Health}{Health}}
+{\footnotesize\ttfamily int Xaria.\+Enemy.\+Health\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}, {\ttfamily [protected]}}
+
+
+
+Gets the health. 
+
+The health. \mbox{\Hypertarget{classXaria_1_1Enemy_a29bbc071a0375540281b0f6c2bb36dea}\label{classXaria_1_1Enemy_a29bbc071a0375540281b0f6c2bb36dea}} 
+\index{Xaria\+::\+Enemy@{Xaria\+::\+Enemy}!Next\+Shoot@{Next\+Shoot}}
+\index{Next\+Shoot@{Next\+Shoot}!Xaria\+::\+Enemy@{Xaria\+::\+Enemy}}
+\subsubsection{\texorpdfstring{Next\+Shoot}{NextShoot}}
+{\footnotesize\ttfamily double Xaria.\+Enemy.\+Next\+Shoot\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}, {\ttfamily [protected]}}
+
+
+
+Gets the next shoot. 
+
+The next shoot. 
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+Project3/\+Project3/\+Enemies/Enemy.\+cs\end{DoxyCompactItemize}

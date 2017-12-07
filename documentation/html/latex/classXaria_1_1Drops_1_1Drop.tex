@@ -1,0 +1,128 @@
+\hypertarget{classXaria_1_1Drops_1_1Drop}{}\section{Xaria.\+Drops.\+Drop Class Reference}
+\label{classXaria_1_1Drops_1_1Drop}\index{Xaria.\+Drops.\+Drop@{Xaria.\+Drops.\+Drop}}
+
+
+The inheritable drop class  
+
+
+Inheritance diagram for Xaria.\+Drops.\+Drop\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.545455cm]{classXaria_1_1Drops_1_1Drop}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+abstract void \hyperlink{classXaria_1_1Drops_1_1Drop_abb5544bb56ff889f557888bd9e86f7cb}{On\+Receive} (ref \hyperlink{classXaria_1_1Player}{Player} player)
+\begin{DoxyCompactList}\small\item\em Called when \mbox{[}receive\mbox{]}. \end{DoxyCompactList}\item 
+abstract override string \hyperlink{classXaria_1_1Drops_1_1Drop_abe25441e5c3fe5b2199352f24bfafa4b}{To\+String} ()
+\begin{DoxyCompactList}\small\item\em Returns a System.\+String that represents this instance. \end{DoxyCompactList}\item 
+override void \hyperlink{classXaria_1_1Drops_1_1Drop_a2cd5c3912ae653526a7cc25aefa691b0}{Draw} (ref Sprite\+Batch sprite\+Batch)
+\begin{DoxyCompactList}\small\item\em Draws the specified sprite batch. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+const float \hyperlink{classXaria_1_1Drops_1_1Drop_a9b124fd6ebca83cbfaeb6a591e8717db}{D\+R\+O\+P\+\_\+\+S\+P\+E\+ED} = 10f
+\begin{DoxyCompactList}\small\item\em The drop speed \end{DoxyCompactList}\item 
+readonly Vector2 \hyperlink{classXaria_1_1Drops_1_1Drop_a51f2f721013d35bccfbbd1d85b65354e}{Velocity} = new Vector2(0, \hyperlink{classXaria_1_1Drops_1_1Drop_a9b124fd6ebca83cbfaeb6a591e8717db}{D\+R\+O\+P\+\_\+\+S\+P\+E\+ED})
+\begin{DoxyCompactList}\small\item\em The velocity \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Detailed Description}
+The inheritable drop class 
+
+\begin{DoxySeeAlso}{See also}
+\hyperlink{classXaria_1_1GameElement}{Xaria.\+Game\+Element}
+
+
+\end{DoxySeeAlso}
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classXaria_1_1Drops_1_1Drop_a2cd5c3912ae653526a7cc25aefa691b0}\label{classXaria_1_1Drops_1_1Drop_a2cd5c3912ae653526a7cc25aefa691b0}} 
+\index{Xaria\+::\+Drops\+::\+Drop@{Xaria\+::\+Drops\+::\+Drop}!Draw@{Draw}}
+\index{Draw@{Draw}!Xaria\+::\+Drops\+::\+Drop@{Xaria\+::\+Drops\+::\+Drop}}
+\subsubsection{\texorpdfstring{Draw()}{Draw()}}
+{\footnotesize\ttfamily override void Xaria.\+Drops.\+Drop.\+Draw (\begin{DoxyParamCaption}\item[{ref Sprite\+Batch}]{sprite\+Batch }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Draws the specified sprite batch. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em sprite\+Batch} & The sprite batch.\\
+\hline
+\end{DoxyParams}
+
+
+Reimplemented from \hyperlink{classXaria_1_1GameElement_a812e0ffbe54519a3fb14a49115bf43d9}{Xaria.\+Game\+Element}.
+
+\mbox{\Hypertarget{classXaria_1_1Drops_1_1Drop_abb5544bb56ff889f557888bd9e86f7cb}\label{classXaria_1_1Drops_1_1Drop_abb5544bb56ff889f557888bd9e86f7cb}} 
+\index{Xaria\+::\+Drops\+::\+Drop@{Xaria\+::\+Drops\+::\+Drop}!On\+Receive@{On\+Receive}}
+\index{On\+Receive@{On\+Receive}!Xaria\+::\+Drops\+::\+Drop@{Xaria\+::\+Drops\+::\+Drop}}
+\subsubsection{\texorpdfstring{On\+Receive()}{OnReceive()}}
+{\footnotesize\ttfamily abstract void Xaria.\+Drops.\+Drop.\+On\+Receive (\begin{DoxyParamCaption}\item[{ref \hyperlink{classXaria_1_1Player}{Player}}]{player }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Called when \mbox{[}receive\mbox{]}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em player} & The player.\\
+\hline
+\end{DoxyParams}
+
+
+Implemented in \hyperlink{classXaria_1_1Drops_1_1Shield_a8c222c24381f32eab822d004c734aafd}{Xaria.\+Drops.\+Shield}, \hyperlink{classXaria_1_1Drops_1_1BeamAmmo_aa7141e1cf73e97b303871d0db8576811}{Xaria.\+Drops.\+Beam\+Ammo}, \hyperlink{classXaria_1_1Drops_1_1RocketAmmo_a5a860b6a2c037fa5f24416cf9296055d}{Xaria.\+Drops.\+Rocket\+Ammo}, and \hyperlink{classXaria_1_1Drops_1_1Life_a17d0f9af39944213da726d821a46555b}{Xaria.\+Drops.\+Life}.
+
+\mbox{\Hypertarget{classXaria_1_1Drops_1_1Drop_abe25441e5c3fe5b2199352f24bfafa4b}\label{classXaria_1_1Drops_1_1Drop_abe25441e5c3fe5b2199352f24bfafa4b}} 
+\index{Xaria\+::\+Drops\+::\+Drop@{Xaria\+::\+Drops\+::\+Drop}!To\+String@{To\+String}}
+\index{To\+String@{To\+String}!Xaria\+::\+Drops\+::\+Drop@{Xaria\+::\+Drops\+::\+Drop}}
+\subsubsection{\texorpdfstring{To\+String()}{ToString()}}
+{\footnotesize\ttfamily abstract override string Xaria.\+Drops.\+Drop.\+To\+String (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Returns a System.\+String that represents this instance. 
+
+\begin{DoxyReturn}{Returns}
+A System.\+String that represents this instance. 
+\end{DoxyReturn}
+
+
+To be added. 
+
+Implemented in \hyperlink{classXaria_1_1Drops_1_1Shield_ae6a57bede76de2462ce37a7de4bac987}{Xaria.\+Drops.\+Shield}, \hyperlink{classXaria_1_1Drops_1_1RocketAmmo_aafefb9dee3587e29c16eaa07b45228ad}{Xaria.\+Drops.\+Rocket\+Ammo}, \hyperlink{classXaria_1_1Drops_1_1BeamAmmo_ad368797dd8e08afff7189322eb29fefd}{Xaria.\+Drops.\+Beam\+Ammo}, and \hyperlink{classXaria_1_1Drops_1_1Life_aa75a0f73d72f18d4d9456c3f2a2ea0ce}{Xaria.\+Drops.\+Life}.
+
+
+
+\subsection{Member Data Documentation}
+\mbox{\Hypertarget{classXaria_1_1Drops_1_1Drop_a9b124fd6ebca83cbfaeb6a591e8717db}\label{classXaria_1_1Drops_1_1Drop_a9b124fd6ebca83cbfaeb6a591e8717db}} 
+\index{Xaria\+::\+Drops\+::\+Drop@{Xaria\+::\+Drops\+::\+Drop}!D\+R\+O\+P\+\_\+\+S\+P\+E\+ED@{D\+R\+O\+P\+\_\+\+S\+P\+E\+ED}}
+\index{D\+R\+O\+P\+\_\+\+S\+P\+E\+ED@{D\+R\+O\+P\+\_\+\+S\+P\+E\+ED}!Xaria\+::\+Drops\+::\+Drop@{Xaria\+::\+Drops\+::\+Drop}}
+\subsubsection{\texorpdfstring{D\+R\+O\+P\+\_\+\+S\+P\+E\+ED}{DROP\_SPEED}}
+{\footnotesize\ttfamily const float Xaria.\+Drops.\+Drop.\+D\+R\+O\+P\+\_\+\+S\+P\+E\+ED = 10f}
+
+
+
+The drop speed 
+
+\mbox{\Hypertarget{classXaria_1_1Drops_1_1Drop_a51f2f721013d35bccfbbd1d85b65354e}\label{classXaria_1_1Drops_1_1Drop_a51f2f721013d35bccfbbd1d85b65354e}} 
+\index{Xaria\+::\+Drops\+::\+Drop@{Xaria\+::\+Drops\+::\+Drop}!Velocity@{Velocity}}
+\index{Velocity@{Velocity}!Xaria\+::\+Drops\+::\+Drop@{Xaria\+::\+Drops\+::\+Drop}}
+\subsubsection{\texorpdfstring{Velocity}{Velocity}}
+{\footnotesize\ttfamily readonly Vector2 Xaria.\+Drops.\+Drop.\+Velocity = new Vector2(0, \hyperlink{classXaria_1_1Drops_1_1Drop_a9b124fd6ebca83cbfaeb6a591e8717db}{D\+R\+O\+P\+\_\+\+S\+P\+E\+ED})}
+
+
+
+The velocity 
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+Project3/\+Project3/\+Drops/Drop.\+cs\end{DoxyCompactItemize}

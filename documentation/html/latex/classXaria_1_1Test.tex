@@ -1,0 +1,222 @@
+\hypertarget{classXaria_1_1Test}{}\section{Xaria.\+Test Class Reference}
+\label{classXaria_1_1Test}\index{Xaria.\+Test@{Xaria.\+Test}}
+
+
+The testing class  
+
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{classXaria_1_1Test_af6298f90365209347b5bd4581ff7761d}{Update} (Game\+Time game\+Time, Touch\+Collection touch\+Collection)
+\begin{DoxyCompactList}\small\item\em Updates the specified game time. \end{DoxyCompactList}\item 
+void \hyperlink{classXaria_1_1Test_a0c23a1aea214e972d3f48f2542343036}{Draw} (ref Sprite\+Batch sprite\+Batch)
+\begin{DoxyCompactList}\small\item\em Draws the specified sprite batch. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{classXaria_1_1Test_ad254f5685477c88d63b0a0ebd0ae81de}{Run\+Tests} ()
+\begin{DoxyCompactList}\small\item\em Runs the tests. \end{DoxyCompactList}\item 
+void \hyperlink{classXaria_1_1Test_ad17445853f03cb253110d639dd87dcf2}{Test\+Enemies\+Damage} ()
+\begin{DoxyCompactList}\small\item\em Tests the enemies damage. \end{DoxyCompactList}\item 
+void \hyperlink{classXaria_1_1Test_a33f6befa401ec79a76fee327f2632a3a}{Test\+Playe\+Ammos} (ref \hyperlink{classXaria_1_1Player}{Player} player)
+\begin{DoxyCompactList}\small\item\em Tests the player add ammos. \end{DoxyCompactList}\item 
+void \hyperlink{classXaria_1_1Test_a459546edfae1ef2d205103128e46593c}{Test\+Player\+Damage} (ref \hyperlink{classXaria_1_1Player}{Player} player)
+\begin{DoxyCompactList}\small\item\em Tests the player damage. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classXaria_1_1Test_a6243e5622832b94ae1f35a3d57799b72}\label{classXaria_1_1Test_a6243e5622832b94ae1f35a3d57799b72}} 
+void {\bfseries Test\+Add\+Shield} (ref \hyperlink{classXaria_1_1Player}{Player} player)
+\item 
+bool \hyperlink{classXaria_1_1Test_a9eff33d099d4327f6215d8ff34adbdb8}{Should\+Test} (Touch\+Collection touch\+Collection)
+\begin{DoxyCompactList}\small\item\em Shoulds the test. \end{DoxyCompactList}\item 
+void \hyperlink{classXaria_1_1Test_a510dbeecb286790088a62c01883875a9}{Check\+Levels} (Touch\+Collection touch\+Collection)
+\begin{DoxyCompactList}\small\item\em Checks the levels. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classXaria_1_1Test_a6f568c77d351094c36a9d7841e79ded5}\label{classXaria_1_1Test_a6f568c77d351094c36a9d7841e79ded5}} 
+void {\bfseries Reset} ()
+\end{DoxyCompactItemize}
+\subsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classXaria_1_1Level}{Level} \hyperlink{classXaria_1_1Test_a00af721eecb1813fba1f30afec4044b9}{level} = new \hyperlink{classXaria_1_1Level}{Level}(1)
+\begin{DoxyCompactList}\small\item\em The level \end{DoxyCompactList}\item 
+int \hyperlink{classXaria_1_1Test_a26123efa80dd7b2239686616e87ee20d}{difficulty} = 1
+\begin{DoxyCompactList}\small\item\em The difficulty \end{DoxyCompactList}\item 
+String\+Builder \hyperlink{classXaria_1_1Test_afc1b76ea79ceceeb584f3a3a04cd01d3}{test\+Content} = new String\+Builder()
+\begin{DoxyCompactList}\small\item\em The test content \end{DoxyCompactList}\item 
+bool \hyperlink{classXaria_1_1Test_ac119e60fe2a56444b7c8673591328611}{run\+Tests} = true
+\begin{DoxyCompactList}\small\item\em The run tests \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+The testing class 
+
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classXaria_1_1Test_a510dbeecb286790088a62c01883875a9}\label{classXaria_1_1Test_a510dbeecb286790088a62c01883875a9}} 
+\index{Xaria\+::\+Test@{Xaria\+::\+Test}!Check\+Levels@{Check\+Levels}}
+\index{Check\+Levels@{Check\+Levels}!Xaria\+::\+Test@{Xaria\+::\+Test}}
+\subsubsection{\texorpdfstring{Check\+Levels()}{CheckLevels()}}
+{\footnotesize\ttfamily void Xaria.\+Test.\+Check\+Levels (\begin{DoxyParamCaption}\item[{Touch\+Collection}]{touch\+Collection }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}
+
+
+
+Checks the levels. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em touch\+Collection} & The touch collection.\\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classXaria_1_1Test_a0c23a1aea214e972d3f48f2542343036}\label{classXaria_1_1Test_a0c23a1aea214e972d3f48f2542343036}} 
+\index{Xaria\+::\+Test@{Xaria\+::\+Test}!Draw@{Draw}}
+\index{Draw@{Draw}!Xaria\+::\+Test@{Xaria\+::\+Test}}
+\subsubsection{\texorpdfstring{Draw()}{Draw()}}
+{\footnotesize\ttfamily void Xaria.\+Test.\+Draw (\begin{DoxyParamCaption}\item[{ref Sprite\+Batch}]{sprite\+Batch }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Draws the specified sprite batch. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em sprite\+Batch} & The sprite batch.\\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classXaria_1_1Test_ad254f5685477c88d63b0a0ebd0ae81de}\label{classXaria_1_1Test_ad254f5685477c88d63b0a0ebd0ae81de}} 
+\index{Xaria\+::\+Test@{Xaria\+::\+Test}!Run\+Tests@{Run\+Tests}}
+\index{Run\+Tests@{Run\+Tests}!Xaria\+::\+Test@{Xaria\+::\+Test}}
+\subsubsection{\texorpdfstring{Run\+Tests()}{RunTests()}}
+{\footnotesize\ttfamily void Xaria.\+Test.\+Run\+Tests (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}
+
+
+
+Runs the tests. 
+
+\mbox{\Hypertarget{classXaria_1_1Test_a9eff33d099d4327f6215d8ff34adbdb8}\label{classXaria_1_1Test_a9eff33d099d4327f6215d8ff34adbdb8}} 
+\index{Xaria\+::\+Test@{Xaria\+::\+Test}!Should\+Test@{Should\+Test}}
+\index{Should\+Test@{Should\+Test}!Xaria\+::\+Test@{Xaria\+::\+Test}}
+\subsubsection{\texorpdfstring{Should\+Test()}{ShouldTest()}}
+{\footnotesize\ttfamily bool Xaria.\+Test.\+Should\+Test (\begin{DoxyParamCaption}\item[{Touch\+Collection}]{touch\+Collection }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}
+
+
+
+Shoulds the test. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em touch\+Collection} & The touch collection.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+\mbox{\Hypertarget{classXaria_1_1Test_ad17445853f03cb253110d639dd87dcf2}\label{classXaria_1_1Test_ad17445853f03cb253110d639dd87dcf2}} 
+\index{Xaria\+::\+Test@{Xaria\+::\+Test}!Test\+Enemies\+Damage@{Test\+Enemies\+Damage}}
+\index{Test\+Enemies\+Damage@{Test\+Enemies\+Damage}!Xaria\+::\+Test@{Xaria\+::\+Test}}
+\subsubsection{\texorpdfstring{Test\+Enemies\+Damage()}{TestEnemiesDamage()}}
+{\footnotesize\ttfamily void Xaria.\+Test.\+Test\+Enemies\+Damage (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}
+
+
+
+Tests the enemies damage. 
+
+
+\begin{DoxyExceptions}{Exceptions}
+{\em Not\+Implemented\+Exception} & \\
+\hline
+\end{DoxyExceptions}
+\mbox{\Hypertarget{classXaria_1_1Test_a33f6befa401ec79a76fee327f2632a3a}\label{classXaria_1_1Test_a33f6befa401ec79a76fee327f2632a3a}} 
+\index{Xaria\+::\+Test@{Xaria\+::\+Test}!Test\+Playe\+Ammos@{Test\+Playe\+Ammos}}
+\index{Test\+Playe\+Ammos@{Test\+Playe\+Ammos}!Xaria\+::\+Test@{Xaria\+::\+Test}}
+\subsubsection{\texorpdfstring{Test\+Playe\+Ammos()}{TestPlayeAmmos()}}
+{\footnotesize\ttfamily void Xaria.\+Test.\+Test\+Playe\+Ammos (\begin{DoxyParamCaption}\item[{ref \hyperlink{classXaria_1_1Player}{Player}}]{player }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}
+
+
+
+Tests the player add ammos. 
+
+
+\begin{DoxyExceptions}{Exceptions}
+{\em Not\+Implemented\+Exception} & \\
+\hline
+\end{DoxyExceptions}
+\mbox{\Hypertarget{classXaria_1_1Test_a459546edfae1ef2d205103128e46593c}\label{classXaria_1_1Test_a459546edfae1ef2d205103128e46593c}} 
+\index{Xaria\+::\+Test@{Xaria\+::\+Test}!Test\+Player\+Damage@{Test\+Player\+Damage}}
+\index{Test\+Player\+Damage@{Test\+Player\+Damage}!Xaria\+::\+Test@{Xaria\+::\+Test}}
+\subsubsection{\texorpdfstring{Test\+Player\+Damage()}{TestPlayerDamage()}}
+{\footnotesize\ttfamily void Xaria.\+Test.\+Test\+Player\+Damage (\begin{DoxyParamCaption}\item[{ref \hyperlink{classXaria_1_1Player}{Player}}]{player }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}
+
+
+
+Tests the player damage. 
+
+
+\begin{DoxyExceptions}{Exceptions}
+{\em Not\+Implemented\+Exception} & \\
+\hline
+\end{DoxyExceptions}
+\mbox{\Hypertarget{classXaria_1_1Test_af6298f90365209347b5bd4581ff7761d}\label{classXaria_1_1Test_af6298f90365209347b5bd4581ff7761d}} 
+\index{Xaria\+::\+Test@{Xaria\+::\+Test}!Update@{Update}}
+\index{Update@{Update}!Xaria\+::\+Test@{Xaria\+::\+Test}}
+\subsubsection{\texorpdfstring{Update()}{Update()}}
+{\footnotesize\ttfamily void Xaria.\+Test.\+Update (\begin{DoxyParamCaption}\item[{Game\+Time}]{game\+Time,  }\item[{Touch\+Collection}]{touch\+Collection }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Updates the specified game time. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em game\+Time} & The game time.\\
+\hline
+{\em touch\+Collection} & The touch collection.\\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Member Data Documentation}
+\mbox{\Hypertarget{classXaria_1_1Test_a26123efa80dd7b2239686616e87ee20d}\label{classXaria_1_1Test_a26123efa80dd7b2239686616e87ee20d}} 
+\index{Xaria\+::\+Test@{Xaria\+::\+Test}!difficulty@{difficulty}}
+\index{difficulty@{difficulty}!Xaria\+::\+Test@{Xaria\+::\+Test}}
+\subsubsection{\texorpdfstring{difficulty}{difficulty}}
+{\footnotesize\ttfamily int Xaria.\+Test.\+difficulty = 1\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The difficulty 
+
+\mbox{\Hypertarget{classXaria_1_1Test_a00af721eecb1813fba1f30afec4044b9}\label{classXaria_1_1Test_a00af721eecb1813fba1f30afec4044b9}} 
+\index{Xaria\+::\+Test@{Xaria\+::\+Test}!level@{level}}
+\index{level@{level}!Xaria\+::\+Test@{Xaria\+::\+Test}}
+\subsubsection{\texorpdfstring{level}{level}}
+{\footnotesize\ttfamily \hyperlink{classXaria_1_1Level}{Level} Xaria.\+Test.\+level = new \hyperlink{classXaria_1_1Level}{Level}(1)\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The level 
+
+\mbox{\Hypertarget{classXaria_1_1Test_ac119e60fe2a56444b7c8673591328611}\label{classXaria_1_1Test_ac119e60fe2a56444b7c8673591328611}} 
+\index{Xaria\+::\+Test@{Xaria\+::\+Test}!run\+Tests@{run\+Tests}}
+\index{run\+Tests@{run\+Tests}!Xaria\+::\+Test@{Xaria\+::\+Test}}
+\subsubsection{\texorpdfstring{run\+Tests}{runTests}}
+{\footnotesize\ttfamily bool Xaria.\+Test.\+run\+Tests = true\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The run tests 
+
+\mbox{\Hypertarget{classXaria_1_1Test_afc1b76ea79ceceeb584f3a3a04cd01d3}\label{classXaria_1_1Test_afc1b76ea79ceceeb584f3a3a04cd01d3}} 
+\index{Xaria\+::\+Test@{Xaria\+::\+Test}!test\+Content@{test\+Content}}
+\index{test\+Content@{test\+Content}!Xaria\+::\+Test@{Xaria\+::\+Test}}
+\subsubsection{\texorpdfstring{test\+Content}{testContent}}
+{\footnotesize\ttfamily String\+Builder Xaria.\+Test.\+test\+Content = new String\+Builder()\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The test content 
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+Project3/\+Project3/Test.\+cs\end{DoxyCompactItemize}
