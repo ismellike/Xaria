@@ -1,3 +1,3 @@
-# A project for EECS 448
+# Xaria
 
-Available for download: https://play.google.com/store/apps/details?id=com.project.xaria
+A mobile game developed with Xamarin(C#) for the Android platform.
