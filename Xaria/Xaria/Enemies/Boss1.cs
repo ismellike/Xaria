@@ -48,12 +48,11 @@ namespace Xaria.Enemies
         {
             Health = HEALTH;
             Position = position;
-            Texture = Game1.textureDictionary["boss1"];//texture changes
+            Texture = Game1.textureDictionary["boss1"]; //texture changes
             NextShoot = SHOOT;
             EnemyType = Enemy.Type.Boss;
             BossType = Type.Boss1;
         }
-
 
         /// <summary>
         /// Shoots the specified game time.
