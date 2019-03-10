@@ -248,13 +248,13 @@ namespace Xaria
 
             switch (weapon.ProjectileType) {
                 case Projectile.Type.Laser:
-                Projectiles.Add(new Laser(Position + new Vector2(Texture.Width / 2f - 1f, -5f), new Vector2(0, -30), Laser.DEFAULT_DMG)); //moving up
+                Projectiles.Add(new Laser(Position + new Vector2((Texture.Width / 2f) - 1f, -5f), new Vector2(0, -30), Laser.DEFAULT_DMG)); //moving up
                     break;
                 case Projectile.Type.Rocket:
-                    Projectiles.Add(new Rocket(Position + new Vector2(Texture.Width / 2f - 1f, -5f), new Vector2(0, -30), Rocket.DEFAULT_DMG)); //moving up
+                    Projectiles.Add(new Rocket(Position + new Vector2((Texture.Width / 2f) - 1f, -5f), new Vector2(0, -30), Rocket.DEFAULT_DMG)); //moving up
                     break;
                 case Projectile.Type.Beam:
-                    Projectiles.Add(new Beam(Position + new Vector2(Texture.Width / 2f - 1f, -5f), new Vector2(0, -50), Beam.DEFAULT_DMG));
+                    Projectiles.Add(new Beam(Position + new Vector2((Texture.Width / 2f) - 1f, -5f), new Vector2(0, -50), Beam.DEFAULT_DMG));
                     break;
             }
             if (weapon.Ammo <= 0)
@@ -324,7 +324,6 @@ namespace Xaria
                 }
             }
         }
-
 
         /// <summary>
         /// @Pre: player's hitbox has intersected a powerup projectile drop.

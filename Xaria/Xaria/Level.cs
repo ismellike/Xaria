@@ -197,13 +197,13 @@ namespace Xaria
                 switch (enemyType)
                 {
                     case Enemy.Type.Basic:
-                        enemy = new Basic(new Vector2((Game1.textureDictionary["basic"].Width + spacing.X) * x - spacing.X + Game1.textureDictionary["basic"].Width * (Enemies.Count % 2), newPosY));
+                        enemy = new Basic(new Vector2(((Game1.textureDictionary["basic"].Width + spacing.X) * x) - spacing.X + (Game1.textureDictionary["basic"].Width * (Enemies.Count % 2)), newPosY));
                         break;
                     case Enemy.Type.Intermediate:
-                        enemy = new Intermediate(new Vector2((Game1.textureDictionary["intermediate"].Width + spacing.X) * x - spacing.X + Game1.textureDictionary["intermediate"].Width * (Enemies.Count % 2), newPosY));
+                        enemy = new Intermediate(new Vector2(((Game1.textureDictionary["intermediate"].Width + spacing.X) * x) - spacing.X + (Game1.textureDictionary["intermediate"].Width * (Enemies.Count % 2)), newPosY));
                         break;
                     case Enemy.Type.Advanced:
-                        enemy = new Advanced(new Vector2((Game1.textureDictionary["advanced"].Width + spacing.X) * x - spacing.X + Game1.textureDictionary["advanced"].Width * (Enemies.Count % 2), newPosY));
+                        enemy = new Advanced(new Vector2(((Game1.textureDictionary["advanced"].Width + spacing.X) * x) - spacing.X + (Game1.textureDictionary["advanced"].Width * (Enemies.Count % 2)), newPosY));
                         break;
                 }
 
@@ -270,13 +270,12 @@ namespace Xaria
                     Enemy enemy = Enemies[rowIndex][enemyIndex];
                     if (enemy.IsDead())
                     {
-                        Enemies[rowIndex][enemyIndex].OnDeath(ref Drops);//checks if a drop is needed
-                        Enemies[rowIndex].RemoveAt(enemyIndex);//removes enemy from the list
+                        Enemies[rowIndex][enemyIndex].OnDeath(ref Drops); //checks if a drop is needed
+                        Enemies[rowIndex].RemoveAt(enemyIndex); //removes enemy from the list
                         continue;
                     }
                     enemy.UpdateMovement(this, gameTime);
                     enemy.Shoot(gameTime, ref Projectiles);
-
                 }
             }
         }
