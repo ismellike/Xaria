@@ -53,7 +53,7 @@ namespace Xaria.Enemies
             if (NextShoot <= 0)
             {
                 NextShoot = Level.random.Next(3000, 10000);
-                Projectiles.Add(new Beam(Position + new Vector2(Texture.Width / 2f - 1f, Texture.Height + 5f), new Vector2(0, 50), 200));
+                Projectiles.Add(new Beam(Position + new Vector2((Texture.Width / 2f) - 1f, Texture.Height + 5f), new Vector2(0, 50), 200));
             }
             NextShoot2 -= gameTime.ElapsedGameTime.Milliseconds;
             if(Health <= 5000)
@@ -61,7 +61,7 @@ namespace Xaria.Enemies
                 if (NextShoot2 <= 0)
                 {
                     NextShoot2 = Level.random.Next(5000, 10000);
-                    Projectiles.Add(new Beam(Position + new Vector2(Texture.Width / 2f - 1f, Texture.Height + 5f), new Vector2(0, 50), 200));
+                    Projectiles.Add(new Beam(Position + new Vector2((Texture.Width / 2f) - 1f, Texture.Height + 5f), new Vector2(0, 50), 200));
                 }
             }
             NextShoot3 -= gameTime.ElapsedGameTime.Milliseconds;
@@ -75,7 +75,7 @@ namespace Xaria.Enemies
                 {
                     NextShoot3 = 10000;
                 }
-                Projectiles.Add(new Emp(Position + new Vector2(Texture.Width / 2f - 1f, Texture.Height + 5f), new Vector2(0, 15), 10));
+                Projectiles.Add(new Emp(Position + new Vector2((Texture.Width / 2f) - 1f, Texture.Height + 5f), new Vector2(0, 15), 10));
             }
             NextShoot4 -= gameTime.ElapsedGameTime.Milliseconds;
             if (NextShoot4 <= 0)
@@ -88,7 +88,7 @@ namespace Xaria.Enemies
                 {
                     NextShoot4 = 20000;
                 }
-                Projectiles.Add(new Rocket(Position + new Vector2(Texture.Width / 2f - 1f, Texture.Height + 5f), new Vector2(0, 22), 60));
+                Projectiles.Add(new Rocket(Position + new Vector2((Texture.Width / 2f) - 1f, Texture.Height + 5f), new Vector2(0, 22), 60));
             }
         }
 

@@ -71,13 +71,13 @@ namespace Xaria.Enemies
             if (NextShoot <= 0)
             {
                 NextShoot = Level.random.Next(FIRST1, NEXT1);
-                Projectiles.Add(new Emp(Position + new Vector2(Texture.Width / 2f - 1f, Texture.Height + 5f), new Vector2(0, 15), EMP_DMG));
+                Projectiles.Add(new Emp(Position + new Vector2((Texture.Width / 2f) - 1f, Texture.Height + 5f), new Vector2(0, 15), EMP_DMG));
             }
             NextShoot2 -= gameTime.ElapsedGameTime.Milliseconds;
             if (NextShoot2 <= 0)
             {
                 NextShoot2 = Level.random.Next(FIRST2, NEXT2);
-                Projectiles.Add(new Rocket(Position + new Vector2(Texture.Width / 2f - 1f, Texture.Height + 5f), new Vector2(0, 22), ROCKET_DMG));
+                Projectiles.Add(new Rocket(Position + new Vector2((Texture.Width / 2f) - 1f, Texture.Height + 5f), new Vector2(0, 22), ROCKET_DMG));
             }
         }
 
@@ -88,7 +88,7 @@ namespace Xaria.Enemies
         /// <param name="gameTime">The game time.</param>
         public override void UpdateMovement(Level level, GameTime gameTime)
         {
-            Position.X = level.player.Position.X + level.player.Texture.Width/2f - Texture.Width/2f;
+            Position.X = level.player.Position.X + (level.player.Texture.Width/2f) - (Texture.Width/2f);
         }
 
         /// <summary>

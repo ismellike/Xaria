@@ -55,7 +55,7 @@ namespace Xaria.Enemies
         {
             Health = HEALTH;
             Position = position;
-            Texture = Game1.textureDictionary["boss3"];//texture changes
+            Texture = Game1.textureDictionary["boss3"]; //texture changes
             NextShoot2 = Level.random.Next(FIRST2, NEXT2);
             EnemyType = Enemy.Type.Boss;
             BossType = Type.Boss3;
@@ -72,13 +72,13 @@ namespace Xaria.Enemies
             if (NextShoot <= 0)
             {
                 NextShoot = Level.random.Next(FIRST1, NEXT1);
-                Projectiles.Add(new Pellet(Position + new Vector2(Texture.Width / 2f - 1f, Texture.Height + 5f), new Vector2(0, 15), PELLET_DMG));
+                Projectiles.Add(new Pellet(Position + new Vector2((Texture.Width / 2f) - 1f, Texture.Height + 5f), new Vector2(0, 15), PELLET_DMG));
             }
             NextShoot2 -= gameTime.ElapsedGameTime.Milliseconds;
             if (NextShoot2 <= 0)
             {
                 NextShoot2 = Level.random.Next(FIRST2, NEXT2);
-                Projectiles.Add(new Beam(Position + new Vector2(Texture.Width / 2f - 1f, Texture.Height + 5f), new Vector2(0, 50), LASER_DMG));
+                Projectiles.Add(new Beam(Position + new Vector2((Texture.Width / 2f) - 1f, Texture.Height + 5f), new Vector2(0, 50), LASER_DMG));
             }
         }
 
